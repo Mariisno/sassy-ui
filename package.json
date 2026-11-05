@@ -1,0 +1,53 @@
+{
+  "name": "sussi",
+  "version": "0.9.0",
+  "description": "Sussi, et designsystem fra NotlandDesign. Tokens, fonter, komponentstiler og React-komponentene.",
+  "license": "MIT AND CC-BY-4.0 AND OFL-1.1 AND ISC",
+  "author": "Mari Notland",
+  "private": true,
+  "type": "module",
+  "style": "styles.css",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./components": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./components/*": "./dist/*",
+    "./dist/*": "./dist/*",
+    "./browser": "./dist/sussi.browser.js",
+    "./styles.css": "./styles.css",
+    "./tokens/*": "./tokens/*",
+    "./tokens.json": "./tokens/sussi.tokens.json",
+    "./tema": "./tokens/tema.js",
+    "./assets/*": "./assets/*",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "sussi-tema": "./scripts/sussi-tema.mjs"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "styles.css",
+    "tokens/",
+    "assets/fonts/",
+    "assets/icons/",
+    "LICENSE",
+    "LICENSES.md",
+    "components/",
+    "dist/",
+    "guidelines/",
+    "scripts/sussi-tema.mjs"
+  ]
+}

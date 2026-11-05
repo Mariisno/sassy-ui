@@ -1,0 +1,32 @@
+<!-- @dsCard group="Components" viewport="700x300" name="FileButton" subtitle="A button that opens the file chooser: variants, sizes, states" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FileButton</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../dist/sussi.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.col{display:flex;flex-direction:column;gap:14px}.lbl{font:var(--type-meta);color:var(--fg-3);width:78px;flex:none}.picked{font:var(--type-meta);color:var(--fg-2)}</style>
+</head><body><div id="root"></div>
+<script>
+// ?theme=dark. Plain React.createElement, so the card needs no Babel.
+const { FileButton } = window.SussiDesignSystem_a2c9b8;
+const h = React.createElement;
+if (new URLSearchParams(location.search).get('theme')) document.documentElement.dataset.theme = 'dark';
+function App() {
+  const [picked, setPicked] = React.useState('');
+  const onFiles = (files) => setPicked(files.map((f) => f.name).join(', '));
+  return h('div', { className: 'col' },
+    h('div', { className: 'row' }, h('span', { className: 'lbl' }, 'variants'),
+      h(FileButton, { iconLeft: 'image', accept: 'image/*', capture: 'environment', onFiles }, 'Ta bilde'),
+      h(FileButton, { variant: 'secondary', iconLeft: 'image', accept: 'image/*', multiple: true, onFiles }, 'Velg bilder'),
+      h(FileButton, { variant: 'soft', iconLeft: 'upload', onFiles }, 'Last opp'),
+      h(FileButton, { variant: 'ghost', accept: '.json,application/json', onFiles }, 'Hent fra sikkerhetskopi')),
+    h('div', { className: 'row' }, h('span', { className: 'lbl' }, 'sizes'),
+      h(FileButton, { size: 'sm', variant: 'secondary', onFiles }, 'Liten'),
+      h(FileButton, { variant: 'secondary', onFiles }, 'Medium'),
+      h(FileButton, { size: 'lg', variant: 'secondary', iconLeft: 'image', onFiles }, 'Stor')),
+    h('div', { className: 'row' }, h('span', { className: 'lbl' }, 'states'),
+      h(FileButton, { disabled: true, onFiles }, 'Deaktivert'),
+      h(FileButton, { variant: 'secondary', disabled: true, onFiles }, 'Deaktivert')),
+    h('p', { className: 'picked', 'aria-live': 'polite' }, picked ? 'Valgt: ' + picked : 'Tab til en knapp og trykk Enter, eller klikk.'));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+</script></body></html>

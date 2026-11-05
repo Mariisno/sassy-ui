@@ -1,0 +1,21 @@
+name: Idea or new component / Idé eller ny komponent
+description: Something Sussi should have. / Noe Sussi burde ha.
+labels: [idea]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What do you need, and where would you use it? / Hva trenger du, og hvor vil du bruke det?
+      description: Show the real screen or flow if you can. Sussi grows from real use.
+    validations:
+      required: true
+  - type: textarea
+    id: today
+    attributes:
+      label: What do you do today instead? / Hva gjør du i dag i stedet?
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checked / Sjekket
+      options:
+        - label: I looked for an existing component or pattern in the docs. / Jeg har sett etter en eksisterende komponent eller et mønster.

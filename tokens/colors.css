@@ -1,0 +1,234 @@
+/* Sussi — color tokens. Base scales + semantic aliases. Light is :root, dark is [data-theme="dark"]. */
+:root{
+/* Moss — primary */
+--moss-50:#F2F5EF;--moss-100:#E3EADC;--moss-200:#C8D6BC;--moss-300:#A5BB94;--moss-400:#7E9C6B;--moss-500:#5C7E4C;--moss-600:#47663A;--moss-700:#385131;--moss-800:#2C4028;--moss-900:#202F1E;--moss-950:#141E13;
+/* Stone — warm neutrals */
+--stone-0:#FFFFFF;--stone-50:#FAF8F4;--stone-100:#F3F0EA;--stone-200:#E8E3DA;--stone-300:#D5CEC2;--stone-400:#B1A99B;--stone-500:#8B8376;--stone-600:#6C655B;--stone-700:#504B44;--stone-800:#36332E;--stone-900:#23211E;--stone-950:#171614;
+/* Accents — use sparingly */
+--clay-100:#F6E6DD;--clay-300:#E0A586;--clay-500:#C0714F;--clay-700:#8C4A30;
+--lichen-100:#EEF2D2;--lichen-300:#D6E09A;--lichen-500:#AEBE5A;--lichen-700:#6B7732;
+--fjord-100:#E1EAF0;--fjord-300:#9DB8CB;--fjord-500:#4A7593;--fjord-700:#2F5068;
+--ochre-100:#F5ECD6;--ochre-300:#E2C17B;--ochre-500:#B8872D;--ochre-700:#7D5A1B;
+--brick-100:#F6E1DC;--brick-300:#E29D8E;--brick-500:#B54A35;--brick-700:#843222;
+--lyng-100:#F1E3EA;--lyng-300:#D4A7BC;--lyng-500:#A86E8A;--lyng-700:#6E3D56;
+
+/* Semantic — surfaces */
+--bg:var(--stone-50);
+--surface-1:var(--stone-0);
+--surface-2:var(--stone-100);
+--surface-3:var(--stone-200); /* text on it is --fg-2 or darker: --fg-3 is 4.06:1 here (4.31 in dark) and only carries non-text marks, such as the switch thumb ring */
+--surface-inverse:var(--stone-900);
+--overlay-scrim:rgba(23,22,20,.36);
+/* Semantic — text */
+--fg-1:var(--stone-900);
+--fg-2:var(--stone-600);
+--fg-3:#736C62; /* 4.56:1 on surface-2, 4.89:1 on bg. stone-500 was 3.3–3.75:1 */
+--fg-disabled:var(--stone-400);
+--fg-inverse:var(--stone-50);
+/* Semantic — lines */
+--border:var(--stone-200);
+--border-strong:var(--stone-300);
+--border-control:var(--stone-500); /* edge of inputs, checkboxes and the off switch: ≥ 3:1 on every surface (1.4.11). border-strong was 1.56:1 */
+--border-focus:var(--moss-500);
+--focus-color:var(--moss-600); /* the outline on :focus-visible, ≥ 3:1 on every surface */
+/* Semantic — accent (moss) */
+--accent:var(--moss-600);
+--accent-hover:var(--moss-700);
+--accent-press:var(--moss-800);
+--accent-fg:var(--moss-50);
+--accent-soft:var(--moss-100);
+--accent-soft-hover:var(--moss-200);
+--accent-soft-fg:var(--moss-800);
+--accent-text:var(--moss-600);
+--focus-ring:0 0 0 2px var(--moss-600); /* solid; the old 32% ring was 1.53:1 */
+--highlight:var(--lichen-300);
+/* Semantic — status */
+--success:var(--moss-600);--success-soft:var(--moss-100);--success-fg:var(--moss-800);
+--warning:var(--ochre-500);--warning-soft:var(--ochre-100);--warning-fg:var(--ochre-700);
+--danger:var(--brick-500);--danger-soft:var(--brick-100);--danger-fg:var(--brick-700);
+--danger-hover:var(--brick-700);
+--danger-fg-on:var(--stone-0); /* text on a --danger fill (the danger button), also while hovered: ≥ 4.5:1 on --danger and --danger-hover */
+--info:var(--fjord-500);--info-soft:var(--fjord-100);--info-fg:var(--fjord-700);
+--clay:var(--clay-500);--clay-soft:var(--clay-100);--clay-fg:var(--clay-700);
+/* Mascot. Sussi is always black and white; dark mode adds a thin halo (.s-sussi) */
+--sussi-ink:#1F1D1B;--sussi-fur:#FFFFFF;--sussi-pink:#E9A3A0;--sussi-eye:#6E6C3A;--sussi-halo:#EDEAE3;
+color-scheme:light;
+}
+[data-theme="dark"]{
+--bg:#161613;
+--surface-1:#1E1E1A;
+--surface-2:#262621;
+--surface-3:#303029;
+--surface-inverse:var(--stone-100);
+--overlay-scrim:rgba(8,8,6,.6);
+--fg-1:#EDEAE3;
+--fg-2:#B5AFA4;
+--fg-3:#98928A; /* 4.93:1 on surface-2 */
+--fg-disabled:#5D5950;
+--fg-inverse:var(--stone-900);
+--border:#2F2F29;
+--border-strong:#3E3D36;
+--border-control:#77736A; /* ≥ 3.22:1 on every surface */
+--border-focus:var(--moss-300);
+--focus-color:var(--moss-300);
+--accent:var(--moss-300);
+--accent-hover:var(--moss-200);
+--accent-press:var(--moss-100);
+--accent-fg:var(--moss-950);
+--accent-soft:#27331F;
+--accent-soft-hover:#314029;
+--accent-soft-fg:var(--moss-200);
+--accent-text:var(--moss-300);
+--focus-ring:0 0 0 2px var(--moss-300);
+--highlight:#4A5226;
+--success:var(--moss-300);--success-soft:#27331F;--success-fg:var(--moss-200);
+--warning:var(--ochre-300);--warning-soft:#382C14;--warning-fg:var(--ochre-300);
+--danger:var(--brick-300);--danger-soft:#3A1F19;--danger-fg:var(--brick-300);
+--danger-hover:var(--brick-100);
+--danger-fg-on:var(--stone-950);
+--info:var(--fjord-300);--info-soft:#1C2A34;--info-fg:var(--fjord-300);
+--clay:var(--clay-300);--clay-soft:#3A251B;--clay-fg:var(--clay-300);
+color-scheme:dark;
+}
+
+/* Per-app accent: <html data-accent="clay">. Overrides the accent group only; moss stays the system default. */
+[data-accent="clay"]{
+--accent:#A65B3C;
+--accent-hover:var(--clay-700);
+--accent-press:#733C27;
+--accent-fg:var(--stone-0);
+--accent-soft:var(--clay-100);
+--accent-soft-hover:#EDD3C5;
+--accent-soft-fg:var(--clay-700);
+--accent-text:#A2583A; /* ≥ 4.6:1 on every surface (#A65B3C was 4.41:1 on --surface-2), and not --accent-hover, so a link changes colour on hover */
+--border-focus:var(--clay-500);
+--focus-color:#A65B3C;
+--focus-ring:0 0 0 2px #A65B3C;
+}
+[data-theme="dark"][data-accent="clay"]{
+--accent:var(--clay-300);
+--accent-hover:#EBC0A8;
+--accent-press:var(--clay-100);
+--accent-fg:var(--stone-950);
+--accent-soft:#3A251B;
+--accent-soft-hover:#47301F;
+--accent-soft-fg:var(--clay-300);
+--accent-text:var(--clay-300);
+--border-focus:var(--clay-300);
+--focus-color:var(--clay-300);
+--focus-ring:0 0 0 2px var(--clay-300);
+}
+
+/* Per-app accent: <html data-accent="lyng">. Ochre and brick are taken by warning and danger, so lyng is its own family. */
+[data-accent="lyng"]{
+--accent:#8A4F6C;
+--accent-hover:var(--lyng-700);
+--accent-press:#57304A;
+--accent-fg:var(--stone-0);
+--accent-soft:var(--lyng-100);
+--accent-soft-hover:#E8D2DD;
+--accent-soft-fg:var(--lyng-700);
+--accent-text:#8A4F6C;
+--border-focus:var(--lyng-500);
+--focus-color:#8A4F6C;
+--focus-ring:0 0 0 2px #8A4F6C;
+--highlight:var(--lyng-100);
+}
+[data-theme="dark"][data-accent="lyng"]{
+--accent:var(--lyng-300);
+--accent-hover:#E2C1D0;
+--accent-press:#EDD6E0;
+--accent-fg:#2A1520;
+--accent-soft:#3A2430;
+--accent-soft-hover:#47303C;
+--accent-soft-fg:var(--lyng-300);
+--accent-text:var(--lyng-300);
+--border-focus:var(--lyng-300);
+--focus-color:var(--lyng-300);
+--focus-ring:0 0 0 2px var(--lyng-300);
+--highlight:#47303C;
+}
+
+/* Per-app accent: <html data-accent="fjord">. Fjord is also --info; info stays a soft fill. */
+[data-accent="fjord"]{
+--accent:var(--fjord-500);
+--accent-hover:var(--fjord-700);
+--accent-press:#24405A;
+--accent-fg:var(--stone-0);
+--accent-soft:var(--fjord-100);
+--accent-soft-hover:#D2DFE8;
+--accent-soft-fg:var(--fjord-700);
+--accent-text:#46708D; /* ≥ 4.6:1 on every surface (fjord-500 was 4.34:1 on --surface-2), and not --accent-hover */
+--border-focus:var(--fjord-500);
+--focus-color:var(--fjord-500);
+--focus-ring:0 0 0 2px var(--fjord-500);
+}
+[data-theme="dark"][data-accent="fjord"]{
+--accent:var(--fjord-300);
+--accent-hover:#B8CDDB;
+--accent-press:#CDDBE5;
+--accent-fg:#0F1C25;
+--accent-soft:#1C2A34;
+--accent-soft-hover:#243642;
+--accent-soft-fg:var(--fjord-300);
+--accent-text:var(--fjord-300);
+--border-focus:var(--fjord-300);
+--focus-color:var(--fjord-300);
+--focus-ring:0 0 0 2px var(--fjord-300);
+}
+
+/* Per-app accent: <html data-accent="lichen">. Lichen-500 is too light for text, so the accent is lichen-700. */
+[data-accent="lichen"]{
+--accent:var(--lichen-700);
+--accent-hover:#555F27;
+--accent-press:#4A5222;
+--accent-fg:var(--stone-0);
+--accent-soft:var(--lichen-100);
+--accent-soft-hover:#E3E9BD;
+--accent-soft-fg:#4E5724;
+--accent-text:#66712F; /* ≥ 4.6:1 on every surface (lichen-700 was 4.28:1 on --surface-2), and not --accent-hover */
+--border-focus:var(--lichen-700);
+--focus-color:var(--lichen-700);
+--focus-ring:0 0 0 2px var(--lichen-700);
+}
+[data-theme="dark"][data-accent="lichen"]{
+--accent:var(--lichen-300);
+--accent-hover:#E2EAB5;
+--accent-press:#EAF0C8;
+--accent-fg:#1F230C;
+--accent-soft:#2C3016;
+--accent-soft-hover:#373C1C;
+--accent-soft-fg:var(--lichen-300);
+--accent-text:var(--lichen-300);
+--border-focus:var(--lichen-300);
+--focus-color:var(--lichen-300);
+--focus-ring:0 0 0 2px var(--lichen-300);
+}
+
+/* Per-app accent: <html data-accent="ochre">. Ochre is also --warning, so the accent is a deeper ochre that holds 4.5:1; warnings stay soft fills. */
+[data-accent="ochre"]{
+--accent:#8A6420;
+--accent-hover:var(--ochre-700);
+--accent-press:#5E4314;
+--accent-fg:var(--stone-0);
+--accent-soft:var(--ochre-100);
+--accent-soft-hover:#EEDDB6;
+--accent-soft-fg:var(--ochre-700);
+--accent-text:#8A6420;
+--border-focus:var(--ochre-500);
+--focus-color:#8A6420;
+--focus-ring:0 0 0 2px #8A6420;
+}
+[data-theme="dark"][data-accent="ochre"]{
+--accent:var(--ochre-300);
+--accent-hover:#EBD29C;
+--accent-press:#F0DDB2;
+--accent-fg:var(--stone-950);
+--accent-soft:#3A2E16;
+--accent-soft-hover:#46381B;
+--accent-soft-fg:var(--ochre-300);
+--accent-text:var(--ochre-300);
+--border-focus:var(--ochre-300);
+--focus-color:var(--ochre-300);
+--focus-ring:0 0 0 2px var(--ochre-300);
+}

@@ -1,0 +1,25 @@
+<!-- @dsCard group="Components" viewport="700x260" name="Spinner" subtitle="Indeterminate: sm, md, lg; labelled or decorative; Button's own" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spinner</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../dist/sussi.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}.col{display:grid;gap:16px;max-width:560px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:24px}.lbl{font:var(--type-meta);color:var(--fg-3)}.txt{font:var(--type-body-sm);color:var(--fg-2);display:inline-flex;align-items:center;gap:8px}.view{display:grid;place-items:center;gap:10px;padding:28px;background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-card);font:var(--type-body-sm);color:var(--fg-2)}</style>
+</head><body><div id="root"></div>
+<script>
+// ?theme=dark. Plain React.createElement, so the card needs no Babel.
+const { Spinner, Button } = window.SussiDesignSystem_a2c9b8;
+const h = React.createElement;
+if (new URLSearchParams(location.search).get('theme')) document.documentElement.dataset.theme = 'dark';
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'col' },
+  h('span', { className: 'lbl' }, 'sm · md · lg, hver med sin label'),
+  h('div', { className: 'row' },
+    h(Spinner, { size: 'sm', label: 'Laster' }),
+    h(Spinner, { label: 'Laster' }),
+    h(Spinner, { size: 'lg', label: 'Laster oppskrifter' })),
+  h('span', { className: 'lbl' }, 'ved siden av egen tekst (aria-hidden) · i en knapp (Button loading)'),
+  h('div', { className: 'row' },
+    h('span', { className: 'txt', role: 'status' }, 'Lagrer', h(Spinner, { size: 'sm', 'aria-hidden': true })),
+    h(Button, { loading: true }, 'Lagrer'),
+    h(Button, { loading: true, variant: 'secondary' }, 'Henter')),
+  h('div', { className: 'view' }, h(Spinner, { size: 'lg', 'aria-hidden': true }), h('span', { role: 'status' }, 'Henter hagedagboka'))));
+</script></body></html>

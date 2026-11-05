@@ -1,0 +1,27 @@
+<!-- @dsCard group="Components" viewport="700x240" name="BackLink" subtitle="«Tilbake», to a named page, with a router, on a surface" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BackLink</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../dist/sussi.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}.col{display:grid;gap:16px;max-width:560px}.lbl{font:var(--type-meta);color:var(--fg-3)}.row{display:flex;flex-wrap:wrap;align-items:center;gap:24px}.page{display:grid;gap:6px;padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-card);background:var(--surface-1)}.page h2{margin:0;font:var(--type-h3);color:var(--fg-1)}.page p{margin:0;font:var(--type-body-sm);color:var(--fg-2)}</style>
+</head><body><div id="root"></div>
+<script>
+// ?theme=dark. Plain React.createElement, so the card needs no Babel.
+const { BackLink } = window.SussiDesignSystem_a2c9b8;
+const h = React.createElement;
+if (new URLSearchParams(location.search).get('theme')) document.documentElement.dataset.theme = 'dark';
+// Stands in for React Router's Link: takes `to`, renders an <a>.
+const RouterLink = React.forwardRef(function RouterLink({ to, children, ...rest }, ref) { return h('a', { ref, href: to, ...rest }, children); });
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'col' },
+  h('span', { className: 'lbl' }, 'standard «Tilbake» · med stedet · as={RouterLink} to · engelsk'),
+  h('div', { className: 'row' },
+    h(BackLink, { href: '#planter' }),
+    h(BackLink, { href: '#planter' }, 'Tilbake til planter'),
+    h(BackLink, { as: RouterLink, to: '#uke' }, 'Tilbake til uka'),
+    h(BackLink, { href: '#plants' }, 'Back')),
+  h('span', { className: 'lbl' }, 'øverst på en side som ble åpnet fra en liste · på --surface-1'),
+  h('div', { className: 'page' },
+    h(BackLink, { href: '#planter' }, 'Tilbake til planter'),
+    h('h2', null, 'Tomat ‘Gardener’s Delight’'),
+    h('p', null, 'Sådd 14. mars, plantet ut 2. juni. Første høst 30. juli.'))));
+</script></body></html>

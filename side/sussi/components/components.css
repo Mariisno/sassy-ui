@@ -1,0 +1,505 @@
+/* Sussi — component styles. Class prefix: .s- */
+
+/* Button */
+.s-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:var(--control-md);padding:0 14px;border:1px solid transparent;border-radius:var(--radius-control);font:var(--weight-medium) var(--text-sm)/1 var(--font-sans);letter-spacing:-0.005em;white-space:nowrap;cursor:pointer;user-select:none;text-decoration:none;transition:background-color var(--dur-fast) var(--ease-calm),border-color var(--dur-fast) var(--ease-calm),color var(--dur-fast) var(--ease-calm),transform var(--dur-fast) var(--ease-calm),box-shadow var(--dur-fast) var(--ease-calm)}
+.s-btn:active:not(:disabled,[aria-disabled="true"]){transform:translateY(1px)}
+.s-btn:disabled,.s-btn[aria-disabled="true"]{cursor:not-allowed;opacity:.5} /* aria-disabled: looks off and does nothing, but keeps focus (loading, or a reason in a Tooltip) */
+.s-btn--sm{height:var(--control-sm);padding:0 10px;font-size:13px;gap:6px}
+.s-btn--lg{height:var(--control-lg);padding:0 18px;font-size:var(--text-md);border-radius:var(--radius-md)}
+.s-btn--full{width:100%}
+.s-btn--primary{background:var(--accent);color:var(--accent-fg);box-shadow:var(--shadow-xs)}
+.s-btn--primary:hover:not(:disabled,[aria-disabled="true"]){background:var(--accent-hover)}
+.s-btn--primary:active:not(:disabled,[aria-disabled="true"]){background:var(--accent-press)}
+.s-btn--secondary{background:var(--surface-1);color:var(--fg-1);border-color:var(--border-strong);box-shadow:var(--shadow-xs)}
+.s-btn--secondary:hover:not(:disabled,[aria-disabled="true"]){background:var(--surface-2)}
+.s-btn--soft{background:var(--accent-soft);color:var(--accent-soft-fg)}
+.s-btn--soft:hover:not(:disabled,[aria-disabled="true"]){background:var(--accent-soft-hover)}
+.s-btn--ghost{background:transparent;color:var(--fg-2)}
+.s-btn--ghost:hover:not(:disabled,[aria-disabled="true"]){background:var(--surface-2);color:var(--fg-1)}
+.s-btn--danger{background:var(--danger);color:var(--danger-fg-on)}
+.s-btn--danger:hover:not(:disabled,[aria-disabled="true"]){background:var(--danger-hover)}
+.s-btn__spin{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:s-spin .7s linear infinite}
+@keyframes s-spin{to{transform:rotate(360deg)}}
+
+/* FileButton: a .s-btn label around a visually hidden <input type="file">. The input keeps keyboard focus
+   (it is not display:none), and the label shows the ring on :focus-within, like .s-control. */
+.s-filebtn{position:relative}
+.s-filebtn__input{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.s-filebtn__input:focus-visible{outline:none} /* the label shows the ring */
+.s-filebtn:has(:focus-visible){outline:2px solid var(--focus-color);outline-offset:2px}
+.s-filebtn--disabled{opacity:.5;cursor:not-allowed;pointer-events:none} /* a label is never :disabled; like .s-control--disabled */
+
+/* IconButton */
+.s-iconbtn{display:inline-grid;place-items:center;width:var(--control-md);height:var(--control-md);padding:0;border:1px solid transparent;border-radius:var(--radius-control);background:transparent;color:var(--fg-2);text-decoration:none;cursor:pointer;transition:background-color var(--dur-fast) var(--ease-calm),color var(--dur-fast) var(--ease-calm),transform var(--dur-fast) var(--ease-calm)}
+.s-iconbtn:hover:not(:disabled){background:var(--surface-2);color:var(--fg-1)}
+.s-iconbtn:active:not(:disabled){transform:translateY(1px)}
+.s-iconbtn:disabled{opacity:.5;cursor:not-allowed}
+.s-iconbtn--sm{width:var(--control-sm);height:var(--control-sm)}
+.s-iconbtn--lg{width:var(--control-lg);height:var(--control-lg);border-radius:var(--radius-md)}
+.s-iconbtn--secondary{background:var(--surface-1);border-color:var(--border-strong);box-shadow:var(--shadow-xs)}
+.s-iconbtn--primary{background:var(--accent);color:var(--accent-fg)}
+.s-iconbtn--primary:hover:not(:disabled){background:var(--accent-hover);color:var(--accent-fg)}
+.s-iconbtn--round{border-radius:var(--radius-pill)}
+
+/* Icon */
+.s-icon{display:inline-block;flex:none;vertical-align:middle}
+
+/* Badge */
+.s-badge{display:inline-flex;align-items:center;gap:6px;min-height:22px;padding:0 8px;border-radius:var(--radius-pill);font:var(--weight-medium) 12px/1 var(--font-sans);white-space:nowrap;background:var(--surface-2);color:var(--fg-2)}
+.s-badge__dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.s-badge--accent{background:var(--accent-soft);color:var(--accent-soft-fg)}
+.s-badge--success{background:var(--success-soft);color:var(--success-fg)}
+.s-badge--warning{background:var(--warning-soft);color:var(--warning-fg)}
+.s-badge--danger{background:var(--danger-soft);color:var(--danger-fg)}
+.s-badge--info{background:var(--info-soft);color:var(--info-fg)}
+.s-badge--clay{background:var(--clay-soft);color:var(--clay-fg)}
+.s-badge--outline{background:transparent;box-shadow:inset 0 0 0 1px var(--border-strong);color:var(--fg-2)}
+.s-badge--mono{font-family:var(--font-mono);font-weight:400;letter-spacing:var(--tracking-mono)}
+
+/* Tag */
+.s-tag{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:0 10px;border:1px solid var(--border-strong);border-radius:var(--radius-pill);background:var(--surface-1);color:var(--fg-2);font:var(--weight-medium) 13px/1 var(--font-sans);cursor:default;transition:background-color var(--dur-fast) var(--ease-calm),border-color var(--dur-fast) var(--ease-calm),color var(--dur-fast) var(--ease-calm)}
+button.s-tag{cursor:pointer}
+button.s-tag:hover{border-color:var(--fg-3);color:var(--fg-1)}
+.s-tag[aria-pressed="true"]{background:var(--accent-soft);border-color:transparent;color:var(--accent-soft-fg)}
+.s-tag--removable{padding-right:1px}
+.s-tag--selected{background:var(--accent-soft);border-color:transparent;color:var(--accent-soft-fg)}
+.s-tag__main{display:inline-flex;align-items:center;gap:6px;height:100%;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer}
+.s-tag__main:hover{color:var(--fg-1)}
+.s-tag--selected .s-tag__main:hover{color:inherit}
+.s-tag__x{flex:none;display:inline-grid;place-items:center;width:24px;height:24px;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer;padding:0} /* 24 px: WCAG 2.5.8 target size */
+.s-tag__x:hover{background:var(--surface-3)}
+
+/* Card */
+.s-card{background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-card);color:var(--fg-1)}
+.s-card--pad-sm{padding:var(--space-3)}.s-card--pad-md{padding:var(--space-5)}.s-card--pad-lg{padding:var(--space-8)}.s-card--pad-none{padding:0}
+.s-card--raised{border-color:transparent;box-shadow:var(--shadow-md)}
+[data-theme="dark"] .s-card--raised{background:var(--surface-2)}
+.s-card--sunken{background:var(--surface-2);border-color:transparent}
+.s-card--interactive{cursor:pointer;transition:border-color var(--dur-base) var(--ease-calm),box-shadow var(--dur-base) var(--ease-calm),transform var(--dur-base) var(--ease-calm)}
+.s-card--interactive:hover{border-color:var(--border-strong);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+
+/* ListItem: a row that opens something (link or button), or a plain row */
+.s-listitem{display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface-1);color:var(--fg-1);font:inherit;text-align:left;text-decoration:none}
+.s-listitem--opens{cursor:pointer;transition:border-color var(--dur-fast) var(--ease-calm),background-color var(--dur-fast) var(--ease-calm),transform var(--dur-fast) var(--ease-calm)}
+.s-listitem--opens:not([aria-disabled="true"]):not(:disabled):hover{border-color:var(--border-strong);background:color-mix(in srgb,var(--surface-1) 55%,var(--surface-2));color:var(--fg-1)}
+.s-listitem--opens:not([aria-disabled="true"]):not(:disabled):hover .s-listitem__trail{color:var(--fg-1)}
+.s-listitem--opens:active:not(:disabled):not([aria-disabled="true"]){transform:translateY(1px)}
+.s-listitem:disabled,.s-listitem[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+.s-listitem__lead{flex:none;display:grid;place-items:center;width:48px} /* fixed, so titles line up in a list that mixes icons and images */
+.s-listitem__img{display:block;width:48px;height:48px;border-radius:var(--radius-md);object-fit:cover;background:var(--surface-2)}
+.s-listitem__icon{display:grid;place-items:center;width:40px;height:40px;border-radius:var(--radius-md);background:var(--surface-2);color:var(--fg-2)}
+.s-listitem__body{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.s-listitem__title{font:var(--weight-semibold) var(--text-md)/1.3 var(--font-sans);color:var(--fg-1);overflow-wrap:anywhere}
+.s-listitem__meta{font:var(--type-body-sm);color:var(--fg-2);overflow-wrap:anywhere}
+.s-listitem__trail{flex:none;display:flex;align-items:center;color:var(--fg-3);transition:color var(--dur-fast) var(--ease-calm)}
+
+/* Disclosure: a section that shows and hides, native <details>/<summary>. The summary is a 44 px row (2.5.8) on
+   --surface-1 with the --border edge like ListItem; the chevron is --fg-3 and turns 180° on --dur-base, which the tokens
+   make 0 under prefers-reduced-motion (2.3.3). The default marker is removed in every engine (list-style and the WebKit pseudo) */
+.s-disclosure{border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface-1);color:var(--fg-1)}
+.s-disclosure__summary{display:flex;align-items:center;gap:12px;min-height:44px;padding:10px 12px;border-radius:var(--radius-lg);cursor:pointer;list-style:none;font:var(--weight-medium) var(--text-md)/1.3 var(--font-sans);color:var(--fg-1);transition:background-color var(--dur-fast) var(--ease-calm)}
+.s-disclosure__summary::-webkit-details-marker{display:none}
+.s-disclosure__summary::marker{content:""}
+.s-disclosure__summary:hover{background:color-mix(in srgb,var(--surface-1) 55%,var(--surface-2))}
+.s-disclosure__summary:hover .s-disclosure__chevron{color:var(--fg-1)}
+.s-disclosure[open]>.s-disclosure__summary{border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+.s-disclosure__title{flex:1;min-width:0;overflow-wrap:anywhere}
+.s-disclosure__title:is(h1,h2,h3,h4,h5,h6){margin:0;font:inherit;color:inherit} /* a heading passed as the title carries the class itself and keeps the row's size */
+.s-disclosure__chevron{flex:none;color:var(--fg-3);transition:transform var(--dur-base) var(--ease-calm),color var(--dur-fast) var(--ease-calm)}
+.s-disclosure[open]>.s-disclosure__summary .s-disclosure__chevron{transform:rotate(180deg)}
+@media (prefers-reduced-motion:reduce){.s-disclosure__chevron{transition:none}} /* the tokens already make --dur-base 0; this also removes the transition itself */
+.s-disclosure__body{padding:2px 12px 14px;font:var(--type-body);color:var(--fg-1)}
+.s-disclosure__body>:first-child{margin-top:0}
+.s-disclosure__body>:last-child{margin-bottom:0}
+
+/* Field (Input / Textarea / Select) */
+.s-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.s-field__label{font:var(--type-label);color:var(--fg-1)}
+.s-field__opt{font:var(--type-meta);color:var(--fg-3);margin-left:6px}
+.s-field__hint{font:var(--weight-regular) 13px/1.4 var(--font-sans);color:var(--fg-3)}
+.s-field__hint--error{color:var(--danger-fg)}
+.s-control{position:relative;display:flex;align-items:center;height:var(--control-md);background:var(--surface-1);border:1px solid var(--border-control);border-radius:var(--radius-control);box-shadow:var(--shadow-inset);transition:border-color var(--dur-fast) var(--ease-calm),box-shadow var(--dur-fast) var(--ease-calm)}
+.s-control:hover{border-color:var(--fg-3)}
+.s-control:focus-within{border-color:var(--border-focus);outline:2px solid var(--focus-color);outline-offset:1px}
+.s-control--sm{height:var(--control-sm)}.s-control--lg{height:var(--control-lg)}
+.s-control--invalid{border-color:var(--danger)}
+.s-control--invalid:focus-within{outline:2px solid var(--danger)}
+.s-control--disabled{opacity:.55;pointer-events:none;background:var(--surface-2)}
+.s-control__input{flex:1;min-width:0;height:100%;padding:0 12px;border:0;background:transparent;color:var(--fg-1);font:var(--weight-regular) var(--text-sm)/1 var(--font-sans);outline:none;appearance:none}
+.s-control__input::placeholder{color:var(--fg-3)}
+.s-control__input:focus-visible{outline:none;box-shadow:none}
+.s-control__affix{display:flex;align-items:center;color:var(--fg-3);font:var(--type-meta);padding-left:12px}
+.s-control__affix + .s-control__input{padding-left:8px}
+.s-control__affix--end{padding-left:0;padding-right:12px}
+.s-control--area{height:auto}
+.s-control--area .s-control__input{padding:10px 12px;line-height:1.5;resize:vertical;min-height:88px}
+.s-control__select{padding-right:34px;cursor:pointer}
+.s-control__chev{position:absolute;right:10px;pointer-events:none;color:var(--fg-3)}
+/* The password toggle (mode="password"): an IconButton at the end of the control, a toggle button named «Vis passord»
+   with aria-pressed. It follows the control's size: 24 px in a 30 px frame (sm), 30 in 38 (md), 38 in 46 (lg), never
+   under 24 (2.5.8). While the button holds the focus (mouse or keyboard) the frame stays quiet: no ring and the resting
+   border, so the button's own :focus-visible ring is the only one; an invalid frame keeps its --danger border. */
+.s-control__affix--action{padding:0 4px 0 0}
+.s-control__affix--action .s-iconbtn{color:var(--fg-2)}
+.s-control--sm .s-control__affix--action{padding-right:3px}
+.s-control--sm .s-control__affix--action .s-iconbtn{width:24px;height:24px}
+.s-control:has(.s-control__affix--action .s-iconbtn:focus){border-color:var(--border-control);outline:none}
+.s-control--invalid:has(.s-control__affix--action .s-iconbtn:focus){border-color:var(--danger)}
+.s-control__input[type="search"]::-webkit-search-decoration,.s-control__input[type="search"]::-webkit-search-cancel-button{appearance:none}
+/* 16 px text on touch screens: below that, iOS Safari zooms the whole page in on focus */
+@media (pointer:coarse){.s-control__input{font-size:16px}}
+
+/* Checkbox / Radio / Switch */
+.s-check{display:inline-flex;align-items:flex-start;gap:10px;cursor:pointer;font:var(--weight-regular) var(--text-sm)/1.4 var(--font-sans);color:var(--fg-1)}
+.s-check--disabled{opacity:.5;cursor:not-allowed}
+.s-check__input{position:absolute;opacity:0;width:0;height:0}
+.s-check__box{flex:none;display:grid;place-items:center;width:18px;height:18px;margin-top:1px;border:1.5px solid var(--border-control);border-radius:5px;background:var(--surface-1);color:var(--accent-fg);transition:background-color var(--dur-fast) var(--ease-calm),border-color var(--dur-fast) var(--ease-calm)}
+.s-check:hover .s-check__box{border-color:var(--fg-3)}
+/* :indeterminate only on a checkbox: a radio matches it too while no radio in its group is checked, which filled a whole unanswered group with the accent */
+.s-check__input:checked + .s-check__box,.s-check__input[type="checkbox"]:indeterminate + .s-check__box{background:var(--accent);border-color:var(--accent)}
+.s-check__input:focus-visible + .s-check__box{outline:2px solid var(--focus-color);outline-offset:2px}
+.s-check__box svg{opacity:0;transform:scale(.6);transition:opacity var(--dur-fast) var(--ease-calm),transform var(--dur-fast) var(--ease-calm)}
+.s-check__input:checked + .s-check__box svg,.s-check__input[type="checkbox"]:indeterminate + .s-check__box svg{opacity:1;transform:none}
+.s-check--radio .s-check__box{border-radius:50%}
+.s-check__dot{width:8px;height:8px;border-radius:50%;background:var(--accent-fg);opacity:0;transform:scale(.4);transition:opacity var(--dur-fast) var(--ease-calm),transform var(--dur-fast) var(--ease-calm)}
+.s-check__input:checked + .s-check__box .s-check__dot{opacity:1;transform:none}
+.s-check__text{display:flex;flex-direction:column;gap:2px}
+.s-check__desc{color:var(--fg-3);font-size:13px}
+.s-switch__track{flex:none;position:relative;width:34px;height:20px;border-radius:var(--radius-pill);background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--border-control);transition:background-color var(--dur-base) var(--ease-calm)}
+.s-switch__thumb{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px var(--fg-3),0 1px 2px rgba(0,0,0,.2);transition:transform var(--dur-base) var(--ease-calm)}
+.s-check__input:checked + .s-switch__track{background:var(--accent);box-shadow:none}
+/* Off, the white thumb on the light track is 1.28:1, so a --fg-3 ring marks it (4.06:1 or more, 1.4.11). On, the accent track does that. */
+.s-check__input:checked + .s-switch__track .s-switch__thumb{transform:translateX(14px);box-shadow:0 1px 2px rgba(0,0,0,.2)}
+[data-theme="dark"] .s-check__input:checked + .s-switch__track .s-switch__thumb{background:var(--accent-fg)}
+.s-check__input:focus-visible + .s-switch__track{outline:2px solid var(--focus-color);outline-offset:2px}
+
+/* SegmentedControl: two to five mutually exclusive options in a row, one value in a form. A native radio group in
+   the segmented look (the same track as .s-tabs--segmented, so the two read as one family): the radios are visually
+   hidden and the face next to each shows the state. The checked face is --surface-1 (--surface-3 in dark) with a
+   shadow and --fg-1 text, the rest --fg-2 on --surface-2 (≥ 4.5:1 in both themes, tests/segmentedcontrol.test.mjs).
+   The track is 36 px and each face 30 px, exactly as .s-tabs--segmented, so the target is over 24 px (2.5.8). */
+.s-segmented{display:block;margin:0;padding:0;border:0;min-width:0}
+.s-segmented__legend{padding:0;margin:0 0 6px;font:var(--type-label);color:var(--fg-1)}
+.s-segmented__track{display:inline-flex;max-width:100%;gap:2px;padding:3px;border-radius:var(--radius-md);background:var(--surface-2)}
+.s-segmented--full .s-segmented__track{display:flex}
+.s-segmented__item{position:relative;display:flex;min-width:0}
+.s-segmented--full .s-segmented__item{flex:1}
+.s-segmented__input{position:absolute;opacity:0;width:0;height:0}
+.s-segmented__face{display:inline-flex;flex:1;align-items:center;justify-content:center;gap:6px;min-width:40px;height:30px;padding:0 12px;border-radius:7px;color:var(--fg-2);font:var(--weight-medium) var(--text-sm)/1 var(--font-sans);white-space:nowrap;cursor:pointer;user-select:none;transition:background-color var(--dur-fast) var(--ease-calm),color var(--dur-fast) var(--ease-calm),box-shadow var(--dur-fast) var(--ease-calm)}
+.s-segmented__item:hover .s-segmented__face{color:var(--fg-1)}
+.s-segmented__input:checked + .s-segmented__face{background:var(--surface-1);color:var(--fg-1);box-shadow:var(--shadow-sm)}
+[data-theme="dark"] .s-segmented__input:checked + .s-segmented__face{background:var(--surface-3)}
+.s-segmented__input:focus-visible + .s-segmented__face{outline:2px solid var(--focus-color);outline-offset:2px}
+.s-segmented__hint{display:block;margin-top:6px}
+.s-segmented:disabled .s-segmented__face,.s-segmented__item--disabled .s-segmented__face{opacity:.5;cursor:not-allowed}
+.s-segmented:disabled .s-segmented__item:hover .s-segmented__face,.s-segmented__item--disabled:hover .s-segmented__face{color:var(--fg-2)}
+
+/* Fieldset: a group of controls (a radio or checkbox group) with a legend, a hint and an error. The error has an
+   icon and text and is announced, never colour alone; the invalid group gets a --danger edge on the left, like
+   .s-control--invalid's border. The edge is there, transparent, from the start, so nothing jumps when the error comes. The hint and error reuse .s-field__hint, so they look like Field's. */
+.s-fieldset{display:block;margin:0;padding:0 0 0 12px;border:0;border-left:3px solid transparent;min-width:0}
+.s-fieldset__legend{padding:0;margin:0;font:var(--type-label);color:var(--fg-1)}
+.s-fieldset__hint{display:block;margin-top:4px}
+.s-fieldset__items{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:10px}
+.s-fieldset__items--row{flex-direction:row;flex-wrap:wrap;gap:10px 20px}
+.s-fieldset__error{display:flex;align-items:flex-start;gap:6px;margin-top:8px}
+.s-fieldset__error-icon{flex:none;margin-top:2px}
+.s-fieldset--invalid{border-left-color:var(--danger)}
+.s-fieldset:disabled .s-check{opacity:.5;cursor:not-allowed}
+
+/* ErrorSummary: the box at the top of a form after a failed submit. A --danger edge (≥ 3:1 on --bg), the title with
+   an icon in --danger-fg, and one link per field in --danger-fg (≥ 4.5:1 on --surface-1 in both themes and every
+   accent, tests/errorsummary.test.mjs). The box takes the focus (tabIndex -1), so the ring shows on :focus, not only
+   :focus-visible: it must be seen after a mouse click on the submit button too. */
+.s-errorsummary{display:block;margin:0;padding:16px;border:2px solid var(--danger);border-radius:var(--radius-card);background:var(--surface-1);color:var(--fg-1)}
+.s-errorsummary:focus{outline:2px solid var(--focus-color);outline-offset:2px}
+.s-errorsummary__title{display:flex;align-items:flex-start;gap:8px;margin:0;font:var(--type-h3);color:var(--fg-1)}
+.s-errorsummary__icon{flex:none;margin-top:2px;color:var(--danger-fg)}
+.s-errorsummary__text{margin:8px 0 0;font:var(--type-body-sm);color:var(--fg-2)}
+.s-errorsummary__list{display:flex;flex-direction:column;gap:6px;margin:12px 0 0;padding:0;list-style:none}
+.s-errorsummary__link,.s-errorsummary__item{font:var(--weight-medium) var(--text-sm)/1.4 var(--font-sans);color:var(--danger-fg)}
+.s-errorsummary__link:hover{color:var(--danger-hover)}
+
+/* Tabs */
+.s-tabs{display:flex;gap:4px;border-bottom:1px solid var(--border)}
+.s-tab{position:relative;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 10px;border:0;background:transparent;color:var(--fg-2);font:var(--weight-medium) var(--text-sm)/1 var(--font-sans);cursor:pointer;transition:color var(--dur-fast) var(--ease-calm)}
+.s-tab:hover{color:var(--fg-1)}
+.s-tab[aria-selected="true"]{color:var(--fg-1)}
+.s-tab[aria-selected="true"]::after{content:'';position:absolute;left:8px;right:8px;bottom:-1px;height:2px;border-radius:2px;background:var(--accent)}
+.s-tab__count{font:var(--type-meta);color:var(--fg-3)}
+.s-tab[aria-selected="true"] .s-tab__count{color:var(--fg-2)} /* the selected segment is --surface-3 in dark, where --fg-3 is 4.31:1 */
+.s-tabs--segmented{display:inline-flex;gap:2px;padding:3px;border:0;border-radius:var(--radius-md);background:var(--surface-2)}
+.s-tabs--segmented .s-tab{height:30px;padding:0 12px;border-radius:7px}
+.s-tabs--segmented .s-tab[aria-selected="true"]{background:var(--surface-1);box-shadow:var(--shadow-sm)}
+[data-theme="dark"] .s-tabs--segmented .s-tab[aria-selected="true"]{background:var(--surface-3)}
+.s-tabs--segmented .s-tab[aria-selected="true"]::after{display:none}
+
+/* Dialog */
+.s-dialog-scrim{position:fixed;inset:0;z-index:var(--z-overlay);display:grid;place-items:center;padding:24px;background:var(--overlay-scrim);backdrop-filter:blur(2px);animation:s-fade var(--dur-base) var(--ease-calm)}
+.s-dialog-scrim--inline{position:absolute}
+.s-dialog{width:100%;max-width:440px;max-height:calc(100% - 48px);overflow:auto;background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-dialog);box-shadow:var(--shadow-lg);animation:s-rise var(--dur-slow) var(--ease-calm)}
+[data-theme="dark"] .s-dialog{background:var(--surface-2)}
+.s-dialog:focus-visible{outline:none} /* the panel takes focus only so a screen reader reads the title; it isn't a control */
+.s-dialog--lg{max-width:600px}
+.s-dialog__head{display:flex;align-items:flex-start;gap:12px;padding:22px 22px 0}
+.s-dialog__title{font:var(--type-h3);letter-spacing:var(--tracking-snug)}
+.s-dialog__desc{margin-top:6px;font:var(--type-body-sm);color:var(--fg-2)}
+.s-dialog__body{padding:16px 22px}
+.s-dialog__foot{display:flex;justify-content:flex-end;gap:8px;padding:14px 22px 20px}
+@keyframes s-fade{from{opacity:0}}
+@keyframes s-rise{from{opacity:0;transform:translateY(8px) scale(.985)}}
+/* Sheet (variant="sheet"): the same dialog risen from the bottom. Full width on a phone, 560 px centred on a bigger screen,
+   at most 90% of the height; the head and the foot stay put and the body scrolls. The bottom padding clears the home indicator. */
+.s-dialog-scrim--sheet{place-items:end center;padding:0}
+.s-dialog--sheet{display:flex;flex-direction:column;max-width:560px;max-height:90%;overflow:hidden;padding-bottom:env(safe-area-inset-bottom,0px);border-bottom:0;border-radius:var(--radius-dialog) var(--radius-dialog) 0 0;animation:s-sheet-up var(--dur-slow) var(--ease-calm)}
+.s-dialog--sheet.s-dialog--lg{max-width:720px}
+.s-dialog--sheet .s-dialog__head,.s-dialog--sheet .s-dialog__foot{flex:none}
+.s-dialog--sheet .s-dialog__head{padding-top:12px}
+.s-dialog--sheet .s-dialog__body{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain}
+.s-dialog__handle{flex:none;width:36px;height:4px;margin:10px auto 0;border-radius:var(--radius-pill);background:var(--border-strong)} /* decorative (aria-hidden), so it has no contrast requirement */
+@keyframes s-sheet-up{from{transform:translateY(100%)}}
+@media (prefers-reduced-motion:reduce){.s-dialog--sheet{animation:none}} /* the tokens already make --dur-slow 0; this also removes the keyframe itself */
+
+/* Tooltip */
+.s-tip{position:relative;display:inline-flex}
+.s-tip__bubble{position:absolute;z-index:var(--z-tooltip);left:50%;bottom:calc(100% + 8px);transform:translate(-50%,4px);padding:6px 9px;border-radius:var(--radius-sm);background:var(--surface-inverse);color:var(--fg-inverse);font:var(--weight-medium) 12px/1.35 var(--font-sans);width:max-content;max-width:min(260px,calc(100vw - 32px));overflow-wrap:break-word;pointer-events:none;opacity:0;transition:opacity var(--dur-fast) var(--ease-calm),transform var(--dur-fast) var(--ease-calm)}
+.s-tip__kbd{margin-left:8px;font-family:var(--font-mono);font-weight:400;opacity:.65}
+.s-tip--bottom .s-tip__bubble{bottom:auto;top:calc(100% + 8px);transform:translate(-50%,-4px)}
+.s-tip:hover .s-tip__bubble,.s-tip:focus-within .s-tip__bubble,.s-tip--open .s-tip__bubble{opacity:1;transform:translate(-50%,0);transition-delay:300ms}
+.s-tip--open .s-tip__bubble{transition-delay:0ms}
+/* Hoverable (WCAG 1.4.13): the shown bubble takes the pointer, and ::before bridges the 8px gap, so the mouse can move onto it. */
+.s-tip:hover .s-tip__bubble,.s-tip:focus-within .s-tip__bubble,.s-tip--open .s-tip__bubble{pointer-events:auto}
+.s-tip__bubble::before{content:'';position:absolute;left:0;right:0;top:100%;height:8px}
+.s-tip--bottom .s-tip__bubble::before{top:auto;bottom:100%}
+.s-tip.s-tip--dismissed .s-tip__bubble{opacity:0;transition-delay:0ms;pointer-events:none}
+
+/* Popover: a non-modal surface anchored to its trigger. Absolute next to the trigger, fixed in <body> with `portal`.
+   z-index is --z-overlay, the dialog's: a portalled panel opened from inside a dialog comes later in <body>, so it
+   draws over the scrim on the same level; --z-dropdown would sit under it. The dvh/dvw sizes match window.innerHeight
+   on iOS, where 100vh is the taller layout viewport; the vh/vw line is the fallback. The panel scrolls when taller than
+   the screen, which also clips a Tooltip inside it at the panel's edge. */
+.s-popover{position:relative;display:inline-flex}
+.s-popover__panel{position:absolute;z-index:var(--z-overlay);width:max-content;min-width:180px;max-width:calc(100vw - 16px);max-width:calc(100dvw - 16px);max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);overflow:auto;overscroll-behavior:contain;padding:6px;background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);animation:s-popover-down var(--dur-fast) var(--ease-calm)}
+.s-popover__panel--portal{position:fixed}
+.s-popover__panel--top{animation-name:s-popover-up}
+[data-theme="dark"] .s-popover__panel{background:var(--surface-2)}
+.s-popover__panel:focus-visible{outline:none} /* the panel takes focus only when it has no control of its own; it isn't one */
+@keyframes s-popover-down{from{opacity:0;transform:translateY(-4px)}}
+@keyframes s-popover-up{from{opacity:0;transform:translateY(4px)}}
+@media (prefers-reduced-motion:reduce){.s-popover__panel{animation:none}} /* the tokens already make --dur-fast 0; this also removes the keyframe itself */
+/* Menu: a list of actions in a Popover. Items are 44 px on touch and 32 px with a mouse, like AppShell's "Mer" list and
+   the swatch button; the focus ring sits inside, so the panel's overflow cannot clip it. */
+.s-menu{display:grid;gap:2px}
+.s-menu__item{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:0 10px;border:0;border-radius:var(--radius-md);background:none;color:var(--fg-1);font:var(--weight-medium) var(--text-md)/1.2 var(--font-sans);text-align:left;text-decoration:none;cursor:pointer}
+@media (hover:hover) and (pointer:fine){.s-menu__item{min-height:32px;font-size:var(--text-sm)}}
+.s-menu__item:hover,.s-menu__item:focus-visible{background:var(--surface-2);color:var(--fg-1)}
+[data-theme="dark"] .s-menu__item:hover,[data-theme="dark"] .s-menu__item:focus-visible{background:var(--surface-3)} /* the panel is --surface-2 there */
+.s-menu__item:focus-visible{outline:2px solid var(--focus-color);outline-offset:-2px}
+.s-menu__item[aria-disabled="true"],.s-menu__item[aria-disabled="true"]:hover{opacity:.5;cursor:not-allowed;background:none} /* no hover fill: it does nothing */
+.s-menu__item--danger{color:var(--danger-fg)}
+.s-menu__item--danger:hover,.s-menu__item--danger:focus-visible,[data-theme="dark"] .s-menu__item--danger:hover,[data-theme="dark"] .s-menu__item--danger:focus-visible{background:var(--danger-soft);color:var(--danger-fg)} /* 4.5:1 on the soft fill in both themes (contrast.test) */
+.s-menu__icon{flex:none;display:grid;place-items:center;color:var(--fg-2)}
+.s-menu__item--danger .s-menu__icon{color:inherit}
+.s-menu__label{flex:1;min-width:0;overflow-wrap:anywhere}
+.s-menu__check{flex:none;visibility:hidden}
+.s-menu__item[aria-checked="true"] .s-menu__check{visibility:visible}
+.s-menu__sep{height:1px;margin:4px 6px;background:var(--border)}
+.s-menu__group{padding:8px 10px 4px;font:var(--type-meta);color:var(--fg-2)}
+
+/* Toast */
+.s-toast{display:flex;align-items:flex-start;gap:12px;width:360px;max-width:100%;padding:14px 14px 14px 16px;background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);animation:s-rise var(--dur-slow) var(--ease-calm)}
+[data-theme="dark"] .s-toast{background:var(--surface-2)}
+.s-toast__icon{margin-top:1px;color:var(--fg-3)}
+.s-toast--success .s-toast__icon{color:var(--success)}
+.s-toast--warning .s-toast__icon{color:var(--warning)}
+.s-toast--danger .s-toast__icon{color:var(--danger)}
+.s-toast--info .s-toast__icon{color:var(--info)}
+.s-toast__body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.s-toast__title{font:var(--weight-medium) var(--text-sm)/1.35 var(--font-sans);color:var(--fg-1)}
+.s-toast__desc{font:var(--weight-regular) 13px/1.45 var(--font-sans);color:var(--fg-2)}
+.s-toast__action{display:inline-flex;align-items:center;min-width:24px;min-height:24px;margin-top:2px;align-self:flex-start;padding:0;border:0;background:none;color:var(--accent-text);font:var(--weight-medium) 13px/1 var(--font-sans);cursor:pointer}
+.s-toast__action:hover{text-decoration:underline;text-underline-offset:3px}
+.s-toast-stack{position:fixed;right:20px;bottom:20px;z-index:var(--z-toast);display:flex;flex-direction:column;gap:8px}
+/* On a phone the stack spans the width, so a 360 px toast fits a 320 px screen */
+@media (max-width:480px){.s-toast-stack{left:16px;right:16px;bottom:16px;align-items:flex-end}} /* still right-aligned, as above 480 px */
+/* NyVersjon: a toast with two actions, «Oppdater» and the quieter «Senere» */
+.s-nyversjon__actions{display:flex;flex-wrap:wrap;gap:4px 16px}
+.s-toast__action--quiet{color:var(--fg-2)}
+.s-toast__action:disabled{opacity:.5;cursor:not-allowed;text-decoration:none}
+
+/* Progress: a bar or a ring. The track is --surface-3 with a 1 px --border-control edge, like the off switch
+   track, so it holds 3:1 on every surface; the fill holds 3:1 on the track in both themes and every accent
+   (1.4.11, tests/progress.test.mjs). --warning is 2.51:1 on the track in light, so that tone uses --warning-fg. */
+.s-progress{--s-progress-fill:var(--accent);display:block;width:100%}
+.s-progress--success{--s-progress-fill:var(--success)}
+.s-progress--warning{--s-progress-fill:var(--warning-fg)}
+.s-progress--danger{--s-progress-fill:var(--danger)}
+.s-progress--bar .s-progress__track{display:block;position:relative;height:8px;overflow:hidden;border-radius:var(--radius-pill);background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--border-control)}
+.s-progress--bar .s-progress__fill{display:block;height:100%;width:0;border-radius:var(--radius-pill);background:var(--s-progress-fill);transition:width var(--dur-base) var(--ease-calm)}
+.s-progress--bar.s-progress--indeterminate .s-progress__fill{position:absolute;left:0;width:30%;animation:s-progress-sweep 1.6s var(--ease-in-out) infinite}
+@keyframes s-progress-sweep{from{transform:translateX(-100%)}to{transform:translateX(calc(100% / .3))}}
+.s-progress--ring{display:inline-grid;place-items:center;width:auto;flex:none}
+.s-progress--ring > *{grid-area:1/1}
+.s-progress__svg{display:block}
+.s-progress__edge{stroke:var(--border-control)}
+.s-progress--ring .s-progress__track{stroke:var(--surface-3)}
+.s-progress--ring .s-progress__fill{stroke:var(--s-progress-fill);transition:stroke-dashoffset var(--dur-base) var(--ease-calm)}
+.s-progress--ring.s-progress--indeterminate .s-progress__svg{animation:s-spin 1.6s linear infinite}
+.s-progress__center{font:var(--weight-medium) var(--text-sm)/1 var(--font-mono);letter-spacing:var(--tracking-mono);color:var(--fg-1);text-align:center}
+/* Reduced motion: the sweep and the spin become a slow fade, so an unknown amount still looks alive without moving (2.3.3) */
+@media (prefers-reduced-motion:reduce){
+.s-progress--bar.s-progress--indeterminate .s-progress__fill{animation:s-progress-fade 2s ease-in-out infinite alternate;transform:none;width:100%}
+.s-progress--ring.s-progress--indeterminate .s-progress__svg{animation:s-progress-fade 2s ease-in-out infinite alternate}
+}
+@keyframes s-progress-fade{from{opacity:.35}to{opacity:1}}
+
+/* Alert: an inline message that stays. Soft status fill with the matching -fg text (like Badge) and an icon per tone,
+   so colour is never the only signal; the -fg text holds 4.5:1 on its -soft fill in both themes (tests/alert.test.mjs) */
+.s-alert{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:var(--radius-md);background:var(--info-soft);color:var(--info-fg);font:var(--type-body-sm)}
+.s-alert--success{background:var(--success-soft);color:var(--success-fg)}
+.s-alert--warning{background:var(--warning-soft);color:var(--warning-fg)}
+.s-alert--danger{background:var(--danger-soft);color:var(--danger-fg)}
+.s-alert__icon{flex:none;margin-top:2px}
+.s-alert__body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.s-alert__title{font-weight:var(--weight-medium)}
+.s-alert__text a{color:inherit}
+.s-alert__actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:4px}
+.s-alert__action{display:inline-flex;align-items:center;min-width:24px;min-height:24px;padding:0;border:0;background:none;color:inherit;font:var(--weight-medium) var(--text-sm)/1 var(--font-sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.s-alert__action:hover{text-decoration-thickness:2px}
+/* The close button inherits the tone's text colour; its hover is a ring, not the grey surface, so it stays on the fill */
+.s-alert__close{flex:none;margin:-7px -8px -7px 0;color:inherit}
+.s-alert__close:hover:not(:disabled){background:transparent;color:inherit;box-shadow:inset 0 0 0 1px currentColor}
+
+/* Visually hidden text: read by assistive technology, off screen for everyone else (the Spinner's label) */
+.s-sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* VisuallyHidden `focusable`: a skip link that comes back into the flow while it has the focus (2.4.1), at least 24 px tall (2.5.8) */
+.s-sr-only--focusable:focus,.s-sr-only--focusable:focus-within{position:static;display:inline-flex;align-items:center;min-height:24px;width:fit-content;height:auto;margin:0;padding:0 var(--space-1);overflow:visible;clip:auto;white-space:normal} /* fit-content: a grid or flex parent must not stretch it */
+
+/* Link: base.css gives every <a> --accent-text (4.5:1 on --bg, --surface-1 and --surface-2 in both themes and every accent) and the
+   underline; .s-link adds the variants. standalone is a link on its own line in medium weight, still inline text (so `Se <strong>alt</strong>`
+   keeps its spaces and the icon sits by the last word, not beside two lines), with padding-block for a 24 px target (2.5.8; vertical
+   padding on an inline is hit-testable and does not move the line); the external icon follows the text at 14 px and inherits the
+   colour, so it changes with the hover like the underline. The component puts a word joiner before the icon, so it never wraps alone */
+.s-link{border-radius:var(--radius-xs);overflow-wrap:anywhere} /* a URL as link text breaks instead of pushing the page sideways */
+.s-link__icon{display:inline-block;vertical-align:-0.15em;margin-left:.25em}
+.s-link--standalone{padding-block:4px;font-weight:var(--weight-medium)}
+
+/* BackLink: «Tilbake» as a standalone Link (inline text, padding-block for the 24 px target) with the chevron before the text:
+   an inline icon on the text's baseline, pulled 2 px left so the glyph's stroke lines up with the text edge, and a small gap to the
+   first word. The link does not wrap (the label is short), so the chevron never stands alone above the text and nothing is added
+   to the accessible name. The underline stays on the text; the icon inherits the colour, so it follows the hover */
+.s-backlink{white-space:nowrap}
+.s-backlink .s-backlink__icon{display:inline-block;vertical-align:-0.2em;margin:0 .2em 0 -2px}
+
+/* Stack: a column or a row with a token gap. The gap is a custom property the component sets from --space-<n>; nothing visual of its own */
+.s-stack{display:flex;flex-direction:column;gap:var(--s-stack-gap,var(--space-4));min-width:0;margin:0;padding:0;list-style:none}
+.s-stack--row{flex-direction:row;align-items:center}
+.s-stack--wrap{flex-wrap:wrap}
+
+/* Spinner: a ring in the accent that turns. The arc is --accent (3:1 on every surface, like the Progress fill),
+   the rest of the ring is --surface-3. Button's own .s-btn__spin is the same ring in currentColor */
+.s-spinner{display:inline-flex;flex:none;vertical-align:middle;color:var(--accent)}
+.s-spinner__ring{display:block;width:24px;height:24px;border-radius:50%;border:3px solid var(--surface-3);border-top-color:currentColor;animation:s-spin .8s linear infinite}
+.s-spinner--sm .s-spinner__ring{width:16px;height:16px;border-width:2px}
+.s-spinner--lg .s-spinner__ring{width:40px;height:40px;border-width:4px}
+
+/* Skeleton: the shape of content that has not arrived. --surface-3 blocks; the shimmer is a --surface-2 band
+   that sweeps across every 2.4 s (both tokens, no hex) and is off under prefers-reduced-motion */
+.s-skeleton{display:block;position:relative;overflow:hidden;border-radius:var(--radius-sm);background:var(--surface-3)}
+.s-skeleton::after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,var(--surface-2),transparent);animation:s-skeleton-shimmer 2.4s var(--ease-in-out) infinite}
+.s-skeleton--text{height:0.9em;margin:0.3em 0;width:100%}
+.s-skeleton-lines{display:block}
+.s-skeleton--last{width:60%}
+.s-skeleton--circle{flex:none;border-radius:50%}
+.s-skeleton--rect{width:100%;height:96px;border-radius:var(--radius-md)}
+@keyframes s-skeleton-shimmer{to{transform:translateX(100%)}}
+
+/* Reduced motion: the spinners stand still and pulse (2.3.3), the shimmer is off */
+@media (prefers-reduced-motion:reduce){
+.s-spinner__ring,.s-btn__spin{animation:s-pulse 1.6s ease-in-out infinite alternate;border-color:currentColor}
+.s-skeleton::after{animation:none;display:none}
+}
+@keyframes s-pulse{from{opacity:.35}to{opacity:1}}
+
+/* Sussi (mascot). Always black and white; in dark mode a thin halo keeps the black parts visible */
+.s-sussi{display:block;flex:none;overflow:visible}
+[data-theme="dark"] .s-sussi,.s-sussi.on-dark{filter:drop-shadow(0 0 .7px var(--sussi-halo)) drop-shadow(0 0 .7px var(--sussi-halo))}
+
+/* AppShell (variant A): tab bar below 900 px, sidebar from 900 px */
+.s-shell{min-height:100vh;min-height:100dvh;background:var(--bg)}
+/* The skip link (2.4.1): first in the tab order, off screen until it has focus, then an accent pill at the top left above the menus */
+.s-shell__skip{position:fixed;top:8px;left:8px;z-index:var(--z-tooltip);min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border-radius:var(--radius-pill);background:var(--accent);color:var(--accent-fg);font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-sans);text-decoration:none;box-shadow:var(--shadow-lg);transform:translateY(calc(-100% - 16px));opacity:0}
+.s-shell__skip:hover{color:var(--accent-fg)}
+.s-shell__skip:focus,.s-shell__skip:focus-visible{transform:none;opacity:1}
+.s-shell__main:focus{outline:none} /* main is focused by the skip link only; the landmark itself needs no ring */
+.s-shell__main{display:block;min-width:0;padding:var(--space-5) var(--space-4) calc(var(--space-6) + 60px + max(8px,env(safe-area-inset-bottom,0px)))}
+.s-shell__side{display:none}
+/* The fixed tab bar covers the bottom of the page: scroll-padding keeps a focused element above it (2.4.11) */
+html:has(.s-shell:not(.s-shell--contained)){scroll-padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+/* and a toast stack sits above the bar, so neither covers the other (2.4.11) */
+html:has(.s-shell:not(.s-shell--contained)) .s-toast-stack{bottom:calc(76px + 12px + env(safe-area-inset-bottom,0px))}
+.s-shell__tabbar{position:fixed;z-index:var(--z-sticky);left:0;right:0;bottom:0;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px;padding:6px 8px max(8px,env(safe-area-inset-bottom,0px));border-top:1px solid var(--border);background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(14px)}
+.s-shell__tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;min-height:52px;padding:0;border:0;border-radius:var(--radius-md);background:none;color:var(--fg-2);font:var(--weight-medium) 12px/1.1 var(--font-sans);text-decoration:none;cursor:pointer}
+.s-shell__tab:hover{color:var(--fg-1)}
+.s-shell__label{max-width:100%;text-align:center;overflow-wrap:anywhere} /* wraps instead of cutting a long label or a larger text size (1.4.4) */
+.s-shell__pill{display:grid;place-items:center;width:56px;max-width:100%;height:28px;border-radius:var(--radius-pill);transition:background-color var(--dur-fast) var(--ease-calm),color var(--dur-fast) var(--ease-calm)}
+.s-shell__tab[aria-current="page"],.s-shell__tab.is-current{color:var(--fg-1);font-weight:var(--weight-semibold)}
+.s-shell__tab[aria-current="page"] .s-shell__pill,.s-shell__tab.is-current .s-shell__pill{background:var(--accent);color:var(--accent-fg)} /* filled: 3:1 against the page in every theme and accent */
+/* absolute to the bar: the bar's backdrop-filter makes it the containing block anyway */
+.s-shell__more{position:absolute;left:8px;right:8px;bottom:calc(100% + 8px);display:grid;gap:2px;padding:6px;background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+.s-shell__more[hidden]{display:none}
+[data-theme="dark"] .s-shell__more{background:var(--surface-2)}
+.s-shell__moreitem{display:flex;align-items:center;gap:12px;min-height:48px;padding:0 12px;border:0;border-radius:var(--radius-md);background:none;color:var(--fg-1);font:var(--weight-medium) var(--text-md)/1.2 var(--font-sans);text-decoration:none;text-align:left;cursor:pointer}
+.s-shell__moreitem:hover{background:var(--surface-2);color:var(--fg-1)}
+.s-shell__moreitem[aria-current="page"]{background:var(--accent);color:var(--accent-fg);font-weight:var(--weight-semibold)}
+@media (min-width:900px){
+html:has(.s-shell:not(.s-shell--contained)){scroll-padding-bottom:0}
+html:has(.s-shell:not(.s-shell--contained)) .s-toast-stack{bottom:20px}
+.s-shell__tabbar{display:none}
+.s-shell__side{position:fixed;z-index:var(--z-sticky);inset:0 auto 0 0;display:flex;flex-direction:column;gap:2px;width:var(--sidebar-w);padding:24px 14px;overflow-y:auto;border-right:1px solid var(--border);background:var(--bg)}
+.s-shell__brand{padding:0 10px 18px;font:var(--weight-semibold) 22px/1 var(--font-sans);letter-spacing:-0.04em;color:var(--fg-1)}
+.s-shell__brand i{font-style:normal;color:var(--accent-text)}
+.s-shell__item{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 10px;border:0;border-radius:var(--radius-sm);background:none;color:var(--fg-2);font:var(--weight-medium) var(--text-sm)/1.2 var(--font-sans);text-decoration:none;text-align:left;cursor:pointer;transition:background-color var(--dur-fast) var(--ease-calm),color var(--dur-fast) var(--ease-calm)}
+.s-shell__item:hover{background:var(--surface-2);color:var(--fg-1)}
+.s-shell__item[aria-current="page"]{background:var(--accent);color:var(--accent-fg);font-weight:var(--weight-semibold)}
+.s-shell__item[aria-current="page"]:hover{background:var(--accent-hover);color:var(--accent-fg)}
+.s-shell__foot{margin-top:auto;padding:12px 10px 0}
+.s-shell__main{margin-left:var(--sidebar-w);padding:40px 40px 48px}
+}
+/* AppShell contained: the tab bar at every width, at the bottom of the parent (which gives the height), never the sidebar.
+   The page lays out its own padding. After the 900 px block, so it wins there too. */
+.s-shell--contained{position:relative;display:flex;flex-direction:column;height:100%;min-height:0}
+.s-shell--contained .s-shell__skip{position:absolute}
+.s-shell--contained .s-shell__main{flex:1;min-height:0;margin-left:0;padding:0;overflow:auto}
+.s-shell--contained .s-shell__tabbar{position:relative;inset:auto;display:grid;flex:none}
+
+/* EmptyState: nothing here yet. Centered, one heading, one line, at most one action */
+.s-empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-3);padding:var(--space-10) var(--space-6)}
+.s-empty--framed{background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-card)}
+.s-empty__icon{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--accent-soft);color:var(--accent-soft-fg)}
+.s-empty__title{margin:0;font:var(--type-h3);color:var(--fg-1)}
+.s-empty__text{margin:0;max-width:30ch;color:var(--fg-2)}
+.s-empty__action{margin-top:var(--space-2)}
+
+/* Swatch: a colour dot, plain or a toggle button with a 44 px target */
+.s-swatch{display:inline-grid;place-items:center;flex:none;vertical-align:middle}
+.s-swatch__dot{display:block;width:22px;height:22px;border-radius:50%;background:var(--swatch);box-shadow:inset 0 0 0 1px rgba(35,33,30,.18);transition:box-shadow var(--dur-fast) var(--ease-calm)}
+.s-swatch--sm .s-swatch__dot{width:16px;height:16px}
+.s-swatch--lg .s-swatch__dot{width:26px;height:26px}
+[data-theme="dark"] .s-swatch__dot{box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+/* Under 3:1 against the page (white on light, black on dark): a firmer edge in that theme (1.4.11) */
+:root:not([data-theme="dark"]) .s-swatch[data-edge-light] .s-swatch__dot,[data-theme="dark"] .s-swatch[data-edge-dark] .s-swatch__dot{box-shadow:inset 0 0 0 1.5px var(--fg-3)}
+.s-swatch--button{width:44px;height:44px;padding:0;border:0;border-radius:50%;background:none;color:inherit;cursor:pointer}
+@media (hover:hover) and (pointer:fine){.s-swatch--button{width:34px;height:34px}}
+.s-swatch--button:disabled{opacity:.5;cursor:not-allowed}
+.s-swatch--button[aria-pressed="true"] .s-swatch__dot{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
+:root:not([data-theme="dark"]) .s-swatch--button[data-edge-light][aria-pressed="true"] .s-swatch__dot,[data-theme="dark"] .s-swatch--button[data-edge-dark][aria-pressed="true"] .s-swatch__dot{box-shadow:inset 0 0 0 1.5px var(--fg-3),0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
+
+/* ScrollRow: scrolls sideways without a scrollbar, fades at the edge where there is more */
+.s-scrollrow{display:flex;flex-wrap:nowrap;gap:var(--scrollrow-gap,8px);overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
+.s-scrollrow::-webkit-scrollbar{display:none}
+.s-scrollrow > *{flex:none}
+.s-scrollrow[data-fade-end]{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 48px),transparent)}
+.s-scrollrow[data-fade-start]{-webkit-mask-image:linear-gradient(to right,transparent,#000 48px);mask-image:linear-gradient(to right,transparent,#000 48px)}
+.s-scrollrow[data-fade-start][data-fade-end]{-webkit-mask-image:linear-gradient(to right,transparent,#000 48px,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to right,transparent,#000 48px,#000 calc(100% - 48px),transparent)}
+.s-scrollrow:focus-visible{outline:2px solid var(--focus-color);outline-offset:-2px} /* inside, so the fade mask does not hide it */

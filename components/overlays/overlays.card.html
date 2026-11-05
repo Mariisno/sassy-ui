@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x320" name="Dialog & Tooltip" subtitle="Modal with scrim; hover label with shortcut" -->
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dialog &amp; Tooltip</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../dist/sussi.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}
+.kort{display:grid;grid-template-columns:1fr 200px;gap:16px;min-height:280px}
+.scene{position:relative;display:grid;place-items:center;min-height:280px;border-radius:14px;overflow:hidden;background:var(--surface-2)}
+.tips{display:grid;place-items:center;min-height:72px}
+/* Under 700 px the columns stack, so the dialog gets the whole width (it was a 2 px sliver at 320). */
+@media (max-width:699px){body{padding:16px}.kort{grid-template-columns:1fr}.scene{min-height:320px}}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const S = window.SussiDesignSystem_a2c9b8;
+const { Dialog, Tooltip, IconButton, Button } = S;
+// The card starts closed: a dialog that opens on load would pull focus into the docs page's iframe.
+// It follows the page that embeds it (same origin), so the docs in Norwegian get a Norwegian card.
+const nb = (() => { try { return window.frameElement && window.frameElement.ownerDocument.documentElement.lang === 'nb'; } catch (e) { return false; } })();
+if (nb) document.documentElement.lang = 'nb';
+const T = nb
+  ? { open: 'Åpne dialog', close: 'Lukk', title: 'Slette «Hagelogg»?', desc: 'Prosjektet og de 12 oppgavene forsvinner. Det kan ikke angres.', keep: 'Behold', del: 'Slett prosjekt', search: 'Søk' }
+  : { open: 'Open dialog', close: 'Close', title: 'Delete “Garden log”?', desc: "This removes the project and its 12 tasks. It can't be undone.", keep: 'Keep it', del: 'Delete project', search: 'Search' };
+function App(){
+  const [open, setOpen] = React.useState(false);
+  const close = () => setOpen(false);
+  return (<div className="kort">
+<div className="scene">
+<Button variant="secondary" id="apne" onClick={() => setOpen(true)}>{T.open}</Button>
+<Dialog inline open={open} onClose={close} closeLabel={T.close} title={T.title} description={T.desc} footer={<><Button variant="ghost" onClick={close}>{T.keep}</Button><Button variant="danger" onClick={close}>{T.del}</Button></>} />
+</div>
+<div className="tips"><Tooltip content={T.search} kbd="⌘K" open><IconButton icon="search" label={T.search} variant="secondary" /></Tooltip></div>
+</div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

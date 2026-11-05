@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="nb" data-side="kom-i-gang/" data-en="/sussi-ui/en/getting-started/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kom i gang · Sussi</title>
+<meta name="description" content="Fra null til en side med knapp, dialog og toast i dine egne farger: installer med CSS, npm eller en import map, sett tema og aksent, lag et tema, og kjør eksemplene.">
+<link rel="canonical" href="https://mariisno.github.io/sussi-ui/kom-i-gang/">
+<link rel="alternate" hreflang="nb" href="https://mariisno.github.io/sussi-ui/kom-i-gang/">
+<link rel="alternate" hreflang="en" href="https://mariisno.github.io/sussi-ui/en/getting-started/">
+<link rel="alternate" hreflang="x-default" href="https://mariisno.github.io/sussi-ui/kom-i-gang/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sussi">
+<meta property="og:title" content="Kom i gang · Sussi">
+<meta property="og:description" content="Fra null til en side med knapp, dialog og toast i dine egne farger: installer med CSS, npm eller en import map, sett tema og aksent, lag et tema, og kjør eksemplene.">
+<meta property="og:url" content="https://mariisno.github.io/sussi-ui/kom-i-gang/">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/sussi-ui/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/sussi-ui/sussi/styles.css">
+<link rel="stylesheet" href="/sussi-ui/assets/side.css">
+<script>(function(){var d=document.documentElement;try{var v=localStorage.getItem('sussi-side-tema');if(v==='light'||v==='dark')d.dataset.theme=v}catch(e){}if(!d.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches)d.dataset.theme='dark';var en=d.getAttribute('data-en');if(!en)return;var l=null;try{l=localStorage.getItem('sussi-side-spraak')}catch(e){}var s=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language];function norskForst(sprak) {var forste = String((sprak && sprak[0]) || '').toLowerCase();return /^(nb|nn|no)(-|_|$)/.test(forste);}var f=(function fraEngelsk(referrer, origin, enSti) {var m = /^(.*?\/en\/)/.exec(enSti || '');return !!(m && referrer && referrer.indexOf(origin + m[1]) === 0);})(document.referrer,location.origin,en);if(f){try{localStorage.setItem('sussi-side-spraak','nb')}catch(e){}}if((function tilEngelsk(lagret, sprak, agent, fraEngelsk) {if (lagret === 'nb' || fraEngelsk) return false;if (lagret === 'en') return true;if (/bot|crawl|spider|slurp|preview|lighthouse/i.test(agent || '')) return false;return !norskForst(sprak);})(l,s,navigator.userAgent,f)){try{if(!l)localStorage.setItem('sussi-side-spraak','en')}catch(e){}location.replace(en)}})()</script>
+
+</head>
+<body class="">
+<a class="side-hopp" href="#innhold">Hopp til innholdet</a>
+<header class="side-topp">
+  <a class="side-merke" href="/sussi-ui/" aria-label="Sussi: Hjem"><svg class="s-sussi" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><defs><clipPath id="merkeha"><path d="M32 17.5 C44.5 17.5 53.5 24 55.5 33.5 C57.2 37.5 56.8 42 54 45.5 C50 51.2 42 54.2 32 54.2 C22 54.2 14 51.2 10 45.5 C7.2 42 6.8 37.5 8.5 33.5 C10.5 24 19.5 17.5 32 17.5Z"/></clipPath></defs><path d="M10.6 28.5 C10.2 21.5 11.2 15.4 13.8 11.4 C17.6 12.8 21.6 15.6 24.6 19Z M53.4 28.5 C53.8 21.5 52.8 15.4 50.2 11.4 C46.4 12.8 42.4 15.6 39.4 19Z" fill="var(--sussi-ink,#1F1D1B)" stroke="var(--sussi-ink,#1F1D1B)" stroke-width="2.2" stroke-linejoin="round"/><path d="M32 17.5 C44.5 17.5 53.5 24 55.5 33.5 C57.2 37.5 56.8 42 54 45.5 C50 51.2 42 54.2 32 54.2 C22 54.2 14 51.2 10 45.5 C7.2 42 6.8 37.5 8.5 33.5 C10.5 24 19.5 17.5 32 17.5Z" fill="var(--sussi-fur,#FFFFFF)"/><g clip-path="url(#merkeha)"><path d="M4 14 L30.2 14 C29.4 20 27.4 26 25 31 C23.6 33.6 22.6 35.6 21 37.4 C18 39.8 14.6 40.2 11 39.6 L4 38.8Z M60 14 L33.8 14 C34.6 20 36.6 26 39 31 C40.4 33.6 41.6 35.2 43.4 36.6 C46 38.2 49.6 38.2 53 37.2 L60 36.2Z" fill="var(--sussi-ink,#1F1D1B)"/></g><path d="M32 17.5 C44.5 17.5 53.5 24 55.5 33.5 C57.2 37.5 56.8 42 54 45.5 C50 51.2 42 54.2 32 54.2 C22 54.2 14 51.2 10 45.5 C7.2 42 6.8 37.5 8.5 33.5 C10.5 24 19.5 17.5 32 17.5Z" fill="none" stroke="var(--sussi-ink,#1F1D1B)" stroke-width="2.2"/><clipPath id="merkehaL"><path d="M14.4 34.4 Q19.8 32.9 25.200000000000003 34.4 L25.200000000000003 40 L14.4 40Z"/></clipPath><g clip-path="url(#merkehaL)"><ellipse cx="19.8" cy="35" rx="4.8" ry="3.2" fill="var(--sussi-eye,#6E6C3A)"/><circle cx="19.8" cy="34.8" r="2.6" fill="var(--sussi-ink,#1F1D1B)"/><circle cx="18.900000000000002" cy="34.4" r=".65" fill="var(--sussi-fur,#FFFFFF)" opacity=".9"/></g><clipPath id="merkehaR"><path d="M39 34 Q44.4 32.5 49.8 34 L49.8 39.6 L39 39.6Z"/></clipPath><g clip-path="url(#merkehaR)"><ellipse cx="44.4" cy="34.6" rx="4.8" ry="3.2" fill="var(--sussi-eye,#6E6C3A)"/><circle cx="44.4" cy="34.4" r="2.6" fill="var(--sussi-ink,#1F1D1B)"/><circle cx="43.5" cy="34" r=".65" fill="var(--sussi-fur,#FFFFFF)" opacity=".9"/></g><path d="M29.8 40.6 Q32 39.6 34.2 40.6 Q33.8 42.6 32 43.6 Q30.2 42.6 29.8 40.6Z" fill="var(--sussi-pink,#E9A3A0)"/><path d="M32 43.6 Q31 46.4 28.4 45.8 M32 43.6 Q33 46.4 35.6 45.8" fill="none" stroke="var(--sussi-ink,#1F1D1B)" stroke-width="1.4" stroke-linecap="round"/></svg><span class="side-merke__navn">sussi<span class="side-merke__prikk">.</span></span></a>
+  <button type="button" class="s-btn s-btn--secondary s-btn--sm side-menyknapp" aria-expanded="false" aria-controls="side-nav" hidden><svg class="s-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/> <line x1="4" x2="20" y1="6" y2="6"/> <line x1="4" x2="20" y1="18" y2="18"/></svg>Meny</button>
+  <form class="side-sok" role="search" action="/sussi-ui/komponenter/" data-indeks="/sussi-ui/assets/sok.nb.json">
+    <label class="side-skjult" for="side-sok">Søk</label>
+    <div class="s-control s-control--sm"><span class="s-control__affix"><svg class="s-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/> <path d="m21 21-4.3-4.3"/></svg></span><input id="side-sok" class="s-control__input" type="search" name="q" placeholder="Søk" autocomplete="off" aria-describedby="side-sok-hint" title="Søker i sidetitler, overskrifter og det første avsnittet under hver overskrift."></div>
+    <span id="side-sok-hint" class="side-skjult">Søker i sidetitler, overskrifter og det første avsnittet under hver overskrift.</span>
+    <div id="side-sok-treff" class="side-sok__treff" hidden></div>
+    <div class="side-skjult" aria-live="polite" id="side-sok-status"></div>
+  </form>
+  <nav class="side-spraak" aria-label="Språk">
+    <a href="/sussi-ui/kom-i-gang/" hreflang="nb" lang="nb" aria-current="true">NO</a><span aria-hidden="true">/</span><a href="/sussi-ui/en/getting-started/" hreflang="en" lang="en">EN</a>
+  </nav>
+  <button type="button" class="s-iconbtn side-temaknapp" id="side-temaknapp" aria-pressed="false" aria-label="Mørk modus" title="Mørk modus"><span class="side-temaknapp__lys"><svg class="s-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span><span class="side-temaknapp__mork"><svg class="s-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/> <path d="M12 2v2"/> <path d="M12 20v2"/> <path d="m4.93 4.93 1.41 1.41"/> <path d="m17.66 17.66 1.41 1.41"/> <path d="M2 12h2"/> <path d="M20 12h2"/> <path d="m6.34 17.66-1.41 1.41"/> <path d="m19.07 4.93-1.41 1.41"/></svg></span></button>
+</header>
+<div class="side-ramme">
+  <nav class="side-nav" id="side-nav" aria-label="Sider"><ul class="side-nav__liste"><li><a href="/sussi-ui/">Hjem</a></li><li><a href="/sussi-ui/kom-i-gang/" aria-current="page">Kom i gang</a></li><li><a href="/sussi-ui/grunnlag/">Grunnlag</a></li><li><a href="/sussi-ui/tokens/">Tokens</a></li><li><a href="/sussi-ui/innhold/">Innhold</a></li><li><a href="/sussi-ui/ikoner/">Ikoner</a></li><li><a href="/sussi-ui/tema/">Lag ditt eget tema</a></li></ul><p class="side-nav__tittel"><a href="/sussi-ui/komponenter/">Komponenter</a></p><ul class="side-nav__liste side-nav__grupper"><li><p class="side-nav__gruppe">Knapper</p><ul><li><a href="/sussi-ui/komponenter/button/">Button</a></li><li><a href="/sussi-ui/komponenter/iconbutton/">IconButton</a></li><li><a href="/sussi-ui/komponenter/filebutton/">FileButton</a> <span class="s-badge s-badge--accent">Ny</span></li></ul></li><li><p class="side-nav__gruppe">Brytere</p><ul><li><a href="/sussi-ui/komponenter/checkbox/">Checkbox</a></li><li><a href="/sussi-ui/komponenter/radio/">Radio</a></li><li><a href="/sussi-ui/komponenter/switch/">Switch</a></li></ul></li><li><p class="side-nav__gruppe">Visning</p><ul><li><a href="/sussi-ui/komponenter/badge/">Badge</a></li><li><a href="/sussi-ui/komponenter/card/">Card</a></li><li><a href="/sussi-ui/komponenter/tag/">Tag</a></li><li><a href="/sussi-ui/komponenter/listitem/">ListItem</a></li><li><a href="/sussi-ui/komponenter/scrollrow/">ScrollRow</a></li><li><a href="/sussi-ui/komponenter/swatch/">Swatch</a></li><li><a href="/sussi-ui/komponenter/disclosure/">Disclosure</a> <span class="s-badge s-badge--accent">Ny</span></li></ul></li><li><p class="side-nav__gruppe">Tilbakemelding</p><ul><li><a href="/sussi-ui/komponenter/emptystate/">EmptyState</a></li><li><a href="/sussi-ui/komponenter/progress/">Progress</a> <span class="s-badge s-badge--accent">Ny</span></li><li><a href="/sussi-ui/komponenter/errorsummary/">ErrorSummary</a> <span class="s-badge s-badge--accent">Ny</span></li><li><a href="/sussi-ui/komponenter/alert/">Alert</a> <span class="s-badge s-badge--accent">Ny</span></li><li><a href="/sussi-ui/komponenter/spinner/">Spinner</a> <span class="s-badge s-badge--accent">Ny</span></li><li><a href="/sussi-ui/komponenter/skeleton/">Skeleton</a> <span class="s-badge s-badge--accent">Ny</span></li><li><a href="/sussi-ui/komponenter/toast/">Toast</a></li><li><a href="/sussi-ui/komponenter/nyversjon/">NyVersjon</a> <span class="s-badge s-badge--accent">Ny</span></li></ul></li><li><p class="side-nav__gruppe">Ikon</p><ul><li><a href="/sussi-ui/komponenter/icon/">Icon</a></li></ul></li><li><p class="side-nav__gruppe">Felt</p><ul><li><a href="/sussi-ui/komponenter/input/">Input</a></li><li><a href="/sussi-ui/komponenter/segmentedcontrol/">SegmentedControl</a> <span class="s-badge s-badge--accent">Ny</span></li><li><a href="/sussi-ui/komponenter/fieldset/">Fieldset</a> <span class="s-badge s-badge--accent">Ny</span></li><li><a href="/sussi-ui/komponenter/select/">Select</a></li><li><a href="/sussi-ui/komponenter/textarea/">Textarea</a></li></ul></li><li><p class="side-nav__gruppe">Navigasjon</p><ul><li><a href="/sussi-ui/komponenter/tabs/">Tabs</a></li><li><a href="/sussi-ui/komponenter/appshell/">AppShell</a></li><li><a href="/sussi-ui/komponenter/link/">Link</a> <span class="s-badge s-badge--accent">Ny</span></li><li><a href="/sussi-ui/komponenter/backlink/">BackLink</a> <span class="s-badge s-badge--accent">Ny</span></li></ul></li><li><p class="side-nav__gruppe">Oppsett</p><ul><li><a href="/sussi-ui/komponenter/stack/">Stack</a> <span class="s-badge s-badge--accent">Ny</span></li><li><a href="/sussi-ui/komponenter/visuallyhidden/">VisuallyHidden</a> <span class="s-badge s-badge--accent">Ny</span></li></ul></li><li><p class="side-nav__gruppe">Verktøy</p><ul><li><a href="/sussi-ui/komponenter/dato/">Dato</a> <span class="s-badge s-badge--accent">Ny</span></li></ul></li><li><p class="side-nav__gruppe">Overlegg</p><ul><li><a href="/sussi-ui/komponenter/dialog/">Dialog</a></li><li><a href="/sussi-ui/komponenter/tooltip/">Tooltip</a></li><li><a href="/sussi-ui/komponenter/popover/">Popover</a> <span class="s-badge s-badge--accent">Ny</span></li><li><a href="/sussi-ui/komponenter/menu/">Menu</a> <span class="s-badge s-badge--accent">Ny</span></li></ul></li><li><p class="side-nav__gruppe">Maskot</p><ul><li><a href="/sussi-ui/komponenter/sussi/">Sussi</a></li></ul></li></ul></nav>
+  <main id="innhold" class="side-innhold" tabindex="-1">
+<header class="side-hode"><h1>Kom i gang</h1><p class="side-ogsaa" lang="en" hidden><a href="/sussi-ui/en/getting-started/" hreflang="en" data-spraak="en">This page is also in English.</a></p><p class="side-ingress">Sussi er et lite designsystem fra NotlandDesign: tokens, CSS og React-komponenter, laget for WCAG 2.2 AA i lys og mørk modus. Denne siden tar deg fra null til en side med knapp, dialog og toast, med dine egne farger. Hvert eksempel er en hel HTML-fil du kan lagre og åpne.</p></header><nav class="side-toc" aria-label="På denne siden"><p class="side-nav__gruppe">På denne siden</p><ul><li><a href="#1-installer">1. Installer</a></li><li><a href="#2-sett-tema-og-aksent">2. Sett tema og aksent</a></li><li><a href="#3-dine-egne-farger">3. Dine egne farger</a></li><li><a href="#4-tre-komponenter">4. Tre komponenter</a></li><li><a href="#5-alt-sammen-uten-byggesteg">5. Alt sammen, uten byggesteg</a></li><li><a href="#videre">Videre</a></li></ul></nav><div class="side-prose"><h2 id="1-installer">1. Installer</h2>
+<p>Velg én av tre måter. Alle tre gir samme CSS og samme komponenter; forskjellen er om og hvor React kommer inn.</p>
+<h3 id="bare-css">Bare CSS</h3>
+<p>Tokens, fonter og <code>.s-*</code>-klassene i én fil, fra jsDelivr. Ingen JavaScript, ingen pakke.</p>
+<pre class="side-linje" tabindex="0"><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css&quot;&gt;</code></pre>
+<p>Fila laster tokens, fontene (Schibsted Grotesk og DM Mono, hostet samme sted) og komponentstilene. Et helt eksempel:</p>
+<figure class="side-eksempel"><div class="side-eksempel__topp"><div class="side-demo__bryter" role="group" aria-label="Lys eller mørk for eksemplet bare-css.html" data-ramme="eksempel-bare-css"><button type="button" class="s-btn s-btn--sm s-btn--secondary" data-demo-tema="light" aria-pressed="true">Lys</button><button type="button" class="s-btn s-btn--sm s-btn--secondary" data-demo-tema="dark" aria-pressed="false">Mørk</button></div></div><iframe class="side-kort" id="eksempel-bare-css" src="/sussi-ui/eksempler/bare-css.html" title="Eksempel: bare-css.html" loading="lazy" height="400"></iframe><figcaption class="side-eksempel__linjer"><a href="/sussi-ui/eksempler/bare-css.html" target="_blank" rel="noopener">Åpne eksemplet i en egen fane<span class="side-skjult"> (åpner i ny fane)</span></a> · <a href="/sussi-ui/eksempler/bare-css.html" download>Last ned fila</a></figcaption><details class="side-detaljer side-eksempel__kode"><summary>Se koden (bare-css.html)</summary><pre tabindex="0"><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;nb&quot; data-theme=&quot;light&quot; data-accent=&quot;moss&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;Sussi, bare CSS&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css&quot;&gt;
+&lt;style&gt;main{max-width:480px;margin:0 auto;padding:24px 16px;display:grid;gap:16px}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+  &lt;h1&gt;Hagelogg&lt;/h1&gt;
+  &lt;p&gt;Tokens, fonter og &lt;code&gt;.s-*&lt;/code&gt;-klassene fra én CSS-fil. Bytt &lt;code&gt;data-theme&lt;/code&gt; og &lt;code&gt;data-accent&lt;/code&gt; på &lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+  &lt;div class=&quot;s-field&quot;&gt;
+    &lt;label class=&quot;s-field__label&quot; for=&quot;plante&quot;&gt;Plante&lt;/label&gt;
+    &lt;div class=&quot;s-control&quot;&gt;&lt;input id=&quot;plante&quot; class=&quot;s-control__input&quot; type=&quot;text&quot; placeholder=&quot;Tomat&quot; aria-describedby=&quot;plante-hint&quot;&gt;&lt;/div&gt;
+    &lt;span class=&quot;s-field__hint&quot; id=&quot;plante-hint&quot;&gt;Det som står på frøposen.&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p&gt;
+    &lt;button type=&quot;button&quot; class=&quot;s-btn s-btn--primary&quot;&gt;Lagre&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;s-btn s-btn--secondary&quot;&gt;Avbryt&lt;/button&gt;
+  &lt;/p&gt;
+  &lt;p&gt;&lt;span class=&quot;s-badge s-badge--accent&quot;&gt;Ny&lt;/span&gt; &lt;span class=&quot;s-badge&quot;&gt;Sådd&lt;/span&gt;&lt;/p&gt;
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></details></figure>
+<h3 id="react-med-npm">React med npm</h3>
+<p>React 18.3 eller 19, installert fra GitHub (pakken ligger ikke på npm):</p>
+<pre class="side-linje" tabindex="0"><code class="language-sh">npm install github:Mariisno/sussi-ui#v0.9.0</code></pre>
+<pre tabindex="0"><code class="language-jsx">import 'sussi/styles.css';
+import { Button } from 'sussi';
+
+export default function App() {
+  return &lt;Button variant=&quot;primary&quot;&gt;Lagre&lt;/Button&gt;;
+}</code></pre>
+<p>Komponentene er kompilert ESM (JavaScript-moduler med <code>import</code> og <code>export</code>) i <code>dist/</code> med typer ved siden av. React er din egen, en peer dependency (pakken bruker React-en appen din allerede har, i stedet for å ta med sin egen), så ingenting dobles.</p>
+<h3 id="uten-byggesteg">Uten byggesteg</h3>
+<p>Én HTML-fil og en import map (et <code>&lt;script type=&quot;importmap&quot;&gt;</code> som forteller nettleseren hvor <code>import 'react'</code> og <code>import 'sussi'</code> skal hentes fra): React fra jsDelivr og Sussi som én ESM-fil, <code>dist/sussi.browser.js</code>. Versjonene er låst, så fila ser lik ut neste år.</p>
+<pre tabindex="0"><code class="language-html">&lt;script type=&quot;importmap&quot;&gt;
+{
+  &quot;imports&quot;: {
+    &quot;react&quot;: &quot;https://cdn.jsdelivr.net/npm/react@18.3.1/+esm&quot;,
+    &quot;react/jsx-runtime&quot;: &quot;https://cdn.jsdelivr.net/npm/react@18.3.1/jsx-runtime/+esm&quot;,
+    &quot;react-dom&quot;: &quot;https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm&quot;,
+    &quot;react-dom/client&quot;: &quot;https://cdn.jsdelivr.net/npm/react-dom@18.3.1/client/+esm&quot;,
+    &quot;sussi&quot;: &quot;https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/dist/sussi.browser.js&quot;
+  }
+}
+&lt;/script&gt;</code></pre>
+<p>Uten byggesteg finnes ingen JSX, så eksemplet nederst skriver <code>h('p', null, …)</code> med <code>createElement</code>. Resten er likt.</p>
+<h2 id="2-sett-tema-og-aksent">2. Sett tema og aksent</h2>
+<p>To attributter på <code>&lt;html&gt;</code> styrer alt:</p>
+<pre class="side-linje" tabindex="0"><code class="language-html">&lt;html lang=&quot;nb&quot; data-theme=&quot;dark&quot; data-accent=&quot;fjord&quot;&gt;</code></pre>
+<ul><li><code>data-theme</code> er <code>light</code> eller <code>dark</code>. Ingenting skifter av seg selv; sett det fra <code>prefers-color-scheme</code> om du vil, og husk valget.</li><li><code>data-accent</code> velger én av de seks aksentene: <code>moss</code> (standard, trenger ikke settes), <code>clay</code>, <code>fjord</code>, <code>lichen</code>, <code>lyng</code> og <code>ochre</code>. Aksenten farger primærknappen, lenker, fokusringen, valgte faner og den myke bakgrunnen på badges.</li></ul>
+<p>Hvert par i hver aksent er målt i begge moduser: knappetekst på aksenten 4,5:1, aksenten som flate 3:1, lenker 4,5:1, fokusringen 3:1 og tekst på den myke aksenten 4,5:1. Tallene står på <a href="/sussi-ui/grunnlag/">Grunnlag</a>.</p>
+<h2 id="3-dine-egne-farger">3. Dine egne farger</h2>
+<p>Du trenger ikke én av de seks. Motoren (<code>tokens/tema.js</code>) tar én aksentfarge og lager hele tokengruppa i OKLCH (et fargerom der lysheten er en egen akse, så den kan flyttes uten at fargen skifter tone), og flytter lysheten bare så mye at hvert par holder samme krav som Sussis egne aksenter. Det du setter selv, flyttes aldri.</p>
+<h3 id="i-temabyggeren">I temabyggeren</h3>
+<p>Åpne <a href="/sussi-ui/tema/">temabyggeren</a>, velg en farge og gi temaet et navn. Alt skjer i nettleseren:</p>
+<ol><li><strong>Forhåndsvisningen</strong> viser ekte komponenter med temaet, lys og mørk side om side.</li><li><strong>Under aksentfeltet</strong> står svaret med én gang: «OK.», og om motoren måtte flytte fargen din, hvor langt og hvorfor. <strong>Rapporten</strong> lenger ned lister hver regel med målt forhold, og under «Flyttet» alt motoren justerte. Står det «OK: alle 124 par holder» (62 i hver modus), er du i mål.</li><li><strong>Last ned CSS</strong> gir deg <code>navn.css</code>. Last den etter <code>styles.css</code> og sett <code>data-tema=&quot;navn&quot;</code> på <code>&lt;html&gt;</code> ved siden av <code>data-theme</code>. Da trenger du ikke <code>data-accent</code>; temafila overstyrer den.</li></ol>
+<h3 id="fra-kommandolinjen">Fra kommandolinjen</h3>
+<p>Det samme temaet fra terminalen, med pakken installert fra GitHub (steg 1):</p>
+<pre class="side-linje" tabindex="0"><code class="language-sh">npx sussi-tema --aksent &quot;#2F6F9F&quot; --navn hav &gt; hav.css</code></pre>
+<p>CSS-en går til stdout (standard ut, det <code>&gt;</code> sender til fila), rapporten til stderr (feilstrømmen, som blir stående i terminalen). <code>--format json</code> gir tokenene som DTCG-JSON (W3C-formatet for designtokens, som Style Dictionary og designverktøy leser), <code>--preset fjord</code> gir en av de seks, og <code>--overstyr '{&quot;--bg&quot;:&quot;#F4F7FA&quot;}' --modus light</code> låser en flate eller en tekstfarge. Temabyggeren skriver kommandoen for deg under «Samme tema fra kommandolinjen».</p>
+<p>I en app med npm laster du temafila rett etter Sussis CSS, <code>import 'sussi/styles.css';</code> og så <code>import './hav.css';</code>, og setter <code>data-tema=&quot;hav&quot;</code> på <code>&lt;html&gt;</code>.</p>
+<h3 id="når-en-farge-må-justeres">Når en farge må justeres</h3>
+<p>En lys gul er fin som aksent i mørk modus, men hvit knappetekst på den holder ikke i lys modus. Dette er rapporten for <code>#F2E16B</code>, slik den faktisk står:</p>
+<pre class="side-linje" tabindex="0"><code class="language-sh">npx sussi-tema --aksent &quot;#F2E16B&quot; --navn sol &gt; sol.css</code></pre>
+<pre tabindex="0"><code class="language-text">Sussi theme &quot;sol&quot; (aksent, from #F2E16B): ok, every rule holds
+  light: --accent #807200, --accent-text #7C6E00, --accent-fg #F9F8E8, --focus-color #807200
+    moved --accent #F2E16B -&gt; #807200 (L -0.353): button text on the accent
+    moved --accent-text #807200 -&gt; #7C6E00 (L -0.013): links on --surface-2
+    62 pairs measured, tightest --fg-2 on --surface-3: 4.5:1 (needs 4.5:1)
+  dark: --accent #F2E16B, --accent-text #F2E16B, --accent-fg #1A1601, --focus-color #F2E16B
+    nothing moved
+    62 pairs measured, tightest --border-control on --surface-2: 3.22:1 (needs 3:1)</code></pre>
+<p>Les den slik: i lys modus ble aksenten mørknet fra <code>#F2E16B</code> til <code>#807200</code> for at knappeteksten skal holde 4,5:1, og lenkefargen ble flyttet et hakk til for <code>--surface-2</code>. I mørk modus holdt alt som det var. Temaet er OK, og den gule du valgte er fortsatt aksenten der den kan være det.</p>
+<p>Går et par ikke opp, får du <strong>Ikke OK</strong> i stedet: temabyggeren sier «Ikke OK» under aksentfeltet, med hva du kan endre og en verdi som holder, og nedlastingen heter «Last ned likevel». Kommandolinjen skriver <code>WARNING</code> og <code>ADVARSEL</code>, og det samme rådet under <code>TO FIX</code> og <code>SLIK RETTER DU</code>, og avslutter med kode 1. CSS-en skrives likevel, med advarselen som en kommentar øverst (<code>/* NOT OK: … */</code>), så du ser hva som mangler. Det skjer bare når noe du har låst selv står i veien: motoren kan ikke flytte en verdi du har satt, og sier da hvilken.</p>
+<details class="side-detaljer side-detaljer--del" id="hva-garantien-dekker"><summary>Hva garantien dekker</summary><p>Garantien er kontrasten mellom Sussis egne tokens, der komponentene bruker dem. I hver modus måles 62 par, og hvert av dem må holde kravet før temaet er OK:</p>
+<ul><li><strong>Aksenten:</strong> knappetekst på aksenten, også under hover og trykk (4,5:1); aksenten som flate, for eksempel en aktiv rad eller framdrift, på bakgrunnen og de tre flatene (3:1); lenker på bakgrunnen, <code>--surface-1</code> og <code>--surface-2</code> (4,5:1); fokusringen på de samme tre (3:1); tekst på den myke aksenten i badges og valgte tags, også under hover (4,5:1); markert tekst (4,5:1). En lenke skal dessuten skifte farge under hover.</li><li><strong>Tekst og kanter:</strong> brødtekst og sekundær tekst på bakgrunnen og de tre flatene (4,5:1), metatekst på de tre første (4,5:1) og på <code>--surface-3</code> som bryterring (3:1), kanten på felt og avkrysningsbokser (3:1).</li><li><strong>Status:</strong> framdriftsfyll og toast-ikoner i suksess, advarsel, fare og info (3:1), teksten i statusbadges (4,5:1), feilmeldingen under et felt (4,5:1) og kanten på et ugyldig felt (3:1), teksten på fareknappen, også under hover (4,5:1), og fargen i <code>--focus-ring</code> (3:1).</li></ul>
+<p>Reglene ligger i <code>REGLER</code> i <code>tokens/tema.js</code>, og rapporten i temabyggeren viser hvert par med målt verdi. Garantien dekker ikke farger du legger oppå selv, bilder, eller komponenter som ikke er Sussis; der måler du selv.</p></details>
+<h2 id="4-tre-komponenter">4. Tre komponenter</h2>
+<p>Med pakken installert (steg 1) skriver du JSX. Samme tre komponenter, kjørende uten byggesteg, står i eksemplet under.</p>
+<h3 id="button">Button</h3>
+<pre tabindex="0"><code class="language-jsx">import { Button } from 'sussi';
+
+&lt;Button onClick={lagre}&gt;Lagre&lt;/Button&gt;
+&lt;Button variant=&quot;secondary&quot; iconLeft=&quot;plus&quot; onClick={ny}&gt;Ny plante&lt;/Button&gt;
+&lt;Button variant=&quot;danger&quot; iconLeft=&quot;trash-2&quot; onClick={() =&gt; setOpen(true)}&gt;Slett bedet&lt;/Button&gt;</code></pre>
+<p>Én <code>primary</code> per visning; <code>secondary</code>, <code>soft</code> og <code>ghost</code> til resten, <code>danger</code> til det som ikke kan angres. <code>loading</code> bytter ikonet mot en spinner og sperrer knappen.</p>
+<ul><li><strong>Tastatur:</strong> Enter og mellomrom trykker, som enhver <code>&lt;button&gt;</code>; fokusringen er 2 px i <code>--focus-color</code> og vises bare ved tastaturfokus.</li><li><strong>Skjermleser:</strong> navnet er teksten på knappen, ikonet er dekorativt; <code>loading</code> sier <code>aria-busy</code>. En knapp uten tekst har ikke noe navn, bruk <code>IconButton</code>.</li></ul>
+<p>Alle props: <a href="/sussi-ui/komponenter/button/">Button</a>.</p>
+<h3 id="dialog">Dialog</h3>
+<pre tabindex="0"><code class="language-jsx">import { Dialog, Button } from 'sussi';
+
+&lt;Dialog open={open} onClose={() =&gt; setOpen(false)} title=&quot;Slette bedet?&quot; description=&quot;Tomatene og notatene forsvinner.&quot;
+  footer={&lt;&gt;&lt;Button variant=&quot;ghost&quot; onClick={() =&gt; setOpen(false)}&gt;Behold&lt;/Button&gt;&lt;Button variant=&quot;danger&quot; onClick={slett}&gt;Slett bedet&lt;/Button&gt;&lt;/&gt;}&gt;
+  &lt;p&gt;Du kan angre fra toasten etterpå.&lt;/p&gt;
+&lt;/Dialog&gt;</code></pre>
+<p>Knappen fra Button åpner den med <code>setOpen(true)</code>. Gi alltid <code>onClose</code>: uten den finnes verken lukkeknapp, Esc eller klikk på bakteppet. Tittelen er spørsmålet, knappene sier hva som skjer.</p>
+<ul><li><strong>Tastatur:</strong> fokus går inn ved åpning, Tab og Shift+Tab holder seg inni, Esc lukker, og fokus går tilbake til knappen som åpnet.</li><li><strong>Skjermleser:</strong> <code>role=&quot;dialog&quot;</code> med <code>aria-modal</code>, navngitt av <code>title</code> og beskrevet av <code>description</code>; lukkeknappen heter «Lukk» (<code>closeLabel</code> på engelske flater).</li></ul>
+<p>Alle props: <a href="/sussi-ui/komponenter/dialog/">Dialog</a>.</p>
+<h3 id="toast-og-toaststack">Toast og ToastStack</h3>
+<pre tabindex="0"><code class="language-jsx">import { Toast, ToastStack } from 'sussi';
+
+&lt;ToastStack&gt;
+  {slettet &amp;&amp; &lt;Toast tone=&quot;success&quot; title=&quot;Bedet er slettet&quot; actionLabel=&quot;Angre&quot; onAction={angre} onClose={lukk} /&gt;}
+&lt;/ToastStack&gt;</code></pre>
+<p><code>ToastStack</code> er beholderen nede til høyre og selve live-regionen (et område skjermlesere leser opp når innholdet endrer seg). Ha den i siden fra start, tom, og legg toaster inn i den. Det som kan angres, gjør du med en gang og gir «Angre» i toasten, i stedet for «Er du sikker?» før.</p>
+<ul><li><strong>Tastatur:</strong> handlingen og lukkeknappen er vanlige knapper som Tab når i sin tur; ingenting flytter fokus når en toast kommer.</li><li><strong>Skjermleser:</strong> stabelen er <code>role=&quot;status&quot;</code> med <code>aria-live=&quot;polite&quot;</code>, så teksten leses opp uten å avbryte; en toast fjerner seg ikke selv, timeren er din.</li></ul>
+<p>Alle props: <a href="/sussi-ui/komponenter/toast/">Toast</a>.</p>
+<h2 id="5-alt-sammen-uten-byggesteg">5. Alt sammen, uten byggesteg</h2>
+<p>Knappen åpner dialogen, dialogen gjør noe som kan angres, og svaret kommer som en toast. Fjord som aksent og en knapp som bytter mellom lys og mørk. Lagre fila og åpne den i nettleseren. Den virker også åpnet rett fra disk.</p>
+<figure class="side-eksempel"><div class="side-eksempel__topp"><div class="side-demo__bryter" role="group" aria-label="Lys eller mørk for eksemplet react-uten-bygg.html" data-ramme="eksempel-react-uten-bygg"><button type="button" class="s-btn s-btn--sm s-btn--secondary" data-demo-tema="light" aria-pressed="true">Lys</button><button type="button" class="s-btn s-btn--sm s-btn--secondary" data-demo-tema="dark" aria-pressed="false">Mørk</button></div></div><iframe class="side-kort" id="eksempel-react-uten-bygg" src="/sussi-ui/eksempler/react-uten-bygg.html" title="Eksempel: react-uten-bygg.html" loading="lazy" height="420"></iframe><figcaption class="side-eksempel__linjer"><a href="/sussi-ui/eksempler/react-uten-bygg.html" target="_blank" rel="noopener">Åpne eksemplet i en egen fane<span class="side-skjult"> (åpner i ny fane)</span></a> · <a href="/sussi-ui/eksempler/react-uten-bygg.html" download>Last ned fila</a></figcaption><details class="side-detaljer side-eksempel__kode"><summary>Se koden (react-uten-bygg.html)</summary><pre tabindex="0"><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;nb&quot; data-theme=&quot;light&quot; data-accent=&quot;fjord&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;Sussi uten byggesteg&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css&quot;&gt;
+&lt;script type=&quot;importmap&quot;&gt;
+{
+  &quot;imports&quot;: {
+    &quot;react&quot;: &quot;https://cdn.jsdelivr.net/npm/react@18.3.1/+esm&quot;,
+    &quot;react/jsx-runtime&quot;: &quot;https://cdn.jsdelivr.net/npm/react@18.3.1/jsx-runtime/+esm&quot;,
+    &quot;react-dom&quot;: &quot;https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm&quot;,
+    &quot;react-dom/client&quot;: &quot;https://cdn.jsdelivr.net/npm/react-dom@18.3.1/client/+esm&quot;,
+    &quot;sussi&quot;: &quot;https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/dist/sussi.browser.js&quot;
+  }
+}
+&lt;/script&gt;
+&lt;style&gt;main{max-width:480px;margin:0 auto;padding:24px 16px}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main id=&quot;app&quot;&gt;&lt;/main&gt;
+&lt;script type=&quot;module&quot;&gt;
+import { createElement as h, Fragment, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Button, Dialog, Toast, ToastStack } from 'sussi';
+
+function App() {
+  const [open, setOpen] = useState(false);
+  const [slettet, setSlettet] = useState(false);
+  const slett = () =&gt; { setOpen(false); setSlettet(true); };
+  const byttTema = () =&gt; { const r = document.documentElement; r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark'; };
+  return h('div', { style: { display: 'grid', gap: 16 } },
+    h('h1', null, 'Hagelogg'),
+    h('p', null, 'Knappen åpner en dialog. Det dialogen gjør kan angres, så svaret kommer som en toast.'),
+    h('p', { style: { display: 'flex', gap: 8, flexWrap: 'wrap' } },
+      h(Button, { variant: 'danger', iconLeft: 'trash-2', onClick: () =&gt; setOpen(true) }, 'Slett bedet'),
+      h(Button, { variant: 'secondary', iconLeft: 'moon', onClick: byttTema }, 'Lys eller mørk')),
+    h(Dialog, {
+      open, onClose: () =&gt; setOpen(false), title: 'Slette bedet?', description: 'Tomatene og notatene forsvinner.',
+      footer: h(Fragment, null,
+        h(Button, { variant: 'ghost', onClick: () =&gt; setOpen(false) }, 'Behold'),
+        h(Button, { variant: 'danger', onClick: slett }, 'Slett bedet')),
+    }, h('p', null, 'Du kan angre fra toasten etterpå.')),
+    h(ToastStack, null,
+      slettet &amp;&amp; h(Toast, { tone: 'success', title: 'Bedet er slettet', actionLabel: 'Angre', onAction: () =&gt; setSlettet(false), onClose: () =&gt; setSlettet(false) })));
+}
+
+createRoot(document.getElementById('app')).render(h(App));
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></details></figure>
+<h2 id="videre">Videre</h2>
+<ul><li><a href="/sussi-ui/komponenter/">Komponenter</a>: alle komponentene med eksempel, props, tilgjengelighet og innhold.</li><li><a href="/sussi-ui/grunnlag/">Grunnlag</a>: farger med målt kontrast, skrift, avstand, hjørner, skygger og bevegelse.</li><li><a href="/sussi-ui/tokens/">Tokens</a>: alle tokenene som JSON i W3C-formatet, til Style Dictionary og designverktøy.</li><li><a href="/sussi-ui/innhold/">Innhold</a>: stemmen, knappetekster, feilmeldinger og tomme tilstander.</li></ul></div>
+  </main>
+</div>
+<footer class="side-bunn">
+  <p>Kode under MIT. Maskoten Sussi under CC BY 4.0 («Sussi the cat by Mari Notland»). Fontene under SIL OFL, ikonene fra Lucide under ISC.</p>
+  <p class="side-meta">Sussi versjon 0.9.0 · <a href="https://github.com/Mariisno/sussi-ui">Kildekoden på GitHub</a></p>
+</footer>
+<div class="side-skjult" aria-live="polite" id="side-kopiert"></div>
+<script type="application/json" id="side-tekst">{"kopier":"Kopier","kopierKode":"Kopier koden","kopiert":"Kopiert","kopierMarkert":"Koden er markert. Kopier med Ctrl+C eller ⌘C."}</script>
+<script src="/sussi-ui/assets/side.js" defer></script>
+</body>
+</html>

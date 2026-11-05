@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Fieldset" subtitle="Radio and checkbox groups with legend, hint and error" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fieldset</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../dist/sussi.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 32px;max-width:640px}.col{display:grid;gap:16px;align-content:start}.lbl{font:var(--type-meta);color:var(--fg-3)}@media (max-width:520px){.grid{grid-template-columns:1fr}}</style>
+</head><body><div id="root"></div>
+<script>
+// ?theme=dark. Plain React.createElement, so the card needs no Babel.
+const { Fieldset, Radio, Checkbox, Switch } = window.SussiDesignSystem_a2c9b8;
+const h = React.createElement;
+if (new URLSearchParams(location.search).get('theme')) document.documentElement.dataset.theme = 'dark';
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'grid' },
+  h('div', { className: 'col' },
+    h('span', { className: 'lbl' }, 'radiogruppe · legend og hint'),
+    h(Fieldset, { legend: 'Hvor mye sol får stedet?', hint: 'Målt midt på dagen.' },
+      h(Radio, { name: 'sol', value: 'full', label: 'Full sol', description: 'Seks timer eller mer', defaultChecked: true }),
+      h(Radio, { name: 'sol', value: 'halv', label: 'Halvskygge', description: 'Tre til seks timer' }),
+      h(Radio, { name: 'sol', value: 'skygge', label: 'Skygge' })),
+    h('span', { className: 'lbl' }, 'valgfri · layout="row"'),
+    h(Fieldset, { legend: 'Hva skal loggen minne deg på?', optional: true, layout: 'row' },
+      h(Switch, { name: 'minn', value: 'vann', label: 'Vanning', defaultChecked: true }),
+      h(Switch, { name: 'minn', value: 'gjodsel', label: 'Gjødsel' }))),
+  h('div', { className: 'col' },
+    h('span', { className: 'lbl' }, 'avkrysningsgruppe · feil med ikon og tekst'),
+    h(Fieldset, { id: 'dager', legend: 'Hvilke dager vanner du?', error: 'Velg minst én dag.', layout: 'row' },
+      h(Checkbox, { name: 'dag', value: 'man', label: 'Mandag' }),
+      h(Checkbox, { name: 'dag', value: 'ons', label: 'Onsdag' }),
+      h(Checkbox, { name: 'dag', value: 'fre', label: 'Fredag' }),
+      h(Checkbox, { name: 'dag', value: 'son', label: 'Søndag' })),
+    h('span', { className: 'lbl' }, 'slått av · disabled på gruppa'),
+    h(Fieldset, { legend: 'Hvor står planten?', hint: 'Settes når bedet er registrert.', disabled: true },
+      h(Radio, { name: 'sted', value: 'ute', label: 'Ute', defaultChecked: true }),
+      h(Radio, { name: 'sted', value: 'inne', label: 'Inne' })))));
+</script></body></html>

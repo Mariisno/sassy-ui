@@ -1,0 +1,23 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Link" subtitle="Inline in text, standalone, external and in a new tab" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Link</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../dist/sussi.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}.col{display:grid;gap:16px;max-width:560px}.lbl{font:var(--type-meta);color:var(--fg-3)}p{font:var(--type-body);color:var(--fg-1);max-width:46ch}.row{display:flex;flex-wrap:wrap;align-items:center;gap:20px}.surf{padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-card);background:var(--surface-1)}</style>
+</head><body><div id="root"></div>
+<script>
+// ?theme=dark. Plain React.createElement, so the card needs no Babel.
+const { Link } = window.SussiDesignSystem_a2c9b8;
+const h = React.createElement;
+if (new URLSearchParams(location.search).get('theme')) document.documentElement.dataset.theme = 'dark';
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'col' },
+  h('span', { className: 'lbl' }, 'inline · i løpende tekst'),
+  h('p', null, 'Tomatene står i drivhuset til nattetemperaturen holder seg over ti grader. Les om ', h(Link, { href: '#jord' }, 'jordtyper'), ' og ', h(Link, { href: '#vanning' }, 'vanning'), ' før du planter ut.'),
+  h('span', { className: 'lbl' }, 'standalone · på egen linje · external · target="_blank"'),
+  h('div', { className: 'row' },
+    h(Link, { variant: 'standalone', href: '#saadagbok' }, 'Se hele sådagboka'),
+    h(Link, { variant: 'standalone', href: '#katalog', external: true }, 'Frøkatalogen'),
+    h(Link, { variant: 'standalone', href: 'https://example.com/fro', target: '_blank' }, 'Frøkatalogen i ny fane')),
+  h('span', { className: 'lbl' }, 'på --surface-1 · ny fane i løpende tekst'),
+  h('div', { className: 'surf' }, h('p', null, 'Spiretemperaturen for basilikum står i ', h(Link, { href: 'https://example.com/basilikum', target: '_blank' }, 'frøkatalogen'), ', og ', h(Link, { href: '#frost' }, 'frostvarselet'), ' sier når du kan sette den ut.'))));
+</script></body></html>

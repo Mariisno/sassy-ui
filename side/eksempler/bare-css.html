@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="nb" data-theme="light" data-accent="moss">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sussi, bare CSS</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css">
+<style>main{max-width:480px;margin:0 auto;padding:24px 16px;display:grid;gap:16px}</style>
+</head>
+<body>
+<main>
+  <h1>Hagelogg</h1>
+  <p>Tokens, fonter og <code>.s-*</code>-klassene fra én CSS-fil. Bytt <code>data-theme</code> og <code>data-accent</code> på <code>&lt;html&gt;</code>.</p>
+  <div class="s-field">
+    <label class="s-field__label" for="plante">Plante</label>
+    <div class="s-control"><input id="plante" class="s-control__input" type="text" placeholder="Tomat" aria-describedby="plante-hint"></div>
+    <span class="s-field__hint" id="plante-hint">Det som står på frøposen.</span>
+  </div>
+  <p>
+    <button type="button" class="s-btn s-btn--primary">Lagre</button>
+    <button type="button" class="s-btn s-btn--secondary">Avbryt</button>
+  </p>
+  <p><span class="s-badge s-badge--accent">Ny</span> <span class="s-badge">Sådd</span></p>
+</main>
+</body>
+</html>

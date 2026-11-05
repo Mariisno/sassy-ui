@@ -1,0 +1,49 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Menu & Popover" subtitle="Menu button with actions; anchored popover with controls" -->
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Menu &amp; Popover</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../dist/sussi.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}.row{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface-1)}.row b{flex:1;font:var(--weight-semibold) var(--text-md)/1.3 var(--font-sans)}.lbl{font:var(--type-meta);color:var(--fg-3);margin-bottom:8px}.stack{display:grid;gap:10px}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const S = window.SussiDesignSystem_a2c9b8;
+const { Menu, Popover, Button, Checkbox, ToastStack, Toast } = S;
+function App(){
+  const [msg, setMsg] = React.useState(null);
+  const [sort, setSort] = React.useState('name');
+  const actions = [
+    { id: 'edit', label: 'Edit', icon: 'pencil' },
+    { id: 'copy', label: 'Duplicate', icon: 'copy' },
+    { id: 'share', label: 'Share', icon: 'share-2', disabled: true },
+    '-',
+    { id: 'delete', label: 'Delete', icon: 'trash-2', danger: true },
+  ];
+  return (<div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:24,alignItems:'start'}}>
+    <div>
+      <div className="lbl">Menu, open by default on the row's more button</div>
+      <div className="stack">
+        <div className="row"><b>Tomatoes</b><Menu align="end" triggerLabel="More actions" defaultOpen items={actions} onSelect={(id) => setMsg(id)} /></div>
+        <div className="row"><b>Autumn bulbs</b><Menu align="end" triggerLabel="More actions" items={actions} onSelect={(id) => setMsg(id)} /></div>
+      </div>
+    </div>
+    <div>
+      <div className="lbl">A labelled trigger with a checked group, and a Popover</div>
+      <div style={{display:'flex',gap:10,flexWrap:'wrap'}}>
+        <Menu trigger={<Button variant="secondary" iconRight="chevron-down">Sort</Button>} onSelect={(id) => setSort(id)} items={[
+          { label: 'Sort by', items: [
+            { id: 'name', label: 'Name', checked: sort === 'name' },
+            { id: 'date', label: 'Last changed', checked: sort === 'date' },
+            { id: 'size', label: 'Size', checked: sort === 'size' },
+          ] },
+        ]} />
+        <Popover trigger={<Button variant="secondary" iconRight="chevron-down">Filter</Button>} aria-label="Filter">
+          <div style={{display:'grid',gap:8,padding:'6px 4px'}}><Checkbox label="Only mine" defaultChecked /><Checkbox label="Done too" /></div>
+        </Popover>
+      </div>
+    </div>
+    <ToastStack>{msg ? <Toast title={`Chose “${msg}”`} onClose={() => setMsg(null)} closeLabel="Close" /> : null}</ToastStack>
+  </div>);
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

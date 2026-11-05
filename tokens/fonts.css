@@ -1,0 +1,7 @@
+/* Sussi webfonts — Schibsted Grotesk (variable 400–900) + DM Mono. Latin subset (covers æ ø å). SIL OFL. */
+@font-face{font-family:'DM Mono';font-style:italic;font-weight:400;font-display:swap;src:url('../assets/fonts/DMMono-italic-400.woff2') format('woff2');}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:300;font-display:swap;src:url('../assets/fonts/DMMono-normal-300.woff2') format('woff2');}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url('../assets/fonts/DMMono-normal-400.woff2') format('woff2');}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url('../assets/fonts/DMMono-normal-500.woff2') format('woff2');}
+@font-face{font-family:'Schibsted Grotesk';font-style:italic;font-weight:400 900;font-display:swap;src:url('../assets/fonts/SchibstedGrotesk-italic-400_900.woff2') format('woff2');}
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 900;font-display:swap;src:url('../assets/fonts/SchibstedGrotesk-normal-400_900.woff2') format('woff2');}

@@ -1,0 +1,19 @@
+/* Sussi — minimal element defaults */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{margin:0;background:var(--bg);color:var(--fg-1);font:var(--type-body);font-feature-settings:'ss01','cv11'}
+h1,h2,h3,h4{margin:0;color:var(--fg-1);letter-spacing:var(--tracking-snug);text-wrap:balance}
+/* Headings get Sussi's type roles, so a plain <h1> looks like Sussi. :where() keeps them at 0,0,0: any class or inline font wins. */
+:where(h1){font:var(--type-h1)}
+:where(h2){font:var(--type-h2)}
+:where(h3){font:var(--type-h3)}
+:where(h4){font:var(--weight-semibold) var(--text-md)/var(--leading-snug) var(--font-sans)}
+p{margin:0;text-wrap:pretty}
+a{color:var(--accent-text);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent);transition:color var(--dur-fast) var(--ease-calm),text-decoration-color var(--dur-fast) var(--ease-calm)}
+a:where(:not(.s-btn,.s-iconbtn)):hover{color:var(--accent-hover);text-decoration-color:currentColor} /* a link styled as a button keeps its text colour; :where holds this at 0,1,1, so component hover rules (AppShell) still win */
+button,input,select,textarea{font:inherit;color:inherit}
+code,kbd,pre{font-family:var(--font-mono);font-size:.92em}
+code{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-xs);padding:.05em .35em}
+::selection{background:var(--highlight);color:var(--fg-1)}
+:focus-visible{outline:2px solid var(--focus-color);outline-offset:2px}
+hr{border:0;border-top:1px solid var(--border);margin:var(--space-6) 0}

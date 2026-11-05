@@ -1,0 +1,43 @@
+<!-- @dsCard group="Components" viewport="1280x780" name="AppShell" subtitle="Tab bar on phones, sidebar from 900 px (variant A)" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>AppShell</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../dist/sussi.global.js"></script>
+<style>
+body{background:var(--bg)}
+.ov{display:flex;gap:28px;align-items:flex-start;justify-content:center;padding:20px 24px}
+.ov figure{margin:0;display:grid;gap:8px}
+.ov figcaption{font:var(--type-meta);color:var(--fg-3)}
+.ov iframe{display:block;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg)}
+.desk{width:760px;height:600px;overflow:hidden;border-radius:var(--radius-lg)}
+.desk iframe{width:1280px;height:1010px;transform:scale(.594);transform-origin:0 0}
+.meta{font:var(--type-meta);color:var(--fg-3)}
+.row{padding:14px 16px;margin-top:10px;background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-lg)}
+.row b{display:block;font:var(--weight-semibold) var(--text-md)/1.3 var(--font-sans)}
+</style></head><body><div id="root"></div>
+<script>
+// Without ?demo: a phone (390) and a desktop (1280, scaled) side by side. With ?demo: the shell itself,
+// full size, for screenshots. &n=3..6 items, &theme=dark, &accent=clay|lyng.
+const { AppShell, Sussi } = window.SussiDesignSystem_a2c9b8;
+const h = React.createElement;
+const q = new URLSearchParams(location.search);
+if (q.get('theme')) document.documentElement.dataset.theme = q.get('theme');
+if (q.get('accent')) document.documentElement.dataset.accent = q.get('accent');
+const pass = ['n', 'theme', 'accent'].filter((k) => q.get(k)).map((k) => `&${k}=${q.get(k)}`).join('');
+const ALL = [['prosjekter', 'Prosjekter', 'layout-grid'], ['planter', 'Planter', 'sprout'], ['fro', 'Frø', 'archive'], ['statistikk', 'Statistikk', 'activity'], ['dagbok', 'Dagbok', 'book-open'], ['innst', 'Innstillinger', 'settings']];
+const items = ALL.slice(0, +(q.get('n') || 4)).map(([id, label, icon]) => ({ id, label, icon, href: '#' + id }));
+function Demo() {
+  const [cur, setCur] = React.useState('prosjekter');
+  const page = items.find((i) => i.id === cur);
+  return h(AppShell, { items, current: cur, onNavigate: setCur, brand: h('span', null, 'hage', h('i', null, '.')), footer: h('span', { className: 'meta' }, '6 prosjekter') },
+    h('span', { className: 'meta' }, 'Hage'), h('h1', { style: { font: 'var(--type-h1)', margin: '4px 0 12px' } }, page.label),
+    ...['Tomater', 'Squash', 'Kattegress til Sussi', 'Krydderurter', 'Poteter i sekk', 'Siste rad, skal ikke skjules av menyen'].map((t, i) =>
+      h('div', { key: t, className: 'row' }, h('b', null, t), h('span', { className: 'meta' }, [25, 60, 10, 85, 40, 5][i] + ' % · 3 bed'))));
+}
+function Overview() {
+  return h('div', { className: 'ov' },
+    h('figure', null, h('iframe', { title: 'AppShell på telefon', src: '?demo=1' + pass, width: 390, height: 600 }), h('figcaption', null, 'under 900 px · fanelinje')),
+    h('figure', null, h('div', { className: 'desk' }, h('iframe', { title: 'AppShell på PC', src: '?demo=1' + pass })), h('figcaption', null, 'fra 900 px · sidemeny')));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(q.get('demo') ? Demo : Overview));
+</script></body></html>

@@ -1,0 +1,39 @@
+name: Bug / Feil
+description: Something in Sussi looks or behaves wrong. / Noe i Sussi ser eller oppfører seg feil.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened? / Hva skjedde?
+      description: What you did, what you expected and what happened instead.
+    validations:
+      required: true
+  - type: input
+    id: component
+    attributes:
+      label: Component or token / Komponent eller token
+      placeholder: Button, Dialog variant="sheet", --accent-text …
+  - type: input
+    id: version
+    attributes:
+      label: Sussi version / Sussi-versjon
+      placeholder: v0.9.0
+    validations:
+      required: true
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Theme / Tema
+      multiple: true
+      options: [light, dark, moss (default), clay, fjord, lichen, lyng, ochre, own theme]
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device / Nettleser og enhet
+      placeholder: Safari, iOS 18, iPhone 15
+  - type: textarea
+    id: a11y
+    attributes:
+      label: Assistive technology, if any / Hjelpemiddel, hvis noe
+      placeholder: VoiceOver, keyboard only, 200 % zoom …

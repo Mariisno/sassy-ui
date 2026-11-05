@@ -1,0 +1,133 @@
+{
+  "$comment": "English descriptions for the props whose .d.ts has no JSDoc, keyed \"Interface.prop\". The JSDoc in the .d.ts wins when there is one; scripts/docs-props.mjs falls back to this file and says when a prop has neither.",
+
+  "ButtonProps.variant": "primary (accent fill), secondary (surface and edge), soft (soft accent), ghost (no chrome), danger.",
+  "ButtonProps.size": "sm 30 px, md 38 px, lg 46 px tall.",
+  "ButtonProps.loading": "Shows a spinner instead of the left icon, hides the right one, and turns the button off while it keeps focus (`aria-disabled`, `aria-busy`).",
+  "ButtonProps.fullWidth": "Fills the width.",
+  "ButtonProps.href": "Link target when `as=\"a\"`.",
+  "ButtonProps.children": "The text on the button.",
+
+  "IconButtonProps.variant": "ghost (no chrome), secondary (surface and edge), primary (accent fill).",
+  "IconButtonProps.size": "sm 30 px, md 38 px, lg 46 px square.",
+  "IconButtonProps.round": "Round, for floating actions.",
+
+  "FileButtonProps.variant": "The same variants as Button.",
+  "FileButtonProps.size": "The same sizes as Button.",
+  "FileButtonProps.fullWidth": "Fills the width.",
+  "FileButtonProps.multiple": "Several files at once.",
+  "FileButtonProps.disabled": "Disabled: takes neither focus nor clicks.",
+  "FileButtonProps.children": "The text on the button.",
+
+  "CheckboxProps.label": "The text beside the box.",
+  "CheckboxProps.description": "A line under the text, in `--fg-3`.",
+  "CheckboxProps.indeterminate": "Partly checked (a dash instead of a tick). Set on the native input.",
+
+  "RadioProps.label": "The text beside the button.",
+  "RadioProps.description": "A line under the text, in `--fg-3`.",
+
+  "SwitchProps.label": "The text beside the switch.",
+  "SwitchProps.description": "A line under the text, in `--fg-3`.",
+
+  "BadgeProps.outline": "Transparent with an edge instead of a fill.",
+  "BadgeProps.children": "The text, one or two words.",
+
+  "CardProps.variant": "outlined (edge, no shadow), raised (shadow, for things that float), sunken (sunken surface, for wells and quotes).",
+  "CardProps.padding": "none, sm 12 px, md 20 px, lg 32 px.",
+  "CardProps.as": "Which element it renders as.",
+  "CardProps.children": "The content.",
+
+  "TagProps.onClick": "A click on the tag (the toggle).",
+  "TagProps.children": "The text.",
+
+  "ListItemProps.title": "The title, required.",
+
+  "ScrollRowProps.children": "What sits in the row: tags, dots, tabs.",
+
+  "SwatchProps.disabled": "Disabled.",
+
+  "ProgressProps.variant": "A bar or a ring.",
+
+  "ToastProps.tone": "Which icon it gets, and the icon's colour.",
+  "ToastProps.title": "One line, past tense for what was done: \"Task archived\".",
+  "ToastProps.description": "A second line, in `--fg-2`.",
+  "ToastProps.actionLabel": "The text of the action, usually \"Undo\".",
+  "ToastProps.onAction": "Called when the action is pressed.",
+  "ToastProps.onClose": "Shows a close button (×) that calls this.",
+  "ToastProps.className": "Classes on the toast.",
+  "ToastProps.style": "Style on the toast.",
+
+  "NyVersjonProps.className": "Classes on the toast.",
+  "NyVersjonProps.style": "Style on the toast.",
+
+  "InputProps.label": "The label above the field.",
+  "InputProps.hint": "Help text under the field, linked with `aria-describedby`.",
+  "InputProps.size": "sm 30 px, md 38 px, lg 46 px tall.",
+
+  "FieldProps.label": "The label.",
+  "FieldProps.hint": "Help text under the control.",
+  "FieldProps.error": "Error message; shown instead of the hint, with `role=\"alert\"`.",
+  "FieldProps.optional": "Adds the optional marker after the label.",
+  "FieldProps.optionalLabel": "The text of the optional marker.",
+  "FieldProps.htmlFor": "The control's id, so the label points at it.",
+  "FieldProps.hintId": "The id the hint or error gets. Default `${htmlFor}-hint`; point the control's `aria-describedby` at it.",
+  "FieldProps.children": "The control.",
+
+  "SelectProps.label": "The label above the field.",
+  "SelectProps.hint": "Help text under the field, linked with `aria-describedby`.",
+  "SelectProps.error": "Error message. Replaces the hint, sets `aria-invalid` and is announced.",
+  "SelectProps.optional": "Adds a quiet \"Valgfritt\" after the label.",
+  "SelectProps.options": "The options: strings, or `{ value, label }`.",
+  "SelectProps.placeholder": "A first, empty option with this text.",
+  "SelectProps.size": "sm 30 px, md 38 px, lg 46 px tall.",
+
+  "TextareaProps.label": "The label above the field.",
+  "TextareaProps.hint": "Help text under the field, linked with `aria-describedby`.",
+  "TextareaProps.error": "Error message. Replaces the hint, sets `aria-invalid` and is announced.",
+  "TextareaProps.optional": "Adds a quiet \"Valgfritt\" after the label.",
+  "TextareaProps.rows": "Visible lines.",
+
+  "TabsProps.items": "The tabs.",
+  "TabsProps.value": "The selected tab (controlled).",
+  "TabsProps.defaultValue": "The tab selected at first (uncontrolled). Otherwise the first.",
+  "TabsProps.onChange": "Called when a tab is selected, with its `id`.",
+  "TabsProps.variant": "underline for sections of a page, segmented for view switches and filters.",
+  "TabsProps.className": "Classes on the tab list.",
+  "TabsProps.style": "Style on the tab list.",
+
+  "TabItem.id": "The key; `value` and `TabPanel value` point at it.",
+  "TabItem.label": "The text on the tab.",
+  "TabItem.icon": "Lucide icon name before the text.",
+  "TabItem.count": "A number after the text, in monospace.",
+
+  "TabPanelProps.children": "The content.",
+
+  "AppShellProps.items": "The menu items.",
+  "AppShellProps.onNavigate": "Called on a click on an item, with its `id`.",
+  "AppShellProps.className": "Classes on the frame.",
+  "AppShellProps.children": "The page; rendered inside `<main>`.",
+
+  "AppShellItem.id": "The key; `current` points at it.",
+  "AppShellItem.label": "The text. One word is best.",
+
+  "DialogProps.open": "Open. Closed, it renders nothing.",
+  "DialogProps.onClose": "Called by Esc, a click on the scrim and the close button. Without it there is no close button, and Esc and the scrim do nothing.",
+  "DialogProps.title": "The heading; names the dialog (`aria-labelledby`).",
+  "DialogProps.description": "A line under the heading; describes the dialog (`aria-describedby`).",
+  "DialogProps.children": "The content.",
+  "DialogProps.className": "Classes on the panel.",
+
+  "TooltipProps.content": "The text in the bubble.",
+  "TooltipProps.side": "Above or below the trigger.",
+  "TooltipProps.className": "Classes on the wrapper.",
+
+  "SussiProps.pose": "The pose: hode, ligger, titter, sover, strekk, sitter.",
+
+  "AlertProps.onAction": "Called when the action is pressed.",
+  "AlertProps.className": "Your own classes on the alert.",
+  "AlertProps.style": "Your own styles on the alert.",
+  "SpinnerProps.className": "Your own classes on the spinner.",
+  "SpinnerProps.style": "Your own styles on the spinner.",
+  "SkeletonProps.className": "Your own classes on the skeleton.",
+  "SkeletonProps.style": "Your own styles on the skeleton."
+}
