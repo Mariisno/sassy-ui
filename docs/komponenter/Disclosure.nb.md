@@ -3,8 +3,8 @@ navn: Disclosure
 gruppe: display
 status: new
 sidenVersjon: 0.7.0
-kort: components/display/disclosure.card.html
-typer: components/display/Disclosure.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/disclosure/
+typer: dist/display/Disclosure.d.ts
 ---
 
 # Disclosure
@@ -42,7 +42,7 @@ En seksjon som vises og skjules: innebygd `<details>` og `<summary>`, så nettle
 ## Eksempel
 
 ```jsx
-import { Disclosure } from 'sussi/components';
+import { Disclosure } from 'sassy/components';
 
 <Disclosure title="Vanning og gjødsling">
   <p>Vann om morgenen, så bladene rekker å tørke. Gjødsle annenhver uke fra juni.</p>
@@ -59,7 +59,7 @@ import { Disclosure } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/display/Disclosure.d.ts`. Kortet: `components/display/disclosure.card.html`.
+Typene står i `dist/display/Disclosure.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/disclosure/).
 
 <!-- props: DisclosureProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -77,12 +77,12 @@ Pluss alle attributtene til `<details>` (`React.DetailsHTMLAttributes<HTMLDetail
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/disclosure.e2e.test.mjs`, reglene i `tests/disclosure.test.mjs`.
+Oppførselen er testet i nettleseren, reglene i enhetstester.
 
 - **Element og rolle.** En `<details>` med en `<summary>`. Nettleseren gir `<summary>` knapperollen og `aria-expanded` fra `open`-attributtet; ingen rolle eller `aria-expanded` legges til, og den beregnede rollen og tilstanden er testet i Chromiums tilgjengelighetstre (`DisclosureTriangle`, `expanded`). Merk at Playwright og Testing Library ser raden som `summary` eller `group`, ikke som `button`: finn den med `getByText` eller `locator('summary')`. Innholdet er i DOM-en også når seksjonen er lukket, så «finn på siden» finner det i de fleste nettlesere, men det er ikke vist før den åpner (testet).
 - **Navn.** `title`. En overskrift i `title` står direkte i `<summary>` med tittelklassen selv (ingen `<span>` rundt), blir en del av sidas struktur og beholder radens skrift (testet).
 - **Tastatur.** Tab når raden; Enter og mellomrom åpner og lukker (testet). Fokus blir på raden. Ingen egne tastehåndterere.
-- **Fokus.** Sussis `:focus-visible` på raden: 2 px `--focus-color`, 2 px utenfor, med radens hjørner (farge, bredde og avstand testet).
+- **Fokus.** Sassys `:focus-visible` på raden: 2 px `--focus-color`, 2 px utenfor, med radens hjørner (farge, bredde og avstand testet).
 - **Kontrast.** Tittelen er `--fg-1` på `--surface-1` (4,5:1 eller mer) og chevronen `--fg-3` (3:1 eller mer) i begge temaer og alle seks aksenter, målt på tokenene og i nettleseren, også ved hover (testet). Ramma er `--border` og bærer ikke mening; chevronen og `open` gjør det.
 - **Treffflate.** Raden er minst 44 px høy i hele bredden (WCAG 2.5.8, testet).
 - **Bevegelse.** Chevronen snur 180° på `--dur-base`; tokenet er 0 under `prefers-reduced-motion`, og overgangen tas bort i tillegg (WCAG 2.3.3, testet). Innholdet kommer uten animasjon.

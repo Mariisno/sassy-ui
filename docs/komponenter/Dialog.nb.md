@@ -3,8 +3,8 @@ navn: Dialog
 gruppe: overlays
 status: stable
 sidenVersjon: 0.2.0
-kort: components/overlays/overlays.card.html
-typer: components/overlays/Dialog.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/dialog/
+typer: dist/overlays/Dialog.d.ts
 ---
 
 # Dialog
@@ -43,7 +43,7 @@ En modal dialog med bakteppe, etter WAI-ARIA-mønsteret for dialoger: fokus flyt
 ## Eksempel
 
 ```jsx
-import { Dialog, Button, Input } from 'sussi/components';
+import { Dialog, Button, Input } from 'sassy/components';
 
 <Dialog open={åpen} onClose={lukk} title="Slette prosjektet?" description="Dette fjerner 12 oppgaver og kan ikke angres."
   footer={<><Button variant="ghost" onClick={lukk}>Behold</Button><Button variant="danger" onClick={slett}>Slett prosjekt</Button></>} />
@@ -56,7 +56,7 @@ import { Dialog, Button, Input } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/overlays/Dialog.d.ts`. Kortene: `components/overlays/overlays.card.html` (dialogen) og `components/overlays/sheet.card.html` (arket).
+Typene står i `dist/overlays/Dialog.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/dialog/).
 
 <!-- props: DialogProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -82,7 +82,7 @@ Merk at `open` er `true` når den ikke er satt: en Dialog uten `open` er åpen. 
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/dialog.e2e.test.mjs` og `tests/sheet.e2e.test.mjs`, reglene i `tests/sheet.test.mjs`.
+Oppførselen er testet i nettleseren, reglene i enhetstester.
 
 - **Element og rolle.** En `<div role="dialog" aria-modal="true" tabIndex={-1}>` i et bakteppe. `aria-labelledby` peker på `title` (`<h2>`), `aria-describedby` på `description` (testet). `id`, `data-*` og `aria-*` når panelet.
 - **Fokus inn.** `initialFocus`, ellers `[autofocus]`/`[data-autofocus]`, ellers den første kontrollen i innholdet, ellers panelet selv, så skjermleseren leser tittelen og Enter ikke kan treffe «Slett» (testet: fokus er inni ved åpning).

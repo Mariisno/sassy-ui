@@ -1,6 +1,6 @@
 # Getting started
 
-Sussi is a small design system by NotlandDesign: design tokens, CSS and React components, built for WCAG 2.2 AA in light and dark. This page takes you from nothing to a page with a button, a dialog and a toast, in your own colours. Every example is a complete HTML file you can save and open.
+Sassy is a small design system by NotlandDesign: design tokens, CSS and React components, built for WCAG 2.2 AA in light and dark. This page takes you from nothing to a page with a button, a dialog and a toast, in your own colours. Every example is a complete HTML file you can save and open.
 
 ## 1. Install
 
@@ -11,7 +11,7 @@ Pick one of three ways. All three give the same CSS and the same components; the
 The tokens, the fonts and the `.s-*` classes in one file, from jsDelivr. No JavaScript, no package.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/styles.css">
 ```
 
 The file loads the tokens, the fonts (Schibsted Grotesk and DM Mono, hosted in the same place) and the component styles. A whole example:
@@ -19,49 +19,47 @@ The file loads the tokens, the fonts (Schibsted Grotesk and DM Mono, hosted in t
 <!-- eksempel: bare-css.html 400 -->
 ```html
 <!doctype html>
-<html lang="nb" data-theme="light" data-accent="moss">
+<html lang="en" data-theme="light" data-accent="moss">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sussi, bare CSS</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css">
+<title>Sassy, CSS only</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/styles.css">
 <style>main{max-width:480px;margin:0 auto;padding:24px 16px;display:grid;gap:16px}</style>
 </head>
 <body>
 <main>
-  <h1>Hagelogg</h1>
-  <p>Tokens, fonter og <code>.s-*</code>-klassene fra én CSS-fil. Bytt <code>data-theme</code> og <code>data-accent</code> på <code>&lt;html&gt;</code>.</p>
+  <h1>Garden log</h1>
+  <p>Tokens, fonts and the <code>.s-*</code> classes from one CSS file. Change <code>data-theme</code> and <code>data-accent</code> on <code>&lt;html&gt;</code>.</p>
   <div class="s-field">
-    <label class="s-field__label" for="plante">Plante</label>
-    <div class="s-control"><input id="plante" class="s-control__input" type="text" placeholder="Tomat" aria-describedby="plante-hint"></div>
-    <span class="s-field__hint" id="plante-hint">Det som står på frøposen.</span>
+    <label class="s-field__label" for="plante">Plant</label>
+    <div class="s-control"><input id="plante" class="s-control__input" type="text" placeholder="Tomato" aria-describedby="plante-hint"></div>
+    <span class="s-field__hint" id="plante-hint">What it says on the seed packet.</span>
   </div>
   <p>
-    <button type="button" class="s-btn s-btn--primary">Lagre</button>
-    <button type="button" class="s-btn s-btn--secondary">Avbryt</button>
+    <button type="button" class="s-btn s-btn--primary">Save</button>
+    <button type="button" class="s-btn s-btn--secondary">Cancel</button>
   </p>
-  <p><span class="s-badge s-badge--accent">Ny</span> <span class="s-badge">Sådd</span></p>
+  <p><span class="s-badge s-badge--accent">New</span> <span class="s-badge">Sown</span></p>
 </main>
 </body>
 </html>
 ```
-
-The words in the examples are Norwegian, Sussi's default language; the markup is the same in any language.
 
 ### React with npm
 
 React 18.3 or 19, installed from GitHub (the package is not on npm):
 
 ```sh
-npm install github:Mariisno/sussi-ui#v0.9.0
+npm install github:Mariisno/sassy-ui#v0.11.0
 ```
 
 ```jsx
-import 'sussi/styles.css';
-import { Button } from 'sussi';
+import 'sassy/styles.css';
+import { Button } from 'sassy';
 
 export default function App() {
-  return <Button variant="primary">Lagre</Button>;
+  return <Button variant="primary">Save</Button>;
 }
 ```
 
@@ -69,7 +67,7 @@ The components are compiled ESM (JavaScript modules with `import` and `export`) 
 
 ### No build step
 
-One HTML file and an import map (a `<script type="importmap">` that tells the browser where `import 'react'` and `import 'sussi'` come from): React from jsDelivr and Sussi as one ESM file, `dist/sussi.browser.js`. The versions are pinned, so the file looks the same next year.
+One HTML file and an import map (a `<script type="importmap">` that tells the browser where `import 'react'` and `import 'sassy'` come from): React from jsDelivr and Sassy as one ESM file, `dist/sassy.browser.js`. The versions are pinned, so the file looks the same next year.
 
 ```html
 <script type="importmap">
@@ -79,7 +77,7 @@ One HTML file and an import map (a `<script type="importmap">` that tells the br
     "react/jsx-runtime": "https://cdn.jsdelivr.net/npm/react@18.3.1/jsx-runtime/+esm",
     "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm",
     "react-dom/client": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/client/+esm",
-    "sussi": "https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/dist/sussi.browser.js"
+    "sassy": "https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/dist/sassy.browser.js"
   }
 }
 </script>
@@ -92,21 +90,21 @@ Without a build step there is no JSX, so the example at the bottom writes `h('p'
 Two attributes on `<html>` control everything:
 
 ```html
-<html lang="nb" data-theme="dark" data-accent="fjord">
+<html lang="en" data-theme="dark" data-accent="fjord">
 ```
 
 - `data-theme` is `light` or `dark`. Nothing switches on its own; set it from `prefers-color-scheme` if you like, and remember the choice.
 - `data-accent` picks one of the six accents: `moss` (the default, no need to set it), `clay`, `fjord`, `lichen`, `lyng` and `ochre`. The accent colours the primary button, links, the focus ring, selected tabs and the soft background of badges.
 
-Every pair in every accent is measured in both modes: button text on the accent 4.5:1, the accent as a surface 3:1, links 4.5:1, the focus ring 3:1 and text on the soft accent 4.5:1. The numbers are on [Foundations](https://mariisno.github.io/sussi-ui/en/foundations/).
+Every pair in every accent is measured in both modes: button text on the accent 4.5:1, the accent as a surface 3:1, links 4.5:1, the focus ring 3:1 and text on the soft accent 4.5:1. The numbers are on [Foundations](https://mariisno.github.io/sassy-ui/en/foundations/).
 
 ## 3. Your own colours
 
-You are not limited to the six. The engine (`tokens/tema.js`) takes one accent colour, derives the whole token group in OKLCH (a colour space where lightness is an axis of its own, so it can move without the hue shifting), and moves lightness only as far as every pair needs to hold the same requirement as Sussi's own accents. What you set yourself never moves.
+You are not limited to the six. The engine (`tokens/tema.js`) takes one accent colour, derives the whole token group in OKLCH (a colour space where lightness is an axis of its own, so it can move without the hue shifting), and moves lightness only as far as every pair needs to hold the same requirement as Sassy's own accents. What you set yourself never moves.
 
 ### In the theme builder
 
-Open the [theme builder](https://mariisno.github.io/sussi-ui/en/theme/), pick a colour and give the theme a name. Everything runs in the browser:
+Open the [theme builder](https://mariisno.github.io/sassy-ui/en/theme/), pick a colour and give the theme a name. Everything runs in the browser:
 
 1. **The preview** shows real components in the theme, light and dark side by side.
 2. **Under the accent field** the answer is there at once: "OK.", and whether the engine had to move your colour, how far and why. **The report** further down lists every rule with the measured ratio, and under "Moved" everything the engine adjusted. When it says "OK: all 124 pairs hold" (62 in each mode), you are done.
@@ -117,23 +115,23 @@ Open the [theme builder](https://mariisno.github.io/sussi-ui/en/theme/), pick a 
 The same theme from the terminal, with the package installed from GitHub (step 1):
 
 ```sh
-npx sussi-tema --aksent "#2F6F9F" --navn hav > hav.css
+npx sassy-tema --aksent "#2F6F9F" --navn hav > hav.css
 ```
 
 The CSS goes to stdout (standard output, what `>` sends to the file), the report to stderr (the error stream, which stays in the terminal). `--format json` gives the tokens as DTCG JSON (the W3C format for design tokens, which Style Dictionary and design tools read), `--preset fjord` gives one of the six, and `--overstyr '{"--bg":"#F4F7FA"}' --modus light` locks a surface or a text colour. The theme builder writes the command for you under "The same theme from the command line".
 
-In an app with npm, load the theme file right after Sussi's CSS, `import 'sussi/styles.css';` and then `import './hav.css';`, and set `data-tema="hav"` on `<html>`.
+In an app with npm, load the theme file right after Sassy's CSS, `import 'sassy/styles.css';` and then `import './hav.css';`, and set `data-tema="hav"` on `<html>`.
 
 ### When a colour has to move
 
 A light yellow is fine as the accent in dark mode, but white button text on it does not hold in light mode. This is the report for `#F2E16B`, exactly as it comes out:
 
 ```sh
-npx sussi-tema --aksent "#F2E16B" --navn sol > sol.css
+npx sassy-tema --aksent "#F2E16B" --navn sol > sol.css
 ```
 
 ```text
-Sussi theme "sol" (aksent, from #F2E16B): ok, every rule holds
+Sassy theme "sol" (aksent, from #F2E16B): ok, every rule holds
   light: --accent #807200, --accent-text #7C6E00, --accent-fg #F9F8E8, --focus-color #807200
     moved --accent #F2E16B -> #807200 (L -0.353): button text on the accent
     moved --accent-text #807200 -> #7C6E00 (L -0.013): links on --surface-2
@@ -150,13 +148,13 @@ When a pair cannot be made to hold, you get **Not OK** instead: the theme builde
 <!-- detaljer -->
 ### What the guarantee covers
 
-The guarantee is the contrast between Sussi's own tokens, where the components use them. In each mode 62 pairs are measured, and every one must hold its requirement before the theme is OK:
+The guarantee is the contrast between Sassy's own tokens, where the components use them. In each mode 62 pairs are measured, and every one must hold its requirement before the theme is OK:
 
 - **The accent:** button text on the accent, also while hovered and pressed (4.5:1); the accent as a surface, such as an active row or a progress fill, on the background and the three surfaces (3:1); links on the background, `--surface-1` and `--surface-2` (4.5:1); the focus ring on the same three (3:1); text on the soft accent in badges and selected tags, also while hovered (4.5:1); selected text (4.5:1). A link must also change colour on hover.
 - **Text and edges:** body and secondary text on the background and the three surfaces (4.5:1), meta text on the first three (4.5:1) and on `--surface-3` as the switch thumb ring (3:1), the edge of inputs and checkboxes (3:1).
 - **Status:** progress fills and toast icons in success, warning, danger and info (3:1), the text in status badges (4.5:1), the error under a field (4.5:1) and the edge of an invalid field (3:1), the text on the danger button, also while hovered (4.5:1), and the colour in `--focus-ring` (3:1).
 
-The rules are `REGLER` in `tokens/tema.js`, and the report in the theme builder shows every pair with its measured value. The guarantee does not cover colours you put on top yourself, images, or components that are not Sussi's; there you measure yourself.
+The rules are `REGLER` in `tokens/tema.js`, and the report in the theme builder shows every pair with its measured value. The guarantee does not cover colours you put on top yourself, images, or components that are not Sassy's; there you measure yourself.
 <!-- /detaljer -->
 
 ## 4. Three components
@@ -166,11 +164,11 @@ With the package installed (step 1) you write JSX. The same three components, ru
 ### Button
 
 ```jsx
-import { Button } from 'sussi';
+import { Button } from 'sassy';
 
-<Button onClick={save}>Lagre</Button>
-<Button variant="secondary" iconLeft="plus" onClick={create}>Ny plante</Button>
-<Button variant="danger" iconLeft="trash-2" onClick={() => setOpen(true)}>Slett bedet</Button>
+<Button onClick={save}>Save</Button>
+<Button variant="secondary" iconLeft="plus" onClick={create}>New plant</Button>
+<Button variant="danger" iconLeft="trash-2" onClick={() => setOpen(true)}>Delete the bed</Button>
 ```
 
 One `primary` per view; `secondary`, `soft` and `ghost` for the rest, `danger` for what cannot be undone. `loading` swaps the icon for a spinner and disables the button.
@@ -183,11 +181,11 @@ All props: [Button](komponenter/Button.en.md).
 ### Dialog
 
 ```jsx
-import { Dialog, Button } from 'sussi';
+import { Dialog, Button } from 'sassy';
 
-<Dialog open={open} onClose={() => setOpen(false)} title="Slette bedet?" description="Tomatene og notatene forsvinner." closeLabel="Close"
-  footer={<><Button variant="ghost" onClick={() => setOpen(false)}>Behold</Button><Button variant="danger" onClick={remove}>Slett bedet</Button></>}>
-  <p>Du kan angre fra toasten etterpå.</p>
+<Dialog open={open} onClose={() => setOpen(false)} title="Delete the bed?" description="The tomatoes and the notes will be gone." closeLabel="Close"
+  footer={<><Button variant="ghost" onClick={() => setOpen(false)}>Keep</Button><Button variant="danger" onClick={remove}>Delete the bed</Button></>}>
+  <p>You can undo it from the toast afterwards.</p>
 </Dialog>
 ```
 
@@ -201,10 +199,10 @@ All props: [Dialog](komponenter/Dialog.en.md).
 ### Toast and ToastStack
 
 ```jsx
-import { Toast, ToastStack } from 'sussi';
+import { Toast, ToastStack } from 'sassy';
 
 <ToastStack>
-  {deleted && <Toast tone="success" title="Bedet er slettet" actionLabel="Angre" onAction={undo} onClose={dismiss} closeLabel="Dismiss" />}
+  {deleted && <Toast tone="success" title="The bed is deleted" actionLabel="Undo" onAction={undo} onClose={dismiss} closeLabel="Dismiss" />}
 </ToastStack>
 ```
 
@@ -222,12 +220,12 @@ The button opens the dialog, the dialog does something that can be undone, and t
 <!-- eksempel: react-uten-bygg.html 420 -->
 ```html
 <!doctype html>
-<html lang="nb" data-theme="light" data-accent="fjord">
+<html lang="en" data-theme="light" data-accent="fjord">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sussi uten byggesteg</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css">
+<title>Sassy with no build step</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/styles.css">
 <script type="importmap">
 {
   "imports": {
@@ -235,7 +233,7 @@ The button opens the dialog, the dialog does something that can be undone, and t
     "react/jsx-runtime": "https://cdn.jsdelivr.net/npm/react@18.3.1/jsx-runtime/+esm",
     "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm",
     "react-dom/client": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/client/+esm",
-    "sussi": "https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/dist/sussi.browser.js"
+    "sassy": "https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/dist/sassy.browser.js"
   }
 }
 </script>
@@ -246,7 +244,7 @@ The button opens the dialog, the dialog does something that can be undone, and t
 <script type="module">
 import { createElement as h, Fragment, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Button, Dialog, Toast, ToastStack } from 'sussi';
+import { Button, Dialog, Toast, ToastStack } from 'sassy';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -254,19 +252,19 @@ function App() {
   const slett = () => { setOpen(false); setSlettet(true); };
   const byttTema = () => { const r = document.documentElement; r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark'; };
   return h('div', { style: { display: 'grid', gap: 16 } },
-    h('h1', null, 'Hagelogg'),
-    h('p', null, 'Knappen åpner en dialog. Det dialogen gjør kan angres, så svaret kommer som en toast.'),
+    h('h1', null, 'Garden log'),
+    h('p', null, 'The button opens a dialog. What the dialog does can be undone, so the answer comes as a toast.'),
     h('p', { style: { display: 'flex', gap: 8, flexWrap: 'wrap' } },
-      h(Button, { variant: 'danger', iconLeft: 'trash-2', onClick: () => setOpen(true) }, 'Slett bedet'),
-      h(Button, { variant: 'secondary', iconLeft: 'moon', onClick: byttTema }, 'Lys eller mørk')),
+      h(Button, { variant: 'danger', iconLeft: 'trash-2', onClick: () => setOpen(true) }, 'Delete the bed'),
+      h(Button, { variant: 'secondary', iconLeft: 'moon', onClick: byttTema }, 'Light or dark')),
     h(Dialog, {
-      open, onClose: () => setOpen(false), title: 'Slette bedet?', description: 'Tomatene og notatene forsvinner.',
+      open, onClose: () => setOpen(false), title: 'Delete the bed?', description: 'The tomatoes and the notes will be gone.', closeLabel: 'Close',
       footer: h(Fragment, null,
-        h(Button, { variant: 'ghost', onClick: () => setOpen(false) }, 'Behold'),
-        h(Button, { variant: 'danger', onClick: slett }, 'Slett bedet')),
-    }, h('p', null, 'Du kan angre fra toasten etterpå.')),
+        h(Button, { variant: 'ghost', onClick: () => setOpen(false) }, 'Keep'),
+        h(Button, { variant: 'danger', onClick: slett }, 'Delete the bed')),
+    }, h('p', null, 'You can undo it from the toast afterwards.')),
     h(ToastStack, null,
-      slettet && h(Toast, { tone: 'success', title: 'Bedet er slettet', actionLabel: 'Angre', onAction: () => setSlettet(false), onClose: () => setSlettet(false) })));
+      slettet && h(Toast, { tone: 'success', title: 'The bed is deleted', actionLabel: 'Undo', onAction: () => setSlettet(false), onClose: () => setSlettet(false), closeLabel: 'Dismiss' })));
 }
 
 createRoot(document.getElementById('app')).render(h(App));
@@ -277,7 +275,7 @@ createRoot(document.getElementById('app')).render(h(App));
 
 ## Next
 
-- [Components](https://mariisno.github.io/sussi-ui/en/components/): every component with an example, props, accessibility and content.
-- [Foundations](https://mariisno.github.io/sussi-ui/en/foundations/): colours with measured contrast, type, spacing, corners, shadows and motion.
-- [Tokens](https://mariisno.github.io/sussi-ui/en/tokens/): every token as JSON in the W3C format, for Style Dictionary and design tools.
+- [Components](https://mariisno.github.io/sassy-ui/en/components/): every component with an example, props, accessibility and content.
+- [Foundations](https://mariisno.github.io/sassy-ui/en/foundations/): colours with measured contrast, type, spacing, corners, shadows and motion.
+- [Tokens](https://mariisno.github.io/sassy-ui/en/tokens/): every token as JSON in the W3C format, for Style Dictionary and design tools.
 - [Content](content.en.md): the voice, button text, error messages and empty states.

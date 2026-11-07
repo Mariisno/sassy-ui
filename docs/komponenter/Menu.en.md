@@ -3,8 +3,8 @@ name: Menu
 group: overlays
 status: new
 since: 0.6.0
-kort: components/overlays/menu.card.html
-typer: components/overlays/Menu.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/menu/
+typer: dist/overlays/Menu.d.ts
 ---
 
 # Menu
@@ -43,7 +43,7 @@ A menu button following the WAI-ARIA menu button pattern: a Button or IconButton
 ## Example
 
 ```jsx
-import { Menu, Button } from 'sussi/components';
+import { Menu, Button } from 'sassy/components';
 
 <Menu align="end" triggerLabel="More actions for Tomatoes" onSelect={(id) => act(id)} items={[
   { id: 'edit', label: 'Edit', icon: 'pencil' },
@@ -62,7 +62,7 @@ import { Menu, Button } from 'sussi/components';
 
 ## Props
 
-The types are in `components/overlays/Menu.d.ts`. The card: `components/overlays/menu.card.html`. The remaining props are [Popover](Popover.en.md)'s (`PopoverProps`), minus the ones the menu sets itself.
+The types are in `dist/overlays/Menu.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/menu/). The remaining props are [Popover](Popover.en.md)'s (`PopoverProps`), minus the ones the menu sets itself.
 
 <!-- props: MenuProps -->
 | Prop | Type | Default | Description |
@@ -90,7 +90,7 @@ An item in `items`:
 | --- | --- | --- | --- |
 | `id` | `string` | – | Given to onSelect. Also the React key. |
 | `label` | `React.ReactNode` | *required* | The text: a verb phrase in sentence case, "Delete project". A string is what the letter keys search in. |
-| `icon` | `string \| React.ReactNode` | – | A Lucide name from the set (see components/icon/iconData.js), or an element. |
+| `icon` | `string \| React.ReactNode` | – | A Lucide name from the set (see dist/icon/iconData.js), or an element. |
 | `onSelect` | `(id: string \| undefined, event: React.SyntheticEvent) => void` | – | Called when the item is chosen, with its `id`. |
 | `href` | `string` | – | Renders the item as a link (role="menuitem" on an <a>). |
 | `disabled` | `boolean` | – | Kept in the list and read by screen readers (aria-disabled), skipped by the arrow keys, does nothing when chosen. |
@@ -110,7 +110,7 @@ A group in `items` (`{ label, items }`); a separator is `'-'` or `{ separator: t
 
 ## Accessibility
 
-The behaviour is tested in `tests/menu.e2e.test.mjs`, the rules and the contrast in `tests/menu.test.mjs`.
+The behaviour is tested in a browser, the rules and the contrast in unit tests.
 
 - **Element and role.** The button gets `aria-haspopup="menu"`, `aria-expanded` and, while the menu is open, `aria-controls` (tested). The menu is `role="menu"`, named by the button (`aria-labelledby`) or by `label` (tested). Items are `role="menuitem"` on a `<button>` or an `<a href>`, `role="menuitemcheckbox"` with `aria-checked` when `checked` is set (tested); `role="separator"`, and `role="group"` with `aria-labelledby` pointing at the heading (tested).
 - **Focus in.** The first item on Enter, Space, ArrowDown and click; the last on ArrowUp (tested).

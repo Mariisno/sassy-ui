@@ -3,8 +3,8 @@ navn: Alert
 gruppe: feedback
 status: new
 sidenVersjon: 0.7.0
-kort: components/feedback/alert.card.html
-typer: components/feedback/Alert.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/alert/
+typer: dist/feedback/Alert.d.ts
 ---
 
 # Alert
@@ -42,7 +42,7 @@ En melding som står i siden til appen fjerner den: en myk statusfarge med den m
 ## Eksempel
 
 ```jsx
-import { Alert, Button } from 'sussi/components';
+import { Alert, Button } from 'sassy/components';
 
 <Alert>Endringer lagres etter hvert.</Alert>
 <Alert tone="success" title="Lagret">Oppskriften er lagret.</Alert>
@@ -55,7 +55,7 @@ import { Alert, Button } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/feedback/Alert.d.ts`. Kortet: `components/feedback/alert.card.html`.
+Typene står i `dist/feedback/Alert.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/alert/).
 
 <!-- props: AlertProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -78,12 +78,12 @@ Pluss alle attributtene til `<div>` (`React.HTMLAttributes<HTMLDivElement>`), un
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/alert.e2e.test.mjs`, fargereglene i `tests/alert.test.mjs`.
+Oppførselen er testet i nettleseren, fargereglene i enhetstester.
 
 - **Element og rolle.** En `<div role="status">`: en høflig live-region, lest når den endrer seg, uten å avbryte. En region som kommer ferdig fylt leses ikke alltid (særlig VoiceOver); når opplesingen må være sikker, ha meldingen i siden fra start og fyll den, eller bruk `tone="danger"` med `urgent` når det er en feil folk nettopp utløste. Med `tone="danger"` og `urgent` er den `role="alert"` (assertiv). `urgent` på en annen tone ignoreres, så en informasjon kan ikke bli en alarm ved et uhell (testet). En eksplisitt `role` i propsene vinner, for en melding som står i siden fra start og ikke skal være en live-region (`role="none"`).
 - **Navn.** Teksten i `title` og `children`. Ikonet er `aria-hidden` og er forskjellig per tone, så tonen vises med form og ikke bare farge (WCAG 1.4.1, testet).
 - **Tastatur og fokus.** Ingenting flytter fokus når en melding kommer (testet: fokus blir på knappen som utløste den). Handlingen og lukkeknappen er vanlige knapper i dokumentets rekkefølge. Lukkeknappen flytter fokus før `onClose`: til `focusOnClose` når den er satt, ellers til det fokuserbare elementet nærmest før meldingen i dokumentet, og til det nærmeste etter når det ikke er noe før (testet alle tre).
-- **Kontrast.** Teksten er `--<tone>-fg` på `--<tone>-soft`, 4,5:1 i begge temaer og alle aksenter (`tests/alert.test.mjs` måler tokenparene, `tests/alert.e2e.test.mjs` de renderte fargene for tekst, tittel, handling, ikon og lukkeknapp). Handlingen og lukkeknappen arver tonens farge; lukkeknappens hover er en ring i samme farge, ikke den grå flaten.
+- **Kontrast.** Teksten er `--<tone>-fg` på `--<tone>-soft`, 4,5:1 i begge temaer og alle aksenter (testet på tokenparene og de renderte fargene for tekst, tittel, handling, ikon og lukkeknapp). Handlingen og lukkeknappen arver tonens farge; lukkeknappens hover er en ring i samme farge, ikke den grå flaten.
 - **Mål.** Handlingen er minst 24 × 24 px (WCAG 2.5.8); lukkeknappen er en IconButton `sm`, 30 px. Kjent grense: under 44 px.
 - **Bredde.** Flex med `min-width:0` på teksten, så lange ord brytes og ingenting flyter over på 320 px (testet).
 - **Bevegelse.** Ingen.

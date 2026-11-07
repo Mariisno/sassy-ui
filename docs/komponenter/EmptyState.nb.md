@@ -3,8 +3,8 @@ navn: EmptyState
 gruppe: feedback
 status: stable
 sidenVersjon: 0.4.0
-kort: components/feedback/emptystate.card.html
-typer: components/feedback/EmptyState.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/emptystate/
+typer: dist/feedback/EmptyState.d.ts
 ---
 
 # EmptyState
@@ -40,7 +40,7 @@ Det en liste eller en side viser når det ikke er noe i den ennå. Et ikon i en 
 ## Eksempel
 
 ```jsx
-import { EmptyState, Button } from 'sussi/components';
+import { EmptyState, Button } from 'sassy/components';
 
 <EmptyState icon="inbox" title="Ingen oppgaver ennå" description="Legg til den første, så dukker den opp her."
   action={<Button iconLeft="plus" onClick={nyOppgave}>Legg til oppgave</Button>} />
@@ -50,7 +50,7 @@ import { EmptyState, Button } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/feedback/EmptyState.d.ts`. Kortet: `components/feedback/emptystate.card.html`.
+Typene står i `dist/feedback/EmptyState.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/emptystate/).
 
 <!-- props: EmptyStateProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -68,12 +68,12 @@ Pluss alle attributtene til `<div>` (`React.HTMLAttributes<HTMLDivElement>`), un
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/nye.e2e.test.mjs`.
+Oppførselen er testet i nettleseren.
 
 - **Element og rolle.** En `<div>` uten rolle, med en ekte overskrift (`<h2>` til `<h6>` etter `level`, begrenset til 2–6) og et `<p>` for `description`.
 - **Navn.** Overskriften er det skjermleseren finner i disposisjonen. Ikonet er `aria-hidden` (testet).
 - **Tastatur og fokus.** Ingen egne. Handlingen i `action` er en vanlig Button med sin egen fokusring.
-- **Kontrast.** Overskriften er `--fg-1`, teksten `--fg-2`, begge 4,5:1 på `--bg` og `--surface-1`. Ikonet er `--accent-soft-fg` på `--accent-soft`, 4,5:1 i alle aksenter (`tests/contrast.test.mjs`).
+- **Kontrast.** Overskriften er `--fg-1`, teksten `--fg-2`, begge 4,5:1 på `--bg` og `--surface-1`. Ikonet er `--accent-soft-fg` på `--accent-soft`, 4,5:1 i alle aksenter (testet).
 - **Bevegelse.** Ingen.
 - **Innebygd tekst.** Ingen; overskrift og tekst er appens.
 - **Kjent grense.** `level` under 2 rundes opp til 2: en EmptyState er aldri sidas h1.

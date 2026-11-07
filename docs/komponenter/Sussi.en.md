@@ -3,13 +3,13 @@ name: Sussi
 group: mascot
 status: stable
 since: 0.2.0
-kort: components/mascot/mascot.card.html
-typer: components/mascot/Sussi.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/sussi/
+typer: dist/mascot/Sussi.d.ts
 ---
 
 # Sussi
 
-The mascot, the cat the system is named after: white with black ears, mask, back patches and tail, and a pink nose. Always black and white, whatever the app's accent; the colours are the `--sussi-*` tokens, and dark mode gives her a thin light halo so the black parts do not vanish. Six poses as inline SVG: `hode` (head: logo, favicon, avatar), `ligger` (lying), `titter` (peeking: empty states), `sover` (sleeping: loading), `strekk` (stretching: play, 404) and `sitter` (sitting: welcome). Decorative by default; `title` names her when she carries meaning alone. `sussiPoses` gives the SVG markup per pose for favicons and static exports.
+The mascot, the designer's cat: white with black ears, mask, back patches and tail, and a pink nose. Always black and white, whatever the app's accent; the colours are the `--sussi-*` tokens, and dark mode gives her a thin light halo so the black parts do not vanish. Six poses as inline SVG: `hode` (head: logo, favicon, avatar), `ligger` (lying), `titter` (peeking: empty states), `sover` (sleeping: loading), `strekk` (stretching: play, 404) and `sitter` (sitting: welcome). Decorative by default; `title` names her when she carries meaning alone. `sussiPoses` gives the SVG markup per pose for favicons and static exports.
 
 ## When to use
 
@@ -41,7 +41,7 @@ The mascot, the cat the system is named after: white with black ears, mask, back
 ## Example
 
 ```jsx
-import { Sussi, sussiPoses } from 'sussi/components';
+import { Sussi, sussiPoses } from 'sassy/components';
 
 <Sussi pose="hode" size={28} />
 <Sussi pose="titter" size={96} />
@@ -51,7 +51,7 @@ const favicon = sussiPoses.hode().split('__ID__').join('favicon');
 
 ## Props
 
-The types are in `components/mascot/Sussi.d.ts`. The card: `components/mascot/mascot.card.html`.
+The types are in `dist/mascot/Sussi.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/sussi/).
 
 <!-- props: SussiProps -->
 | Prop | Type | Default | Description |
@@ -67,7 +67,7 @@ Plus every attribute of `<svg>` (`React.SVGProps<SVGSVGElement>`), except `dange
 
 ## Accessibility
 
-The behaviour is tested in `tests/mascot.e2e.test.mjs`.
+The behaviour is tested in a browser.
 
 - **Element and role.** An `<svg class="s-sussi">`. Without `title`: `aria-hidden="true"`, no role (tested for all six poses). With `title`: `role="img"` and a `<title>` element.
 - **Name.** `title`, escaped before it goes into the markup, so `<` and `&` become text (tested).

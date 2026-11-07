@@ -3,8 +3,8 @@ navn: Radio
 gruppe: controls
 status: stable
 sidenVersjon: 0.2.0
-kort: components/controls/controls.card.html
-typer: components/controls/Radio.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/radio/
+typer: dist/controls/Radio.d.ts
 ---
 
 # Radio
@@ -42,7 +42,7 @@ En radioknapp for ett valg blant to til fem synlige alternativer. Et native `<in
 ## Eksempel
 
 ```jsx
-import { Fieldset, Radio } from 'sussi/components';
+import { Fieldset, Radio } from 'sassy/components';
 
 <Fieldset legend="Hvem ser prosjektet?">
   <Radio name="synlighet" value="privat" label="Privat" description="Bare du" defaultChecked />
@@ -53,7 +53,7 @@ import { Fieldset, Radio } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/controls/Radio.d.ts`. Kortet: `components/controls/controls.card.html`.
+Typene står i `dist/controls/Radio.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/radio/).
 
 <!-- props: RadioProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -64,7 +64,7 @@ Typene står i `components/controls/Radio.d.ts`. Kortet: `components/controls/co
 Pluss alle attributtene til `<input>` (`React.InputHTMLAttributes<HTMLInputElement>`), unntatt `type`.
 <!-- /props -->
 
-`ref` når det native `<input>`-elementet (`tests/refs.e2e.test.mjs`).
+`ref` når det native `<input>`-elementet (testet).
 
 ## Tilgjengelighet
 
@@ -73,7 +73,7 @@ Pluss alle attributtene til `<input>` (`React.InputHTMLAttributes<HTMLInputEleme
 - **Tastatur.** Tab lander på det valgte alternativet (eller det første), piltastene flytter og velger innenfor gruppa, som i alle nettlesere. Ikke noe eget i komponenten.
 - **Tilstand.** `checked` på feltet. Valgt fyller boksen med `--accent` og viser en prikk i `--accent-fg`. `disabled` gir 50 % gjennomsiktighet.
 - **Fokus.** 2 px `outline` i `--focus-color` rundt boksen ved tastaturfokus.
-- **Kontrast.** Kanten er `--border-control`, minst 3:1 mot flatene i begge temaer og alle aksenter (`tests/contrast.test.mjs`). Prikken er `--accent-fg` på `--accent`.
+- **Kontrast.** Kanten er `--border-control`, minst 3:1 mot flatene i begge temaer og alle aksenter (testet). Prikken er `--accent-fg` på `--accent`.
 - **Bevegelse.** Prikken går over på `--dur-fast`, 0 under redusert bevegelse.
 - **Mål.** Boksen er 18 px, klikkflaten hele etiketten. Kjent grense: under 44 px på berøringsskjerm, som Checkbox.
 - **Innebygd tekst.** Ingen.

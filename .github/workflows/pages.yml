@@ -1,4 +1,4 @@
-# Deploys the documentation site in side/ to GitHub Pages (https://mariisno.github.io/sussi-ui/).
+# Deploys the documentation site in side/ to GitHub Pages (https://mariisno.github.io/sassy-ui/).
 # side/ is built before it is committed, so there is no build step: the workflow uploads the folder
 # as it is. A branch can only serve the repo root or /docs, hence the workflow.
 name: Pages

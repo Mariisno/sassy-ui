@@ -3,8 +3,8 @@ navn: Menu
 gruppe: overlays
 status: new
 sidenVersjon: 0.6.0
-kort: components/overlays/menu.card.html
-typer: components/overlays/Menu.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/menu/
+typer: dist/overlays/Menu.d.ts
 ---
 
 # Menu
@@ -43,7 +43,7 @@ En menyknapp etter WAI-ARIA-mønsteret for menyknapper: en Button eller IconButt
 ## Eksempel
 
 ```jsx
-import { Menu, Button } from 'sussi/components';
+import { Menu, Button } from 'sassy/components';
 
 <Menu align="end" triggerLabel="Flere valg for Tomater" onSelect={(id) => gjør(id)} items={[
   { id: 'edit', label: 'Rediger', icon: 'pencil' },
@@ -62,7 +62,7 @@ import { Menu, Button } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/overlays/Menu.d.ts`. Kortet: `components/overlays/menu.card.html`. Resten av propsene er [Popover](Popover.nb.md) sine (`PopoverProps`), minus de menyen setter selv.
+Typene står i `dist/overlays/Menu.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/menu/). Resten av propsene er [Popover](Popover.nb.md) sine (`PopoverProps`), minus de menyen setter selv.
 
 <!-- props: MenuProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -90,7 +90,7 @@ Et punkt i `items`:
 | --- | --- | --- | --- |
 | `id` | `string` | – | Gis til `onSelect`. Også React-nøkkelen. |
 | `label` | `React.ReactNode` | *påkrevd* | Teksten: en verbfrase i setningsform, «Slett prosjekt». En streng er det bokstavtastene søker i. |
-| `icon` | `string \| React.ReactNode` | – | Et Lucide-navn fra settet (se `components/icon/iconData.js`), eller et element. |
+| `icon` | `string \| React.ReactNode` | – | Et Lucide-navn fra settet (se `dist/icon/iconData.js`), eller et element. |
 | `onSelect` | `(id: string \| undefined, event: React.SyntheticEvent) => void` | – | Kjøres når punktet velges, med `id`. |
 | `href` | `string` | – | Rendrer punktet som en lenke (`role="menuitem"` på en `<a>`). |
 | `disabled` | `boolean` | – | Blir i lista og leses av skjermleseren (`aria-disabled`), hoppes over av piltastene, gjør ingenting når det velges. |
@@ -110,7 +110,7 @@ En gruppe i `items` (`{ label, items }`); en skillelinje er `'-'` eller `{ separ
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/menu.e2e.test.mjs`, reglene og kontrasten i `tests/menu.test.mjs`.
+Oppførselen er testet i nettleseren, reglene og kontrasten i enhetstester.
 
 - **Element og rolle.** Knappen får `aria-haspopup="menu"`, `aria-expanded` og, mens menyen er åpen, `aria-controls` (testet). Menyen er `role="menu"`, navngitt av knappen (`aria-labelledby`) eller av `label` (testet). Punktene er `role="menuitem"` på `<button>` eller `<a href>`, `role="menuitemcheckbox"` med `aria-checked` når `checked` er satt (testet); `role="separator"` og `role="group"` med `aria-labelledby` til overskriften (testet).
 - **Fokus inn.** Første punkt ved Enter, mellomrom, pil ned og klikk; siste ved pil opp (testet).

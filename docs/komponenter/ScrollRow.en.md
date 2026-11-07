@@ -3,8 +3,8 @@ name: ScrollRow
 group: display
 status: stable
 since: 0.4.0
-kort: components/display/swatch.card.html
-typer: components/display/ScrollRow.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/scrollrow/
+typer: dist/display/ScrollRow.d.ts
 ---
 
 # ScrollRow
@@ -41,7 +41,7 @@ A row that scrolls sideways without a scrollbar and fades at the edge where ther
 ## Example
 
 ```jsx
-import { ScrollRow, Tag, Swatch } from 'sussi/components';
+import { ScrollRow, Tag, Swatch } from 'sassy/components';
 
 <ScrollRow>
   {types.map((t) => <Tag key={t} selected={t === picked} onClick={() => pick(t)}>{t}</Tag>)}
@@ -54,7 +54,7 @@ import { ScrollRow, Tag, Swatch } from 'sussi/components';
 
 ## Props
 
-The types are in `components/display/ScrollRow.d.ts`. The card, shared with Swatch: `components/display/swatch.card.html`.
+The types are in `dist/display/ScrollRow.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/scrollrow/).
 
 <!-- props: ScrollRowProps -->
 | Prop | Type | Default | Description |
@@ -69,7 +69,7 @@ Plus every attribute of `<div>` (`React.HTMLAttributes<HTMLDivElement>`).
 
 ## Accessibility
 
-The behaviour is tested in `tests/nye.e2e.test.mjs`.
+The behaviour is tested in a browser.
 
 - **Element and role.** A `<div>` with `overflow-x:auto`. With `label`: `role="region"`, `aria-label` and `tabIndex=0`. Without `label`: no role, not focusable.
 - **Name.** `label`, when given.

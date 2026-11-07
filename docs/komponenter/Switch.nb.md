@@ -3,8 +3,8 @@ navn: Switch
 gruppe: controls
 status: stable
 sidenVersjon: 0.2.0
-kort: components/controls/controls.card.html
-typer: components/controls/Switch.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/switch/
+typer: dist/controls/Switch.d.ts
 ---
 
 # Switch
@@ -41,7 +41,7 @@ En bryter for innstillinger som virker med en gang, uten lagreknapp. Et native `
 ## Eksempel
 
 ```jsx
-import { Switch } from 'sussi/components';
+import { Switch } from 'sassy/components';
 
 <Switch label="Mørkt tema" checked={mørk} onChange={(e) => setMørk(e.target.checked)} />
 <Switch label="Varsler" description="Også når appen er lukket" checked={varsler} onChange={(e) => setVarsler(e.target.checked)} />
@@ -49,7 +49,7 @@ import { Switch } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/controls/Switch.d.ts`. Kortet: `components/controls/controls.card.html`.
+Typene står i `dist/controls/Switch.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/switch/).
 
 <!-- props: SwitchProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -60,16 +60,16 @@ Typene står i `components/controls/Switch.d.ts`. Kortet: `components/controls/c
 Pluss alle attributtene til `<input>` (`React.InputHTMLAttributes<HTMLInputElement>`), unntatt `type`.
 <!-- /props -->
 
-`ref` når det native `<input>`-elementet (`tests/refs.e2e.test.mjs`).
+`ref` når det native `<input>`-elementet (testet).
 
 ## Tilgjengelighet
 
 - **Element og rolle.** Et native `<input type="checkbox">` med `role="switch"` inni `<label>`. Skjermleseren sier «bryter, på/av».
 - **Navn.** Teksten i `label` og `description`, gjennom `<label>`.
 - **Tastatur.** Mellomrom veksler. Ikke noe eget.
-- **Tilstand.** `checked` på feltet. På: sporet fylles med `--accent`, knotten glir 14 px. Av: sporet er `--surface-3` med en 1 px `--border-control`-kant, og den hvite knotten har en `--fg-3`-ring, siden hvit på det lyse sporet alene er 1,28:1 (`tests/polish.test.mjs`). I mørkt tema er knotten på et på-spor `--accent-fg`, holdt til 3:1 mot sporet i alle aksenter (`tests/polish.test.mjs`).
+- **Tilstand.** `checked` på feltet. På: sporet fylles med `--accent`, knotten glir 14 px. Av: sporet er `--surface-3` med en 1 px `--border-control`-kant, og den hvite knotten har en `--fg-3`-ring, siden hvit på det lyse sporet alene er 1,28:1 (testet). I mørkt tema er knotten på et på-spor `--accent-fg`, holdt til 3:1 mot sporet i alle aksenter (testet).
 - **Fokus.** 2 px `outline` i `--focus-color` rundt sporet ved tastaturfokus.
-- **Kontrast.** Sporets kant er `--border-control`, minst 3:1 mot flatene (`tests/focus.test.mjs`, `tests/contrast.test.mjs`).
+- **Kontrast.** Sporets kant er `--border-control`, minst 3:1 mot flatene (testet).
 - **Bevegelse.** Sporfarge og knott går over på `--dur-base` (200 ms), 0 under redusert bevegelse.
 - **Mål.** Sporet er 34 × 20 px; klikkflaten er hele etiketten. Kjent grense: under 44 px på berøringsskjerm. Gi raden luft i appen.
 - **Innebygd tekst.** Ingen.

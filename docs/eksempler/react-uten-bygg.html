@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sussi uten byggesteg</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css">
+<title>Sassy uten byggesteg</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/styles.css">
 <script type="importmap">
 {
   "imports": {
@@ -12,7 +12,7 @@
     "react/jsx-runtime": "https://cdn.jsdelivr.net/npm/react@18.3.1/jsx-runtime/+esm",
     "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm",
     "react-dom/client": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/client/+esm",
-    "sussi": "https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/dist/sussi.browser.js"
+    "sassy": "https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/dist/sassy.browser.js"
   }
 }
 </script>
@@ -23,7 +23,7 @@
 <script type="module">
 import { createElement as h, Fragment, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Button, Dialog, Toast, ToastStack } from 'sussi';
+import { Button, Dialog, Toast, ToastStack } from 'sassy';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -37,13 +37,13 @@ function App() {
       h(Button, { variant: 'danger', iconLeft: 'trash-2', onClick: () => setOpen(true) }, 'Slett bedet'),
       h(Button, { variant: 'secondary', iconLeft: 'moon', onClick: byttTema }, 'Lys eller mørk')),
     h(Dialog, {
-      open, onClose: () => setOpen(false), title: 'Slette bedet?', description: 'Tomatene og notatene forsvinner.',
+      open, onClose: () => setOpen(false), title: 'Slette bedet?', description: 'Tomatene og notatene forsvinner.', closeLabel: 'Lukk',
       footer: h(Fragment, null,
         h(Button, { variant: 'ghost', onClick: () => setOpen(false) }, 'Behold'),
         h(Button, { variant: 'danger', onClick: slett }, 'Slett bedet')),
     }, h('p', null, 'Du kan angre fra toasten etterpå.')),
     h(ToastStack, null,
-      slettet && h(Toast, { tone: 'success', title: 'Bedet er slettet', actionLabel: 'Angre', onAction: () => setSlettet(false), onClose: () => setSlettet(false) })));
+      slettet && h(Toast, { tone: 'success', title: 'Bedet er slettet', actionLabel: 'Angre', onAction: () => setSlettet(false), onClose: () => setSlettet(false), closeLabel: 'Lukk' })));
 }
 
 createRoot(document.getElementById('app')).render(h(App));

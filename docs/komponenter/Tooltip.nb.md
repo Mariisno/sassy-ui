@@ -3,8 +3,8 @@ navn: Tooltip
 gruppe: overlays
 status: stable
 sidenVersjon: 0.2.0
-kort: components/overlays/overlays.card.html
-typer: components/overlays/Tooltip.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/tooltip/
+typer: dist/overlays/Tooltip.d.ts
 ---
 
 # Tooltip
@@ -41,7 +41,7 @@ En kort tekst som vises ved hover og fokus, etter 300 ms, for ikonknapper og sna
 ## Eksempel
 
 ```jsx
-import { Tooltip, IconButton } from 'sussi/components';
+import { Tooltip, IconButton } from 'sassy/components';
 
 <Tooltip content="Søk" kbd="⌘K"><IconButton icon="search" label="Søk" onClick={søk} /></Tooltip>
 <Tooltip content="Lagres automatisk" side="bottom"><IconButton icon="cloud" label="Synkronisering" /></Tooltip>
@@ -49,7 +49,7 @@ import { Tooltip, IconButton } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/overlays/Tooltip.d.ts`. Kortet, delt med Dialog: `components/overlays/overlays.card.html`.
+Typene står i `dist/overlays/Tooltip.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/tooltip/).
 
 <!-- props: TooltipProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -67,7 +67,7 @@ Pluss alle attributtene til `<span>` (`React.HTMLAttributes<HTMLSpanElement>`), 
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/tooltip.e2e.test.mjs`.
+Oppførselen er testet i nettleseren.
 
 - **Element og rolle.** Et `<span class="s-tip">` rundt utløseren og en `<span role="tooltip" id>` for bobla. Utløseren klones med `aria-describedby` som peker på bobla (din egen `aria-describedby` beholdes foran, testet) og uten `title` (testet; en IconButton utenfor en Tooltip beholder sin).
 - **Navn og beskrivelse.** Bobla er en beskrivelse av utløseren, ikke et navn. Utløserens navn er dens eget (`label`).

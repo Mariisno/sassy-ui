@@ -1,12 +1,12 @@
 name: Idea or new component / Idé eller ny komponent
-description: Something Sussi should have. / Noe Sussi burde ha.
+description: Something Sassy should have. / Noe Sassy burde ha.
 labels: [idea]
 body:
   - type: textarea
     id: need
     attributes:
       label: What do you need, and where would you use it? / Hva trenger du, og hvor vil du bruke det?
-      description: Show the real screen or flow if you can. Sussi grows from real use.
+      description: Show the real screen or flow if you can. Sassy grows from real use.
     validations:
       required: true
   - type: textarea

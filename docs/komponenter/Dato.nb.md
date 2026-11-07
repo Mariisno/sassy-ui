@@ -3,8 +3,8 @@ navn: Dato
 gruppe: utils
 status: new
 sidenVersjon: 0.7.0
-kort: components/utils/dato.card.html
-typer: components/utils/dato.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/dato/
+typer: dist/utils/dato.d.ts
 ---
 
 # Dato
@@ -44,7 +44,7 @@ Datoer på norsk, og på engelsk for engelske flater: funksjoner uten rammeverk 
 ## Eksempel
 
 ```jsx
-import { formatDato, formatRelativ, formatTid, formatTidsrom, tilDato, tilIsoDato } from 'sussi/components';
+import { formatDato, formatRelativ, formatTid, formatTidsrom, tilDato, tilIsoDato } from 'sassy/components';
 
 formatDato('2026-10-30');                        // «30. okt. 2026»
 formatDato('2026-10-30', { stil: 'lang' });      // «30. oktober 2026»
@@ -63,9 +63,9 @@ function Rad({ oppforing }) {
 
 ## Props
 
-Typene står i `components/utils/dato.d.ts`. Kortet: `components/utils/dato.card.html`.
+Typene står i `dist/utils/dato.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/dato/).
 
-Alle funksjonene tar en `DatoVerdi`: en Date, et tidsstempel i ms, eller en streng. «YYYY-MM-DD» og «YYYY-MM-DDTHH:mm[:ss]» uten sone er lokale; alt annet (ISO med sone) går til Date-konstruktøren. `tilDato(verdi)` gir en Date eller `null`; `tilIsoDato(verdi)` gir «YYYY-MM-DD» for den lokale dagen; `erSammeDag(a, b)` sammenlikner kalenderdager. `formatDato`, `formatDatoTid` og `formatRelativ` tar valgene under; `formatTid` bare `lang`; `formatTidsrom(fra, til, valg)` i tillegg `dato`. En verdi som ikke er en dato, gir tom streng. Enhetstestet i `tests/dato.test.mjs`, også under `TZ=Europe/Oslo` og `TZ=America/Los_Angeles`.
+Alle funksjonene tar en `DatoVerdi`: en Date, et tidsstempel i ms, eller en streng. «YYYY-MM-DD» og «YYYY-MM-DDTHH:mm[:ss]» uten sone er lokale; alt annet (ISO med sone) går til Date-konstruktøren. `tilDato(verdi)` gir en Date eller `null`; `tilIsoDato(verdi)` gir «YYYY-MM-DD» for den lokale dagen; `erSammeDag(a, b)` sammenlikner kalenderdager. `formatDato`, `formatDatoTid` og `formatRelativ` tar valgene under; `formatTid` bare `lang`; `formatTidsrom(fra, til, valg)` i tillegg `dato`. En verdi som ikke er en dato, gir tom streng. Enhetstestet, også under `TZ=Europe/Oslo` og `TZ=America/Los_Angeles`.
 
 <!-- props: DatoValg -->
 | Prop | Type | Standard | Beskrivelse |

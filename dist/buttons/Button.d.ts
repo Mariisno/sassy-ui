@@ -1,6 +1,6 @@
 import * as React from 'react';
 /**
- * Sussi button. One primary per view; secondary for alternatives; ghost for toolbars.
+ * Sassy button. One primary per view; secondary for alternatives; ghost for toolbars.
  * @startingPoint section="Actions" subtitle="Primary, secondary, soft, ghost & danger buttons" viewport="700x300"
  */
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

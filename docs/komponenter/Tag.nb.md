@@ -3,8 +3,8 @@ navn: Tag
 gruppe: display
 status: stable
 sidenVersjon: 0.2.0
-kort: components/display/display.card.html
-typer: components/display/Tag.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/tag/
+typer: dist/display/Tag.d.ts
 ---
 
 # Tag
@@ -41,7 +41,7 @@ En pilleformet brikke for filtre, kategorier og valg som kan fjernes. Uten `onCl
 ## Eksempel
 
 ```jsx
-import { Tag } from 'sussi/components';
+import { Tag } from 'sassy/components';
 
 <Tag icon="hash">research</Tag>
 <Tag selected={åpne} onClick={() => setÅpne(!åpne)}>Åpne</Tag>
@@ -51,7 +51,7 @@ import { Tag } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/display/Tag.d.ts`. Kortet med Badge, Tag og Card: `components/display/display.card.html`.
+Typene står i `dist/display/Tag.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/tag/).
 
 <!-- props: TagProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -68,15 +68,15 @@ Pluss alle attributtene til elementet den rendres som (`React.HTMLAttributes<HTM
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/forms.e2e.test.mjs`.
+Oppførselen er testet i nettleseren.
 
 - **Element og rolle.** Uten `onClick` og `selected`: et `<span>`. Med en av dem: en `<button type="button">` med `aria-pressed`. Med `onRemove`: et `<span>` som holder teksten (eller bryterknappen) og en egen `<button>` for ×. En knapp står aldri inni en annen.
 - **Navn.** Taggen heter teksten sin. Fjern-knappen heter `removeLabel`, ellers «Fjern <tekst>» når innholdet er tekst eller tall, ellers bare «Fjern». Ikonet er dekorativt.
 - **Tastatur.** Tab når bryteren og fjern-knappen hver for seg. Enter og mellomrom på × fjerner (testet); på bryteren veksler de. Å fjerne veksler ikke bryteren (`stopPropagation`).
-- **Tilstand.** `aria-pressed="true"` fyller med `--accent-soft` og `--accent-soft-fg`, 4,5:1 i alle aksenter (`tests/contrast.test.mjs`). Valgt er altså både farge og attributt.
+- **Tilstand.** `aria-pressed="true"` fyller med `--accent-soft` og `--accent-soft-fg`, 4,5:1 i alle aksenter (testet). Valgt er altså både farge og attributt.
 - **Fokus.** Standard fokusring (2 px `--focus-color`) på bryteren og på ×.
 - **Kontrast.** Uvalgt er `--fg-2` på `--surface-1` med `--border-strong`-kant; hover går til `--fg-1`.
-- **Mål.** Taggen er minst 28 px høy, fjern-knappen 24 × 24 px (WCAG 2.5.8 minste mål, testet). Kjent grense: begge er under de 44 px Sussi vil ha på berøringsskjerm; gi radene luft.
+- **Mål.** Taggen er minst 28 px høy, fjern-knappen 24 × 24 px (WCAG 2.5.8 minste mål, testet). Kjent grense: begge er under de 44 px Sassy vil ha på berøringsskjerm; gi radene luft.
 - **Tekst.** Vokser med innholdet, klippes ikke (0.5.3).
 - **Bevegelse.** Overganger på `--dur-fast`, 0 under redusert bevegelse.
 - **Innebygd tekst.** «Fjern» / «Fjern <tekst>». Overstyr med `removeLabel`.

@@ -3,8 +3,8 @@ name: Stack
 group: layout
 status: new
 since: 0.7.0
-kort: components/layout/layout.card.html
-typer: components/layout/Stack.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/stack/
+typer: dist/layout/Stack.d.ts
 ---
 
 # Stack
@@ -41,7 +41,7 @@ A layout primitive: the children in a column (default) or a row, with a gap from
 ## Example
 
 ```jsx
-import { Stack, Input, Textarea, Tag, Button } from 'sussi/components';
+import { Stack, Input, Textarea, Tag, Button } from 'sassy/components';
 
 <Stack gap={3}>
   <Input label="Plant" />
@@ -62,7 +62,7 @@ import { Stack, Input, Textarea, Tag, Button } from 'sussi/components';
 
 ## Props
 
-The types are in `components/layout/Stack.d.ts`. The card: `components/layout/layout.card.html`.
+The types are in `dist/layout/Stack.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/stack/).
 
 <!-- props: StackProps -->
 | Prop | Type | Default | Description |
@@ -80,7 +80,7 @@ Plus every attribute of the element it renders as (`React.HTMLAttributes<HTMLEle
 
 ## Accessibility
 
-The behaviour is tested in `tests/layout.e2e.test.mjs`, the rules in `tests/stack.test.mjs`.
+The behaviour is tested in a browser, the rules in unit tests.
 
 - **Element and role.** What `as` says: `div` (default), `section`, `nav`, `ul`, `ol`, `li`, `form`, `header` or `footer`. No role is added, except `role="list"` on `ul` and `ol`: they get `list-style:none`, which takes the list semantics away in Safari, so the component sets the role itself; an own `role` wins (both tested).
 - **Name.** None of its own. A `section` or `nav` is named with `aria-labelledby` or `aria-label` as usual.

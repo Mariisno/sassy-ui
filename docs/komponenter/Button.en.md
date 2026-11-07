@@ -3,13 +3,13 @@ name: Button
 group: buttons
 status: stable
 since: 0.2.0
-kort: components/buttons/buttons.card.html
-typer: components/buttons/Button.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/button/
+typer: dist/buttons/Button.d.ts
 ---
 
 # Button
 
-The button is the ordinary action in Sussi: one primary per view, secondary and ghost for the rest. Five variants (primary, secondary, soft, ghost, danger), three sizes (30, 38 and 46 px), an icon before or after the text, and a `loading` state that swaps the icon for a spinner and turns the button off without losing focus. It renders as a link with `as="a"`.
+The button is the ordinary action in Sassy: one primary per view, secondary and ghost for the rest. Five variants (primary, secondary, soft, ghost, danger), three sizes (30, 38 and 46 px), an icon before or after the text, and a `loading` state that swaps the icon for a spinner and turns the button off without losing focus. It renders as a link with `as="a"`.
 
 ## When to use
 
@@ -30,7 +30,7 @@ The button is the ordinary action in Sussi: one primary per view, secondary and 
 
 - One `primary` per view. Several primaries means none is.
 - Say what happens, verb first: "Save changes", "Add task", "Delete project".
-- Use `size="lg"` (46 px) where people tap with a finger. `md` is 38 px, under the 44 px Sussi wants on touch.
+- Use `size="lg"` (46 px) where people tap with a finger. `md` is 38 px, under the 44 px Sassy wants on touch.
 - Set `loading` while something saves, so it cannot be pressed twice.
 - Undo in a toast rather than a confirmation dialog when the action can be reversed.
 
@@ -44,7 +44,7 @@ The button is the ordinary action in Sussi: one primary per view, secondary and 
 ## Example
 
 ```jsx
-import { Button } from 'sussi/components';
+import { Button } from 'sassy/components';
 
 <Button onClick={save}>Save changes</Button>
 <Button variant="secondary" iconLeft="plus" onClick={create}>New project</Button>
@@ -56,7 +56,7 @@ import { Button } from 'sussi/components';
 
 ## Props
 
-The types are in `components/buttons/Button.d.ts`. The card with every variant, size and state: `components/buttons/buttons.card.html`.
+The types are in `dist/buttons/Button.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/button/).
 
 <!-- props: ButtonProps -->
 | Prop | Type | Default | Description |
@@ -74,7 +74,7 @@ The types are in `components/buttons/Button.d.ts`. The card with every variant, 
 Plus every attribute of `<button>` (`React.ButtonHTMLAttributes<HTMLButtonElement>`).
 <!-- /props -->
 
-`ref` reaches the native `<button>`, so an app can move focus to it (tested in `tests/refs.e2e.test.mjs`).
+`ref` reaches the native `<button>`, so an app can move focus to it (tested in a browser).
 
 ## Accessibility
 
@@ -82,11 +82,11 @@ Plus every attribute of `<button>` (`React.ButtonHTMLAttributes<HTMLButtonElemen
 - **Keyboard.** Enter and Space press it, like any button. Nothing of its own.
 - **Name.** The text in `children`. The icons are decorative (`aria-hidden`), so a button without text has no name: use IconButton.
 - **State.** `disabled` on the element takes the button out of the tab order. `loading` sets `aria-disabled="true"` and `aria-busy="true"` instead, and stops the click (and the form submit): native `disabled` would move focus to the top of the page mid-submit, and a screen reader would lose its place. For a button that is off but should stay reachable, for example with a [Tooltip](Tooltip.en.md) that says why, pass `aria-disabled` instead of `disabled`: it looks off, does nothing, and keeps focus. Both are 50% opacity with a `not-allowed` cursor.
-- **Focus.** A 2 px `outline` in `--focus-color` with a 2 px offset, on keyboard focus only (`:focus-visible`). The ring is an `outline`, so it survives forced-colors mode too. `--focus-color` holds 3:1 against `--bg`, `--surface-1` and `--surface-2` in both themes and every accent (`tests/contrast.test.mjs`).
-- **Contrast.** The text on the primary button holds 4.5:1 on the accent in both themes and every accent, also on hover and press. A link with the button classes keeps readable text on hover (`tests/linkbutton.e2e.test.mjs`). The danger button's text is `--danger-fg-on` (white in light mode, near-black in dark), 4.5:1 on `--danger` and `--danger-hover` in both themes and every accent (`tests/contrast.test.mjs`).
+- **Focus.** A 2 px `outline` in `--focus-color` with a 2 px offset, on keyboard focus only (`:focus-visible`). The ring is an `outline`, so it survives forced-colors mode too. `--focus-color` holds 3:1 against `--bg`, `--surface-1` and `--surface-2` in both themes and every accent (tested).
+- **Contrast.** The text on the primary button holds 4.5:1 on the accent in both themes and every accent, also on hover and press. A link with the button classes keeps readable text on hover (tested). The danger button's text is `--danger-fg-on` (white in light mode, near-black in dark), 4.5:1 on `--danger` and `--danger-hover` in both themes and every accent (tested).
 - **Press.** Moves 1 px down, no scaling.
 - **Motion.** The transitions use `--dur-fast`, which is 0 under `prefers-reduced-motion`. Under reduced motion the `loading` spinner stands still and pulses instead.
-- **Target.** 30, 38 and 46 px tall. Only `lg` reaches the 44 px Sussi asks for on touch.
+- **Target.** 30, 38 and 46 px tall. Only `lg` reaches the 44 px Sassy asks for on touch.
 - **Built-in text.** None. The button says what you pass in.
 
 ## Content

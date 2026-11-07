@@ -3,8 +3,8 @@ name: SegmentedControl
 group: inputs
 status: new
 since: 0.7.0
-kort: components/inputs/segmentedcontrol.card.html
-typer: components/inputs/SegmentedControl.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/segmentedcontrol/
+typer: dist/inputs/SegmentedControl.d.ts
 ---
 
 # SegmentedControl
@@ -42,7 +42,7 @@ Two to five mutually exclusive options in a row, as one value in a form. Underne
 ## Example
 
 ```jsx
-import { SegmentedControl } from 'sussi/components';
+import { SegmentedControl } from 'sassy/components';
 
 <SegmentedControl label="Where is the plant?" hint="Can be changed later." options={['Outdoors', 'Indoors', 'Greenhouse']} defaultValue="Outdoors" />
 
@@ -59,7 +59,7 @@ import { SegmentedControl } from 'sussi/components';
 
 ## Props
 
-The types are in `components/inputs/SegmentedControl.d.ts`. The card: `components/inputs/segmentedcontrol.card.html`.
+The types are in `dist/inputs/SegmentedControl.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/segmentedcontrol/).
 
 <!-- props: SegmentedControlProps -->
 | Prop | Type | Default | Description |
@@ -90,7 +90,7 @@ Plus every attribute of `<fieldset>` (`React.FieldsetHTMLAttributes<HTMLFieldSet
 
 ## Accessibility
 
-The behaviour is tested in `tests/segmentedcontrol.e2e.test.mjs`, the rules in `tests/segmentedcontrol.test.mjs`.
+The behaviour is tested in a browser, the rules in unit tests.
 
 - **Element and role.** A native `<fieldset>` with `role="radiogroup"` and a `<legend>`; each option is a native `<input type="radio">` in a `<label>`. No keyboard code of its own: it is all the browser's.
 - **Name.** The group is named by `label` (the legend, also through `aria-labelledby`, so the name holds with the role). Each option is named by its label. Without `label` you must pass `aria-label` (tested).
@@ -98,7 +98,7 @@ The behaviour is tested in `tests/segmentedcontrol.e2e.test.mjs`, the rules in `
 - **Keyboard.** One Tab stop: Tab lands on the checked option (or the first when nothing is checked), ←/→ and ↑/↓ move and check within the group and wrap, Space checks, Tab again leaves the group (tested).
 - **Focus.** The visually hidden radio has the focus; the face beside it shows the ring, 2 px `--focus-color` with a 2 px offset (`:focus-visible`).
 - **State.** The checked face is lifted with `--surface-1` (`--surface-3` in dark mode), a shadow and `--fg-1` text; the others are `--fg-2` on `--surface-2`. The state is `:checked` on the radio, so it is read as "checked" whatever the colour. `disabled` on the group disables every radio (native) and dims them; `disabled` on one option disables that one.
-- **Contrast.** `--fg-2` on `--surface-2` and `--fg-1` on `--surface-1`/`--surface-3` are at least 4.5:1 in both themes and every accent (`tests/segmentedcontrol.test.mjs`).
+- **Contrast.** `--fg-2` on `--surface-2` and `--fg-1` on `--surface-1`/`--surface-3` are at least 4.5:1 in both themes and every accent (tested).
 - **Target.** The track is 36 px tall and each face 30 px tall, exactly as Tabs `variant="segmented"`, and at least 40 px wide (2.5.8).
 - **Motion.** Background, colour and shadow transition on `--dur-fast`, 0 under reduced motion.
 - **Built-in text.** None.

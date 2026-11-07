@@ -3,8 +3,8 @@ name: Disclosure
 group: display
 status: new
 since: 0.7.0
-kort: components/display/disclosure.card.html
-typer: components/display/Disclosure.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/disclosure/
+typer: dist/display/Disclosure.d.ts
 ---
 
 # Disclosure
@@ -42,7 +42,7 @@ A section that shows and hides: native `<details>` and `<summary>`, so the brows
 ## Example
 
 ```jsx
-import { Disclosure } from 'sussi/components';
+import { Disclosure } from 'sassy/components';
 
 <Disclosure title="Watering and feeding">
   <p>Water in the morning, so the leaves dry. Feed every other week from June.</p>
@@ -59,7 +59,7 @@ import { Disclosure } from 'sussi/components';
 
 ## Props
 
-The types are in `components/display/Disclosure.d.ts`. The card: `components/display/disclosure.card.html`.
+The types are in `dist/display/Disclosure.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/disclosure/).
 
 <!-- props: DisclosureProps -->
 | Prop | Type | Default | Description |
@@ -77,12 +77,12 @@ Plus every attribute of `<details>` (`React.DetailsHTMLAttributes<HTMLDetailsEle
 
 ## Accessibility
 
-The behaviour is tested in `tests/disclosure.e2e.test.mjs`, the rules in `tests/disclosure.test.mjs`.
+The behaviour is tested in a browser, the rules in unit tests.
 
 - **Element and role.** A `<details>` with a `<summary>`. The browser gives the `<summary>` the button role and `aria-expanded` from the `open` attribute; no role or `aria-expanded` is added, and the computed role and state are tested in Chromium's accessibility tree (`DisclosureTriangle`, `expanded`). Note that Playwright and Testing Library see the row as `summary` or `group`, not as `button`: find it with `getByText` or `locator('summary')`. The content is in the DOM while the section is closed, so find in page finds it in most browsers, but it is not shown until it opens (tested).
 - **Name.** `title`. A heading in `title` sits directly in the `<summary>` carrying the title class itself (no `<span>` around it), becomes part of the page outline and keeps the row's type (tested).
 - **Keyboard.** Tab reaches the row; Enter and Space open and close (tested). The focus stays on the row. No key handlers of its own.
-- **Focus.** Sussi's `:focus-visible` on the row: 2 px `--focus-color`, 2 px outside, with the row's corners (colour, width and offset tested).
+- **Focus.** Sassy's `:focus-visible` on the row: 2 px `--focus-color`, 2 px outside, with the row's corners (colour, width and offset tested).
 - **Contrast.** The title is `--fg-1` on `--surface-1` (4.5:1 or more) and the chevron `--fg-3` (3:1 or more) in both themes and all six accents, measured on the tokens and in the browser, also on hover (tested). The frame is `--border` and carries no meaning; the chevron and `open` do.
 - **Target size.** The row is at least 44 px tall across the full width (WCAG 2.5.8, tested).
 - **Motion.** The chevron turns 180° on `--dur-base`; the token is 0 under `prefers-reduced-motion`, and the transition is removed as well (WCAG 2.3.3, tested). The content appears without animation.

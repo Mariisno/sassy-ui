@@ -3,8 +3,8 @@ name: Tabs
 group: navigation
 status: stable
 since: 0.2.0
-kort: components/navigation/tabs.card.html
-typer: components/navigation/Tabs.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/tabs/
+typer: dist/navigation/Tabs.d.ts
 ---
 
 # Tabs
@@ -42,7 +42,7 @@ Tabs switch between sibling views: `underline` for sections of a page, `segmente
 ## Example
 
 ```jsx
-import { Tabs, TabPanel } from 'sussi/components';
+import { Tabs, TabPanel } from 'sassy/components';
 
 <Tabs aria-label="Project" items={[{ id: 'tasks', label: 'Tasks', count: 12 }, { id: 'notes', label: 'Notes' }]} onChange={setTab}>
   <TabPanel value="tasks">…</TabPanel>
@@ -53,7 +53,7 @@ import { Tabs, TabPanel } from 'sussi/components';
 
 ## Props
 
-The types are in `components/navigation/Tabs.d.ts`. The card: `components/navigation/tabs.card.html`.
+The types are in `dist/navigation/Tabs.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/tabs/).
 
 <!-- props: TabsProps -->
 | Prop | Type | Default | Description |
@@ -96,14 +96,14 @@ Plus every attribute of `<div>` (`React.HTMLAttributes<HTMLDivElement>`).
 
 ## Accessibility
 
-The behaviour is tested in `tests/tabs.e2e.test.mjs`.
+The behaviour is tested in a browser.
 
 - **Element and role.** A `<div role="tablist">` with a `<button role="tab" type="button">` per tab, `aria-selected` on the selected one, and `aria-controls` to the panel when the tab has a `TabPanel` (not otherwise, tested). `TabPanel` is a `<div role="tabpanel">` with `aria-labelledby` to its tab, `tabIndex=0`, and `hidden` when not selected.
 - **Name.** A tab is named by its text (`label`, with `count` after). The tab list is named by `aria-label`. The panel is named by its tab.
 - **Keyboard.** Tab lands on the selected tab (roving `tabindex`: 0 on the selected, −1 on the rest) and goes on into the panel. ← and → move focus and select, wrapping at the ends; Home and End jump to the first and last. `onChange` is called on every selection (tested).
 - **Focus.** The standard focus ring on the tab, and on the panel, which can take focus even when it has no links.
 - **State.** Selected is `aria-selected="true"`, the text `--fg-1` and a 2 px line in `--accent` underneath (`underline`), or a raised segment in `--surface-1` with `--shadow-sm` (`segmented`; `--surface-3` in dark mode). Never colour alone.
-- **Contrast.** Unselected text is `--fg-2`, selected `--fg-1`. `count` is `--fg-3`, and `--fg-2` on the selected tab, since `--fg-3` on the dark segment was 4.31:1 (0.5.3, `tests/polish.test.mjs`).
+- **Contrast.** Unselected text is `--fg-2`, selected `--fg-1`. `count` is `--fg-3`, and `--fg-2` on the selected tab, since `--fg-3` on the dark segment was 4.31:1 (0.5.3, tested).
 - **Content.** Panels not shown stay mounted, so forms in them keep what you typed (tested).
 - **Target.** The tabs are 40 px tall, the segments 30 px. Known limit: under 44 px on touch.
 - **Motion.** The colour transitions on `--dur-fast`, 0 under reduced motion.

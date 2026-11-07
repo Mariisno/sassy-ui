@@ -1,0 +1,33 @@
+<!-- @dsCard group="Components" viewport="700x380" name="Kunngjor" subtitle="kunngjor: a hidden live region, polite or urgent; repeats are read again" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kunngjor</title><link rel="stylesheet" href="../../styles.css">
+<style>body{padding:20px 24px;background:var(--bg)}.col{display:grid;gap:14px;max-width:560px}.lbl{font:var(--type-meta);color:var(--fg-3)}.row{display:flex;flex-wrap:wrap;gap:10px}.logg{margin:0;padding:12px 14px;border-radius:var(--radius-md);background:var(--surface-1);font:var(--type-body-sm);color:var(--fg-2);list-style:none;display:grid;gap:4px;min-height:96px}.logg li{display:flex;gap:10px}.logg .k{font:var(--type-meta);color:var(--fg-3);min-width:64px}</style>
+</head><body>
+<main class="col">
+<h1 class="s-h3">Planter i drivhuset</h1>
+<p class="s-text s-text--sm s-text--muted">Knappene sier noe til en skjermleser gjennom en skjult liveregion. Lista under viser det samme for deg som ser.</p>
+<div class="row">
+<button type="button" class="s-btn s-btn--secondary" id="lagre">Lagre</button>
+<button type="button" class="s-btn s-btn--secondary" id="filtrer">Vis bare tomater</button>
+<button type="button" class="s-btn s-btn--danger" id="haster">Mist nettet</button>
+</div>
+<span class="lbl">Opplest, i rekkefølge</span>
+<ul class="logg" id="logg" aria-label="Opplest"></ul>
+</main>
+<script type="module">
+// ?theme=dark. The helper is plain ES, no React: the card imports it straight from the source.
+import { kunngjor } from './kunngjor.js';
+if (new URLSearchParams(location.search).get('theme')) document.documentElement.dataset.theme = 'dark';
+const logg = document.getElementById('logg');
+const si = (tekst, haster) => {
+  kunngjor(tekst, { haster });
+  const li = document.createElement('li');
+  li.innerHTML = '<span class="k"></span><span></span>';
+  li.firstChild.textContent = haster ? 'haster' : 'høflig';
+  li.lastChild.textContent = tekst;
+  logg.prepend(li);
+  while (logg.children.length > 4) logg.lastChild.remove();
+};
+document.getElementById('lagre').addEventListener('click', () => si('Lagret'));
+document.getElementById('filtrer').addEventListener('click', () => si('3 planter funnet'));
+document.getElementById('haster').addEventListener('click', () => si('Mistet nettet. Vi lagrer når det er tilbake.', true));
+</script></body></html>

@@ -3,8 +3,8 @@ name: Link
 group: navigation
 status: new
 since: 0.7.0
-kort: components/navigation/link.card.html
-typer: components/navigation/Link.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/link/
+typer: dist/navigation/Link.d.ts
 ---
 
 # Link
@@ -42,7 +42,7 @@ A link: the accent text colour (`--accent-text`) and the underline base.css alre
 ## Example
 
 ```jsx
-import { Link } from 'sussi/components';
+import { Link } from 'sassy/components';
 import { Link as RouterLink } from 'react-router-dom';
 
 <p>Read about <Link href="/soil">soil types</Link> before you sow.</p>
@@ -54,7 +54,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 ## Props
 
-The types are in `components/navigation/Link.d.ts`. The card: `components/navigation/link.card.html`.
+The types are in `dist/navigation/Link.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/link/).
 
 <!-- props: LinkProps -->
 | Prop | Type | Default | Description |
@@ -73,12 +73,12 @@ Plus every attribute of `<a>` (`React.AnchorHTMLAttributes<HTMLAnchorElement>`).
 
 ## Accessibility
 
-The behaviour is tested in `tests/link.e2e.test.mjs`, the colour rules in `tests/link.test.mjs`.
+The behaviour is tested in a browser, the colour rules in unit tests.
 
 - **Element and role.** An `<a href>`, role `link` from the element. With `as` it is what that component renders; React Router's Link renders an `<a>`. No role is added.
 - **Name.** The link text, plus «(åpner i ny fane)» as visually hidden text (`.s-sr-only`, 1 px and clipped, not `display:none`) when `target="_blank"` (tested). The icon is `aria-hidden`.
-- **Keyboard and focus.** Tab and Enter like any link. The focus ring is Sussi's `:focus-visible` (2 px `--focus-color`, 2 px outside), with `--radius-xs` corners (tested). `ref` reaches the `<a>`.
-- **Contrast.** `--accent-text` holds 4.5:1 on `--bg`, `--surface-1` and `--surface-2` in both themes and all six accents, and so does `--accent-hover` (the hover colour) (`tests/link.test.mjs` measures the tokens, `tests/link.e2e.test.mjs` the rendered colour). The underline tells the link from the text around it without colour (WCAG 1.4.1). Known limit: not on `--surface-3` and `--accent-soft`.
+- **Keyboard and focus.** Tab and Enter like any link. The focus ring is Sassy's `:focus-visible` (2 px `--focus-color`, 2 px outside), with `--radius-xs` corners (tested). `ref` reaches the `<a>`.
+- **Contrast.** `--accent-text` holds 4.5:1 on `--bg`, `--surface-1` and `--surface-2` in both themes and all six accents, and so does `--accent-hover` (the hover colour) (tested on the tokens and the rendered colour). The underline tells the link from the text around it without colour (WCAG 1.4.1). Known limit: not on `--surface-3` and `--accent-soft`.
 - **Target.** `standalone` is ordinary text in the line with `padding-block` for a target of at least 24 px (WCAG 2.5.8, tested); the external icon hangs on the last word and never ends up alone on a line (tested). An `inline` link follows the line height of the text (24 px in body text) and is exempt as part of a sentence.
 - **New tab.** `target="_blank"` always gives `rel="noopener noreferrer"`, also when `rel` is set to something else (tested). The hidden text is technique G201: the link says so before it opens anything new.
 - **Motion.** None; the colour and the underline fade over `--dur-fast`.

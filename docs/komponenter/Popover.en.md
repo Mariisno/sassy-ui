@@ -3,8 +3,8 @@ name: Popover
 group: overlays
 status: new
 since: 0.6.0
-kort: components/overlays/menu.card.html
-typer: components/overlays/Popover.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/popover/
+typer: dist/overlays/Popover.d.ts
 ---
 
 # Popover
@@ -42,7 +42,7 @@ A non-modal surface anchored to the button that opens it. The button gets `aria-
 ## Example
 
 ```jsx
-import { Popover, Button, Checkbox } from 'sussi/components';
+import { Popover, Button, Checkbox } from 'sassy/components';
 
 <Popover trigger={<Button variant="secondary" iconRight="chevron-down">Filter</Button>} aria-label="Filter">
   <Checkbox label="Only mine" />
@@ -56,7 +56,7 @@ import { Popover, Button, Checkbox } from 'sussi/components';
 
 ## Props
 
-The types are in `components/overlays/Popover.d.ts`. The card: `components/overlays/menu.card.html` (the menu and a popover). `placePopover(trigger, panel, viewport, { side, align })` is the placement on its own, exported for tests and for surfaces of your own.
+The types are in `dist/overlays/Popover.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/popover/). `placePopover(trigger, panel, viewport, { side, align })` is the placement on its own, exported for tests and for surfaces of your own.
 
 <!-- props: PopoverProps -->
 | Prop | Type | Default | Description |
@@ -78,7 +78,7 @@ Plus every attribute of `<div>` (`React.HTMLAttributes<HTMLDivElement>`), except
 
 ## Accessibility
 
-The behaviour is tested in `tests/popover.e2e.test.mjs`, the rules and the placement in `tests/popover.test.mjs`.
+The behaviour is tested in a browser, the rules and the placement in unit tests.
 
 - **Element and role.** The trigger is cloned with `aria-expanded` and, while the panel is open, `aria-controls` pointing at the panel's id (tested). The panel is a `<div tabIndex={-1}>` with no role of its own; `role`, `aria-label`, `id`, `data-*` and `aria-*` reach it.
 - **Focus in.** The first control in the panel, else the panel itself (tested for both).

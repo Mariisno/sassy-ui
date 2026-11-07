@@ -3,8 +3,8 @@ navn: VisuallyHidden
 gruppe: layout
 status: new
 sidenVersjon: 0.7.0
-kort: components/layout/layout.card.html
-typer: components/layout/VisuallyHidden.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/visuallyhidden/
+typer: dist/layout/VisuallyHidden.d.ts
 ---
 
 # VisuallyHidden
@@ -41,7 +41,7 @@ Tekst for hjelpemidler som ingen ser: klassen `.s-sr-only` som en komponent. Ele
 ## Eksempel
 
 ```jsx
-import { VisuallyHidden, Icon } from 'sussi/components';
+import { VisuallyHidden, Icon } from 'sassy/components';
 
 <VisuallyHidden as="a" href="#innhold" focusable>Hopp til innholdet</VisuallyHidden>
 <h2><VisuallyHidden>Planter i</VisuallyHidden> Drivhuset</h2>
@@ -51,7 +51,7 @@ import { VisuallyHidden, Icon } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/layout/VisuallyHidden.d.ts`. Kortet: `components/layout/layout.card.html`.
+Typene står i `dist/layout/VisuallyHidden.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/visuallyhidden/).
 
 <!-- props: VisuallyHiddenProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -66,7 +66,7 @@ Pluss alle attributtene til elementet den rendres som (`React.HTMLAttributes<HTM
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/layout.e2e.test.mjs`, reglene i `tests/visuallyhidden.test.mjs`.
+Oppførselen er testet i nettleseren, reglene i enhetstester.
 
 - **Element og rolle.** Det `as` sier: `span` (standard), `div`, `p`, `a`, `label`, `legend`, `h2` eller `h3`. Ingen rolle legges til; `role="status"` eller `role="alert"` sendes som prop.
 - **Navn.** Teksten. Den er med i navnet på det elementet den står i (en knapp, en lenke), som vanlig tekst.

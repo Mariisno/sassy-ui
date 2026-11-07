@@ -3,8 +3,8 @@ name: Fieldset
 group: inputs
 status: new
 since: 0.7.0
-kort: components/inputs/fieldset.card.html
-typer: components/inputs/Fieldset.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/fieldset/
+typer: dist/inputs/Fieldset.d.ts
 ---
 
 # Fieldset
@@ -43,7 +43,7 @@ A group of related controls, above all a radio or checkbox group: a native `<fie
 ## Example
 
 ```jsx
-import { Fieldset, Radio, Checkbox } from 'sussi/components';
+import { Fieldset, Radio, Checkbox } from 'sassy/components';
 
 <Fieldset legend="How much sun does the spot get?" hint="Measured at midday.">
   <Radio name="sun" value="full" label="Full sun" description="Six hours or more" />
@@ -59,7 +59,7 @@ import { Fieldset, Radio, Checkbox } from 'sussi/components';
 
 ## Props
 
-The types are in `components/inputs/Fieldset.d.ts`. The card: `components/inputs/fieldset.card.html`.
+The types are in `dist/inputs/Fieldset.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/fieldset/).
 
 <!-- props: FieldsetProps -->
 | Prop | Type | Default | Description |
@@ -77,7 +77,7 @@ Plus every attribute of `<fieldset>` (`React.FieldsetHTMLAttributes<HTMLFieldSet
 
 ## Accessibility
 
-The behaviour is tested in `tests/fieldset.e2e.test.mjs`, the rules in `tests/fieldset.test.mjs`.
+The behaviour is tested in a browser, the rules in unit tests.
 
 - **Element and role.** A native `<fieldset>` (role `group`) with `<legend>`. The browser names the group from the legend, and a screen reader says the name when the focus enters the group.
 - **Name.** The text in `legend`, plus "Valgfritt" when `optional` is set. The controls have their own names from `label`.
@@ -85,7 +85,7 @@ The behaviour is tested in `tests/fieldset.e2e.test.mjs`, the rules in `tests/fi
 - **Error.** The error is text with a `circle-alert` icon before it (`aria-hidden`) in `--danger-fg`, and `role="alert"`, so it is read when it appears (WCAG 3.3.1, 4.1.3). The group gets a 3 px `--danger` edge on the left (≥ 3:1 on `--bg` in both themes). Icon, text and edge: colour is never alone (1.4.1). `aria-invalid` is not set on the group (not allowed on `group`); the app may set it on the controls.
 - **Keyboard.** Nothing of its own. The radios move with the arrow keys, the boxes with Tab and Space, as elsewhere. `disabled` on the group disables every control in it (native) and dims them.
 - **Focus.** The controls' own ring. When an ErrorSummary links to the group's `id`, the focus moves to the first control (tested).
-- **Contrast.** The legend is `--fg-1`, the hint `--fg-3`, the error `--danger-fg`, the same pairs as Field (`tests/contrast.test.mjs`).
+- **Contrast.** The legend is `--fg-1`, the hint `--fg-3`, the error `--danger-fg`, the same pairs as Field (tested).
 - **Motion.** None.
 - **Built-in text.** "Valgfritt" with `optional`. Override with `optionalLabel`.
 - **Known limits.** The target per option is the label's height (about 22 px), as Checkbox and Radio; give the rows air in a list for fingers. When several fields get an error at once on a submit, several `role="alert"` regions mount at the same time, and not all of them are guaranteed to be read; the focus on [ErrorSummary](ErrorSummary.en.md) is the reliable signal. VoiceOver does not read `aria-describedby` on a group, and reads the legend only when the focus enters the first control; the error text therefore also stands as plain text under the controls.

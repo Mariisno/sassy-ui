@@ -1,0 +1,108 @@
+<!-- @dsCard group="Components" viewport="1280x1800" name="States" subtitle="Every interactive component at rest, hover, focus, pressed and disabled, light and dark" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tilstander</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../dist/sassy.global.js"></script>
+<style>
+body{margin:0;background:var(--bg)}
+.st{display:grid}
+.st-theme{padding:20px 24px;background:var(--bg);color:var(--fg-1);overflow-x:auto}
+.st-h{font:var(--type-meta);color:var(--fg-3);margin:0 0 12px}
+.st-grid{display:grid;grid-template-columns:96px repeat(5,minmax(170px,1fr));gap:10px 12px;align-items:center;min-width:960px;max-width:1240px}
+.st-col,.st-row{font:var(--type-meta);color:var(--fg-3)}
+.st-cell{min-width:0}
+.st-sub{grid-column:1/-1;font:var(--type-meta);color:var(--fg-3);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+</style>
+</head><body><div id="root"></div>
+<script>
+// Each component is drawn at rest, hover, focus, pressed and disabled, in light and dark side by side.
+// Sassy's own :hover, :focus-visible, :focus-within and :active rules are copied as [data-state~=…] rules,
+// so the card shows exactly what the CSS does and can't drift from it. Hover, pressed and focus-within
+// apply to the element and its ancestors, as in a browser; focus-visible only to the element itself.
+const { Button, IconButton, Tag, ListItem, Tabs, Input, Checkbox, Switch, Select, Swatch } = window.SassyDesignSystem_a2c9b8;
+const h = React.createElement;
+
+function cloneStateRules() {
+  const out = [];
+  const map = (sel) => sel
+    .replace(/:hover/g, '[data-state~="hover"]')
+    .replace(/:focus-visible/g, '[data-state~="focus"]')
+    .replace(/:focus-within/g, '[data-state~="focuswithin"]')
+    .replace(/:active/g, '[data-state~="active"]');
+  const walk = (rules) => {
+    for (const r of rules) {
+      if (r.styleSheet) walk(r.styleSheet.cssRules);
+      else if (r.selectorText && /:(hover|focus-visible|focus-within|active)/.test(r.selectorText)) {
+        out.push(`${r.selectorText.split(',').map(map).join(',')}{${r.style.cssText}}`);
+      }
+    }
+  };
+  for (const s of document.styleSheets) { try { walk(s.cssRules); } catch (e) { /* another origin */ } }
+  const el = document.createElement('style');
+  el.textContent = out.join('\n');
+  document.head.appendChild(el);
+  return out.length;
+}
+
+// The element a state is put on: the unselected tab, else the first control in the cell.
+const target = (cell) => cell.querySelector('[role="tab"][aria-selected="false"]') || cell.querySelector('input, button, a, select, textarea');
+function applyStates() {
+  for (const cell of document.querySelectorAll('[data-cell]')) {
+    const state = cell.dataset.cell;
+    const t = target(cell);
+    if (!t || state === 'rest' || state === 'disabled') continue;
+    if (state === 'focus') {
+      t.setAttribute('data-state', 'focus');
+      for (let e = t; e && e !== cell; e = e.parentElement) e.setAttribute('data-state', ((e.getAttribute('data-state') || '') + ' focuswithin').trim());
+    } else {
+      for (let e = t; e && e !== cell; e = e.parentElement) e.setAttribute('data-state', ((e.getAttribute('data-state') || '') + ' ' + (state === 'active' ? 'hover active' : 'hover')).trim());
+    }
+  }
+}
+
+const states = [['rest', 'Normal'], ['hover', 'Hover'], ['focus', 'Fokus'], ['active', 'Trykket'], ['disabled', 'Deaktivert']];
+const rows = [
+  ['Button', (d) => h(Button, { disabled: d }, 'Lagre')],
+  ['secondary', (d) => h(Button, { variant: 'secondary', disabled: d }, 'Avbryt')],
+  ['soft', (d) => h(Button, { variant: 'soft', iconLeft: 'plus', disabled: d }, 'Ny')],
+  ['ghost', (d) => h(Button, { variant: 'ghost', disabled: d }, 'Hopp over')],
+  ['danger', (d) => h(Button, { variant: 'danger', disabled: d }, 'Slett')],
+  ['IconButton', (d) => h(IconButton, { icon: 'ellipsis', label: 'Mer', variant: 'secondary', disabled: d })],
+  ['Tag', (d) => h(Tag, { onClick: () => {}, disabled: d }, 'Gensere')],
+  ['ListItem', (d) => h(ListItem, { onClick: () => {}, icon: 'book-open', title: 'Linsesuppe', disabled: d })],
+  ['Tabs', (d) => d ? h('span', { className: 'st-col', title: 'Tabs har ingen deaktivert tilstand' }, '–') : h(Tabs, { items: [{ id: 'a', label: 'Uke' }, { id: 'b', label: 'Måned' }], defaultValue: 'a', 'aria-label': 'Periode' })],
+  ['Input', (d) => h(Input, { 'aria-label': 'Navn', placeholder: 'Navn', disabled: d })],
+  ['Select', (d) => h(Select, { 'aria-label': 'Type', disabled: d, options: [{ value: 'a', label: 'Genser' }] })],
+  ['Checkbox', (d) => h(Checkbox, { label: 'Ferdig', disabled: d })],
+  ['Switch', (d) => h(Switch, { label: 'Varsler', disabled: d })],
+  ['Swatch', (d) => h(Swatch, { color: '#B58AA0', label: 'Lyng', pressed: false, onClick: () => {}, disabled: d })],
+];
+const other = [
+  ['Feil', h(Input, { label: 'E-post', defaultValue: 'ola@', error: 'Det ser ikke ut som en e-post ennå.' })],
+  ['Hint', h(Input, { label: 'Sådybde', hint: 'I centimeter, for eksempel 2,5.', optional: true })],
+  ['Laster', h(Button, { loading: true }, 'Lagrer')],
+  ['Valgt', h(Tag, { selected: true, onClick: () => {} }, 'Alle')],
+  ['Avkrysset', h(Checkbox, { label: 'Ferdig', defaultChecked: true })],
+  ['På', h(Switch, { label: 'Varsler', defaultChecked: true })],
+  ['Valgt farge', h(Swatch, { color: '#B58AA0', label: 'Lyng', pressed: true, onClick: () => {} })],
+];
+
+function Theme({ theme, label }) {
+  return h('section', { className: 'st-theme', 'data-theme': theme, 'aria-label': label },
+    h('p', { className: 'st-h' }, label),
+    h('div', { className: 'st-grid' },
+      h('span'), ...states.map(([, l]) => h('span', { key: l, className: 'st-col' }, l)),
+      ...rows.flatMap(([name, make]) => [
+        h('span', { key: name, className: 'st-row' }, name),
+        ...states.map(([s]) => h('div', { key: name + s, className: 'st-cell', 'data-cell': s }, make(s === 'disabled'))),
+      ]),
+      h('span', { className: 'st-sub' }, 'Andre tilstander'),
+      ...other.flatMap(([name, el]) => [h('span', { key: 'o' + name, className: 'st-row' }, name), h('div', { key: 'c' + name, className: 'st-cell', style: { gridColumn: 'span 5', maxWidth: 360 } }, el)])));
+}
+
+window.stateRules = cloneStateRules();
+ReactDOM.createRoot(document.getElementById('root')).render(h('main', { className: 'st' },
+  h('h1', { className: 's-sr-only', style: { position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' } }, 'Tilstander'),
+  h(Theme, { theme: 'light', label: 'Lys' }), h(Theme, { theme: 'dark', label: 'Mørk' })));
+requestAnimationFrame(() => requestAnimationFrame(applyStates));
+</script></body></html>

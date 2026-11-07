@@ -1,5 +1,5 @@
 {
-  "$comment": "Norske beskrivelser til props-tabellene, nøkkel «Grensesnitt.prop». De engelske står i .d.ts-fila. scripts/docs-props.mjs setter dem inn og sier fra når en mangler.",
+  "$comment": "Norske beskrivelser til props-tabellene, nøkkel «Grensesnitt.prop». De engelske står i .d.ts-fila. Props-tabellene i dokumentasjonen henter dem herfra.",
 
   "ButtonProps.variant": "primary (aksentfyll), secondary (flate og kant), soft (myk aksent), ghost (uten ramme), danger (fare).",
   "ButtonProps.size": "sm 30 px, md 38 px, lg 46 px høy.",
@@ -93,6 +93,20 @@
   "ErrorSummaryProps.level": "Overskriftsnivå på tittelen, 2–6. Velg det som passer i sidas disposisjon.",
   "ErrorSummaryProps.children": "Én linje under tittelen, f.eks. «Rett feilene under, så kan du lagre.»",
 
+  "HeadingProps.level": "Overskriftsnivået, 1–6: elementet er `<h1>`–`<h6>`. Følg sidas disposisjon: én h1, og ingen hoppede nivåer på vei ned.",
+  "HeadingProps.size": "Utseendet, når det skal avvike fra nivået: `display`, `h1`, `h2`, `h3` eller `h4`. Standard: nivåets eget (h5 og h6 ser ut som h4).",
+  "HeadingProps.children": "Overskriftsteksten.",
+
+  "TextProps.as": "Elementet, standard `p`. `span` inne i en linje, `div` rundt blokker, `small`, `strong`, `em`, `label`, `li`, `figcaption` eller `time` der det er det teksten er.",
+  "TextProps.size": "`body` (16 px, standard), `sm` (14 px), `lead` (18 px, ingressen under en sidetittel) eller `meta` (12 px DM Mono, én linje metadata som en dato eller et antall).",
+  "TextProps.tone": "`default` beholder fargen rundt (`--fg-1` på en side), `muted` er `--fg-2` for sekundær tekst, `subtle` er `--fg-3` for metadata. Alle holder 4,5:1 på `--bg`, `--surface-1` og `--surface-2`; på `--surface-3` bruker du `default` eller `muted`.",
+  "TextProps.mono": "DM Mono i valgt størrelse, for tall og koder. `meta` er mono fra før.",
+  "TextProps.dateTime": "Med `as=\"time\"`: datoen maskinlesbart, f.eks. «2026-11-05».",
+  "TextProps.htmlFor": "Med `as=\"label\"`: id-en til kontrollen den navngir.",
+  "TextProps.children": "Teksten.",
+
+  "KunngjorValg.haster": "`true` leser meldingen med en gang og avbryter det som leses (en påtrengende region, `role=\"alert\"`). Bare for det som ikke kan vente: et brudd i nettet, en lagring som feilet. Standard false: høflig, etter det som leses.",
+
   "EmptyStateProps.icon": "Lucide-ikonnavn i en 56 px myk aksentsirkel. Dekorativt.",
   "EmptyStateProps.title": "Overskriften, f.eks. «Ingen oppgaver ennå».",
   "EmptyStateProps.description": "Én linje om hva du kan gjøre, f.eks. «Legg til den første, så dukker den opp her.»",
@@ -107,7 +121,7 @@
   "ProgressProps.label": "Det tilgjengelige navnet, påkrevd med mindre `aria-labelledby` peker på en synlig overskrift.",
   "ProgressProps.valueText": "Leses i stedet for prosenten, f.eks. «12 av 30 planter» eller «3 min igjen».",
   "ProgressProps.size": "Bare ringen: diameter i px. Streken følger med (size / 12, minst 3 px).",
-  "ProgressProps.tone": "`accent` følger appens `data-accent`. Statustonene bruker Sussis statusfarger.",
+  "ProgressProps.tone": "`accent` følger appens `data-accent`. Statustonene bruker Sassys statusfarger.",
   "ProgressProps.children": "Bare ringen: det som står i midten, f.eks. tallet. Rent innhold, så si verdien i `valueText` også.",
 
   "ToastProps.tone": "Hvilket ikon og hvilken farge ikonet får.",
@@ -117,6 +131,7 @@
   "ToastProps.onAction": "Kjøres når handlingen trykkes.",
   "ToastProps.onClose": "Viser en lukkeknapp (×) som kjører denne.",
   "ToastProps.closeLabel": "Tilgjengelig navn på lukkeknappen. Standard «Lukk» (som Dialog); engelske flater sender «Dismiss».",
+  "ToastProps.duration": "Millisekunder til en ren statustoast går av seg selv: den kaller `onClose` én gang, som × gjør. Standard ingen: toasten står til appen fjerner den. Aldri under 5000. En toast med handling (`actionLabel`) overser den og står til den er brukt eller lukket. Klokka står mens pekeren er på toasten, mens fokus er inni den og mens sida er skjult.",
   "ToastProps.className": "Klasser på toasten.",
   "ToastProps.style": "Stil på toasten.",
 
@@ -136,9 +151,9 @@
   "OppdateringOptions.opptatt": "Appens egne grunner til å vente med omlastingen, f.eks. en økt som pågår.",
   "OppdateringOptions.hver": "Hvor ofte den spør etter en ny worker, i ms. Standard 30 minutter.",
 
-  "IconProps.name": "Lucide-ikonnavn, f.eks. «house», «check», «chevron-down». Hele settet står i components/icon/iconData.js.",
+  "IconProps.name": "Lucide-ikonnavn, f.eks. «house», «check», «chevron-down». Hele settet står i dist/icon/iconData.js.",
   "IconProps.size": "Størrelse i px. 16 i tette rader, 18 standard, 20–24 alene.",
-  "IconProps.strokeWidth": "Strekbredde. Sussi bruker 1.75 (mykere enn Lucides 2).",
+  "IconProps.strokeWidth": "Strekbredde. Sassy bruker 1.75 (mykere enn Lucides 2).",
   "IconProps.title": "Tilgjengelig navn. Utelat den for dekorative ikoner.",
 
   "InputProps.label": "Ledeteksten over feltet.",
@@ -153,6 +168,8 @@
   "InputProps.mode": "Hva feltet er til: setter `type`, `inputMode` og `autoComplete` (se tabellen under). `number` er hele tall, `decimal` tall med komma eller punktum, `phone`, `email`, `url`, `search`, `date`, `time`, `password`. Din egen `type`, `inputMode` eller `autoComplete` vinner. Uten settes ingenting.",
   "InputProps.passwordToggle": "Med `mode=\"password\"`: vis/skjul-knappen i enden av feltet. Standard true.",
   "InputProps.passwordToggleLabel": "Navnet på passordknappen, en vippeknapp med `aria-pressed`. Standard «Vis passord»; engelske flater sender «Show password».",
+  "InputProps.count": "Med `maxLength`: en tegnteller under feltet, «12 av 200». Fra 90 % sier den hvor mange som er igjen, over grensen hvor mange for mye, og feltet er ugyldig; nettleserens grense slås av, så folk kan skrive forbi og korte ned. En skjermleser hører antallet når skrivingen stopper. Uten `count` er `maxLength` nettleserens harde grense, som før.",
+  "InputProps.countLang": "Språket i telleren: `nb` «12 av 200», «18 tegn igjen» (standard) eller `en` «12 of 200», «18 characters left».",
 
   "SegmentedControlProps.label": "Spørsmålet eller navnet på gruppa, i `<legend>`: «Hvor står planten?». Uten, send `aria-label`.",
   "SegmentedControlProps.hint": "Én linje under kontrollen, f.eks. «Kan endres senere.» Koblet med `aria-describedby`.",
@@ -179,6 +196,7 @@
   "FieldProps.label": "Ledeteksten.",
   "FieldProps.hint": "Hjelpetekst under kontrollen.",
   "FieldProps.error": "Feilmelding; vises i stedet for hjelpeteksten, med `role=\"alert\"`.",
+  "FieldProps.counter": "Noe i enden av hjelpetekstraden, som tegntelleren Input og Textarea legger der med `count`.",
   "FieldProps.optional": "Legger valgfri-merket etter ledeteksten.",
   "FieldProps.optionalLabel": "Teksten på valgfri-merket.",
   "FieldProps.htmlFor": "Id-en til kontrollen, så ledeteksten peker på den.",
@@ -200,6 +218,8 @@
   "TextareaProps.optional": "Legger et stille «Valgfritt» etter ledeteksten.",
   "TextareaProps.optionalLabel": "Teksten på valgfri-merket.",
   "TextareaProps.rows": "Antall synlige linjer.",
+  "TextareaProps.count": "Med `maxLength`: en tegnteller under feltet, «12 av 200». Fra 90 % sier den hvor mange som er igjen, over grensen hvor mange for mye, og feltet er ugyldig; nettleserens grense slås av, så folk kan skrive forbi og korte ned. En skjermleser hører antallet når skrivingen stopper. Uten `count` er `maxLength` nettleserens harde grense, som før.",
+  "TextareaProps.countLang": "Språket i telleren: `nb` «12 av 200», «18 tegn igjen» (standard) eller `en` «12 of 200», «18 characters left».",
 
   "SussiProps.pose": "Stillingen: hode, ligger, titter, sover, strekk, sitter.",
   "SussiProps.size": "Kvadrat i px. `hode` leses ned til 16; bruk 32 og oppover for hele kroppen.",
@@ -281,7 +301,7 @@
   "MenuProps.className": "Klasser på menyen.",
   "MenuItem.id": "Gis til `onSelect`. Også React-nøkkelen.",
   "MenuItem.label": "Teksten: en verbfrase i setningsform, «Slett prosjekt». En streng er det bokstavtastene søker i.",
-  "MenuItem.icon": "Et Lucide-navn fra settet (se `components/icon/iconData.js`), eller et element.",
+  "MenuItem.icon": "Et Lucide-navn fra settet (se `dist/icon/iconData.js`), eller et element.",
   "MenuItem.onSelect": "Kjøres når punktet velges, med `id`.",
   "MenuItem.href": "Rendrer punktet som en lenke (`role=\"menuitem\"` på en `<a>`).",
   "MenuItem.disabled": "Blir i lista og leses av skjermleseren (`aria-disabled`), hoppes over av piltastene, gjør ingenting når det velges.",

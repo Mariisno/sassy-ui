@@ -6,7 +6,7 @@ export interface MenuItem {
   id?: string;
   /** The text: a verb phrase in sentence case, "Delete project". A string is what the letter keys search in. */
   label: React.ReactNode;
-  /** A Lucide name from the set (see components/icon/iconData.js), or an element. */
+  /** A Lucide name from the set (see dist/icon/iconData.js), or an element. */
   icon?: string | React.ReactNode;
   /** Called when the item is chosen, with its `id`. */
   onSelect?: (id: string | undefined, event: React.SyntheticEvent) => void;

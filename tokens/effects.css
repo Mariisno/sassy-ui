@@ -1,4 +1,4 @@
-/* Sussi — radius, borders, shadows, motion, z-index */
+/* Sassy — radius, borders, shadows, motion, z-index */
 :root{
 --radius-xs:4px;--radius-sm:6px;--radius-md:10px;--radius-lg:14px;--radius-xl:20px;--radius-pill:999px;
 --radius-control:var(--radius-sm);--radius-card:var(--radius-lg);--radius-dialog:var(--radius-xl);

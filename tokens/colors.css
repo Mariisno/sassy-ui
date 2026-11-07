@@ -1,4 +1,4 @@
-/* Sussi — color tokens. Base scales + semantic aliases. Light is :root, dark is [data-theme="dark"]. */
+/* Sassy — color tokens. Base scales + semantic aliases. Light is :root, dark is [data-theme="dark"]. */
 :root{
 /* Moss — primary */
 --moss-50:#F2F5EF;--moss-100:#E3EADC;--moss-200:#C8D6BC;--moss-300:#A5BB94;--moss-400:#7E9C6B;--moss-500:#5C7E4C;--moss-600:#47663A;--moss-700:#385131;--moss-800:#2C4028;--moss-900:#202F1E;--moss-950:#141E13;

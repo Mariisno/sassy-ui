@@ -3,8 +3,8 @@ name: Alert
 group: feedback
 status: new
 since: 0.7.0
-kort: components/feedback/alert.card.html
-typer: components/feedback/Alert.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/alert/
+typer: dist/feedback/Alert.d.ts
 ---
 
 # Alert
@@ -42,7 +42,7 @@ A message that stays on the page until the app removes it: a soft status fill wi
 ## Example
 
 ```jsx
-import { Alert, Button } from 'sussi/components';
+import { Alert, Button } from 'sassy/components';
 
 <Alert>Changes save as you go.</Alert>
 <Alert tone="success" title="Saved" closeLabel="Dismiss">The recipe is saved.</Alert>
@@ -55,7 +55,7 @@ import { Alert, Button } from 'sussi/components';
 
 ## Props
 
-The types are in `components/feedback/Alert.d.ts`. The card: `components/feedback/alert.card.html`.
+The types are in `dist/feedback/Alert.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/alert/).
 
 <!-- props: AlertProps -->
 | Prop | Type | Default | Description |
@@ -78,12 +78,12 @@ Plus every attribute of `<div>` (`React.HTMLAttributes<HTMLDivElement>`), except
 
 ## Accessibility
 
-The behaviour is tested in `tests/alert.e2e.test.mjs`, the colour rules in `tests/alert.test.mjs`.
+The behaviour is tested in a browser, the colour rules in unit tests.
 
 - **Element and role.** A `<div role="status">`: a polite live region, read when it changes, without interrupting. A region that arrives already filled is not always read (VoiceOver in particular); when the announcement must be certain, keep the alert in the page from the start and fill it, or use `tone="danger"` with `urgent` for an error people just caused. With `tone="danger"` and `urgent` it is `role="alert"` (assertive). `urgent` on any other tone is ignored, so a piece of information cannot become an alarm by accident (tested). An explicit `role` in the props wins, for a message that is in the page from the start and should not be a live region (`role="none"`).
 - **Name.** The text in `title` and `children`. The icon is `aria-hidden` and differs per tone, so the tone shows by shape and not only by colour (WCAG 1.4.1, tested).
 - **Keyboard and focus.** Nothing moves the focus when a message appears (tested: the focus stays on the button that caused it). The action and the close button are ordinary buttons in document order. The close button moves the focus before `onClose`: to `focusOnClose` when it is set, otherwise to the focusable element nearest before the alert in the document, and to the nearest after when there is none before (all three tested).
-- **Contrast.** The text is `--<tone>-fg` on `--<tone>-soft`, 4.5:1 in both themes and every accent (`tests/alert.test.mjs` measures the token pairs, `tests/alert.e2e.test.mjs` the rendered colours of text, title, action, icon and close button). The action and the close button inherit the tone's colour; the close button's hover is a ring in the same colour, not the grey surface.
+- **Contrast.** The text is `--<tone>-fg` on `--<tone>-soft`, 4.5:1 in both themes and every accent (tested on the token pairs and the rendered colours of text, title, action, icon and close button). The action and the close button inherit the tone's colour; the close button's hover is a ring in the same colour, not the grey surface.
 - **Target.** The action is at least 24 × 24 px (WCAG 2.5.8); the close button is an IconButton `sm`, 30 px. Known limit: under 44 px.
 - **Width.** Flex with `min-width:0` on the text, so long words wrap and nothing overflows at 320 px (tested).
 - **Motion.** None.

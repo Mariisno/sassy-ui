@@ -3,13 +3,13 @@ navn: Input
 gruppe: inputs
 status: stable
 sidenVersjon: 0.2.0
-kort: components/inputs/inputs.card.html
-typer: components/inputs/Input.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/input/
+typer: dist/inputs/Input.d.ts
 ---
 
 # Input
 
-Et énlinjes tekstfelt med ledetekst, hjelpetekst og feilmelding innebygd. Feltet er et native `<input>` i en ramme (`.s-control`) som viser fokus, feil og slått av; ledeteksten er en `<label>` som peker på feltet; hjelpeteksten, eller feilen når det er en, er koblet med `aria-describedby`, og en feil setter `aria-invalid` og leses opp. `mode` sier hva feltet er til (tall, e-post, telefon, dato, passord …) og setter riktig `type`, tastatur på telefonen og autofyll; passord får en vis/skjul-knapp. `Field` er den samme ledetekst/hjelpetekst/feil-anatomien rundt en kontroll du lager selv.
+Et énlinjes tekstfelt med ledetekst, hjelpetekst og feilmelding innebygd. Feltet er et native `<input>` i en ramme (`.s-control`) som viser fokus, feil og slått av; ledeteksten er en `<label>` som peker på feltet; hjelpeteksten, eller feilen når det er en, er koblet med `aria-describedby`, og en feil setter `aria-invalid` og leses opp. `mode` sier hva feltet er til (tall, e-post, telefon, dato, passord …) og setter riktig `type`, tastatur på telefonen og autofyll; passord får en vis/skjul-knapp. `count` med `maxLength` gir en tegnteller under feltet, «12 av 200», som i [Textarea](Textarea.nb.md). `Field` er den samme ledetekst/hjelpetekst/feil-anatomien rundt en kontroll du lager selv.
 
 ## Når du bruker den
 
@@ -43,7 +43,7 @@ Et énlinjes tekstfelt med ledetekst, hjelpetekst og feilmelding innebygd. Felte
 ## Eksempel
 
 ```jsx
-import { Input, Field } from 'sussi/components';
+import { Input, Field } from 'sassy/components';
 
 <Input label="Prosjektnavn" placeholder="f.eks. Hagedagbok" />
 <Input icon="search" placeholder="Søk" suffix="⌘K" aria-label="Søk" />
@@ -52,6 +52,7 @@ import { Input, Field } from 'sussi/components';
 <Input label="Planter per rad" mode="number" />
 <Input label="Sådd" mode="date" />
 <Input label="Passord" mode="password" autoComplete="new-password" hint="Minst tolv tegn." />
+<Input label="Navn på bedet" maxLength={40} count />
 <Field label="Farge" htmlFor="farge" hint="Vises på prosjektkortet.">
   <input id="farge" type="color" aria-describedby="farge-hint" />
 </Field>
@@ -59,7 +60,7 @@ import { Input, Field } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/inputs/Input.d.ts`. Kortet med Input, Textarea og Select: `components/inputs/inputs.card.html`.
+Typene står i `dist/inputs/Input.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/input/).
 
 <!-- props: InputProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -76,11 +77,13 @@ Typene står i `components/inputs/Input.d.ts`. Kortet med Input, Textarea og Sel
 | `mode` | `InputMode` | – | Hva feltet er til: setter `type`, `inputMode` og `autoComplete` (se tabellen under). `number` er hele tall, `decimal` tall med komma eller punktum, `phone`, `email`, `url`, `search`, `date`, `time`, `password`. Din egen `type`, `inputMode` eller `autoComplete` vinner. Uten settes ingenting. |
 | `passwordToggle` | `boolean` | `true` | Med `mode="password"`: vis/skjul-knappen i enden av feltet. Standard true. |
 | `passwordToggleLabel` | `string` | `'Vis passord'` | Navnet på passordknappen, en vippeknapp med `aria-pressed`. Standard «Vis passord»; engelske flater sender «Show password». |
+| `count` | `boolean` | `false` | Med `maxLength`: en tegnteller under feltet, «12 av 200». Fra 90 % sier den hvor mange som er igjen, over grensen hvor mange for mye, og feltet er ugyldig; nettleserens grense slås av, så folk kan skrive forbi og korte ned. En skjermleser hører antallet når skrivingen stopper. Uten `count` er `maxLength` nettleserens harde grense, som før. |
+| `countLang` | `'nb' \| 'en'` | `'nb'` | Språket i telleren: `nb` «12 av 200», «18 tegn igjen» (standard) eller `en` «12 of 200», «18 characters left». |
 
 Pluss alle attributtene til `<input>` (`React.InputHTMLAttributes<HTMLInputElement>`), unntatt `size`, `prefix`.
 <!-- /props -->
 
-`ref` når det native `<input>`-elementet, så appen kan flytte fokus til det første feltet med feil (`tests/refs.e2e.test.mjs`).
+`ref` når det native `<input>`-elementet, så appen kan flytte fokus til det første feltet med feil (testet).
 
 ### Hva `mode` setter
 
@@ -110,21 +113,23 @@ Det du sender selv av `type`, `inputMode`, `autoComplete` eller `enterKeyHint` v
 | `optionalLabel` | `string` | `'Valgfritt'` | Teksten på valgfri-merket. |
 | `htmlFor` | `string` | – | Id-en til kontrollen, så ledeteksten peker på den. |
 | `hintId` | `string` | – | Id-en hjelpeteksten eller feilen får. Standard `${htmlFor}-hint`; pek kontrollens `aria-describedby` på den. |
+| `counter` | `React.ReactNode` | – | Noe i enden av hjelpetekstraden, som tegntelleren Input og Textarea legger der med `count`. |
 | `children` | `React.ReactNode` | – | Kontrollen. |
 <!-- /props -->
 
 ## Tilgjengelighet
 
-Koblingene er testet i `tests/forms.e2e.test.mjs`.
+Koblingene er testet i nettleseren.
 
 - **Element og rolle.** Et native `<input>` (typen kommer fra `mode`, eller er din: `text`, `email` …) med en `<label for>` som peker på det. Id-en er `id` eller en generert.
 - **Navn.** `label`. `prefix`, `suffix` og ikonet er visuelle og blir ikke en del av navnet. Uten `label` må du sende `aria-label` (som søkefeltet i eksempelet).
 - **Beskrivelse.** `hint`, eller `error` når det er en, får id-en `${id}-hint`, og feltets `aria-describedby` peker på den. Din egen `aria-describedby` beholdes i tillegg (testet).
 - **Feil.** `error` setter `aria-invalid="true"`, bytter kanten til `--danger` og leses opp når den dukker opp (`role="alert"`); en `hint` har ingen rolle (testet, WCAG 4.1.3).
 - **Tastatur.** Nettleserens. Ikke noe eget. `mode` velger tastaturet på telefonen (`inputMode`); `number` og `decimal` er tekstfelt med talltastatur, så verdien ikke endres av musehjulet og skjermleseren leser det som et vanlig felt.
-- **Passord.** `mode="password"` legger en knapp i enden av feltet, en IconButton (24, 30 eller 38 px etter `size`, aldri under 24) med `aria-pressed` og navnet «Vis passord» (`passwordToggleLabel`), som bytter `type` til `text` og tilbake; verdien beholdes. Knappen har sin egen fokusring; mens den har fokus (mus eller tastatur) tegner ramma ingen ring og beholder hvilekanten, eller `--danger`-kanten ved feil. `passwordToggle={false}` tar den bort (testet, `tests/input-modes.e2e.test.mjs`).
+- **Passord.** `mode="password"` legger en knapp i enden av feltet, en IconButton (24, 30 eller 38 px etter `size`, aldri under 24) med `aria-pressed` og navnet «Vis passord» (`passwordToggleLabel`), som bytter `type` til `text` og tilbake; verdien beholdes. Knappen har sin egen fokusring; mens den har fokus (mus eller tastatur) tegner ramma ingen ring og beholder hvilekanten, eller `--danger`-kanten ved feil. `passwordToggle={false}` tar den bort (testet).
+- **Tegnteller.** `count` med `maxLength` viser «12 av 200» under feltet, koblet med `aria-describedby`, advarer fra 90 % og gjør feltet ugyldig over grensen uten å stoppe skrivingen; skjermlesere hører det gjenstående antallet når skrivingen har stoppet i ett sekund. Detaljene står under [Textarea](Textarea.nb.md#tilgjengelighet), som har samme teller (testet på begge i nettleseren).
 - **Fokus.** Ramma får `--border-focus`-kant og en 2 px `outline` i `--focus-color` når feltet har fokus (`:focus-within`); med feil er outlinen `--danger`. Selve feltet har ingen egen ring.
-- **Kontrast.** Kanten er `--border-control`, minst 3:1 mot flatene (`tests/focus.test.mjs`, `tests/contrast.test.mjs`). Teksten er `--fg-1`, plassholder og hjelpetekst `--fg-3` (4,5:1 på `--bg`, `--surface-1` og `--surface-2`), feil `--danger-fg`.
+- **Kontrast.** Kanten er `--border-control`, minst 3:1 mot flatene (testet). Teksten er `--fg-1`, plassholder og hjelpetekst `--fg-3` (4,5:1 på `--bg`, `--surface-1` og `--surface-2`), feil `--danger-fg`.
 - **Tilstand.** `disabled` gir `disabled` på feltet, 55 % gjennomsiktighet, `--surface-2` og ingen pekerhendelser.
 - **Mål.** 30, 38 eller 46 px høy etter `size`.
 - **Bevegelse.** Kant og skygge går over på `--dur-fast`, 0 under redusert bevegelse.

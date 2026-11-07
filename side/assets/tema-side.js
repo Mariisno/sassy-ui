@@ -1,5 +1,5 @@
 // The theme builder: tokens/tema.js in the browser, a preview on real components, the report and the export.
-import { lagTema, tilCss, tilDtcg, FORHÅNDSOPPSETT, oppsummer, grupperAdvarsler } from '/sussi-ui/sussi/tokens/tema.js';
+import { lagTema, tilCss, tilDtcg, FORHÅNDSOPPSETT, oppsummer, grupperAdvarsler } from '/sassy-ui/sassy/tokens/tema.js';
 
 const tekst = JSON.parse(document.getElementById('tema-tekst').textContent);
 const $ = (id) => document.getElementById(id);
@@ -41,8 +41,8 @@ function valg() {
 
 function kommando(v) {
   const q = (s) => '"' + s + '"';
-  if (v.preset) return 'npx sussi-tema --preset ' + v.preset;
-  let s = 'npx sussi-tema --aksent ' + q(v.aksent) + ' --navn ' + v.navn;
+  if (v.preset) return 'npx sassy-tema --preset ' + v.preset;
+  let s = 'npx sassy-tema --aksent ' + q(v.aksent) + ' --navn ' + v.navn;
   if (v.mørkAksent) s += ' --morkAksent ' + q(v.mørkAksent);
   if (v.overstyr) {
     const l = Object.keys(v.overstyr.light).length, d = Object.keys(v.overstyr.dark).length;
@@ -105,15 +105,15 @@ function lastKnapp(ok) {
   last.classList.toggle('s-btn--secondary', !ok);
   $('tema-last-css-tekst').textContent = ok ? tekst.lastCss : tekst.lastLikevel;
 }
-// While a field holds something that is not a colour, the verdict says it is waiting: the report, the CSS and the
-// command below still show the previous theme.
-function tomDom() {
+// While a field holds something that is not a colour (or a name that is not a name), the verdict says what it is waiting
+// for: the report, the CSS and the command below still show the previous theme, so they are dimmed and marked (utdatert).
+function tomDom(el) {
   const d = $('tema-dom');
   d.hidden = false;
   d.className = 'tema-dom tema-dom--venter';
   delete d.dataset.ok;
   $('tema-dom-farger').textContent = '';
-  $('tema-dom-tekst').textContent = tekst.venter;
+  $('tema-dom-tekst').textContent = el === felt.navn ? tekst.venterNavn : tekst.venter;
   $('tema-advarsler').innerHTML = '';
   merk(new Set());
   lastKnapp(true);
@@ -143,6 +143,17 @@ function skjulFeil() {
   feilFelt.closest('.s-control').classList.remove('s-control--invalid');
   feilFelt = null;
 }
+// The command, the CSS, the JSON and the two snippets: dimmed, with a dashed edge and the note before them, while they show
+// the previous theme. The note is the code blocks' description, so a screen reader that lands on one hears it.
+const KODER = ['tema-kommando', 'tema-css', 'tema-json', 'tema-bruk-cdn', 'tema-bruk-npm'];
+function utdatert(paa) {
+  $('tema-utdatert').hidden = !paa;
+  for (const id of KODER) {
+    const pre = $(id).closest('pre'), boks = pre.closest('.side-kode');
+    for (const el of [pre, boks]) if (el) { if (paa) el.dataset.utdatert = ''; else delete el.dataset.utdatert; }
+    if (paa) pre.setAttribute('aria-describedby', 'tema-utdatert'); else pre.removeAttribute('aria-describedby');
+  }
+}
 $('tema-advarsler').addEventListener('click', (e) => {
   const a = e.target.closest('a[data-felt]');
   if (!a) return;
@@ -154,20 +165,21 @@ $('tema-advarsler').addEventListener('click', (e) => {
 
 function bygg() {
   let v;
-  try { v = valg(); tema = lagTema(v); } catch (e) { tomDom(); visFeil(e.felt, e.message); return; }
+  try { v = valg(); tema = lagTema(v); } catch (e) { tomDom(e.felt); visFeil(e.felt, e.message); utdatert(Boolean(tema)); return; }
   skjulFeil();
+  utdatert(false);
   const css = tilCss(tema);
   $('tema-css').textContent = css;
   $('tema-json').textContent = JSON.stringify(tilDtcg(tema), null, 2);
   $('tema-kommando').textContent = kommando(v);
   $('tema-bruk-cdn').textContent = '<link rel="stylesheet" href="' + $('tema-bruk-cdn').dataset.cdn + '">\n<link rel="stylesheet" href="' + tema.navn + '.css">\n<html data-theme="light" data-tema="' + tema.navn + '">';
-  $('tema-bruk-npm').textContent = "import 'sussi/styles.css';\nimport './" + tema.navn + ".css';";
+  $('tema-bruk-npm').textContent = "import 'sassy/styles.css';\nimport './" + tema.navn + ".css';";
   // The preview panels are .tema-lys and .tema-mork whatever the page's theme is, so the theme is written for those selectors.
   stil.textContent = tilCss(tema, { selector: '.tema-lys', darkSelector: '.tema-mork' });
   rapport(tema);
   dom(tema);
   document.querySelectorAll('[data-preset]').forEach((b) => b.setAttribute('aria-pressed', v.preset === b.dataset.preset ? 'true' : 'false'));
-  window.sussiTema = tema;
+  window.sassyTema = tema;
 }
 
 function lastNed(navn, innhold, type) {
@@ -199,7 +211,7 @@ bygg();
 
 // The preview: real components from the global build, React from unpkg. Both are classic scripts with defer, so they are
 // in place by the time a module runs; without them (offline, or a build without dist/) the rest of the page still works.
-const S = window["SussiDesignSystem_a2c9b8"];
+const S = window["SassyDesignSystem_a2c9b8"];
 const R = window.React, RD = window.ReactDOM;
 if (!S || !R || !RD) {
   $('tema-forhand-mangler').hidden = false;

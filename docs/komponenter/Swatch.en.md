@@ -3,8 +3,8 @@ name: Swatch
 group: display
 status: stable
 since: 0.4.0
-kort: components/display/swatch.card.html
-typer: components/display/Swatch.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/swatch/
+typer: dist/display/Swatch.d.ts
 ---
 
 # Swatch
@@ -40,7 +40,7 @@ A colour dot: the colour of a garment, a flower, a project. Without `onClick` it
 ## Example
 
 ```jsx
-import { Swatch, ListItem } from 'sussi/components';
+import { Swatch, ListItem } from 'sassy/components';
 
 <Swatch color="#1F3A5F" label="Navy" />
 <div role="group" aria-label="Colour">
@@ -51,7 +51,7 @@ import { Swatch, ListItem } from 'sussi/components';
 
 ## Props
 
-The types are in `components/display/Swatch.d.ts`. The card, shared with ScrollRow: `components/display/swatch.card.html`.
+The types are in `dist/display/Swatch.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/swatch/).
 
 <!-- props: SwatchProps -->
 | Prop | Type | Default | Description |
@@ -68,7 +68,7 @@ Plus every attribute of the element it renders as (`React.HTMLAttributes<HTMLEle
 
 ## Accessibility
 
-The behaviour is tested in `tests/nye.e2e.test.mjs`.
+The behaviour is tested in a browser.
 
 - **Element and role.** Without `onClick`: a `<span>` with `role="img"` and `aria-label` when `label` is given, otherwise `aria-hidden="true"`. With `onClick`: a `<button type="button">` with `aria-label` and `title` equal to `label`, and `aria-pressed` when `pressed` is set (`true`/`false`), otherwise no `aria-pressed`.
 - **Name.** `label`.

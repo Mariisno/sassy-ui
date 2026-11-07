@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://mariisno.github.io/sussi-ui/sitemap.xml
+Sitemap: https://mariisno.github.io/sassy-ui/sitemap.xml

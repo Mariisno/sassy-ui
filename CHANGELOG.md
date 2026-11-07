@@ -1,14 +1,54 @@
 # Changelog
 
-What changed in each version of Sussi. New entries go under `## Unreleased`; a release moves them under its version and date. Versions follow semver: while Sussi is 0.x, a minor version may break (after a deprecation, see `CONTRIBUTING.md`) and a patch only fixes and adds.
+What changed in each version of Sassy. New entries go under `## Unreleased`; a release moves them under its version and date. Versions follow semver: while Sassy is 0.x, a minor version may break (after a deprecation, see `CONTRIBUTING.md`) and a patch only fixes and adds.
 
 ## Unreleased
 
+## 0.11.0 · 07.11.2026
+
+New `Heading` and `Text` components, the screen reader helper `kunngjor`, a character count on `Input` and `Textarea`, and `duration` on `Toast`. The repository has moved to Mariisno/sassy-ui, with the documentation site at https://mariisno.github.io/sassy-ui/; the package is still `sassy`. Minor because of the new components and one changed field: a rule in `REGLER` in `sassy/tema` has `testet: true` where it had `kilde`. Nothing is renamed or removed in the components, the CSS or the tokens, so an app on 0.10.0 updates by changing the version and the repo name in its links.
+
+- **Changed** the repository is Mariisno/sassy-ui and the documentation site https://mariisno.github.io/sassy-ui/. The package name stays `sassy`: imports, `sassy-tema` and the file names do not change. Install with `npm install github:Mariisno/sassy-ui#v0.11.0`; the CDN is `https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/…`. The links in the notes for 0.10.0 now name the repo by this name too.
+
+- **Changed** the repository ships the built package, the docs and the docs site; the component sources stay in the working repository. It has `dist/` (the compiled components with their `.d.ts`), `styles.css` with `tokens/` and `components/components.css`, the fonts and icons, `docs/`, the site in `side/`, the theme CLI and the project files. The `.jsx` sources, the `.prompt.md` files, the specimen cards and `guidelines/` are no longer in it; the cards and the foundation pages are on the documentation site. `sassy`, `sassy/components` and `sassy/components/*` already pointed at `dist/`, so imports do not change. The docs name the types in `dist/` and link a component's live example on the site.
+
+- **Fixed** the Kunngjor and Dato cards on the documentation site, which did nothing because the helper they import was missing.
+
+- **Changed** on the documentation site: «Ny» marks only what came in the last two minor versions, and a component that is not released yet says «in the next release». The search finds the new components by more words (announce, counter, duration, validation, and Norwegian ones) and puts a page whose title matches first. On a phone the menu opens at the current page. The home page has the npm line as a block to copy.
+
+- **Changed** the theme builder: an invalid name says it is the name it waits for, and while a field is invalid the command and the snippets are dimmed and marked as for the previous theme. The presets have Norwegian names on the Norwegian page.
+
+- **Changed** the Toast card shows a toast that goes by itself after 6 seconds, beside one with Undo, and follows the page's language.
+
+- **Added** the icon `volume-x`.
+
+- **Added** `Heading` and `Text`. `Heading` takes `level` 1–6, which picks `<h1>`–`<h6>`, and an optional `size` that picks the look from the type roles, so the page outline and the look are separate. `Text` takes `as`, `size` (`body`, `sm`, `lead`, `meta`), `tone` (`default`, `muted`, `subtle`) and `mono`; every tone holds 4.5:1 on the page and the first two surfaces in both themes and every accent. The classes `.s-h1`–`.s-h4`, `.s-display` and `.s-text--…` give the same looks without React. Not breaking.
+
+- **Added** the helper `Kunngjor`: `kunngjor(melding, { haster })` announces a message to screen readers through one visually hidden live region per kind, polite by default and assertive with `haster`. The region is created on the first call and stays; a repeat is read again; it moves into an open modal dialog. Safe to import on a server. Not breaking.
+
+- **Added** a character count on `Input` and `Textarea`: `count` with `maxLength` shows «12 av 200» («12 of 200» with `countLang="en"`) under the field, warns from 90 % and marks the field invalid past the limit, without stopping the typing. Screen readers hear the count left once typing pauses, not on every key. Without `count` nothing changes. Not breaking.
+
+- **Added** `duration` on `Toast`, so a toast can go by itself. Still no timer by default. At least 5 seconds, paused on hover, on focus and while the page is hidden; a toast with an action ignores it and stays until it is handled or dismissed. The Toast docs show delete and undo. Not breaking.
+
+- **Added** English versions of the getting-started examples in `docs/eksempler/en/`; the English guide embeds and downloads them.
+
+- **Changed** on a phone the documentation site's menu folds each component group, open only for the current page's group.
+
+- **Changed** the Button, Alert and SegmentedControl cards follow the page's language, like the Dialog card.
+
+- **Changed** the docs no longer point at test files and scripts that are not in this repository; they say what is tested instead. A rule in `REGLER` in `tokens/tema.js` says `testet: true` instead of naming a test in `kilde`.
+
+## 0.10.0 · 05.11.2026
+
+A new name. Minor because the package name changes, and with it every import, the install line and the CDN links. Nothing else changes: the same components, tokens and CSS, so an app moves over by swapping the name.
+
+- **Changed** renamed from Sussi to Sassy: the package is `sassy`, the repo Mariisno/sassy-ui, and the documentation site https://mariisno.github.io/sassy-ui/. Imports are `'sassy'`, `'sassy/components'`, `'sassy/styles.css'`, `'sassy/tema'` and `'sassy/tokens.json'`; install with `npm install github:Mariisno/sassy-ui#v0.10.0`, and the CDN is `https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.10.0/…`. The theme CLI is `sassy-tema`, the tokens are `tokens/sassy.tokens.json` (their DTCG extensions are under `no.sassy`), the browser builds are `dist/sassy.browser.js` and `dist/sassy.global.js`, and the global the cards read is `SassyDesignSystem_a2c9b8`. Change the name in your imports, `package.json` and links; the entries below use the new names. The mascot is still Sussi: the `Sussi` component and its props, `sussiPoses`, `sussiPoseNames`, the `--sussi-*` tokens, the `.s-sussi` class and the credit «Sussi the cat by Mari Notland» keep their names.
+
 ## 0.9.0 · 05.11.2026
 
-Fixes from a walk-through as a new user. Headings `h1`–`h4` now take Sussi's type roles, inputs are 16 px on touch screens so phones do not zoom, and a loading Button keeps its focus. Minor because two things apps can notice changed: bare headings get Sussi's sizes (a class or inline style still wins), and `loading` sets `aria-disabled` instead of `disabled`, so a test that looks for `disabled` on a loading button must look for `aria-disabled`. The documentation site is easier to use on a phone and with the keyboard.
+Fixes from a walk-through as a new user. Headings `h1`–`h4` now take Sassy's type roles, inputs are 16 px on touch screens so phones do not zoom, and a loading Button keeps its focus. Minor because two things apps can notice changed: bare headings get Sassy's sizes (a class or inline style still wins), and `loading` sets `aria-disabled` instead of `disabled`, so a test that looks for `disabled` on a loading button must look for `aria-disabled`. The documentation site is easier to use on a phone and with the keyboard.
 
-- **Changed** plain `h1`–`h4` elements get Sussi's type roles from the tokens (`--type-h1`, `--type-h2`, `--type-h3`, and semibold `--text-md` for `h4`), so an `<h1>` looks like Sussi without a class. The rule has no specificity, so any class or inline `font` still wins. Visible in an app that relied on the browser's heading sizes.
+- **Changed** plain `h1`–`h4` elements get Sassy's type roles from the tokens (`--type-h1`, `--type-h2`, `--type-h3`, and semibold `--text-md` for `h4`), so an `<h1>` looks like Sassy without a class. The rule has no specificity, so any class or inline `font` still wins. Visible in an app that relied on the browser's heading sizes.
 
 - **Fixed** Input, Select and Textarea use 16 px text on touch screens, so iOS Safari no longer zooms the page in when a field gets focus. With a mouse they stay at 14 px. Not breaking.
 
@@ -16,13 +56,13 @@ Fixes from a walk-through as a new user. Headings `h1`–`h4` now take Sussi's t
 
 - **Fixed** the ListItem docs now point to Disclosure for a row that expands, and the Button docs say the `loading` spinner pulses under reduced motion. Full stops in the English Button prop descriptions.
 
-- **Changed** the documentation site. The Dialog example works on phones and starts closed with an «Open dialog» button; Esc and its buttons close it and focus goes back. Examples get as tall as their content, so nothing is cut off on a phone. The sidebar scrolls to the page you are on. The components overview shows plain text instead of Markdown links, and says that `sussi` and `sussi/components` are the same file. A one-line code block wraps instead of hiding the end of the line. The theme builder shows an invalid colour or name under its own field, says it is waiting for a valid colour instead of hiding the verdict, and ends with a snippet to copy for a CDN and for npm, filled in with your theme's name. Search: the arrow keys move between the results and back to the field, Esc returns to the field, and common words find the right page (varsel, dropdown, modal, dark mode, knapp, fane). Links that open a new tab say so to screen readers, and the accents on the home page carry their code names.
+- **Changed** the documentation site. The Dialog example works on phones and starts closed with an «Open dialog» button; Esc and its buttons close it and focus goes back. Examples get as tall as their content, so nothing is cut off on a phone. The sidebar scrolls to the page you are on. The components overview shows plain text instead of Markdown links, and says that `sassy` and `sassy/components` are the same file. A one-line code block wraps instead of hiding the end of the line. The theme builder shows an invalid colour or name under its own field, says it is waiting for a valid colour instead of hiding the verdict, and ends with a snippet to copy for a CDN and for npm, filled in with your theme's name. Search: the arrow keys move between the results and back to the field, Esc returns to the field, and common words find the right page (varsel, dropdown, modal, dark mode, knapp, fane). Links that open a new tab say so to screen readers, and the accents on the home page carry their code names.
 
 ## 0.8.0 · 04.11.2026
 
 A getting-started guide, a theme builder that says what it did with your colour and what to change when a theme does not hold, a docs site that is easier to use on a phone and with the keyboard, and neutral demo text. Minor because `tokens/tema.js` gains `oppsummer` and `grupperAdvarsler`. Nothing renamed or removed, so apps on 0.7.x sync without changes.
 
-- **Added** `oppsummer(tema)` and `grupperAdvarsler(tema)` in `tokens/tema.js` (`sussi/tema`): one sentence, Norwegian and English, on what the engine did with your colour, and for a theme that is not OK what to change, grouped by cause, with the nearest value that holds. A suggested value keeps every other pair of its field holding, against the engine's derived colours too, so taking it never breaks a pair that held. One bullet per value you set, with pairs counted once and no suggestions that contradict each other; `lagTema` also returns `låst`, what did not move in each mode and why. The report names the two tokens of each measured pair (`målt[].par`), and the warnings say «Lys modus:» / "Light mode:" instead of `light:`. `sussi-tema` names the tightest pair in English and prints `TO FIX` / `SLIK RETTER DU` for a theme that is not OK. Not breaking.
+- **Added** `oppsummer(tema)` and `grupperAdvarsler(tema)` in `tokens/tema.js` (`sassy/tema`): one sentence, Norwegian and English, on what the engine did with your colour, and for a theme that is not OK what to change, grouped by cause, with the nearest value that holds. A suggested value keeps every other pair of its field holding, against the engine's derived colours too, so taking it never breaks a pair that held. One bullet per value you set, with pairs counted once and no suggestions that contradict each other; `lagTema` also returns `låst`, what did not move in each mode and why. The report names the two tokens of each measured pair (`målt[].par`), and the warnings say «Lys modus:» / "Light mode:" instead of `light:`. `sassy-tema` names the tightest pair in English and prints `TO FIX` / `SLIK RETTER DU` for a theme that is not OK. Not breaking.
 
 - **Changed** the documentation site: the theme builder says under the accent field what happened to your colour, and when a theme is not OK what to change and to what, with a link to the field; copy buttons on every code block; anchors clear the sticky header; a two-row header on phones; the guide's examples follow dark mode; «På denne siden» on the guide and the content page; a shorter quick start on the home page; English browsers land on the English pages; Esc closes the mobile menu; search covers the text under every heading. The guide explains its jargon at first use and folds the guarantee into a disclosure.
 
@@ -59,11 +99,11 @@ Eleven new components and a date helper, so the common form, feedback and naviga
 The first public version.
 
 - **Added** `Menu` and `Popover`: a non-modal panel anchored to a button, placed below or above with a flip when it does not fit, focus in and back, Esc and a click outside to close, and an optional `portal`. `Menu` is the WAI-ARIA menu button pattern on top of it (arrow keys, Home and End, type-ahead, checkable items, groups, separators, a danger item).
-- **Added** the theme engine, `sussi/tema` (`tokens/tema.js`), and its CLI `sussi-tema`: one accent colour in, a full theme for light and dark out, with the contrast rules the built-in accents follow checked and reported, your own surfaces and text with `overstyr`, and CSS (`tilCss`) or DTCG JSON (`tilDtcg`) out.
-- **Added** the tokens as JSON in the W3C Design Tokens Community Group format, `tokens/sussi.tokens.json` (`sussi/tokens.json`), generated from `tokens/*.css`.
+- **Added** the theme engine, `sassy/tema` (`tokens/tema.js`), and its CLI `sassy-tema`: one accent colour in, a full theme for light and dark out, with the contrast rules the built-in accents follow checked and reported, your own surfaces and text with `overstyr`, and CSS (`tilCss`) or DTCG JSON (`tilDtcg`) out.
+- **Added** the tokens as JSON in the W3C Design Tokens Community Group format, `tokens/sassy.tokens.json` (`sassy/tokens.json`), generated from `tokens/*.css`.
 - **Added** `--danger-fg-on`, the text on a `--danger` fill. The danger button uses it and looks the same.
 - **Added** documentation for every component in Norwegian and English (`docs/komponenter/`), with props tables, accessibility notes and content guidance, the content guidelines (`docs/innhold.nb.md`, `docs/content.en.md`) and a documentation site with a theme builder.
-- **Added** the compiled package: ESM per component with types in `dist/`, a one-file browser build (`sussi/browser`) and a global build for the specimen cards.
+- **Added** the compiled package: ESM per component with types in `dist/`, a one-file browser build (`sassy/browser`) and a global build for the specimen cards.
 - **Added** licences and project files: MIT for the code, CC BY 4.0 for the mascot drawings, OFL for the fonts, ISC for the icons (`LICENSES.md`), and `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md` and `SECURITY.md`.
 
 Earlier versions (0.1 to 0.5) were private and are not listed here.

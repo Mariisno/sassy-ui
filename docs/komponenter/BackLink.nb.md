@@ -3,8 +3,8 @@ navn: BackLink
 gruppe: navigation
 status: new
 sidenVersjon: 0.7.0
-kort: components/navigation/backlink.card.html
-typer: components/navigation/BackLink.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/backlink/
+typer: dist/navigation/BackLink.d.ts
 ---
 
 # BackLink
@@ -41,7 +41,7 @@ typer: components/navigation/BackLink.d.ts
 ## Eksempel
 
 ```jsx
-import { BackLink } from 'sussi/components';
+import { BackLink } from 'sassy/components';
 import { Link as RouterLink } from 'react-router-dom';
 
 <BackLink href="/planter" />
@@ -52,7 +52,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 ## Props
 
-Typene står i `components/navigation/BackLink.d.ts`. Kortet: `components/navigation/backlink.card.html`.
+Typene står i `dist/navigation/BackLink.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/backlink/).
 
 <!-- props: BackLinkProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -70,11 +70,11 @@ Resten av [Link](Link.nb.md) sine props går gjennom, unntatt `variant`, `extern
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/backlink.e2e.test.mjs`, reglene i `tests/backlink.test.mjs`; fargen er Link sin (`tests/link.test.mjs`).
+Oppførselen er testet i nettleseren, reglene i enhetstester; fargen er Link sin (testet).
 
 - **Element og rolle.** En `<a href>` fra Link, rolle `link` fra elementet. Med `as` er det det ruteren rendrer (testet). Ingen rolle legges til.
 - **Navn.** Nøyaktig lenketeksten, «Tilbake» eller den du gir, ingenting mer: `getByRole('link', { name: 'Tilbake', exact: true })` finner den (testet). Chevronen er `aria-hidden` (testet). Ingen skjult tekst om ny fane: `target` er ikke en prop.
-- **Tastatur og fokus.** Tab og Enter som en lenke. Fokusringen er Sussis `:focus-visible` med `--radius-xs` på hjørnene (testet). `ref` når `<a>` (testet).
+- **Tastatur og fokus.** Tab og Enter som en lenke. Fokusringen er Sassys `:focus-visible` med `--radius-xs` på hjørnene (testet). `ref` når `<a>` (testet).
 - **Kontrast.** `--accent-text` holder 4,5:1 på `--bg`, `--surface-1` og `--surface-2` i begge temaer og alle seks aksenter, og det gjør `--accent-hover` også (testet rendret). Understreken skiller lenka fra teksten rundt uten farge (WCAG 1.4.1). Kjent grense: ikke på `--surface-3` og `--accent-soft`.
 - **Treffflate.** Minst 24 px høy (WCAG 2.5.8, testet), som Link `standalone`.
 - **Bevegelse.** Ingen; fargen toner på `--dur-fast`.

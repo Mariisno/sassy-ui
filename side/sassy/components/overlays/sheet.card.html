@@ -1,0 +1,24 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Sheet" subtitle="Dialog variant=sheet: rises from the bottom, body scrolls inside" -->
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Sheet</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../dist/sassy.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}.frame{position:relative;height:380px;border-radius:14px;overflow:hidden;background:var(--surface-2)}.stack{display:grid;gap:12px}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const S = window.SassyDesignSystem_a2c9b8;
+const { Dialog, Button, Input, Select } = S;
+// The sheet inside a frame (inline), as the kits show it. On a phone it is the full width; here it is capped at 560 px and centred.
+function App(){return (<div className="frame">
+<Dialog inline variant="sheet" closeLabel="Close" title="Log a session" description="A session you did outside the app." onClose={()=>{}}
+  footer={<><Button variant="ghost">Cancel</Button><Button>Save session</Button></>}>
+  <div className="stack">
+    <Input label="Minutes" defaultValue="30" inputMode="numeric" />
+    <Select label="Kind" defaultValue="watering" options={[{value:'watering',label:'Watering'},{value:'weeding',label:'Weeding'},{value:'harvest',label:'Harvest'}]} />
+    <Input label="Title" hint="Optional" placeholder="Evening watering" />
+  </div>
+</Dialog>
+</div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

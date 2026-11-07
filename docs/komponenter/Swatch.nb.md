@@ -3,8 +3,8 @@ navn: Swatch
 gruppe: display
 status: stable
 sidenVersjon: 0.4.0
-kort: components/display/swatch.card.html
-typer: components/display/Swatch.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/swatch/
+typer: dist/display/Swatch.d.ts
 ---
 
 # Swatch
@@ -40,7 +40,7 @@ En fargeprikk: fargen på et plagg, en blomst, et prosjekt. Uten `onClick` er de
 ## Eksempel
 
 ```jsx
-import { Swatch, ListItem } from 'sussi/components';
+import { Swatch, ListItem } from 'sassy/components';
 
 <Swatch color="#1F3A5F" label="Marineblå" />
 <div role="group" aria-label="Farge">
@@ -51,7 +51,7 @@ import { Swatch, ListItem } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/display/Swatch.d.ts`. Kortet, delt med ScrollRow: `components/display/swatch.card.html`.
+Typene står i `dist/display/Swatch.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/swatch/).
 
 <!-- props: SwatchProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -68,7 +68,7 @@ Pluss alle attributtene til elementet den rendres som (`React.HTMLAttributes<HTM
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/nye.e2e.test.mjs`.
+Oppførselen er testet i nettleseren.
 
 - **Element og rolle.** Uten `onClick`: et `<span>` med `role="img"` og `aria-label` når `label` er gitt, ellers `aria-hidden="true"`. Med `onClick`: en `<button type="button">` med `aria-label` og `title` lik `label`, og `aria-pressed` når `pressed` er satt (`true`/`false`), ellers ingen `aria-pressed`.
 - **Navn.** `label`.

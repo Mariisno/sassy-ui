@@ -3,8 +3,8 @@ name: BackLink
 group: navigation
 status: new
 since: 0.7.0
-kort: components/navigation/backlink.card.html
-typer: components/navigation/BackLink.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/backlink/
+typer: dist/navigation/BackLink.d.ts
 ---
 
 # BackLink
@@ -41,7 +41,7 @@ typer: components/navigation/BackLink.d.ts
 ## Example
 
 ```jsx
-import { BackLink } from 'sussi/components';
+import { BackLink } from 'sassy/components';
 import { Link as RouterLink } from 'react-router-dom';
 
 <BackLink href="/plants">Back</BackLink>
@@ -52,7 +52,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 ## Props
 
-The types are in `components/navigation/BackLink.d.ts`. The card: `components/navigation/backlink.card.html`.
+The types are in `dist/navigation/BackLink.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/backlink/).
 
 <!-- props: BackLinkProps -->
 | Prop | Type | Default | Description |
@@ -70,11 +70,11 @@ The rest of [Link](Link.en.md)'s props pass through, except `variant`, `external
 
 ## Accessibility
 
-The behaviour is tested in `tests/backlink.e2e.test.mjs`, the rules in `tests/backlink.test.mjs`; the colour is Link's (`tests/link.test.mjs`).
+The behaviour is tested in a browser, the rules in unit tests; the colour is Link's (tested).
 
 - **Element and role.** An `<a href>` from Link, role `link` from the element. With `as` it is what the router renders (tested). No role is added.
 - **Name.** Exactly the link text, «Tilbake» or the one you give, nothing more: `getByRole('link', { name: 'Tilbake', exact: true })` finds it (tested). The chevron is `aria-hidden` (tested). No hidden new-tab text: `target` is not a prop.
-- **Keyboard and focus.** Tab and Enter like a link. The focus ring is Sussi's `:focus-visible` with `--radius-xs` corners (tested). The ref reaches the `<a>` (tested).
+- **Keyboard and focus.** Tab and Enter like a link. The focus ring is Sassy's `:focus-visible` with `--radius-xs` corners (tested). The ref reaches the `<a>` (tested).
 - **Contrast.** `--accent-text` holds 4.5:1 on `--bg`, `--surface-1` and `--surface-2` in both themes and all six accents, and so does `--accent-hover` (tested as rendered). The underline tells the link from the text around it without colour (WCAG 1.4.1). Known limit: not on `--surface-3` and `--accent-soft`.
 - **Target size.** At least 24 px tall (WCAG 2.5.8, tested), like Link `standalone`.
 - **Motion.** None; the colour fades on `--dur-fast`.

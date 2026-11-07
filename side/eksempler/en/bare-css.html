@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-accent="moss">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sassy, CSS only</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/styles.css">
+<style>main{max-width:480px;margin:0 auto;padding:24px 16px;display:grid;gap:16px}</style>
+</head>
+<body>
+<main>
+  <h1>Garden log</h1>
+  <p>Tokens, fonts and the <code>.s-*</code> classes from one CSS file. Change <code>data-theme</code> and <code>data-accent</code> on <code>&lt;html&gt;</code>.</p>
+  <div class="s-field">
+    <label class="s-field__label" for="plante">Plant</label>
+    <div class="s-control"><input id="plante" class="s-control__input" type="text" placeholder="Tomato" aria-describedby="plante-hint"></div>
+    <span class="s-field__hint" id="plante-hint">What it says on the seed packet.</span>
+  </div>
+  <p>
+    <button type="button" class="s-btn s-btn--primary">Save</button>
+    <button type="button" class="s-btn s-btn--secondary">Cancel</button>
+  </p>
+  <p><span class="s-badge s-badge--accent">New</span> <span class="s-badge">Sown</span></p>
+</main>
+</body>
+</html>

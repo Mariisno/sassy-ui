@@ -3,8 +3,8 @@ name: Checkbox
 group: controls
 status: stable
 since: 0.2.0
-kort: components/controls/controls.card.html
-typer: components/controls/Checkbox.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/checkbox/
+typer: dist/controls/Checkbox.d.ts
 ---
 
 # Checkbox
@@ -42,7 +42,7 @@ A checkbox for independent yes/no choices and task lists. A native `<input type=
 ## Example
 
 ```jsx
-import { Checkbox } from 'sussi/components';
+import { Checkbox } from 'sassy/components';
 
 <Checkbox label="Write test plan" defaultChecked />
 <Checkbox label="Email me a weekly summary" description="Mondays, 08:00" checked={weekly} onChange={(e) => setWeekly(e.target.checked)} />
@@ -51,7 +51,7 @@ import { Checkbox } from 'sussi/components';
 
 ## Props
 
-The types are in `components/controls/Checkbox.d.ts`. The card with Checkbox, Radio and Switch: `components/controls/controls.card.html`.
+The types are in `dist/controls/Checkbox.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/checkbox/).
 
 <!-- props: CheckboxProps -->
 | Prop | Type | Default | Description |
@@ -63,7 +63,7 @@ The types are in `components/controls/Checkbox.d.ts`. The card with Checkbox, Ra
 Plus every attribute of `<input>` (`React.InputHTMLAttributes<HTMLInputElement>`), except `type`.
 <!-- /props -->
 
-`ref` reaches the native `<input>`, and `indeterminate` still works when the app has its own `ref` (`tests/refs.e2e.test.mjs`).
+`ref` reaches the native `<input>`, and `indeterminate` still works when the app has its own `ref` (tested).
 
 ## Accessibility
 
@@ -72,7 +72,7 @@ Plus every attribute of `<input>` (`React.InputHTMLAttributes<HTMLInputElement>`
 - **Keyboard.** Space toggles, like any checkbox. Nothing of its own.
 - **State.** `checked` and `indeterminate` on the native input (`indeterminate` is set as a property in an effect). Checked fills the box with `--accent` and shows a tick in `--accent-fg`; `indeterminate` shows a dash. `disabled` gives 50% opacity and `not-allowed`.
 - **Focus.** The box gets a 2 px `outline` in `--focus-color` with a 2 px offset when the input has keyboard focus (`.s-check__input:focus-visible + .s-check__box`).
-- **Contrast.** The box edge is `--border-control`, held at 3:1 or more against `--bg`, `--surface-1` and `--surface-2` in both themes and every accent (`tests/contrast.test.mjs`, `tests/focus.test.mjs`). The tick is `--accent-fg` on `--accent`, 4.5:1.
+- **Contrast.** The box edge is `--border-control`, held at 3:1 or more against `--bg`, `--surface-1` and `--surface-2` in both themes and every accent (tested). The tick is `--accent-fg` on `--accent`, 4.5:1.
 - **Motion.** The fill and the tick transition on `--dur-fast`, 0 under reduced motion.
 - **Target.** The box is 18 px; the click target is the whole label (box plus text, about 22 px tall). Known limit: under 44 px on touch. Give the row room in the app when it sits in a list for fingers.
 - **Built-in text.** None.

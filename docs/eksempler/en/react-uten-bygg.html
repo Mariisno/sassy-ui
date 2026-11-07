@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-accent="fjord">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sassy with no build step</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://cdn.jsdelivr.net/npm/react@18.3.1/+esm",
+    "react/jsx-runtime": "https://cdn.jsdelivr.net/npm/react@18.3.1/jsx-runtime/+esm",
+    "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm",
+    "react-dom/client": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/client/+esm",
+    "sassy": "https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/dist/sassy.browser.js"
+  }
+}
+</script>
+<style>main{max-width:480px;margin:0 auto;padding:24px 16px}</style>
+</head>
+<body>
+<main id="app"></main>
+<script type="module">
+import { createElement as h, Fragment, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Button, Dialog, Toast, ToastStack } from 'sassy';
+
+function App() {
+  const [open, setOpen] = useState(false);
+  const [slettet, setSlettet] = useState(false);
+  const slett = () => { setOpen(false); setSlettet(true); };
+  const byttTema = () => { const r = document.documentElement; r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark'; };
+  return h('div', { style: { display: 'grid', gap: 16 } },
+    h('h1', null, 'Garden log'),
+    h('p', null, 'The button opens a dialog. What the dialog does can be undone, so the answer comes as a toast.'),
+    h('p', { style: { display: 'flex', gap: 8, flexWrap: 'wrap' } },
+      h(Button, { variant: 'danger', iconLeft: 'trash-2', onClick: () => setOpen(true) }, 'Delete the bed'),
+      h(Button, { variant: 'secondary', iconLeft: 'moon', onClick: byttTema }, 'Light or dark')),
+    h(Dialog, {
+      open, onClose: () => setOpen(false), title: 'Delete the bed?', description: 'The tomatoes and the notes will be gone.', closeLabel: 'Close',
+      footer: h(Fragment, null,
+        h(Button, { variant: 'ghost', onClick: () => setOpen(false) }, 'Keep'),
+        h(Button, { variant: 'danger', onClick: slett }, 'Delete the bed')),
+    }, h('p', null, 'You can undo it from the toast afterwards.')),
+    h(ToastStack, null,
+      slettet && h(Toast, { tone: 'success', title: 'The bed is deleted', actionLabel: 'Undo', onAction: () => setSlettet(false), onClose: () => setSlettet(false), closeLabel: 'Dismiss' })));
+}
+
+createRoot(document.getElementById('app')).render(h(App));
+</script>
+</body>
+</html>

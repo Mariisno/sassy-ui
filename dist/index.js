@@ -1,4 +1,4 @@
-// Sussi 0.9.0. Built from components/; edit the source, not this file.
+// Sassy 0.11.0. Compiled from the component sources, which are not in this package; do not edit.
 import { Button } from "./buttons/Button.js";
 import { IconButton } from "./buttons/IconButton.js";
 import { FileButton } from "./buttons/FileButton.js";
@@ -12,6 +12,8 @@ import { ScrollRow, scrollEdges } from "./display/ScrollRow.js";
 import { Swatch } from "./display/Swatch.js";
 import { Tag } from "./display/Tag.js";
 import { Disclosure } from "./display/Disclosure.js";
+import { Heading } from "./display/Heading.js";
+import { Text } from "./display/Text.js";
 import { EmptyState } from "./feedback/EmptyState.js";
 import { Progress } from "./feedback/Progress.js";
 import { ErrorSummary } from "./feedback/ErrorSummary.js";
@@ -33,6 +35,7 @@ import { Link } from "./navigation/Link.js";
 import { BackLink } from "./navigation/BackLink.js";
 import { Stack } from "./layout/Stack.js";
 import { VisuallyHidden } from "./layout/VisuallyHidden.js";
+import { kunngjor } from "./utils/kunngjor.js";
 import { tilDato, tilIsoDato, erSammeDag, formatDato, formatTid, formatDatoTid, formatRelativ, formatTidsrom } from "./utils/dato.js";
 import { Dialog } from "./overlays/Dialog.js";
 import { Tooltip } from "./overlays/Tooltip.js";
@@ -54,6 +57,7 @@ export {
   Field,
   Fieldset,
   FileButton,
+  Heading,
   Icon,
   IconButton,
   Input,
@@ -76,6 +80,7 @@ export {
   TabPanel,
   Tabs,
   Tag,
+  Text,
   Textarea,
   Toast,
   ToastStack,
@@ -88,6 +93,7 @@ export {
   formatRelativ,
   formatTid,
   formatTidsrom,
+  kunngjor,
   oppdater,
   placePopover,
   scrollEdges,

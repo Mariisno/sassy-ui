@@ -3,13 +3,13 @@ navn: Card
 gruppe: display
 status: stable
 sidenVersjon: 0.2.0
-kort: components/display/display.card.html
-typer: components/display/Card.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/card/
+typer: dist/display/Card.d.ts
 ---
 
 # Card
 
-En flate som samler innhold som hører sammen. `outlined` som standard: `--surface-1`, en 1 px `--border` og 14 px hjørner, uten skygge, fordi kanter bærer struktur i Sussi og skygge bare betyr «løftet». `raised` bytter kanten med `--shadow-md` for ting som svever, `sunken` er `--surface-2` uten kant for brønner og sitater. Fire grader luft (none, sm 12, md 20, lg 32 px) og `interactive` for et kort som kan trykkes på.
+En flate som samler innhold som hører sammen. `outlined` som standard: `--surface-1`, en 1 px `--border` og 14 px hjørner, uten skygge, fordi kanter bærer struktur i Sassy og skygge bare betyr «løftet». `raised` bytter kanten med `--shadow-md` for ting som svever, `sunken` er `--surface-2` uten kant for brønner og sitater. Fire grader luft (none, sm 12, md 20, lg 32 px) og `interactive` for et kort som kan trykkes på.
 
 ## Når du bruker den
 
@@ -42,7 +42,7 @@ En flate som samler innhold som hører sammen. `outlined` som standard: `--surfa
 ## Eksempel
 
 ```jsx
-import { Card, Badge } from 'sussi/components';
+import { Card, Badge } from 'sassy/components';
 
 <Card as="article">
   <h3>Oppskriftsapp</h3>
@@ -55,7 +55,7 @@ import { Card, Badge } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/display/Card.d.ts`. Kortet (i Sussi-forstand): `components/display/display.card.html`.
+Typene står i `dist/display/Card.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/card/).
 
 <!-- props: CardProps -->
 | Prop | Type | Standard | Beskrivelse |

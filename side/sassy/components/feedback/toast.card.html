@@ -1,0 +1,44 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Toast" subtitle="Neutral, success, warning, danger; a toast that goes by itself beside delete and undo" -->
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Toast</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../dist/sassy.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}.row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.col{display:flex;flex-direction:column;gap:14px}.lbl{font:var(--type-meta);color:var(--fg-3);width:78px;flex:none}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const S = window.SassyDesignSystem_a2c9b8;
+const { Toast, ToastStack, Button } = S;
+// The card follows the page that embeds it (same origin), like the Button card: the Norwegian docs get a Norwegian card,
+// the English docs an English one. Opened on its own, or where the page cannot be read, it keeps the language on its <html>.
+const nb = (() => { try { const p = window.frameElement && window.frameElement.ownerDocument.documentElement.lang; return p ? p === 'nb' : document.documentElement.lang === 'nb'; } catch (e) { return document.documentElement.lang === 'nb'; } })();
+document.documentElement.lang = nb ? 'nb' : 'en';
+const T = nb
+  ? { archived: 'Oppgaven er arkivert', undo: 'Angre', dismiss: 'Lukk', synced: 'Synkronisert', syncedText: 'Alle endringer er lagret på laptopen.', offline: 'Du er frakoblet', offlineText: 'Jobb videre, så synkroniserer vi når du er tilbake.', upload: 'Kunne ikke laste opp bildet', uploadText: 'Fila er over 20 MB.', retry: 'Prøv igjen', rows: ['Tomater', 'Basilikum', 'Erter'], del: (r) => 'Slett ' + r.toLowerCase(), deleted: 'Slettet', save: 'Lagre', saved: 'Lagret', savedText: 'Prosjektet er lagret.', clock: 'Hold pekeren over «Lagret»: klokka står.' }
+  : { archived: 'Task archived', undo: 'Undo', dismiss: 'Dismiss', synced: 'Synced', syncedText: 'All changes saved to your laptop.', offline: "You're offline", offlineText: "Keep working — we'll sync when you're back.", upload: "Couldn't upload photo", uploadText: 'The file is over 20 MB.', retry: 'Try again', rows: ['Tomatoes', 'Basil', 'Peas'], del: (r) => 'Delete ' + r.toLowerCase(), deleted: 'Deleted', save: 'Save', saved: 'Saved', savedText: 'The project is saved.', clock: 'Hover “Saved”: the clock pauses.' };
+// A status toast with duration={6000} goes by itself (the clock stops on hover and focus), beside delete and undo: the row goes
+// at once, the toast offers Undo and stays until it is used or dismissed (an action toast has no clock). «Save» shows it again.
+function Undo(){
+  const [rows,setRows]=React.useState(T.rows);
+  const [gone,setGone]=React.useState(null);
+  const [saved,setSaved]=React.useState(1);
+  const del=(r)=>{setGone({r,i:rows.indexOf(r)});setRows(rows.filter((x)=>x!==r));};
+  const undo=()=>{setRows((x)=>[...x.slice(0,gone.i),gone.r,...x.slice(gone.i)]);setGone(null);};
+  return (<div style={{display:'grid',gap:8,gridColumn:'1 / -1'}}>
+    <div style={{display:'flex',flexWrap:'wrap',gap:8}}><Button size="sm" iconLeft="check" onClick={()=>setSaved((n)=>Math.abs(n)+1)}>{T.save}</Button>{rows.map((r)=><Button key={r} size="sm" variant="secondary" iconLeft="trash-2" onClick={()=>del(r)}>{T.del(r)}</Button>)}</div>
+    <ToastStack style={{position:'static',display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(240px,1fr))',alignItems:'start'}}>
+      {saved > 0 ? <Toast key={'lagret-' + saved} tone="success" title={T.saved} description={T.savedText} duration={6000} onClose={()=>setSaved((n)=>-n)} closeLabel={T.dismiss} style={{width:'auto'}} data-kort="lagret" /> : null}
+      {gone ? <Toast key={gone.r} title={T.deleted} description={gone.r} actionLabel={T.undo} onAction={undo} onClose={()=>setGone(null)} closeLabel={T.dismiss} style={{width:'auto'}} /> : null}
+    </ToastStack>
+    <p style={{margin:0,font:'var(--type-meta)',color:'var(--fg-3)'}}>{T.clock}</p>
+  </div>);
+}
+function App(){return (<div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+<Toast tone="success" title={T.archived} actionLabel={T.undo} onClose={()=>{}} closeLabel={T.dismiss} style={{width:'auto'}} />
+<Toast tone="info" title={T.synced} description={T.syncedText} style={{width:'auto'}} />
+<Toast tone="warning" title={T.offline} description={T.offlineText} style={{width:'auto'}} />
+<Toast tone="danger" title={T.upload} description={T.uploadText} actionLabel={T.retry} onClose={()=>{}} closeLabel={T.dismiss} style={{width:'auto'}} />
+<Undo />
+</div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

@@ -3,8 +3,8 @@ name: Spinner
 group: feedback
 status: new
 since: 0.7.0
-kort: components/feedback/spinner.card.html
-typer: components/feedback/Spinner.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/spinner/
+typer: dist/feedback/Spinner.d.ts
 ---
 
 # Spinner
@@ -41,7 +41,7 @@ Something is happening and nobody knows for how long: a ring in the accent that 
 ## Example
 
 ```jsx
-import { Spinner, Button } from 'sussi/components';
+import { Spinner, Button } from 'sassy/components';
 
 <Spinner label="Loading" />
 <Spinner size="lg" label="Loading recipes" />
@@ -51,7 +51,7 @@ import { Spinner, Button } from 'sussi/components';
 
 ## Props
 
-The types are in `components/feedback/Spinner.d.ts`. The card: `components/feedback/spinner.card.html`.
+The types are in `dist/feedback/Spinner.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/spinner/).
 
 <!-- props: SpinnerProps -->
 | Prop | Type | Default | Description |
@@ -67,12 +67,12 @@ Plus every attribute of `<span>` (`React.HTMLAttributes<HTMLSpanElement>`).
 
 ## Accessibility
 
-The behaviour is tested in `tests/laster.e2e.test.mjs`, the colour rules in `tests/spinner.test.mjs`.
+The behaviour is tested in a browser, the colour rules in unit tests.
 
 - **Element and role.** A `<span role="status">` with the ring `aria-hidden` and `label` as visually hidden text (`.s-sr-only`: 1 px, clipped, not `display:none`, so it is read). With `aria-hidden` the span has no role and no text (tested).
 - **Name.** `label`, as the content of the status region. A live region that arrives already filled is not always read; when the announcement must be certain, keep a `role="status"` text in the page from the start and set its text when loading begins (the pattern in [Skeleton](Skeleton.en.md)).
 - **Keyboard and focus.** None; it cannot be operated, and it does not move the focus.
-- **Contrast.** The arc is `--accent` through `currentColor`, 3:1 on `--bg`, `--surface-1` and `--surface-2` in both themes and every accent (WCAG 1.4.11; `tests/spinner.test.mjs` measures the tokens, `tests/laster.e2e.test.mjs` the rendered colour). The rest of the ring is `--surface-3`, a track, not a signal.
+- **Contrast.** The arc is `--accent` through `currentColor`, 3:1 on `--bg`, `--surface-1` and `--surface-2` in both themes and every accent (WCAG 1.4.11; tested on the tokens and the rendered colour). The rest of the ring is `--surface-3`, a track, not a signal.
 - **Motion.** The ring turns (0.8 s, linear). Under `prefers-reduced-motion` it stands still and pulses in opacity (1.6 s), and Button's `.s-btn__spin` does the same (WCAG 2.3.3, tested).
 - **Sizes.** `sm` 16 px with a 2 px stroke, `md` 24 px with 3 px, `lg` 40 px with 4 px (tested).
 - **Built-in text.** None; `label` is the app's.

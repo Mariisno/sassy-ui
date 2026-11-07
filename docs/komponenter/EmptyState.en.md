@@ -3,8 +3,8 @@ name: EmptyState
 group: feedback
 status: stable
 since: 0.4.0
-kort: components/feedback/emptystate.card.html
-typer: components/feedback/EmptyState.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/emptystate/
+typer: dist/feedback/EmptyState.d.ts
 ---
 
 # EmptyState
@@ -40,7 +40,7 @@ What a list or a page shows when there is nothing in it yet. An icon in a 56 px 
 ## Example
 
 ```jsx
-import { EmptyState, Button } from 'sussi/components';
+import { EmptyState, Button } from 'sassy/components';
 
 <EmptyState icon="inbox" title="No tasks yet" description="Add the first one and it shows up here."
   action={<Button iconLeft="plus" onClick={newTask}>Add task</Button>} />
@@ -50,7 +50,7 @@ import { EmptyState, Button } from 'sussi/components';
 
 ## Props
 
-The types are in `components/feedback/EmptyState.d.ts`. The card: `components/feedback/emptystate.card.html`.
+The types are in `dist/feedback/EmptyState.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/emptystate/).
 
 <!-- props: EmptyStateProps -->
 | Prop | Type | Default | Description |
@@ -68,12 +68,12 @@ Plus every attribute of `<div>` (`React.HTMLAttributes<HTMLDivElement>`), except
 
 ## Accessibility
 
-The behaviour is tested in `tests/nye.e2e.test.mjs`.
+The behaviour is tested in a browser.
 
 - **Element and role.** A `<div>` without a role, with a real heading (`<h2>` to `<h6>` by `level`, clamped to 2–6) and a `<p>` for `description`.
 - **Name.** The heading is what a screen reader finds in the outline. The icon is `aria-hidden` (tested).
 - **Keyboard and focus.** None of its own. The action in `action` is an ordinary Button with its own focus ring.
-- **Contrast.** The heading is `--fg-1`, the text `--fg-2`, both 4.5:1 on `--bg` and `--surface-1`. The icon is `--accent-soft-fg` on `--accent-soft`, 4.5:1 in every accent (`tests/contrast.test.mjs`).
+- **Contrast.** The heading is `--fg-1`, the text `--fg-2`, both 4.5:1 on `--bg` and `--surface-1`. The icon is `--accent-soft-fg` on `--accent-soft`, 4.5:1 in every accent (tested).
 - **Motion.** None.
 - **Built-in text.** None; the heading and the text are the app's.
 - **Known limit.** A `level` under 2 is rounded up to 2: an EmptyState is never the page's h1.

@@ -3,8 +3,8 @@ navn: Badge
 gruppe: display
 status: stable
 sidenVersjon: 0.2.0
-kort: components/display/display.card.html
-typer: components/display/Badge.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/badge/
+typer: dist/display/Badge.d.ts
 ---
 
 # Badge
@@ -41,7 +41,7 @@ En liten pille som viser status, versjon eller antall, og som ikke kan trykkes p
 ## Eksempel
 
 ```jsx
-import { Badge } from 'sussi/components';
+import { Badge } from 'sassy/components';
 
 <Badge tone="success" dot>Ferdig</Badge>
 <Badge tone="warning">Trenger gjennomgang</Badge>
@@ -51,7 +51,7 @@ import { Badge } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/display/Badge.d.ts`. Kortet med Badge, Tag og Card: `components/display/display.card.html`.
+Typene står i `dist/display/Badge.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/badge/).
 
 <!-- props: BadgeProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -70,7 +70,7 @@ Pluss alle attributtene til `<span>` (`React.HTMLAttributes<HTMLSpanElement>`).
 - **Element og rolle.** Et `<span>` uten rolle. Den er tekst, og leses som teksten den inneholder. `id`, `data-*` og `aria-*` når elementet.
 - **Tastatur og fokus.** Ingen; den kan ikke trykkes.
 - **Navn og tilstand.** Teksten. Prikken (`dot`) er et tomt `<span>` i `currentColor` og bærer ingen mening alene: ordet gjør det.
-- **Kontrast.** `accent` er `--accent-soft-fg` på `--accent-soft`, holdt til 4,5:1 i begge temaer og alle aksenter (`tests/contrast.test.mjs`). `neutral` er `--fg-2` på `--surface-2`, 4,5:1 på flatene. Statustonene er `--<tone>-fg` på `--<tone>-soft`; temamotoren holder hvert par til 4,5:1 når du lager et eget tema (`tests/tema.test.mjs`). `outline` er `--fg-2` på gjennomsiktig med en `--border-strong`-kant.
+- **Kontrast.** `accent` er `--accent-soft-fg` på `--accent-soft`, holdt til 4,5:1 i begge temaer og alle aksenter (testet). `neutral` er `--fg-2` på `--surface-2`, 4,5:1 på flatene. Statustonene er `--<tone>-fg` på `--<tone>-soft`; temamotoren holder hvert par til 4,5:1 når du lager et eget tema (testet). `outline` er `--fg-2` på gjennomsiktig med en `--border-strong`-kant.
 - **Tekst.** 12 px medium, eller DM Mono 400 med `mono`. Pillen vokser med teksten og klippes ikke (0.5.3, WCAG 1.4.4).
 - **Bevegelse.** Ingen.
 - **Innebygd tekst.** Ingen.

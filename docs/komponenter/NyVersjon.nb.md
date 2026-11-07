@@ -3,13 +3,13 @@ navn: NyVersjon
 gruppe: feedback
 status: new
 sidenVersjon: 0.5.7
-kort: components/feedback/nyversjon.card.html
-typer: components/feedback/NyVersjon.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/nyversjon/
+typer: dist/feedback/NyVersjon.d.ts
 ---
 
 # NyVersjon
 
-«Ny versjon»: varselet om at en ny versjon av appen er klar. En toast bygd av [Toast](Toast.nb.md) sine deler, med «Oppdater» og den stillere «Senere», lest opp høflig fra en liveregion uten å flytte fokus. Som standard rendrer den sin egen `ToastStack` fra start, så regionen finnes før toasten kommer; åpne den med `open`. Oppdagelsen er appens, med hjelperen i `components/feedback/oppdatering.js`: `startOppdatering`, `vedNyVersjon`, `oppdater` og `erOpptatt`.
+«Ny versjon»: varselet om at en ny versjon av appen er klar. En toast bygd av [Toast](Toast.nb.md) sine deler, med «Oppdater» og den stillere «Senere», lest opp høflig fra en liveregion uten å flytte fokus. Som standard rendrer den sin egen `ToastStack` fra start, så regionen finnes før toasten kommer; åpne den med `open`. Oppdagelsen er appens, med hjelperen i `dist/feedback/oppdatering.js`: `startOppdatering`, `vedNyVersjon`, `oppdater` og `erOpptatt`.
 
 ## Når du bruker den
 
@@ -42,7 +42,7 @@ typer: components/feedback/NyVersjon.d.ts
 
 ```jsx
 import { useEffect, useState } from 'react';
-import { NyVersjon, startOppdatering, vedNyVersjon, oppdater } from 'sussi/components';
+import { NyVersjon, startOppdatering, vedNyVersjon, oppdater } from 'sassy/components';
 
 startOppdatering('/sw.js', { opptatt: () => øktPågår() });
 
@@ -55,7 +55,7 @@ function Oppdatering() {
 
 ## Props
 
-Typene står i `components/feedback/NyVersjon.d.ts` og `components/feedback/oppdatering.d.ts`. Kortet: `components/feedback/nyversjon.card.html`.
+Typene står i `dist/feedback/NyVersjon.d.ts` og `dist/feedback/oppdatering.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/nyversjon/).
 
 <!-- props: NyVersjonProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -76,9 +76,9 @@ Typene står i `components/feedback/NyVersjon.d.ts` og `components/feedback/oppd
 Pluss alle attributtene til `<div>` (`React.HTMLAttributes<HTMLDivElement>`), unntatt `title`, `children`.
 <!-- /props -->
 
-Hjelperen: `startOppdatering(swUrl, options)` registrerer workeren (`updateViaCache: 'none'`), spør etter en ny når appen kommer i forgrunnen og hver 30. minutt, og laster på nytt én gang ved `controllerchange` med mindre du er opptatt; første installasjon laster aldri på nytt. `vedNyVersjon(lytter)` kalles når en ny versjon venter (med en gang hvis den alt venter) og gir tilbake en funksjon som slutter å lytte. `oppdater()` laster på nytt, én gang. `erOpptatt()` er sann med fokus eller tekst i et felt, eller en åpen dialog (`dialog[open]`, `[aria-modal="true"]`). Enhetstestet mot en falsk `navigator.serviceWorker` i `tests/oppdatering.test.mjs`.
+Hjelperen: `startOppdatering(swUrl, options)` registrerer workeren (`updateViaCache: 'none'`), spør etter en ny når appen kommer i forgrunnen og hver 30. minutt, og laster på nytt én gang ved `controllerchange` med mindre du er opptatt; første installasjon laster aldri på nytt. `vedNyVersjon(lytter)` kalles når en ny versjon venter (med en gang hvis den alt venter) og gir tilbake en funksjon som slutter å lytte. `oppdater()` laster på nytt, én gang. `erOpptatt()` er sann med fokus eller tekst i et felt, eller en åpen dialog (`dialog[open]`, `[aria-modal="true"]`). Enhetstestet mot en falsk `navigator.serviceWorker`.
 
-<!-- props: OppdateringOptions from components/feedback/oppdatering.d.ts -->
+<!-- props: OppdateringOptions from dist/feedback/oppdatering.d.ts -->
 | Prop | Type | Standard | Beskrivelse |
 | --- | --- | --- | --- |
 | `opptatt` | `() => boolean` | – | Appens egne grunner til å vente med omlastingen, f.eks. en økt som pågår. |
@@ -87,7 +87,7 @@ Hjelperen: `startOppdatering(swUrl, options)` registrerer workeren (`updateViaCa
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/nyversjon.e2e.test.mjs`, reglene i `tests/nyversjon.test.mjs`.
+Oppførselen er testet i nettleseren, reglene i enhetstester.
 
 - **Element og rolle.** Med `stack` (standard): en `ToastStack` (`role="status"`, `aria-live="polite"`) som er i sida fra start, tom; toasten inni har ingen egen rolle. Med `stack={false}` inni appens stabel: samme. Alene med `stack={false}`: toasten er `role="status"` selv.
 - **Navn.** `title` («Ny versjon»), `description` og de to knappene, lest opp som én beskjed når toasten kommer.

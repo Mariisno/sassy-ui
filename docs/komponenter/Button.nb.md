@@ -3,13 +3,13 @@ navn: Button
 gruppe: buttons
 status: stable
 sidenVersjon: 0.2.0
-kort: components/buttons/buttons.card.html
-typer: components/buttons/Button.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/button/
+typer: dist/buttons/Button.d.ts
 ---
 
 # Button
 
-Knappen er den vanlige handlingen i Sussi: én primær per visning, sekundær og ghost for resten. Fem varianter (primary, secondary, soft, ghost, danger), tre størrelser (30, 38 og 46 px), ikon foran eller bak teksten, og en `loading`-tilstand som bytter ikonet med en spinner og slår knappen av uten at fokus forsvinner. Den kan rendres som lenke med `as="a"`.
+Knappen er den vanlige handlingen i Sassy: én primær per visning, sekundær og ghost for resten. Fem varianter (primary, secondary, soft, ghost, danger), tre størrelser (30, 38 og 46 px), ikon foran eller bak teksten, og en `loading`-tilstand som bytter ikonet med en spinner og slår knappen av uten at fokus forsvinner. Den kan rendres som lenke med `as="a"`.
 
 ## Når du bruker den
 
@@ -30,7 +30,7 @@ Knappen er den vanlige handlingen i Sussi: én primær per visning, sekundær og
 
 - Én `primary` per visning. Flere primære betyr at ingen er det.
 - Si hva som skjer, med et verb først: «Lagre endringer», «Legg til oppgave», «Slett prosjekt».
-- Bruk `size="lg"` (46 px) der folk trykker med fingeren. `md` er 38 px, som er under de 44 px Sussi vil ha på berøringsskjerm.
+- Bruk `size="lg"` (46 px) der folk trykker med fingeren. `md` er 38 px, som er under de 44 px Sassy vil ha på berøringsskjerm.
 - Sett `loading` mens noe lagres, så den ikke kan trykkes to ganger.
 - Angre i en toast framfor en bekreftelsesdialog når handlingen kan gjøres om.
 
@@ -44,7 +44,7 @@ Knappen er den vanlige handlingen i Sussi: én primær per visning, sekundær og
 ## Eksempel
 
 ```jsx
-import { Button } from 'sussi/components';
+import { Button } from 'sassy/components';
 
 <Button onClick={lagre}>Lagre endringer</Button>
 <Button variant="secondary" iconLeft="plus" onClick={nytt}>Nytt prosjekt</Button>
@@ -56,7 +56,7 @@ import { Button } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/buttons/Button.d.ts`. Kortet med alle varianter, størrelser og tilstander: `components/buttons/buttons.card.html`.
+Typene står i `dist/buttons/Button.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/button/).
 
 <!-- props: ButtonProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -74,7 +74,7 @@ Typene står i `components/buttons/Button.d.ts`. Kortet med alle varianter, stø
 Pluss alle attributtene til `<button>` (`React.ButtonHTMLAttributes<HTMLButtonElement>`).
 <!-- /props -->
 
-`ref` når det native `<button>`-elementet, så appen kan flytte fokus til den (testet i `tests/refs.e2e.test.mjs`).
+`ref` når det native `<button>`-elementet, så appen kan flytte fokus til den (testet i nettleseren).
 
 ## Tilgjengelighet
 
@@ -82,11 +82,11 @@ Pluss alle attributtene til `<button>` (`React.ButtonHTMLAttributes<HTMLButtonEl
 - **Tastatur.** Enter og mellomrom trykker knappen, som en vanlig knapp. Ikke noe eget.
 - **Navn.** Teksten i `children`. Ikonene er dekorative (`aria-hidden`), så en knapp uten tekst har ikke noe navn: bruk IconButton.
 - **Tilstand.** `disabled` på elementet tar knappen ut av tab-rekkefølgen. `loading` setter i stedet `aria-disabled="true"` og `aria-busy="true"`, og stopper klikket (og innsendingen av skjemaet): native `disabled` ville flyttet fokus til toppen av siden midt i innsendingen, og skjermleseren ville mistet plassen. For en knapp som er slått av, men som skal kunne nås, for eksempel med en [Tooltip](Tooltip.nb.md) som sier hvorfor, gir du `aria-disabled` i stedet for `disabled`: den ser avslått ut, gjør ingenting og beholder fokus. Begge er 50 % gjennomsiktige med `not-allowed`-peker.
-- **Fokus.** En 2 px `outline` i `--focus-color` med 2 px avstand, bare ved tastaturfokus (`:focus-visible`). Ringen er en `outline`, så den overlever også forced-colors-modus. `--focus-color` holder 3:1 mot `--bg`, `--surface-1` og `--surface-2` i begge temaer og alle aksenter (`tests/contrast.test.mjs`).
-- **Kontrast.** Teksten på den primære knappen holder 4,5:1 mot aksenten i begge temaer og alle aksenter, også på hover og trykk. En lenke med knappeklasser beholder lesbar tekst på hover (`tests/linkbutton.e2e.test.mjs`). Teksten på fareknappen er `--danger-fg-on` (hvit i lyst tema, nesten svart i mørkt), 4,5:1 på `--danger` og `--danger-hover` i begge temaer og alle aksenter (`tests/contrast.test.mjs`).
+- **Fokus.** En 2 px `outline` i `--focus-color` med 2 px avstand, bare ved tastaturfokus (`:focus-visible`). Ringen er en `outline`, så den overlever også forced-colors-modus. `--focus-color` holder 3:1 mot `--bg`, `--surface-1` og `--surface-2` i begge temaer og alle aksenter (testet).
+- **Kontrast.** Teksten på den primære knappen holder 4,5:1 mot aksenten i begge temaer og alle aksenter, også på hover og trykk. En lenke med knappeklasser beholder lesbar tekst på hover (testet). Teksten på fareknappen er `--danger-fg-on` (hvit i lyst tema, nesten svart i mørkt), 4,5:1 på `--danger` og `--danger-hover` i begge temaer og alle aksenter (testet).
 - **Trykk.** Flytter seg 1 px ned, ingen skalering.
 - **Bevegelse.** Overgangene bruker `--dur-fast`, som er 0 under `prefers-reduced-motion`. Under redusert bevegelse står spinneren i `loading` stille og pulserer i stedet.
-- **Mål.** 30, 38 og 46 px høy. Bare `lg` når de 44 px Sussi ber om på berøringsskjerm.
+- **Mål.** 30, 38 og 46 px høy. Bare `lg` når de 44 px Sassy ber om på berøringsskjerm.
 - **Innebygd tekst.** Ingen. Knappen sier det du sender inn.
 
 ## Innhold

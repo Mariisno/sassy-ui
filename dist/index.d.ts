@@ -1,4 +1,4 @@
-// Types for components/index.js, props included. Each component's .d.ts sits next to its .jsx.
+// Types for dist/index.js, props included. Each component's .d.ts sits next to its compiled .js.
 export * from './buttons/Button';
 export * from './buttons/IconButton';
 export * from './buttons/FileButton';
@@ -27,12 +27,15 @@ export * from './inputs/Fieldset';
 export * from './inputs/Select';
 export * from './inputs/Textarea';
 export * from './display/Disclosure';
+export * from './display/Heading';
+export * from './display/Text';
 export * from './navigation/Tabs';
 export * from './navigation/AppShell';
 export * from './navigation/Link';
 export * from './navigation/BackLink';
 export * from './layout/Stack';
 export * from './layout/VisuallyHidden';
+export * from './utils/kunngjor';
 export * from './utils/dato';
 export * from './overlays/Dialog';
 export * from './overlays/Tooltip';

@@ -3,13 +3,13 @@ name: Card
 group: display
 status: stable
 since: 0.2.0
-kort: components/display/display.card.html
-typer: components/display/Card.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/card/
+typer: dist/display/Card.d.ts
 ---
 
 # Card
 
-A surface that holds content that belongs together. `outlined` by default: `--surface-1`, a 1 px `--border` and 14 px corners, no shadow, because borders carry structure in Sussi and a shadow only means "lifted". `raised` swaps the border for `--shadow-md` for things that float, `sunken` is `--surface-2` without a border for wells and quotes. Four paddings (none, sm 12, md 20, lg 32 px) and `interactive` for a card that can be pressed.
+A surface that holds content that belongs together. `outlined` by default: `--surface-1`, a 1 px `--border` and 14 px corners, no shadow, because borders carry structure in Sassy and a shadow only means "lifted". `raised` swaps the border for `--shadow-md` for things that float, `sunken` is `--surface-2` without a border for wells and quotes. Four paddings (none, sm 12, md 20, lg 32 px) and `interactive` for a card that can be pressed.
 
 ## When to use
 
@@ -42,7 +42,7 @@ A surface that holds content that belongs together. `outlined` by default: `--su
 ## Example
 
 ```jsx
-import { Card, Badge } from 'sussi/components';
+import { Card, Badge } from 'sassy/components';
 
 <Card as="article">
   <h3>Recipe app</h3>
@@ -55,7 +55,7 @@ import { Card, Badge } from 'sussi/components';
 
 ## Props
 
-The types are in `components/display/Card.d.ts`. The specimen card: `components/display/display.card.html`.
+The types are in `dist/display/Card.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/card/).
 
 <!-- props: CardProps -->
 | Prop | Type | Default | Description |

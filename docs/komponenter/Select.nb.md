@@ -3,13 +3,13 @@ navn: Select
 gruppe: inputs
 status: stable
 sidenVersjon: 0.2.0
-kort: components/inputs/inputs.card.html
-typer: components/inputs/Select.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/select/
+typer: dist/inputs/Select.d.ts
 ---
 
 # Select
 
-En native nedtrekksliste med samme ledetekst, hjelpetekst, feil og ramme som [Input](Input.nb.md). `options` er strenger eller `{ value, label }`, `placeholder` gir et første tomt valg, og pila til høyre er tegnet av Sussi mens lista som åpner seg er nettleserens egen. For fem eller flere alternativer; færre er [Radio](Radio.nb.md) eller segmenterte [Tabs](Tabs.nb.md).
+En native nedtrekksliste med samme ledetekst, hjelpetekst, feil og ramme som [Input](Input.nb.md). `options` er strenger eller `{ value, label }`, `placeholder` gir et første tomt valg, og pila til høyre er tegnet av Sassy mens lista som åpner seg er nettleserens egen. For fem eller flere alternativer; færre er [Radio](Radio.nb.md) eller segmenterte [Tabs](Tabs.nb.md).
 
 ## Når du bruker den
 
@@ -22,7 +22,7 @@ En native nedtrekksliste med samme ledetekst, hjelpetekst, feil og ramme som [In
 - To til fire alternativer: [Radio](Radio.nb.md), så alle er synlige.
 - Et valg som bytter visning med en gang: [Tabs](Tabs.nb.md) `variant="segmented"`.
 - Flere valg samtidig: [Checkbox](Checkbox.nb.md) eller [Tag](Tag.nb.md).
-- Fritekst med forslag: det er en kombinasjonsboks, som Sussi ikke har.
+- Fritekst med forslag: det er en kombinasjonsboks, som Sassy ikke har.
 
 ## Gjør
 
@@ -41,7 +41,7 @@ En native nedtrekksliste med samme ledetekst, hjelpetekst, feil og ramme som [In
 ## Eksempel
 
 ```jsx
-import { Select } from 'sussi/components';
+import { Select } from 'sassy/components';
 
 <Select label="Status" options={['Idé', 'Bygger', 'Live', 'Pauset']} defaultValue="Bygger" />
 <Select label="Type" placeholder="Velg en type" options={[{ value: 'l', label: 'Leire' }, { value: 's', label: 'Sand' }]} error="Velg en type." />
@@ -50,7 +50,7 @@ import { Select } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/inputs/Select.d.ts`. Kortet: `components/inputs/inputs.card.html`.
+Typene står i `dist/inputs/Select.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/select/).
 
 <!-- props: SelectProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -67,11 +67,11 @@ Typene står i `components/inputs/Select.d.ts`. Kortet: `components/inputs/input
 Pluss alle attributtene til `<select>` (`React.SelectHTMLAttributes<HTMLSelectElement>`), unntatt `size`.
 <!-- /props -->
 
-`ref` når det native `<select>`-elementet (`tests/refs.e2e.test.mjs`).
+`ref` når det native `<select>`-elementet (testet).
 
 ## Tilgjengelighet
 
-Koblingene er testet i `tests/forms.e2e.test.mjs`.
+Koblingene er testet i nettleseren.
 
 - **Element og rolle.** Et native `<select>` med `<option>`-er, og en `<label for>` som peker på det. Pila er en `Icon` uten pekerhendelser, dekorativ.
 - **Navn.** `label`.
@@ -83,7 +83,7 @@ Koblingene er testet i `tests/forms.e2e.test.mjs`.
 - **Mål.** 30, 38 eller 46 px høy etter `size`.
 - **Bevegelse.** Som Input.
 - **Innebygd tekst.** «Valgfritt» med `optional`; overstyr med `optionalLabel`.
-- **Kjent grense.** Den åpne lista er nettleserens og følger ikke Sussis tema. Plassholdervalget har verdi `""` og kan velges igjen.
+- **Kjent grense.** Den åpne lista er nettleserens og følger ikke Sassys tema. Plassholdervalget har verdi `""` og kan velges igjen.
 
 ## Innhold
 

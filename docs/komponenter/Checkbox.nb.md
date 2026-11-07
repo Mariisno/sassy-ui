@@ -3,8 +3,8 @@ navn: Checkbox
 gruppe: controls
 status: stable
 sidenVersjon: 0.2.0
-kort: components/controls/controls.card.html
-typer: components/controls/Checkbox.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/checkbox/
+typer: dist/controls/Checkbox.d.ts
 ---
 
 # Checkbox
@@ -42,7 +42,7 @@ En avkrysningsboks for uavhengige ja/nei-valg og oppgavelister. Et native `<inpu
 ## Eksempel
 
 ```jsx
-import { Checkbox } from 'sussi/components';
+import { Checkbox } from 'sassy/components';
 
 <Checkbox label="Skriv testplan" defaultChecked />
 <Checkbox label="Send meg en ukesoppsummering" description="Mandager kl. 08" checked={ukentlig} onChange={(e) => setUkentlig(e.target.checked)} />
@@ -51,7 +51,7 @@ import { Checkbox } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/controls/Checkbox.d.ts`. Kortet med Checkbox, Radio og Switch: `components/controls/controls.card.html`.
+Typene står i `dist/controls/Checkbox.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/checkbox/).
 
 <!-- props: CheckboxProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -63,7 +63,7 @@ Typene står i `components/controls/Checkbox.d.ts`. Kortet med Checkbox, Radio o
 Pluss alle attributtene til `<input>` (`React.InputHTMLAttributes<HTMLInputElement>`), unntatt `type`.
 <!-- /props -->
 
-`ref` når det native `<input>`-elementet, og `indeterminate` virker også når appen har sin egen `ref` (`tests/refs.e2e.test.mjs`).
+`ref` når det native `<input>`-elementet, og `indeterminate` virker også når appen har sin egen `ref` (testet).
 
 ## Tilgjengelighet
 
@@ -72,7 +72,7 @@ Pluss alle attributtene til `<input>` (`React.InputHTMLAttributes<HTMLInputEleme
 - **Tastatur.** Mellomrom veksler, som en vanlig avkrysningsboks. Ikke noe eget.
 - **Tilstand.** `checked` og `indeterminate` på det native feltet (`indeterminate` settes som egenskap i en effekt). Valgt fyller boksen med `--accent` og viser en hake i `--accent-fg`; `indeterminate` viser en strek. `disabled` gir 50 % gjennomsiktighet og `not-allowed`.
 - **Fokus.** Boksen får en 2 px `outline` i `--focus-color` med 2 px avstand når feltet har tastaturfokus (`.s-check__input:focus-visible + .s-check__box`).
-- **Kontrast.** Boksens kant er `--border-control`, holdt til minst 3:1 mot `--bg`, `--surface-1` og `--surface-2` i begge temaer og alle aksenter (`tests/contrast.test.mjs`, `tests/focus.test.mjs`). Haken er `--accent-fg` på `--accent`, 4,5:1.
+- **Kontrast.** Boksens kant er `--border-control`, holdt til minst 3:1 mot `--bg`, `--surface-1` og `--surface-2` i begge temaer og alle aksenter (testet). Haken er `--accent-fg` på `--accent`, 4,5:1.
 - **Bevegelse.** Fyll og hake går over på `--dur-fast`, 0 under redusert bevegelse.
 - **Mål.** Boksen er 18 px; klikkflaten er hele etiketten (boks pluss tekst, omtrent 22 px høy). Kjent grense: under 44 px på berøringsskjerm. Gi raden luft i appen når den brukes i en liste for fingre.
 - **Innebygd tekst.** Ingen.

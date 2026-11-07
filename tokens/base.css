@@ -1,9 +1,9 @@
-/* Sussi — minimal element defaults */
+/* Sassy — minimal element defaults */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 body{margin:0;background:var(--bg);color:var(--fg-1);font:var(--type-body);font-feature-settings:'ss01','cv11'}
 h1,h2,h3,h4{margin:0;color:var(--fg-1);letter-spacing:var(--tracking-snug);text-wrap:balance}
-/* Headings get Sussi's type roles, so a plain <h1> looks like Sussi. :where() keeps them at 0,0,0: any class or inline font wins. */
+/* Headings get Sassy's type roles, so a plain <h1> looks like Sassy. :where() keeps them at 0,0,0: any class or inline font wins. */
 :where(h1){font:var(--type-h1)}
 :where(h2){font:var(--type-h2)}
 :where(h3){font:var(--type-h3)}

@@ -3,8 +3,8 @@ navn: Tabs
 gruppe: navigation
 status: stable
 sidenVersjon: 0.2.0
-kort: components/navigation/tabs.card.html
-typer: components/navigation/Tabs.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/tabs/
+typer: dist/navigation/Tabs.d.ts
 ---
 
 # Tabs
@@ -42,7 +42,7 @@ Faner som bytter mellom sidestilte visninger: `underline` for seksjoner på en s
 ## Eksempel
 
 ```jsx
-import { Tabs, TabPanel } from 'sussi/components';
+import { Tabs, TabPanel } from 'sassy/components';
 
 <Tabs aria-label="Prosjekt" items={[{ id: 'oppgaver', label: 'Oppgaver', count: 12 }, { id: 'notater', label: 'Notater' }]} onChange={setFane}>
   <TabPanel value="oppgaver">…</TabPanel>
@@ -53,7 +53,7 @@ import { Tabs, TabPanel } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/navigation/Tabs.d.ts`. Kortet: `components/navigation/tabs.card.html`.
+Typene står i `dist/navigation/Tabs.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/tabs/).
 
 <!-- props: TabsProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -96,14 +96,14 @@ Pluss alle attributtene til `<div>` (`React.HTMLAttributes<HTMLDivElement>`).
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/tabs.e2e.test.mjs`.
+Oppførselen er testet i nettleseren.
 
 - **Element og rolle.** En `<div role="tablist">` med `<button role="tab" type="button">` for hver fane, `aria-selected` på den valgte, og `aria-controls` til panelet når fanen har et `TabPanel` (ikke ellers, testet). `TabPanel` er en `<div role="tabpanel">` med `aria-labelledby` til fanen sin, `tabIndex=0`, og `hidden` når den ikke er valgt.
 - **Navn.** Fanen heter teksten sin (`label`, med `count` etter). Fanelista heter `aria-label`. Panelet heter fanen.
 - **Tastatur.** Tab lander på den valgte fanen (roving `tabindex`: 0 på den valgte, −1 på resten) og går videre inn i panelet. ← og → flytter fokus og velger, og går rundt i endene; Home og End hopper til første og siste. `onChange` kalles ved hvert valg (testet).
 - **Fokus.** Standard fokusring på fanen, og på panelet, som kan ta fokus selv om det ikke har lenker.
 - **Tilstand.** Valgt er `aria-selected="true"`, teksten `--fg-1` og en 2 px strek i `--accent` under (`underline`), eller et hevet segment i `--surface-1` med `--shadow-sm` (`segmented`; `--surface-3` i mørkt tema). Aldri farge alene.
-- **Kontrast.** Uvalgt tekst er `--fg-2`, valgt `--fg-1`. `count` er `--fg-3`, og `--fg-2` på den valgte fanen, siden `--fg-3` på det mørke segmentet var 4,31:1 (0.5.3, `tests/polish.test.mjs`).
+- **Kontrast.** Uvalgt tekst er `--fg-2`, valgt `--fg-1`. `count` er `--fg-3`, og `--fg-2` på den valgte fanen, siden `--fg-3` på det mørke segmentet var 4,31:1 (0.5.3, testet).
 - **Innhold.** Paneler som ikke vises blir stående montert, så skjemaer i dem beholder det du har skrevet (testet).
 - **Mål.** Fanene er 40 px høye, segmentene 30 px. Kjent grense: under 44 px på berøringsskjerm.
 - **Bevegelse.** Fargen går over på `--dur-fast`, 0 under redusert bevegelse.

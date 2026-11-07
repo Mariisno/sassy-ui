@@ -3,8 +3,8 @@ navn: ErrorSummary
 gruppe: feedback
 status: new
 sidenVersjon: 0.7.0
-kort: components/feedback/errorsummary.card.html
-typer: components/feedback/ErrorSummary.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/errorsummary/
+typer: dist/feedback/ErrorSummary.d.ts
 ---
 
 # ErrorSummary
@@ -41,7 +41,7 @@ Boksen øverst i et skjema etter en mislykket innsending, slik GOV.UK og Designs
 ## Eksempel
 
 ```jsx
-import { ErrorSummary, Input, Fieldset, Radio, Button } from 'sussi/components';
+import { ErrorSummary, Input, Fieldset, Radio, Button } from 'sassy/components';
 
 const [feil, setFeil] = useState([]);
 const [forsok, setForsok] = useState(0);
@@ -68,7 +68,7 @@ const feilFor = (id) => feil.find((f) => f.id === id)?.message;
 
 ## Props
 
-Typene står i `components/feedback/ErrorSummary.d.ts`. Kortet: `components/feedback/errorsummary.card.html`.
+Typene står i `dist/feedback/ErrorSummary.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/errorsummary/).
 
 <!-- props: ErrorSummaryProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -93,13 +93,13 @@ Hver oppføring i `errors`:
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/errorsummary.e2e.test.mjs`, fargereglene i `tests/errorsummary.test.mjs`.
+Oppførselen er testet i nettleseren, fargereglene i enhetstester.
 
 - **Element og rolle.** En `<section tabIndex={-1}>` med `aria-labelledby` til tittelen (en region med navn). Innholdet står i en `<div role="alert">`, så det leses også der fokus på en region bare leser navnet. Det er GOV.UKs mønster.
 - **Navn.** Tittelen, `h2` som standard (`level`), med et `circle-alert`-ikon foran som er `aria-hidden`.
 - **Fokus.** Boksen får fokus når den monteres (`autoFocus`, testet: fokus flytter fra knappen til boksen). Ringen vises på `:focus`, ikke bare `:focus-visible`, så den synes etter et museklikk på knappen også. Lenkene er vanlige `<a href="#id">`; ved klikk flyttes fokus til elementet med den id-en, eller til første kontroll i det når det er en Fieldset, og gruppas legend rulles inn (testet begge). Finnes ikke elementet, skjer det vanlige ankerhoppet.
 - **Tastatur.** Tab fra boksen går til første lenke, så videre i dokumentet. Enter på en lenke er klikket.
-- **Kontrast.** Kanten er `--danger`, ≥ 3:1 mot `--bg` i begge temaer og alle aksenter (1.4.11). Lenkene og ikonet er `--danger-fg` på `--surface-1`, ≥ 4,5:1 i begge temaer og alle aksenter (`tests/errorsummary.test.mjs` måler tokenparene, `tests/errorsummary.e2e.test.mjs` de renderte fargene). Lenkene er understreket, så fargen ikke er alene.
+- **Kontrast.** Kanten er `--danger`, ≥ 3:1 mot `--bg` i begge temaer og alle aksenter (1.4.11). Lenkene og ikonet er `--danger-fg` på `--surface-1`, ≥ 4,5:1 i begge temaer og alle aksenter (testet på tokenparene og de renderte fargene). Lenkene er understreket, så fargen ikke er alene.
 - **Bredde.** Flex-kolonne med vanlig tekstbryting; ingenting flyter over på 320 px (testet).
 - **Bevegelse.** Ingen.
 - **Innebygd tekst.** «Noe må rettes før du kan gå videre» som tittel. Overstyr med `title`.

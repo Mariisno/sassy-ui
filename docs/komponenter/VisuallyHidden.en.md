@@ -3,8 +3,8 @@ name: VisuallyHidden
 group: layout
 status: new
 since: 0.7.0
-kort: components/layout/layout.card.html
-typer: components/layout/VisuallyHidden.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/visuallyhidden/
+typer: dist/layout/VisuallyHidden.d.ts
 ---
 
 # VisuallyHidden
@@ -41,7 +41,7 @@ Text for assistive technology that nobody sees: the `.s-sr-only` class as a comp
 ## Example
 
 ```jsx
-import { VisuallyHidden, Icon } from 'sussi/components';
+import { VisuallyHidden, Icon } from 'sassy/components';
 
 <VisuallyHidden as="a" href="#content" focusable>Skip to content</VisuallyHidden>
 <h2><VisuallyHidden>Plants in</VisuallyHidden> The greenhouse</h2>
@@ -51,7 +51,7 @@ import { VisuallyHidden, Icon } from 'sussi/components';
 
 ## Props
 
-The types are in `components/layout/VisuallyHidden.d.ts`. The card: `components/layout/layout.card.html`.
+The types are in `dist/layout/VisuallyHidden.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/visuallyhidden/).
 
 <!-- props: VisuallyHiddenProps -->
 | Prop | Type | Default | Description |
@@ -66,7 +66,7 @@ Plus every attribute of the element it renders as (`React.HTMLAttributes<HTMLEle
 
 ## Accessibility
 
-The behaviour is tested in `tests/layout.e2e.test.mjs`, the rules in `tests/visuallyhidden.test.mjs`.
+The behaviour is tested in a browser, the rules in unit tests.
 
 - **Element and role.** What `as` says: `span` (default), `div`, `p`, `a`, `label`, `legend`, `h2` or `h3`. No role is added; `role="status"` or `role="alert"` is passed as a prop.
 - **Name.** The text. It is part of the name of the element it sits in (a button, a link), like ordinary text.

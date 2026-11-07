@@ -3,8 +3,8 @@ name: FileButton
 group: buttons
 status: new
 since: 0.5.7
-kort: components/buttons/filebutton.card.html
-typer: components/buttons/FileButton.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/filebutton/
+typer: dist/buttons/FileButton.d.ts
 ---
 
 # FileButton
@@ -40,7 +40,7 @@ A button that opens the file chooser. It looks like [Button](Button.en.md), with
 ## Example
 
 ```jsx
-import { FileButton } from 'sussi/components';
+import { FileButton } from 'sassy/components';
 
 <FileButton iconLeft="image" accept="image/*" capture="environment" onFiles={([file]) => takePhoto(file)}>Take photo</FileButton>
 <FileButton variant="secondary" iconLeft="image" accept="image/*" multiple onFiles={add}>Choose pictures</FileButton>
@@ -49,7 +49,7 @@ import { FileButton } from 'sussi/components';
 
 ## Props
 
-The types are in `components/buttons/FileButton.d.ts`. The card: `components/buttons/filebutton.card.html`.
+The types are in `dist/buttons/FileButton.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/filebutton/).
 
 <!-- props: FileButtonProps -->
 | Prop | Type | Default | Description |
@@ -75,7 +75,7 @@ Plus every attribute of `<input>` (`React.InputHTMLAttributes<HTMLInputElement>`
 
 ## Accessibility
 
-The behaviour is tested in `tests/filebutton.e2e.test.mjs`, the rules in `tests/filebutton.test.mjs`.
+The behaviour is tested in a browser, the rules in unit tests.
 
 - **Element and role.** A `<label>` with the button classes around an `<input type="file">`. The input is hidden with `clip`, not `display:none`, so it keeps keyboard focus.
 - **Keyboard.** Tab lands on the input. Enter opens the chooser (tested; Space is the browser's usual behaviour for a file input). A disabled input is skipped by Tab.

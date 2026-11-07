@@ -1,6 +1,6 @@
 # Kom i gang
 
-Sussi er et lite designsystem fra NotlandDesign: tokens, CSS og React-komponenter, laget for WCAG 2.2 AA i lys og mørk modus. Denne siden tar deg fra null til en side med knapp, dialog og toast, med dine egne farger. Hvert eksempel er en hel HTML-fil du kan lagre og åpne.
+Sassy er et lite designsystem fra NotlandDesign: tokens, CSS og React-komponenter, laget for WCAG 2.2 AA i lys og mørk modus. Denne siden tar deg fra null til en side med knapp, dialog og toast, med dine egne farger. Hvert eksempel er en hel HTML-fil du kan lagre og åpne.
 
 ## 1. Installer
 
@@ -11,7 +11,7 @@ Velg én av tre måter. Alle tre gir samme CSS og samme komponenter; forskjellen
 Tokens, fonter og `.s-*`-klassene i én fil, fra jsDelivr. Ingen JavaScript, ingen pakke.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/styles.css">
 ```
 
 Fila laster tokens, fontene (Schibsted Grotesk og DM Mono, hostet samme sted) og komponentstilene. Et helt eksempel:
@@ -23,8 +23,8 @@ Fila laster tokens, fontene (Schibsted Grotesk og DM Mono, hostet samme sted) og
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sussi, bare CSS</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css">
+<title>Sassy, bare CSS</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/styles.css">
 <style>main{max-width:480px;margin:0 auto;padding:24px 16px;display:grid;gap:16px}</style>
 </head>
 <body>
@@ -51,12 +51,12 @@ Fila laster tokens, fontene (Schibsted Grotesk og DM Mono, hostet samme sted) og
 React 18.3 eller 19, installert fra GitHub (pakken ligger ikke på npm):
 
 ```sh
-npm install github:Mariisno/sussi-ui#v0.9.0
+npm install github:Mariisno/sassy-ui#v0.11.0
 ```
 
 ```jsx
-import 'sussi/styles.css';
-import { Button } from 'sussi';
+import 'sassy/styles.css';
+import { Button } from 'sassy';
 
 export default function App() {
   return <Button variant="primary">Lagre</Button>;
@@ -67,7 +67,7 @@ Komponentene er kompilert ESM (JavaScript-moduler med `import` og `export`) i `d
 
 ### Uten byggesteg
 
-Én HTML-fil og en import map (et `<script type="importmap">` som forteller nettleseren hvor `import 'react'` og `import 'sussi'` skal hentes fra): React fra jsDelivr og Sussi som én ESM-fil, `dist/sussi.browser.js`. Versjonene er låst, så fila ser lik ut neste år.
+Én HTML-fil og en import map (et `<script type="importmap">` som forteller nettleseren hvor `import 'react'` og `import 'sassy'` skal hentes fra): React fra jsDelivr og Sassy som én ESM-fil, `dist/sassy.browser.js`. Versjonene er låst, så fila ser lik ut neste år.
 
 ```html
 <script type="importmap">
@@ -77,7 +77,7 @@ Komponentene er kompilert ESM (JavaScript-moduler med `import` og `export`) i `d
     "react/jsx-runtime": "https://cdn.jsdelivr.net/npm/react@18.3.1/jsx-runtime/+esm",
     "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm",
     "react-dom/client": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/client/+esm",
-    "sussi": "https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/dist/sussi.browser.js"
+    "sassy": "https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/dist/sassy.browser.js"
   }
 }
 </script>
@@ -96,15 +96,15 @@ To attributter på `<html>` styrer alt:
 - `data-theme` er `light` eller `dark`. Ingenting skifter av seg selv; sett det fra `prefers-color-scheme` om du vil, og husk valget.
 - `data-accent` velger én av de seks aksentene: `moss` (standard, trenger ikke settes), `clay`, `fjord`, `lichen`, `lyng` og `ochre`. Aksenten farger primærknappen, lenker, fokusringen, valgte faner og den myke bakgrunnen på badges.
 
-Hvert par i hver aksent er målt i begge moduser: knappetekst på aksenten 4,5:1, aksenten som flate 3:1, lenker 4,5:1, fokusringen 3:1 og tekst på den myke aksenten 4,5:1. Tallene står på [Grunnlag](https://mariisno.github.io/sussi-ui/grunnlag/).
+Hvert par i hver aksent er målt i begge moduser: knappetekst på aksenten 4,5:1, aksenten som flate 3:1, lenker 4,5:1, fokusringen 3:1 og tekst på den myke aksenten 4,5:1. Tallene står på [Grunnlag](https://mariisno.github.io/sassy-ui/grunnlag/).
 
 ## 3. Dine egne farger
 
-Du trenger ikke én av de seks. Motoren (`tokens/tema.js`) tar én aksentfarge og lager hele tokengruppa i OKLCH (et fargerom der lysheten er en egen akse, så den kan flyttes uten at fargen skifter tone), og flytter lysheten bare så mye at hvert par holder samme krav som Sussis egne aksenter. Det du setter selv, flyttes aldri.
+Du trenger ikke én av de seks. Motoren (`tokens/tema.js`) tar én aksentfarge og lager hele tokengruppa i OKLCH (et fargerom der lysheten er en egen akse, så den kan flyttes uten at fargen skifter tone), og flytter lysheten bare så mye at hvert par holder samme krav som Sassys egne aksenter. Det du setter selv, flyttes aldri.
 
 ### I temabyggeren
 
-Åpne [temabyggeren](https://mariisno.github.io/sussi-ui/tema/), velg en farge og gi temaet et navn. Alt skjer i nettleseren:
+Åpne [temabyggeren](https://mariisno.github.io/sassy-ui/tema/), velg en farge og gi temaet et navn. Alt skjer i nettleseren:
 
 1. **Forhåndsvisningen** viser ekte komponenter med temaet, lys og mørk side om side.
 2. **Under aksentfeltet** står svaret med én gang: «OK.», og om motoren måtte flytte fargen din, hvor langt og hvorfor. **Rapporten** lenger ned lister hver regel med målt forhold, og under «Flyttet» alt motoren justerte. Står det «OK: alle 124 par holder» (62 i hver modus), er du i mål.
@@ -115,23 +115,23 @@ Du trenger ikke én av de seks. Motoren (`tokens/tema.js`) tar én aksentfarge o
 Det samme temaet fra terminalen, med pakken installert fra GitHub (steg 1):
 
 ```sh
-npx sussi-tema --aksent "#2F6F9F" --navn hav > hav.css
+npx sassy-tema --aksent "#2F6F9F" --navn hav > hav.css
 ```
 
 CSS-en går til stdout (standard ut, det `>` sender til fila), rapporten til stderr (feilstrømmen, som blir stående i terminalen). `--format json` gir tokenene som DTCG-JSON (W3C-formatet for designtokens, som Style Dictionary og designverktøy leser), `--preset fjord` gir en av de seks, og `--overstyr '{"--bg":"#F4F7FA"}' --modus light` låser en flate eller en tekstfarge. Temabyggeren skriver kommandoen for deg under «Samme tema fra kommandolinjen».
 
-I en app med npm laster du temafila rett etter Sussis CSS, `import 'sussi/styles.css';` og så `import './hav.css';`, og setter `data-tema="hav"` på `<html>`.
+I en app med npm laster du temafila rett etter Sassys CSS, `import 'sassy/styles.css';` og så `import './hav.css';`, og setter `data-tema="hav"` på `<html>`.
 
 ### Når en farge må justeres
 
 En lys gul er fin som aksent i mørk modus, men hvit knappetekst på den holder ikke i lys modus. Dette er rapporten for `#F2E16B`, slik den faktisk står:
 
 ```sh
-npx sussi-tema --aksent "#F2E16B" --navn sol > sol.css
+npx sassy-tema --aksent "#F2E16B" --navn sol > sol.css
 ```
 
 ```text
-Sussi theme "sol" (aksent, from #F2E16B): ok, every rule holds
+Sassy theme "sol" (aksent, from #F2E16B): ok, every rule holds
   light: --accent #807200, --accent-text #7C6E00, --accent-fg #F9F8E8, --focus-color #807200
     moved --accent #F2E16B -> #807200 (L -0.353): button text on the accent
     moved --accent-text #807200 -> #7C6E00 (L -0.013): links on --surface-2
@@ -148,13 +148,13 @@ Går et par ikke opp, får du **Ikke OK** i stedet: temabyggeren sier «Ikke OK�
 <!-- detaljer -->
 ### Hva garantien dekker
 
-Garantien er kontrasten mellom Sussis egne tokens, der komponentene bruker dem. I hver modus måles 62 par, og hvert av dem må holde kravet før temaet er OK:
+Garantien er kontrasten mellom Sassys egne tokens, der komponentene bruker dem. I hver modus måles 62 par, og hvert av dem må holde kravet før temaet er OK:
 
 - **Aksenten:** knappetekst på aksenten, også under hover og trykk (4,5:1); aksenten som flate, for eksempel en aktiv rad eller framdrift, på bakgrunnen og de tre flatene (3:1); lenker på bakgrunnen, `--surface-1` og `--surface-2` (4,5:1); fokusringen på de samme tre (3:1); tekst på den myke aksenten i badges og valgte tags, også under hover (4,5:1); markert tekst (4,5:1). En lenke skal dessuten skifte farge under hover.
 - **Tekst og kanter:** brødtekst og sekundær tekst på bakgrunnen og de tre flatene (4,5:1), metatekst på de tre første (4,5:1) og på `--surface-3` som bryterring (3:1), kanten på felt og avkrysningsbokser (3:1).
 - **Status:** framdriftsfyll og toast-ikoner i suksess, advarsel, fare og info (3:1), teksten i statusbadges (4,5:1), feilmeldingen under et felt (4,5:1) og kanten på et ugyldig felt (3:1), teksten på fareknappen, også under hover (4,5:1), og fargen i `--focus-ring` (3:1).
 
-Reglene ligger i `REGLER` i `tokens/tema.js`, og rapporten i temabyggeren viser hvert par med målt verdi. Garantien dekker ikke farger du legger oppå selv, bilder, eller komponenter som ikke er Sussis; der måler du selv.
+Reglene ligger i `REGLER` i `tokens/tema.js`, og rapporten i temabyggeren viser hvert par med målt verdi. Garantien dekker ikke farger du legger oppå selv, bilder, eller komponenter som ikke er Sassys; der måler du selv.
 <!-- /detaljer -->
 
 ## 4. Tre komponenter
@@ -164,7 +164,7 @@ Med pakken installert (steg 1) skriver du JSX. Samme tre komponenter, kjørende 
 ### Button
 
 ```jsx
-import { Button } from 'sussi';
+import { Button } from 'sassy';
 
 <Button onClick={lagre}>Lagre</Button>
 <Button variant="secondary" iconLeft="plus" onClick={ny}>Ny plante</Button>
@@ -181,7 +181,7 @@ Alle props: [Button](komponenter/Button.nb.md).
 ### Dialog
 
 ```jsx
-import { Dialog, Button } from 'sussi';
+import { Dialog, Button } from 'sassy';
 
 <Dialog open={open} onClose={() => setOpen(false)} title="Slette bedet?" description="Tomatene og notatene forsvinner."
   footer={<><Button variant="ghost" onClick={() => setOpen(false)}>Behold</Button><Button variant="danger" onClick={slett}>Slett bedet</Button></>}>
@@ -199,7 +199,7 @@ Alle props: [Dialog](komponenter/Dialog.nb.md).
 ### Toast og ToastStack
 
 ```jsx
-import { Toast, ToastStack } from 'sussi';
+import { Toast, ToastStack } from 'sassy';
 
 <ToastStack>
   {slettet && <Toast tone="success" title="Bedet er slettet" actionLabel="Angre" onAction={angre} onClose={lukk} />}
@@ -224,8 +224,8 @@ Knappen åpner dialogen, dialogen gjør noe som kan angres, og svaret kommer som
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sussi uten byggesteg</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/styles.css">
+<title>Sassy uten byggesteg</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/styles.css">
 <script type="importmap">
 {
   "imports": {
@@ -233,7 +233,7 @@ Knappen åpner dialogen, dialogen gjør noe som kan angres, og svaret kommer som
     "react/jsx-runtime": "https://cdn.jsdelivr.net/npm/react@18.3.1/jsx-runtime/+esm",
     "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm",
     "react-dom/client": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/client/+esm",
-    "sussi": "https://cdn.jsdelivr.net/gh/Mariisno/sussi-ui@v0.9.0/dist/sussi.browser.js"
+    "sassy": "https://cdn.jsdelivr.net/gh/Mariisno/sassy-ui@v0.11.0/dist/sassy.browser.js"
   }
 }
 </script>
@@ -244,7 +244,7 @@ Knappen åpner dialogen, dialogen gjør noe som kan angres, og svaret kommer som
 <script type="module">
 import { createElement as h, Fragment, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Button, Dialog, Toast, ToastStack } from 'sussi';
+import { Button, Dialog, Toast, ToastStack } from 'sassy';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -258,13 +258,13 @@ function App() {
       h(Button, { variant: 'danger', iconLeft: 'trash-2', onClick: () => setOpen(true) }, 'Slett bedet'),
       h(Button, { variant: 'secondary', iconLeft: 'moon', onClick: byttTema }, 'Lys eller mørk')),
     h(Dialog, {
-      open, onClose: () => setOpen(false), title: 'Slette bedet?', description: 'Tomatene og notatene forsvinner.',
+      open, onClose: () => setOpen(false), title: 'Slette bedet?', description: 'Tomatene og notatene forsvinner.', closeLabel: 'Lukk',
       footer: h(Fragment, null,
         h(Button, { variant: 'ghost', onClick: () => setOpen(false) }, 'Behold'),
         h(Button, { variant: 'danger', onClick: slett }, 'Slett bedet')),
     }, h('p', null, 'Du kan angre fra toasten etterpå.')),
     h(ToastStack, null,
-      slettet && h(Toast, { tone: 'success', title: 'Bedet er slettet', actionLabel: 'Angre', onAction: () => setSlettet(false), onClose: () => setSlettet(false) })));
+      slettet && h(Toast, { tone: 'success', title: 'Bedet er slettet', actionLabel: 'Angre', onAction: () => setSlettet(false), onClose: () => setSlettet(false), closeLabel: 'Lukk' })));
 }
 
 createRoot(document.getElementById('app')).render(h(App));
@@ -275,7 +275,7 @@ createRoot(document.getElementById('app')).render(h(App));
 
 ## Videre
 
-- [Komponenter](https://mariisno.github.io/sussi-ui/komponenter/): alle komponentene med eksempel, props, tilgjengelighet og innhold.
-- [Grunnlag](https://mariisno.github.io/sussi-ui/grunnlag/): farger med målt kontrast, skrift, avstand, hjørner, skygger og bevegelse.
-- [Tokens](https://mariisno.github.io/sussi-ui/tokens/): alle tokenene som JSON i W3C-formatet, til Style Dictionary og designverktøy.
+- [Komponenter](https://mariisno.github.io/sassy-ui/komponenter/): alle komponentene med eksempel, props, tilgjengelighet og innhold.
+- [Grunnlag](https://mariisno.github.io/sassy-ui/grunnlag/): farger med målt kontrast, skrift, avstand, hjørner, skygger og bevegelse.
+- [Tokens](https://mariisno.github.io/sassy-ui/tokens/): alle tokenene som JSON i W3C-formatet, til Style Dictionary og designverktøy.
 - [Innhold](innhold.nb.md): stemmen, knappetekster, feilmeldinger og tomme tilstander.

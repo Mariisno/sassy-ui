@@ -3,8 +3,8 @@ navn: AppShell
 gruppe: navigation
 status: stable
 sidenVersjon: 0.3.0
-kort: components/navigation/appshell.card.html
-typer: components/navigation/AppShell.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/appshell/
+typer: dist/navigation/AppShell.d.ts
 ---
 
 # AppShell
@@ -41,7 +41,7 @@ Rammen rundt en app, med hovedmenyen: en fanelinje nederst under 900 px og en 24
 ## Eksempel
 
 ```jsx
-import { AppShell } from 'sussi/components';
+import { AppShell } from 'sassy/components';
 
 <AppShell
   items={[
@@ -59,7 +59,7 @@ import { AppShell } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/navigation/AppShell.d.ts`. Kortet: `components/navigation/appshell.card.html`.
+Typene står i `dist/navigation/AppShell.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/appshell/).
 
 <!-- props: AppShellProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -91,7 +91,7 @@ Typene står i `components/navigation/AppShell.d.ts`. Kortet: `components/naviga
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/appshell.e2e.test.mjs` og `tests/appshell-hover.e2e.test.mjs`, reglene i `tests/appshell.test.mjs`.
+Oppførselen er testet i nettleseren, reglene i enhetstester.
 
 - **Landemerker.** Begge menyene er `<nav aria-label={label}>` («Hovedmeny»); bare én er synlig om gangen. Sida er `<main id tabIndex={-1}>`, rendret av AppShell. Ikke legg et `<main>` til inni.
 - **Hopp-lenke.** Det første Tab lander på er `<a class="s-shell__skip">` («Hopp til innholdet»): usynlig i ro, synlig med fokus som en aksentpille, minst 44 px høy og 4,5:1. Enter flytter fokus til `<main>` med kode og rører ikke hashen, så en app som ruter på hash beholder ruta (testet, WCAG 2.4.1).

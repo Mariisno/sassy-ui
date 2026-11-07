@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x360" name="SegmentedControl" subtitle="Two to five exclusive options in a row" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SegmentedControl</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../dist/sassy.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 32px;max-width:640px}.col{display:grid;gap:16px;align-content:start}.lbl{font:var(--type-meta);color:var(--fg-3)}@media (max-width:520px){.grid{grid-template-columns:1fr}}</style>
+</head><body><div id="root"></div>
+<script>
+// ?theme=dark. Plain React.createElement, so the card needs no Babel.
+const { SegmentedControl } = window.SassyDesignSystem_a2c9b8;
+const h = React.createElement;
+if (new URLSearchParams(location.search).get('theme')) document.documentElement.dataset.theme = 'dark';
+// The card follows the page that embeds it (same origin), like the Dialog card: the Norwegian docs get a Norwegian card,
+// the English docs an English one. Opened on its own, or where the page cannot be read, it keeps the language on its <html>.
+const nb = (() => { try { const p = window.frameElement && window.frameElement.ownerDocument.documentElement.lang; return p ? p === 'nb' : document.documentElement.lang === 'nb'; } catch (e) { return document.documentElement.lang === 'nb'; } })();
+document.documentElement.lang = nb ? 'nb' : 'en';
+const T = nb
+  ? { tre: 'tre alternativer · legend og hint', sted: 'Hvor står planten?', stedHint: 'Kan endres senere.', ute: 'Ute', inne: 'Inne', drivhus: 'Drivhus', ikoner: 'med ikoner', sadd: 'Sådd', var: 'Vår', sommer: 'Sommer', host: 'Høst', styrt: 'styrt · fullWidth', enhet: 'Enhet', g: 'Gram', dl: 'Desiliter', stk: 'Stykk', av: 'slått av · disabled på gruppa', porsjoner: 'Porsjoner', porsjonerHint: 'Settes når oppskriften er lagret.' }
+  : { tre: 'three options · legend and hint', sted: 'Where is the plant?', stedHint: 'Can be changed later.', ute: 'Outdoors', inne: 'Indoors', drivhus: 'Greenhouse', ikoner: 'with icons', sadd: 'Sown', var: 'Spring', sommer: 'Summer', host: 'Autumn', styrt: 'controlled · fullWidth', enhet: 'Unit', g: 'Grams', dl: 'Decilitres', stk: 'Pieces', av: 'switched off · disabled on the group', porsjoner: 'Servings', porsjonerHint: 'Set once the recipe is saved.' };
+function App() {
+  const [unit, setUnit] = React.useState('g');
+  return h('div', { className: 'grid' },
+    h('div', { className: 'col' },
+      h('span', { className: 'lbl' }, T.tre),
+      h(SegmentedControl, { label: T.sted, hint: T.stedHint, options: [T.ute, T.inne, T.drivhus], defaultValue: T.ute }),
+      h('span', { className: 'lbl' }, T.ikoner),
+      h(SegmentedControl, { label: T.sadd, options: [{ value: 'var', label: T.var, icon: 'sprout' }, { value: 'sommer', label: T.sommer, icon: 'sun' }, { value: 'host', label: T.host, icon: 'leaf' }], defaultValue: 'var' })),
+    h('div', { className: 'col' },
+      h('span', { className: 'lbl' }, T.styrt),
+      h(SegmentedControl, { label: T.enhet, options: [{ value: 'g', label: T.g }, { value: 'dl', label: T.dl }, { value: 'stk', label: T.stk }], value: unit, onChange: setUnit, fullWidth: true }),
+      h('span', { className: 'lbl' }, T.av),
+      h(SegmentedControl, { label: T.porsjoner, hint: T.porsjonerHint, options: ['2', '4', '6'], defaultValue: '4', disabled: true })));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+</script></body></html>

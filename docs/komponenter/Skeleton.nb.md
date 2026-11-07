@@ -3,8 +3,8 @@ navn: Skeleton
 gruppe: feedback
 status: new
 sidenVersjon: 0.7.0
-kort: components/feedback/skeleton.card.html
-typer: components/feedback/Skeleton.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/skeleton/
+typer: dist/feedback/Skeleton.d.ts
 ---
 
 # Skeleton
@@ -41,7 +41,7 @@ Formen på innhold som ikke har kommet ennå: tekstlinjer, en sirkel (en avatar)
 ## Eksempel
 
 ```jsx
-import { Skeleton, Spinner } from 'sussi/components';
+import { Skeleton, Spinner } from 'sassy/components';
 
 <section aria-busy={loading} aria-label="Oppskrift">
   <span className="s-sr-only" role="status">{loading ? 'Laster oppskriften' : ''}</span>
@@ -59,7 +59,7 @@ import { Skeleton, Spinner } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/feedback/Skeleton.d.ts`. Kortet: `components/feedback/skeleton.card.html`.
+Typene står i `dist/feedback/Skeleton.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/skeleton/).
 
 <!-- props: SkeletonProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -77,7 +77,7 @@ Pluss alle attributtene til `<span>` (`React.HTMLAttributes<HTMLSpanElement>`).
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/laster.e2e.test.mjs`, reglene i kilden i `tests/skeleton.test.mjs`.
+Oppførselen er testet i nettleseren, reglene i kilden i enhetstester.
 
 - **Element og rolle.** Et `<span aria-hidden="true">` uten rolle; flere linjer er ett spenn med `aria-hidden` rundt linjene, så ingenting skjules dobbelt (testet). Skjelettet sier ingenting selv.
 - **Mønsteret rundt.** Regionen som venter har `aria-busy="true"` og én tekst med `role="status"` (en `Spinner` med `label`, eller en `.s-sr-only`-linje). Testet: regionen har én statusregion, og den eneste teksten i den er statuslinja.

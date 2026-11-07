@@ -3,8 +3,8 @@ navn: SegmentedControl
 gruppe: inputs
 status: new
 sidenVersjon: 0.7.0
-kort: components/inputs/segmentedcontrol.card.html
-typer: components/inputs/SegmentedControl.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/segmentedcontrol/
+typer: dist/inputs/SegmentedControl.d.ts
 ---
 
 # SegmentedControl
@@ -42,7 +42,7 @@ To til fem alternativer som utelukker hverandre, på én rad, som én verdi i et
 ## Eksempel
 
 ```jsx
-import { SegmentedControl } from 'sussi/components';
+import { SegmentedControl } from 'sassy/components';
 
 <SegmentedControl label="Hvor står planten?" hint="Kan endres senere." options={['Ute', 'Inne', 'Drivhus']} defaultValue="Ute" />
 
@@ -59,7 +59,7 @@ import { SegmentedControl } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/inputs/SegmentedControl.d.ts`. Kortet: `components/inputs/segmentedcontrol.card.html`.
+Typene står i `dist/inputs/SegmentedControl.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/segmentedcontrol/).
 
 <!-- props: SegmentedControlProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -90,7 +90,7 @@ Pluss alle attributtene til `<fieldset>` (`React.FieldsetHTMLAttributes<HTMLFiel
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/segmentedcontrol.e2e.test.mjs`, reglene i `tests/segmentedcontrol.test.mjs`.
+Oppførselen er testet i nettleseren, reglene i enhetstester.
 
 - **Element og rolle.** Et native `<fieldset>` med `role="radiogroup"` og en `<legend>`; hvert alternativ er en native `<input type="radio">` i en `<label>`. Ingen egen tastaturkode: alt er nettleserens.
 - **Navn.** Gruppa heter det som står i `label` (legenden, også via `aria-labelledby`, så navnet holder med rollen). Hvert alternativ heter etiketten sin. Uten `label` må du sende `aria-label` (testet).
@@ -98,7 +98,7 @@ Oppførselen er testet i `tests/segmentedcontrol.e2e.test.mjs`, reglene i `tests
 - **Tastatur.** Ett tabulatorstopp: Tab lander på det valgte alternativet (eller det første når ingenting er valgt), ←/→ og ↑/↓ flytter og velger innenfor gruppa med rundgang, mellomrom velger, Tab går videre ut av gruppa (testet).
 - **Fokus.** Den visuelt skjulte radioen har fokus; ansiktet ved siden av den viser ringen, 2 px `--focus-color` med 2 px avstand (`:focus-visible`).
 - **Tilstand.** Det valgte ansiktet løftes med `--surface-1` (`--surface-3` i mørk modus), en skygge og `--fg-1`-tekst; de andre står i `--fg-2` på `--surface-2`. Tilstanden er `:checked` på radioen, så den leses som «valgt» uansett farge. `disabled` på gruppa slår av alle radioene (native) og dimmer dem; `disabled` på ett alternativ slår av det ene.
-- **Kontrast.** `--fg-2` på `--surface-2` og `--fg-1` på `--surface-1`/`--surface-3` er minst 4,5:1 i begge temaer og alle aksenter (`tests/segmentedcontrol.test.mjs`).
+- **Kontrast.** `--fg-2` på `--surface-2` og `--fg-1` på `--surface-1`/`--surface-3` er minst 4,5:1 i begge temaer og alle aksenter (testet).
 - **Mål.** Sporet er 36 px høyt og hvert ansikt 30 px høyt, akkurat som Tabs `variant="segmented"`, og minst 40 px bredt (2.5.8).
 - **Bevegelse.** Bakgrunn, farge og skygge går over på `--dur-fast`, 0 under redusert bevegelse.
 - **Innebygd tekst.** Ingen.

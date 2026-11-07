@@ -1,7 +1,7 @@
 {
-  "name": "sussi",
-  "version": "0.9.0",
-  "description": "Sussi, et designsystem fra NotlandDesign. Tokens, fonter, komponentstiler og React-komponentene.",
+  "name": "sassy",
+  "version": "0.11.0",
+  "description": "Sassy, et designsystem fra NotlandDesign. Tokens, fonter, komponentstiler og React-komponentene.",
   "license": "MIT AND CC-BY-4.0 AND OFL-1.1 AND ISC",
   "author": "Mari Notland",
   "private": true,
@@ -18,18 +18,19 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./components/components.css": "./components/components.css",
     "./components/*": "./dist/*",
     "./dist/*": "./dist/*",
-    "./browser": "./dist/sussi.browser.js",
+    "./browser": "./dist/sassy.browser.js",
     "./styles.css": "./styles.css",
     "./tokens/*": "./tokens/*",
-    "./tokens.json": "./tokens/sussi.tokens.json",
+    "./tokens.json": "./tokens/sassy.tokens.json",
     "./tema": "./tokens/tema.js",
     "./assets/*": "./assets/*",
     "./package.json": "./package.json"
   },
   "bin": {
-    "sussi-tema": "./scripts/sussi-tema.mjs"
+    "sassy-tema": "./scripts/sassy-tema.mjs"
   },
   "peerDependencies": {
     "react": "^18.3.0 || ^19.0.0",
@@ -45,9 +46,8 @@
     "assets/icons/",
     "LICENSE",
     "LICENSES.md",
-    "components/",
+    "components/components.css",
     "dist/",
-    "guidelines/",
-    "scripts/sussi-tema.mjs"
+    "scripts/sassy-tema.mjs"
   ]
 }

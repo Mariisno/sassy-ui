@@ -3,8 +3,8 @@ navn: Spinner
 gruppe: feedback
 status: new
 sidenVersjon: 0.7.0
-kort: components/feedback/spinner.card.html
-typer: components/feedback/Spinner.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/spinner/
+typer: dist/feedback/Spinner.d.ts
 ---
 
 # Spinner
@@ -41,7 +41,7 @@ Noe skjer, og ingen vet hvor lenge: en ring i aksenten som snurrer. `role="statu
 ## Eksempel
 
 ```jsx
-import { Spinner, Button } from 'sussi/components';
+import { Spinner, Button } from 'sassy/components';
 
 <Spinner label="Laster" />
 <Spinner size="lg" label="Henter oppskrifter" />
@@ -51,7 +51,7 @@ import { Spinner, Button } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/feedback/Spinner.d.ts`. Kortet: `components/feedback/spinner.card.html`.
+Typene står i `dist/feedback/Spinner.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/spinner/).
 
 <!-- props: SpinnerProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -67,12 +67,12 @@ Pluss alle attributtene til `<span>` (`React.HTMLAttributes<HTMLSpanElement>`).
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/laster.e2e.test.mjs`, fargereglene i `tests/spinner.test.mjs`.
+Oppførselen er testet i nettleseren, fargereglene i enhetstester.
 
 - **Element og rolle.** En `<span role="status">` med ringen `aria-hidden` og `label` som visuelt skjult tekst (`.s-sr-only`: 1 px, klippet, ikke `display:none`, så den leses). Med `aria-hidden` har spennet ingen rolle og ingen tekst (testet).
 - **Navn.** `label`, som innhold i statusregionen. En live-region som kommer ferdig fylt leses ikke alltid; når opplesingen må være sikker, ha en `role="status"`-tekst i siden fra start og sett teksten når lastingen begynner (mønsteret i [Skeleton](Skeleton.nb.md)).
 - **Tastatur og fokus.** Ingen; den kan ikke betjenes, og den flytter ikke fokus.
-- **Kontrast.** Buen er `--accent` gjennom `currentColor`, 3:1 mot `--bg`, `--surface-1` og `--surface-2` i begge temaer og alle aksenter (WCAG 1.4.11; `tests/spinner.test.mjs` måler tokenene, `tests/laster.e2e.test.mjs` den renderte fargen). Resten av ringen er `--surface-3`, et spor, ikke et signal.
+- **Kontrast.** Buen er `--accent` gjennom `currentColor`, 3:1 mot `--bg`, `--surface-1` og `--surface-2` i begge temaer og alle aksenter (WCAG 1.4.11; testet på tokenene og den renderte fargen). Resten av ringen er `--surface-3`, et spor, ikke et signal.
 - **Bevegelse.** Ringen snurrer (0,8 s, lineært). Under `prefers-reduced-motion` står den stille og pulserer i opasitet (1,6 s), og Button sin `.s-btn__spin` gjør det samme (WCAG 2.3.3, testet).
 - **Størrelser.** `sm` 16 px med 2 px strek, `md` 24 px med 3 px, `lg` 40 px med 4 px (testet).
 - **Innebygd tekst.** Ingen; `label` er appens.

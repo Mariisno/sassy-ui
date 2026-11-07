@@ -3,8 +3,8 @@ name: ListItem
 group: display
 status: stable
 since: 0.3.0
-kort: components/display/listitem.card.html
-typer: components/display/ListItem.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/listitem/
+typer: dist/display/ListItem.d.ts
 ---
 
 # ListItem
@@ -42,7 +42,7 @@ A row that opens something: a project, a recipe, a plant. With `href` it is a li
 ## Example
 
 ```jsx
-import { ListItem, Badge, Progress } from 'sussi/components';
+import { ListItem, Badge, Progress } from 'sassy/components';
 
 <ListItem href="#/recipe/soup" icon="book-open" title="Lentil soup" meta="Quick weeknight dinner · 20 min" />
 <ListItem onClick={openProject} image={cover} title="Tomatoes" meta="25 % · 3 beds">
@@ -55,7 +55,7 @@ import { ListItem, Badge, Progress } from 'sussi/components';
 
 ## Props
 
-The types are in `components/display/ListItem.d.ts`. The card: `components/display/listitem.card.html`.
+The types are in `dist/display/ListItem.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/listitem/).
 
 <!-- props: ListItemProps -->
 | Prop | Type | Default | Description |
@@ -77,14 +77,14 @@ Plus every attribute of the element it renders as (`React.HTMLAttributes<HTMLEle
 
 ## Accessibility
 
-The behaviour is tested in `tests/listitem.e2e.test.mjs`.
+The behaviour is tested in a browser.
 
 - **Element and role.** `<a href>` with `href`, `<button type="button">` with `onClick`, otherwise `<div>`. A row with no destination is not focusable and has no chevron.
 - **Name.** Title and meta, with a space between them in the accessible name ("Lentil soup Quick weeknight dinner · 20 min"). The text in `children` becomes part of the name too. The image is decorative (`alt=""`) without `imageAlt`.
 - **Keyboard.** Enter and Space on a button row, Enter on a link row (tested). A link with `onClick` runs it on click and on Enter.
 - **State.** `disabled` on a button is `disabled`; on a link it is `aria-disabled="true"`, and `href` and `onClick` are removed, so it goes nowhere. Both are 50% opacity.
 - **Focus.** The standard focus ring, 2 px `--focus-color` (tested visible on both the link and the button).
-- **Contrast.** Title `--fg-1`, meta `--fg-2`, chevron `--fg-3` going to `--fg-1` on hover, all on `--surface-1`. The row inherits Sussi's font as a button too (`font:inherit`).
+- **Contrast.** Title `--fg-1`, meta `--fg-2`, chevron `--fg-3` going to `--fg-1` on hover, all on `--surface-1`. The row inherits Sassy's font as a button too (`font:inherit`).
 - **Target.** At least 56 px tall (tested ≥ 44). A long title wraps and keeps the chevron in view at 320 px.
 - **Motion.** Transitions on `--dur-fast`; a press moves it 1 px down.
 - **Built-in text.** None.

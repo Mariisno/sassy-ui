@@ -3,8 +3,8 @@ name: Radio
 group: controls
 status: stable
 since: 0.2.0
-kort: components/controls/controls.card.html
-typer: components/controls/Radio.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/radio/
+typer: dist/controls/Radio.d.ts
 ---
 
 # Radio
@@ -42,7 +42,7 @@ A radio button for one choice among two to five visible options. A native `<inpu
 ## Example
 
 ```jsx
-import { Fieldset, Radio } from 'sussi/components';
+import { Fieldset, Radio } from 'sassy/components';
 
 <Fieldset legend="Who sees the project?">
   <Radio name="visibility" value="private" label="Private" description="Only you" defaultChecked />
@@ -53,7 +53,7 @@ import { Fieldset, Radio } from 'sussi/components';
 
 ## Props
 
-The types are in `components/controls/Radio.d.ts`. The card: `components/controls/controls.card.html`.
+The types are in `dist/controls/Radio.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/radio/).
 
 <!-- props: RadioProps -->
 | Prop | Type | Default | Description |
@@ -64,7 +64,7 @@ The types are in `components/controls/Radio.d.ts`. The card: `components/control
 Plus every attribute of `<input>` (`React.InputHTMLAttributes<HTMLInputElement>`), except `type`.
 <!-- /props -->
 
-`ref` reaches the native `<input>` (`tests/refs.e2e.test.mjs`).
+`ref` reaches the native `<input>` (tested).
 
 ## Accessibility
 
@@ -73,7 +73,7 @@ Plus every attribute of `<input>` (`React.InputHTMLAttributes<HTMLInputElement>`
 - **Keyboard.** Tab lands on the selected option (or the first), the arrow keys move and select within the group, as in every browser. Nothing of its own in the component.
 - **State.** `checked` on the input. Selected fills the box with `--accent` and shows a dot in `--accent-fg`. `disabled` gives 50% opacity.
 - **Focus.** A 2 px `outline` in `--focus-color` around the box on keyboard focus.
-- **Contrast.** The edge is `--border-control`, at least 3:1 against the surfaces in both themes and every accent (`tests/contrast.test.mjs`). The dot is `--accent-fg` on `--accent`.
+- **Contrast.** The edge is `--border-control`, at least 3:1 against the surfaces in both themes and every accent (tested). The dot is `--accent-fg` on `--accent`.
 - **Motion.** The dot transitions on `--dur-fast`, 0 under reduced motion.
 - **Target.** The box is 18 px, the click target the whole label. Known limit: under 44 px on touch, like Checkbox.
 - **Built-in text.** None.

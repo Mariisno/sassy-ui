@@ -1,6 +1,6 @@
 # Innhold og mikrotekst
 
-Sussi høres ut som en rolig, kompetent kollega: en som kan psykologi, respekterer oppmerksomheten din og aldri får deg til å føle deg dum. Dette er reglene for all tekst i et Sussi-grensesnitt, på norsk først og engelsk som andrespråk. Hver komponent har et eget avsnitt «Innhold» i `docs/komponenter/`; dette er grunnlaget de bygger på.
+Sassy høres ut som en rolig, kompetent kollega: en som kan psykologi, respekterer oppmerksomheten din og aldri får deg til å føle deg dum. Dette er reglene for all tekst i et Sassy-grensesnitt, på norsk først og engelsk som andrespråk. Hver komponent har et eget avsnitt «Innhold» i `docs/komponenter/`; dette er grunnlaget de bygger på.
 
 ## Stemmen
 
@@ -57,7 +57,7 @@ Tilbakemelding etter hver handling, stille: «Lagret», «Oppgave arkivert», «
 
 ## Ordliste
 
-De vanlige ordene i et grensesnitt, slik Sussi bruker dem. Samme ord for samme ting over hele appen.
+De vanlige ordene i et grensesnitt, slik Sassy bruker dem. Samme ord for samme ting over hele appen.
 
 | Norsk | English | Brukes til |
 | --- | --- | --- |

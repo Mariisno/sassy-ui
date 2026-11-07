@@ -1,4 +1,4 @@
-// Sussi — the theme engine. Build Sussi with your own colours, and keep the contrast guarantee.
+// Sassy — the theme engine. Build Sassy with your own colours, and keep the contrast guarantee.
 //
 // Plain ESM, no dependencies, runs in Node and in the browser. Three levels:
 //
@@ -9,7 +9,7 @@
 //
 // The result holds every token of the accent group (what a built-in [data-accent] sets) for light
 // and dark, derived in OKLCH from the colour you gave and then pushed, by lightness only, until
-// the rules Sussi's own tests hold for its built-in accents pass:
+// the rules Sassy's own tests hold for its built-in accents pass:
 //
 //   --accent-fg on --accent                       ≥ 4.5:1   buttons, the active row (WCAG 1.4.3)
 //   --accent on --bg, --surface-1/2/3             ≥ 3:1     the active row, the progress fill (1.4.11)
@@ -27,7 +27,7 @@
 // ok: false and a warning in Norwegian and English that names the pair and the ratio.
 //
 // tilCss(tema) gives the CSS ([data-tema="hav"] and its dark pairing, like the built-in accents),
-// tilDtcg(tema) the tokens in the DTCG format with the same paths as tokens/sussi.tokens.json.
+// tilDtcg(tema) the tokens in the DTCG format with the same paths as tokens/sassy.tokens.json.
 
 // ---------------------------------------------------------------------------------------------
 // Colour: sRGB ↔ OKLab ↔ OKLCH (Björn Ottosson's matrices), WCAG 2 contrast, sRGB gamut mapping.
@@ -101,8 +101,8 @@ export function kontrast(a, b) {
 }
 
 // ---------------------------------------------------------------------------------------------
-// @generert start (scripts/tema-data.mjs)
-// Read from tokens/*.css by scripts/tema-data.mjs. Do not edit here; edit the CSS and run the script.
+// @generert start
+// Read from tokens/*.css. Do not edit here; edit the CSS.
 export const FORHÅNDSOPPSETT = {
   "moss": {
     "light": {
@@ -394,15 +394,15 @@ const FLATER = ['--bg', '--surface-1', '--surface-2'];
 
 // ---------------------------------------------------------------------------------------------
 // The rules. `flytt` says which token may move to satisfy the rule, in order of preference; a
-// token the user fixed never moves. `kilde` names the Sussi test that holds the rule for the
-// built-in accents; the rest are what the components need and the tests do not say yet.
-const regel = (a, b, min, flytt, no, en, kilde) => ({ a, b, min, flytt, no, en, kilde });
+// token the user fixed never moves. `testet` marks the rules the test suite holds for the built-in
+// accents (up to 0.10.0 it was `kilde`, the test's name); the rest are what the components need and the tests do not say yet.
+const regel = (a, b, min, flytt, no, en, testet) => ({ a, b, min, flytt, no, en, testet });
 export const REGLER = [
-  regel('--accent-fg', '--accent', 4.5, ['--accent', '--accent-fg'], 'knappetekst på aksenten', 'button text on the accent', 'contrast.test'),
-  ...['--bg', '--surface-1', '--surface-2', '--surface-3'].map((s) => regel('--accent', s, 3, ['--accent'], 'aksenten som flate (aktiv rad, framdrift) på ' + s, 'the accent as a surface (active row, progress) on ' + s, s === '--surface-2' || s === '--surface-3' ? 'progress.test' : 'contrast.test')),
-  ...FLATER.map((s) => regel('--accent-text', s, 4.5, ['--accent-text'], 'lenker på ' + s, 'links on ' + s, 'contrast.test')),
-  ...FLATER.map((s) => regel('--focus-color', s, 3, ['--focus-color'], 'fokusringen på ' + s, 'the focus outline on ' + s, 'contrast.test')),
-  regel('--accent-soft-fg', '--accent-soft', 4.5, ['--accent-soft-fg', '--accent-soft'], 'tekst på den myke aksenten (badge, valgt tag)', 'text on the soft accent (badge, selected tag)', 'contrast.test'),
+  regel('--accent-fg', '--accent', 4.5, ['--accent', '--accent-fg'], 'knappetekst på aksenten', 'button text on the accent', true),
+  ...['--bg', '--surface-1', '--surface-2', '--surface-3'].map((s) => regel('--accent', s, 3, ['--accent'], 'aksenten som flate (aktiv rad, framdrift) på ' + s, 'the accent as a surface (active row, progress) on ' + s, true)),
+  ...FLATER.map((s) => regel('--accent-text', s, 4.5, ['--accent-text'], 'lenker på ' + s, 'links on ' + s, true)),
+  ...FLATER.map((s) => regel('--focus-color', s, 3, ['--focus-color'], 'fokusringen på ' + s, 'the focus outline on ' + s, true)),
+  regel('--accent-soft-fg', '--accent-soft', 4.5, ['--accent-soft-fg', '--accent-soft'], 'tekst på den myke aksenten (badge, valgt tag)', 'text on the soft accent (badge, selected tag)', true),
   regel('--accent-soft-fg', '--accent-soft-hover', 4.5, ['--accent-soft-fg', '--accent-soft-hover'], 'tekst på den myke aksenten under hover', 'text on the soft accent while hovered'),
   regel('--accent-fg', '--accent-hover', 4.5, ['--accent-hover', '--accent-fg'], 'knappetekst under hover', 'button text while hovered'),
   regel('--accent-fg', '--accent-press', 4.5, ['--accent-press', '--accent-fg'], 'knappetekst under trykk', 'button text while pressed'),
@@ -410,26 +410,26 @@ export const REGLER = [
   // The base pairs, for when the surfaces or the text colours are overridden (b).
   ...['--bg', '--surface-1', '--surface-2', '--surface-3'].flatMap((s) => [
     regel('--fg-1', s, 4.5, ['--fg-1', s], 'brødtekst på ' + s, 'body text on ' + s),
-    regel('--fg-2', s, 4.5, ['--fg-2', s], 'sekundær tekst på ' + s, 'secondary text on ' + s, s === '--surface-3' ? 'contrast.test' : undefined),
+    regel('--fg-2', s, 4.5, ['--fg-2', s], 'sekundær tekst på ' + s, 'secondary text on ' + s, s === '--surface-3' || undefined),
   ]),
-  ...FLATER.map((s) => regel('--fg-3', s, 4.5, ['--fg-3', s], 'metatekst på ' + s, 'meta text on ' + s, 'contrast.test')),
-  regel('--fg-3', '--surface-3', 3, ['--fg-3', '--surface-3'], 'bryterknappens ring på sporet', 'the switch thumb ring on the track', 'contrast.test'),
-  ...FLATER.map((s) => regel('--border-control', s, 3, ['--border-control', s], 'kanten på felt og bokser på ' + s, 'the edge of inputs and checkboxes on ' + s, 'contrast.test')),
+  ...FLATER.map((s) => regel('--fg-3', s, 4.5, ['--fg-3', s], 'metatekst på ' + s, 'meta text on ' + s, true)),
+  regel('--fg-3', '--surface-3', 3, ['--fg-3', '--surface-3'], 'bryterknappens ring på sporet', 'the switch thumb ring on the track', true),
+  ...FLATER.map((s) => regel('--border-control', s, 3, ['--border-control', s], 'kanten på felt og bokser på ' + s, 'the edge of inputs and checkboxes on ' + s, true)),
   // The status colours, where the components put them (components.css). They are derived like the accent group when the surfaces change.
-  ...['--success', '--danger'].flatMap((t) => ['--bg', '--surface-1', '--surface-2', '--surface-3'].map((s) => regel(t, s, 3, [t], `${t} som framdriftsfyll på ${s}`, `${t} as the progress fill on ${s}`, 'progress.test'))),
-  ...['--bg', '--surface-1', '--surface-2', '--surface-3'].map((s) => regel('--warning-fg', s, 3, ['--warning-fg'], 'advarselsfyllet i framdrift på ' + s, 'the warning progress fill on ' + s, 'progress.test')),
+  ...['--success', '--danger'].flatMap((t) => ['--bg', '--surface-1', '--surface-2', '--surface-3'].map((s) => regel(t, s, 3, [t], `${t} som framdriftsfyll på ${s}`, `${t} as the progress fill on ${s}`, true))),
+  ...['--bg', '--surface-1', '--surface-2', '--surface-3'].map((s) => regel('--warning-fg', s, 3, ['--warning-fg'], 'advarselsfyllet i framdrift på ' + s, 'the warning progress fill on ' + s, true)),
   // The toast sits on --surface-1 in light and --surface-2 in dark (components.css), so its icon is checked there, per mode.
   ...['--success', '--warning', '--danger', '--info'].flatMap((t) => [{ ...regel(t, '--surface-1', 3, [t], `${t} som toast-ikon på --surface-1`, `${t} as the toast icon on --surface-1`), modus: 'light' }, { ...regel(t, '--surface-2', 3, [t], `${t} som toast-ikon på --surface-2`, `${t} as the toast icon on --surface-2`), modus: 'dark' }]),
   ...['--success', '--warning', '--danger', '--info'].map((t) => regel(t + '-fg', t + '-soft', 4.5, [t + '-fg', t + '-soft'], `tekst på ${t}-soft (badge)`, `text on ${t}-soft (badge)`)),
   ...FLATER.map((s) => regel('--danger-fg', s, 4.5, ['--danger-fg'], 'feilmeldingen under et felt på ' + s, 'the error under a field on ' + s)),
   ...FLATER.map((s) => regel('--danger', s, 3, ['--danger'], 'kanten på et ugyldig felt på ' + s, 'the edge of an invalid field on ' + s)),
   // The danger button: --danger-fg-on on the fill, as --accent-fg on the accent. The text moves first; --danger is held by more rules.
-  regel('--danger-fg-on', '--danger', 4.5, ['--danger-fg-on', '--danger'], 'teksten på fareknappen', 'the text on the danger button', 'contrast.test'),
-  regel('--danger-fg-on', '--danger-hover', 4.5, ['--danger-fg-on', '--danger-hover'], 'teksten på fareknappen under hover', 'the text on the danger button while hovered', 'contrast.test'),
+  regel('--danger-fg-on', '--danger', 4.5, ['--danger-fg-on', '--danger'], 'teksten på fareknappen', 'the text on the danger button', true),
+  regel('--danger-fg-on', '--danger-hover', 4.5, ['--danger-fg-on', '--danger-hover'], 'teksten på fareknappen under hover', 'the text on the danger button while hovered', true),
   // The colour inside --focus-ring (your own, or --focus-color), for apps that draw their own ring.
   ...FLATER.map((s) => regel('--ringfarge', s, 3, [], 'fargen i --focus-ring på ' + s, 'the colour in --focus-ring on ' + s)),
 ];
-export const ULIKE = [{ a: '--accent-text', b: '--accent-hover', flytt: ['--accent-text', '--accent-hover'], no: 'en lenke skal skifte farge under hover', en: 'a link must change colour on hover', kilde: 'accents.test' }];
+export const ULIKE = [{ a: '--accent-text', b: '--accent-hover', flytt: ['--accent-text', '--accent-hover'], no: 'en lenke skal skifte farge under hover', en: 'a link must change colour on hover', testet: true }];
 
 // ---------------------------------------------------------------------------------------------
 // Lightness search. Moves `tok` (an OKLCH triple) along L, away from or towards `mot`, to the
@@ -518,14 +518,14 @@ export function lagTema(valg = {}) {
   const overstyr = perModus(valg.overstyr, valg.modus);
   const advarsler = [];
   const modi = {};
-  const låst = {}; // per mode, what did not move and why: 'overstyr' (yours), 'preset', 'grunnlag' (Sussi's own)
+  const låst = {}; // per mode, what did not move and why: 'overstyr' (yours), 'preset', 'grunnlag' (Sassy's own)
   const rapport = {};
   for (const mode of MODI) {
     const fast = {}; // what must not move
     const verdier = {}; // every token in play
     const ekstra = {}; // tokens the rules do not know; passed through
     const flyttet = [];
-    // Sussi's own surfaces and text never move; they are free only when the user sets some of them, so the rest can follow.
+    // Sassy's own surfaces and text never move; they are free only when the user sets some of them, so the rest can follow.
     const egneFlater = !Object.keys(overstyr[mode] || {}).some((t) => GRUNNTOKENS.includes(t));
     for (const [t, v] of Object.entries(grunnlagFor(mode, overstyr[mode]))) { verdier[t] = v; if (egneFlater) fast[t] = 'grunnlag'; }
     const polStart = luminans(verdier['--bg']) >= 0.18 ? 'light' : 'dark';
@@ -670,8 +670,8 @@ const MODUSNAVN = { no: { light: 'Lys modus', dark: 'Mørk modus' }, en: { light
 
 function advarsel(kode, modus, r, verdier, fast = {}) {
   const ratio = r.ratio ?? kontrast(verdier[r.a], verdier[r.b]);
-  const navnNo = { preset: 'fra forhåndsoppsettet', overstyr: 'satt av deg', grunnlag: 'Sussis egen' };
-  const navnEn = { preset: 'from the preset', overstyr: 'set by you', grunnlag: "Sussi's own" };
+  const navnNo = { preset: 'fra forhåndsoppsettet', overstyr: 'satt av deg', grunnlag: 'Sassys egen' };
+  const navnEn = { preset: 'from the preset', overstyr: 'set by you', grunnlag: "Sassy's own" };
   const låst = (t) => (fast[t] ? ` (${navnNo[fast[t]]})` : '');
   const lockedEn = (t) => (fast[t] ? ` (${navnEn[fast[t]]})` : '');
   const modusNo = MODUSNAVN.no[modus], modusEn = MODUSNAVN.en[modus];
@@ -693,7 +693,7 @@ function advarsel(kode, modus, r, verdier, fast = {}) {
 }
 
 // ---------------------------------------------------------------------------------------------
-// Level (c): fonts, radius, spacing and motion. A factor scales Sussi's own scale; an object
+// Level (c): fonts, radius, spacing and motion. A factor scales Sassy's own scale; an object
 // sets values. The output is CSS text per custom property.
 const lengde = (v, f) => { const m = String(v).match(/^(-?[\d.]+)(px|rem|em|ms|s)?$/); if (!m) return undefined; const n = Number(m[1]) * f; return (Number.isInteger(n) ? n : Math.round(n * 100) / 100) + (m[2] || (n === 0 ? '' : 'px')); };
 function lagSkalaer(valg) {
@@ -747,7 +747,7 @@ export function tilCss(tema, { selector, darkSelector } = {}) {
   const skrives = hvilkeTokens(tema);
   const hvilke = (mode) => Object.fromEntries(skrives.map((t) => [t, tema.modi[mode][t]]));
   const deler = [
-    `/* Sussi theme "${tema.navn}", made by tokens/tema.js${tema.aksent ? ' from ' + tema.aksent : ''}. Load after styles.css; set data-tema="${tema.navn}" on <html> beside data-theme, or on an element inside it. */`,
+    `/* Sassy theme "${tema.navn}", made by tokens/tema.js${tema.aksent ? ' from ' + tema.aksent : ''}. Load after styles.css; set data-tema="${tema.navn}" on <html> beside data-theme, or on an element inside it. */`,
   ];
   if (!tema.ok) deler.push(`/* NOT OK: ${tema.advarsler.length} contrast warning(s). ${tema.advarsler.map((a) => a.en.replace(/\*\//g, '* /')).join(' ')} */`);
   if (tema.skalaer) deler.push(blokk(lys, tema.skalaer));
@@ -756,17 +756,17 @@ export function tilCss(tema, { selector, darkSelector } = {}) {
   if (dur.length) deler.push(`@media (prefers-reduced-motion:reduce){${lys}{${dur.map((t) => `${t}:0ms;`).join('')}}}`);
   return deler.join('\n') + '\n';
 }
-// The tokens a theme writes, the same list in both modes: the accent group, and the base set when any base token differs from Sussi's own in either mode.
+// The tokens a theme writes, the same list in both modes: the accent group, and the base set when any base token differs from Sassy's own in either mode.
 function hvilkeTokens(tema) {
   const baseEndret = MODI.some((mode) => GRUNNTOKENS.some((t) => tema.modi[mode][t].toUpperCase() !== GRUNNLAG[mode][t].toUpperCase()));
   return baseEndret ? [...GRUNNTOKENS, ...AKSENTTOKENS] : [...AKSENTTOKENS];
 }
 
 // ---------------------------------------------------------------------------------------------
-// Output: DTCG (Format Module 2025.10), the paths tokens/sussi.tokens.json uses: the accent group
+// Output: DTCG (Format Module 2025.10), the paths tokens/sassy.tokens.json uses: the accent group
 // under accent.<navn>.<light|dark>, overridden base tokens under theme.<light|dark>, and fonts,
 // radius, spacing and motion under font, radius, space and motion.
-const EXT = 'no.sussi';
+const EXT = 'no.sassy';
 const farge = (hex) => ({ colorSpace: 'srgb', components: [0, 2, 4].map((i) => Math.round((parseInt(hex.slice(i + 1, i + 3), 16) / 255) * 1e4) / 1e4), alpha: 1, hex: hex.toUpperCase() });
 const dim = (text) => { const m = String(text).match(/^(-?[\d.]+)(px|rem|em)?$/); return { value: Number(m[1]), unit: m[2] || 'px' }; };
 function sti(name) {
@@ -777,7 +777,7 @@ function sti(name) {
   return [['color', parts.join('-')], 'color'];
 }
 export function tilDtcg(tema) {
-  const ut = { $description: `Sussi theme "${tema.navn}", made by tokens/tema.js${tema.aksent ? ' from ' + tema.aksent : ''}. The same paths as sussi.tokens.json; merge over it.` };
+  const ut = { $description: `Sassy theme "${tema.navn}", made by tokens/tema.js${tema.aksent ? ' from ' + tema.aksent : ''}. The same paths as sassy.tokens.json; merge over it.` };
   const sett = (path, token) => { let n = ut; for (const [i, k] of path.entries()) { if (i === path.length - 1) n[k] = token; else n = n[k] || (n[k] = {}); } };
   const tokenFor = (name, value) => {
     const [path, type] = sti(name);
@@ -887,7 +887,7 @@ function valgFra(tema) {
  * must differ are 'like'.
  * `forslag` is { token, hex, retning: 'mørkere' | 'lysere' }: the nearest value along OKLCH lightness, hue and chroma
  * kept, where every failing pair of the field reaches its requirement, and every pair of the field that holds today
- * still does, whether the other value is fixed (yours, a preset's or Sussi's own) or derived, by the engine's contrast
+ * still does, whether the other value is fixed (yours, a preset's or Sassy's own) or derived, by the engine's contrast
  * function. When no such value exists, the nearest value for the failing and fixed pairs alone is given only if the
  * engine, run again with it, keeps every pair of the mode that holds today. When the suggestions of one mode would
  * break each other, or none exists, there is none, and the text says to fix one value at a time.

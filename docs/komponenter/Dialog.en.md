@@ -3,8 +3,8 @@ name: Dialog
 group: overlays
 status: stable
 since: 0.2.0
-kort: components/overlays/overlays.card.html
-typer: components/overlays/Dialog.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/dialog/
+typer: dist/overlays/Dialog.d.ts
 ---
 
 # Dialog
@@ -43,7 +43,7 @@ A modal dialog with a scrim, following the WAI-ARIA dialog pattern: focus moves 
 ## Example
 
 ```jsx
-import { Dialog, Button, Input } from 'sussi/components';
+import { Dialog, Button, Input } from 'sassy/components';
 
 <Dialog open={open} onClose={close} title="Delete the project?" description="This removes 12 tasks and can't be undone." closeLabel="Close"
   footer={<><Button variant="ghost" onClick={close}>Keep it</Button><Button variant="danger" onClick={remove}>Delete project</Button></>} />
@@ -56,7 +56,7 @@ import { Dialog, Button, Input } from 'sussi/components';
 
 ## Props
 
-The types are in `components/overlays/Dialog.d.ts`. The cards: `components/overlays/overlays.card.html` (the dialog) and `components/overlays/sheet.card.html` (the sheet).
+The types are in `dist/overlays/Dialog.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/dialog/).
 
 <!-- props: DialogProps -->
 | Prop | Type | Default | Description |
@@ -82,7 +82,7 @@ Note that `open` is `true` when not set: a Dialog without `open` is open. Pass `
 
 ## Accessibility
 
-The behaviour is tested in `tests/dialog.e2e.test.mjs` and `tests/sheet.e2e.test.mjs`, the rules in `tests/sheet.test.mjs`.
+The behaviour is tested in a browser, the rules in unit tests.
 
 - **Element and role.** A `<div role="dialog" aria-modal="true" tabIndex={-1}>` in a scrim. `aria-labelledby` points at `title` (an `<h2>`), `aria-describedby` at `description` (tested). `id`, `data-*` and `aria-*` reach the panel.
 - **Focus in.** `initialFocus`, else `[autofocus]`/`[data-autofocus]`, else the first control in the body, else the panel itself, so a screen reader reads the title and Enter cannot hit "Delete" (tested: focus is inside on open).

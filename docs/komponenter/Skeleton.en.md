@@ -3,8 +3,8 @@ name: Skeleton
 group: feedback
 status: new
 since: 0.7.0
-kort: components/feedback/skeleton.card.html
-typer: components/feedback/Skeleton.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/skeleton/
+typer: dist/feedback/Skeleton.d.ts
 ---
 
 # Skeleton
@@ -41,7 +41,7 @@ The shape of content that has not arrived yet: text lines, a circle (an avatar) 
 ## Example
 
 ```jsx
-import { Skeleton, Spinner } from 'sussi/components';
+import { Skeleton, Spinner } from 'sassy/components';
 
 <section aria-busy={loading} aria-label="Recipe">
   <span className="s-sr-only" role="status">{loading ? 'Loading the recipe' : ''}</span>
@@ -59,7 +59,7 @@ import { Skeleton, Spinner } from 'sussi/components';
 
 ## Props
 
-The types are in `components/feedback/Skeleton.d.ts`. The card: `components/feedback/skeleton.card.html`.
+The types are in `dist/feedback/Skeleton.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/skeleton/).
 
 <!-- props: SkeletonProps -->
 | Prop | Type | Default | Description |
@@ -77,7 +77,7 @@ Plus every attribute of `<span>` (`React.HTMLAttributes<HTMLSpanElement>`).
 
 ## Accessibility
 
-The behaviour is tested in `tests/laster.e2e.test.mjs`, the rules in the source in `tests/skeleton.test.mjs`.
+The behaviour is tested in a browser, the rules in the source in unit tests.
 
 - **Element and role.** A `<span aria-hidden="true">` with no role; several lines are one span with `aria-hidden` around the lines, so nothing is hidden twice (tested). The skeleton says nothing itself.
 - **The pattern around it.** The waiting region has `aria-busy="true"` and one text with `role="status"` (a `Spinner` with `label`, or an `.s-sr-only` line). Tested: the region has one status region, and the only text in it is the status line.

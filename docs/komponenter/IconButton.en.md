@@ -3,8 +3,8 @@ name: IconButton
 group: buttons
 status: stable
 since: 0.2.0
-kort: components/buttons/buttons.card.html
-typer: components/buttons/IconButton.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/iconbutton/
+typer: dist/buttons/IconButton.d.ts
 ---
 
 # IconButton
@@ -19,7 +19,7 @@ A square button with only an icon, for toolbars, row actions and the corner of a
 
 ## When not to
 
-- When the icon is not obvious: use [Button](Button.en.md) with `iconLeft` and text. Text next to the icon is the rule in Sussi, not the exception.
+- When the icon is not obvious: use [Button](Button.en.md) with `iconLeft` and text. Text next to the icon is the rule in Sassy, not the exception.
 - The primary action on a page: [Button](Button.en.md). An icon alone does not carry that much weight.
 - A colour dot that gets picked: [Swatch](Swatch.en.md).
 
@@ -27,7 +27,7 @@ A square button with only an icon, for toolbars, row actions and the corner of a
 
 - Give `label` what the button does: "Close", "More", "Add task". That is the whole name.
 - Wrap it in a [Tooltip](Tooltip.en.md) when the meaning is not certain. Tooltip removes the `title`, so there is only one bubble.
-- Stay with the icons in the set (`components/icon/iconData.js`).
+- Stay with the icons in the set (`dist/icon/iconData.js`).
 - Use `size="lg"` on touch screens; `md` is 38 px.
 
 ## Don't
@@ -40,7 +40,7 @@ A square button with only an icon, for toolbars, row actions and the corner of a
 ## Example
 
 ```jsx
-import { IconButton, Tooltip } from 'sussi/components';
+import { IconButton, Tooltip } from 'sassy/components';
 
 <IconButton icon="ellipsis" label="More" onClick={openMenu} />
 <IconButton icon="plus" label="Add task" variant="secondary" size="sm" onClick={newTask} />
@@ -50,7 +50,7 @@ import { IconButton, Tooltip } from 'sussi/components';
 
 ## Props
 
-The types are in `components/buttons/IconButton.d.ts`. The card: `components/buttons/buttons.card.html` (the "icon" row).
+The types are in `dist/buttons/IconButton.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/iconbutton/).
 
 <!-- props: IconButtonProps -->
 | Prop | Type | Default | Description |
@@ -64,15 +64,15 @@ The types are in `components/buttons/IconButton.d.ts`. The card: `components/but
 Plus every attribute of `<button>` (`React.ButtonHTMLAttributes<HTMLButtonElement>`).
 <!-- /props -->
 
-`ref` reaches the native `<button>` (`tests/refs.e2e.test.mjs`).
+`ref` reaches the native `<button>` (tested).
 
 ## Accessibility
 
 - **Element and role.** A native `<button type="button">`.
-- **Name.** `label` is set as `aria-label` and `title`. The icon is decorative (`aria-hidden`). Inside a Tooltip the `title` is removed, and the bubble is linked to the button with `aria-describedby` (`tests/tooltip.e2e.test.mjs`).
+- **Name.** `label` is set as `aria-label` and `title`. The icon is decorative (`aria-hidden`). Inside a Tooltip the `title` is removed, and the bubble is linked to the button with `aria-describedby` (tested).
 - **Keyboard.** Enter and Space, like any button.
 - **Focus.** A 2 px `outline` in `--focus-color` on keyboard focus, 3:1 against the surfaces in both themes and every accent.
-- **Contrast.** The ghost variant is `--fg-2` on transparent and goes to `--fg-1` on hover. `primary` is `--accent-fg` on `--accent`, 4.5:1 in every accent. An `<a class="s-iconbtn">` is not underlined (0.5.6) and holds 4.5:1 on hover (`tests/linkbutton.e2e.test.mjs`).
+- **Contrast.** The ghost variant is `--fg-2` on transparent and goes to `--fg-1` on hover. `primary` is `--accent-fg` on `--accent`, 4.5:1 in every accent. An `<a class="s-iconbtn">` is not underlined (0.5.6) and holds 4.5:1 on hover (tested).
 - **State.** `disabled` on the element, 50% opacity.
 - **Motion.** Transitions on `--dur-fast`, 0 under reduced motion. A press moves it 1 px down.
 - **Target.** 30, 38 and 46 px square. Only `lg` reaches 44 px.

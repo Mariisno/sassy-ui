@@ -3,13 +3,13 @@ navn: Sussi
 gruppe: mascot
 status: stable
 sidenVersjon: 0.2.0
-kort: components/mascot/mascot.card.html
-typer: components/mascot/Sussi.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/sussi/
+typer: dist/mascot/Sussi.d.ts
 ---
 
 # Sussi
 
-Maskoten, katten systemet er oppkalt etter: hvit med svarte ører, maske, flekker på ryggen og hale, og rosa nese. Alltid svart og hvit, uansett appens aksent; fargene er `--sussi-*`-tokens, og mørkt tema gir henne en tynn lys glorie så de svarte delene ikke forsvinner. Seks positurer som inline SVG: `hode` (logo, favicon, avatar), `ligger`, `titter` (tomme tilstander), `sover` (laster), `strekk` (lek, 404) og `sitter` (velkommen). Dekorativ som standard; `title` gir henne et navn når hun bærer mening alene. `sussiPoses` gir SVG-markeringen per positur for favicons og statiske eksporter.
+Maskoten, katten til designeren: hvit med svarte ører, maske, flekker på ryggen og hale, og rosa nese. Alltid svart og hvit, uansett appens aksent; fargene er `--sussi-*`-tokens, og mørkt tema gir henne en tynn lys glorie så de svarte delene ikke forsvinner. Seks positurer som inline SVG: `hode` (logo, favicon, avatar), `ligger`, `titter` (tomme tilstander), `sover` (laster), `strekk` (lek, 404) og `sitter` (velkommen). Dekorativ som standard; `title` gir henne et navn når hun bærer mening alene. `sussiPoses` gir SVG-markeringen per positur for favicons og statiske eksporter.
 
 ## Når du bruker den
 
@@ -41,7 +41,7 @@ Maskoten, katten systemet er oppkalt etter: hvit med svarte ører, maske, flekke
 ## Eksempel
 
 ```jsx
-import { Sussi, sussiPoses } from 'sussi/components';
+import { Sussi, sussiPoses } from 'sassy/components';
 
 <Sussi pose="hode" size={28} />
 <Sussi pose="titter" size={96} />
@@ -51,7 +51,7 @@ const favicon = sussiPoses.hode().split('__ID__').join('favicon');
 
 ## Props
 
-Typene står i `components/mascot/Sussi.d.ts`. Kortet: `components/mascot/mascot.card.html`.
+Typene står i `dist/mascot/Sussi.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/sussi/).
 
 <!-- props: SussiProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -67,7 +67,7 @@ Pluss alle attributtene til `<svg>` (`React.SVGProps<SVGSVGElement>`), unntatt `
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/mascot.e2e.test.mjs`.
+Oppførselen er testet i nettleseren.
 
 - **Element og rolle.** Et `<svg class="s-sussi">`. Uten `title`: `aria-hidden="true"`, ingen rolle (testet for alle seks positurer). Med `title`: `role="img"` og et `<title>`-element.
 - **Navn.** `title`, escapet før det settes inn i markeringen, så `<` og `&` blir tekst (testet).

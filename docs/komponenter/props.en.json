@@ -1,5 +1,5 @@
 {
-  "$comment": "English descriptions for the props whose .d.ts has no JSDoc, keyed \"Interface.prop\". The JSDoc in the .d.ts wins when there is one; scripts/docs-props.mjs falls back to this file and says when a prop has neither.",
+  "$comment": "English descriptions for the props whose .d.ts has no JSDoc, keyed \"Interface.prop\". The JSDoc in the .d.ts wins when there is one; otherwise the props tables in the docs use this file.",
 
   "ButtonProps.variant": "primary (accent fill), secondary (surface and edge), soft (soft accent), ghost (no chrome), danger.",
   "ButtonProps.size": "sm 30 px, md 38 px, lg 46 px tall.",

@@ -3,8 +3,8 @@ navn: Popover
 gruppe: overlays
 status: new
 sidenVersjon: 0.6.0
-kort: components/overlays/menu.card.html
-typer: components/overlays/Popover.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/popover/
+typer: dist/overlays/Popover.d.ts
 ---
 
 # Popover
@@ -42,7 +42,7 @@ En ikke-modal flate forankret til knappen som åpner den. Knappen får `aria-exp
 ## Eksempel
 
 ```jsx
-import { Popover, Button, Checkbox } from 'sussi/components';
+import { Popover, Button, Checkbox } from 'sassy/components';
 
 <Popover trigger={<Button variant="secondary" iconRight="chevron-down">Filter</Button>} aria-label="Filter">
   <Checkbox label="Bare mine" />
@@ -56,7 +56,7 @@ import { Popover, Button, Checkbox } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/overlays/Popover.d.ts`. Kortet: `components/overlays/menu.card.html` (menyen og en popover). `placePopover(utløser, panel, visning, { side, align })` er plasseringa alene, eksportert for tester og for egne flater.
+Typene står i `dist/overlays/Popover.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/popover/). `placePopover(utløser, panel, visning, { side, align })` er plasseringa alene, eksportert for tester og for egne flater.
 
 <!-- props: PopoverProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -78,7 +78,7 @@ Pluss alle attributtene til `<div>` (`React.HTMLAttributes<HTMLDivElement>`), un
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/popover.e2e.test.mjs`, reglene og plasseringa i `tests/popover.test.mjs`.
+Oppførselen er testet i nettleseren, reglene og plasseringa i enhetstester.
 
 - **Element og rolle.** Utløseren klones med `aria-expanded` og, mens panelet er åpent, `aria-controls` som peker på panelets id (testet). Panelet er en `<div tabIndex={-1}>` uten egen rolle; `role`, `aria-label`, `id`, `data-*` og `aria-*` når det.
 - **Fokus inn.** Den første kontrollen i panelet, ellers panelet selv (testet for begge).

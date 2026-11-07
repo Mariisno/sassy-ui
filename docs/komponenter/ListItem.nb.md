@@ -3,8 +3,8 @@ navn: ListItem
 gruppe: display
 status: stable
 sidenVersjon: 0.3.0
-kort: components/display/listitem.card.html
-typer: components/display/ListItem.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/listitem/
+typer: dist/display/ListItem.d.ts
 ---
 
 # ListItem
@@ -42,7 +42,7 @@ En rad som åpner noe: et prosjekt, en oppskrift, en plante. Med `href` er den e
 ## Eksempel
 
 ```jsx
-import { ListItem, Badge, Progress } from 'sussi/components';
+import { ListItem, Badge, Progress } from 'sassy/components';
 
 <ListItem href="#/oppskrift/suppe" icon="book-open" title="Linsesuppe" meta="Rask hverdagsmiddag · 20 min" />
 <ListItem onClick={åpneProsjekt} image={omslag} title="Tomater" meta="25 % · 3 bed">
@@ -55,7 +55,7 @@ import { ListItem, Badge, Progress } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/display/ListItem.d.ts`. Kortet: `components/display/listitem.card.html`.
+Typene står i `dist/display/ListItem.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/listitem/).
 
 <!-- props: ListItemProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -77,14 +77,14 @@ Pluss alle attributtene til elementet den rendres som (`React.HTMLAttributes<HTM
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/listitem.e2e.test.mjs`.
+Oppførselen er testet i nettleseren.
 
 - **Element og rolle.** `<a href>` med `href`, `<button type="button">` med `onClick`, ellers `<div>`. En rad uten mål er ikke fokuserbar og har ingen pil.
 - **Navn.** Tittel og meta, med et mellomrom imellom i det tilgjengelige navnet («Linsesuppe Rask hverdagsmiddag · 20 min»). Teksten i `children` blir også en del av navnet. Bildet er dekorativt (`alt=""`) uten `imageAlt`.
 - **Tastatur.** Enter og mellomrom på en knapperad, Enter på en lenkerad (testet). En lenke med `onClick` kjører den ved klikk og Enter.
 - **Tilstand.** `disabled` på en knapp blir `disabled`; på en lenke blir det `aria-disabled="true"`, og `href` og `onClick` fjernes, så den går ingen steder. Begge er 50 % gjennomsiktige.
 - **Fokus.** Standard fokusring, 2 px `--focus-color` (testet synlig på både lenke og knapp).
-- **Kontrast.** Tittel `--fg-1`, meta `--fg-2`, pil `--fg-3` som går til `--fg-1` på hover, alt på `--surface-1`. Raden arver Sussis skrift også som knapp (`font:inherit`).
+- **Kontrast.** Tittel `--fg-1`, meta `--fg-2`, pil `--fg-3` som går til `--fg-1` på hover, alt på `--surface-1`. Raden arver Sassys skrift også som knapp (`font:inherit`).
 - **Mål.** Minst 56 px høy (testet ≥ 44). En lang tittel bryter og holder pila synlig ved 320 px.
 - **Bevegelse.** Overganger på `--dur-fast`; trykk flytter 1 px ned.
 - **Innebygd tekst.** Ingen.

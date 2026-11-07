@@ -3,13 +3,13 @@ name: Input
 group: inputs
 status: stable
 since: 0.2.0
-kort: components/inputs/inputs.card.html
-typer: components/inputs/Input.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/input/
+typer: dist/inputs/Input.d.ts
 ---
 
 # Input
 
-A single-line text input with label, hint and error built in. The input is a native `<input>` in a frame (`.s-control`) that shows focus, error and disabled; the label is a `<label>` that points at the input; the hint, or the error when there is one, is linked with `aria-describedby`, and an error sets `aria-invalid` and is announced. `mode` says what the field is for (a number, an email, a phone, a date, a password …) and sets the right `type`, keyboard on a phone and autofill; a password gets a show/hide toggle. `Field` is the same label/hint/error anatomy around a control you build yourself.
+A single-line text input with label, hint and error built in. The input is a native `<input>` in a frame (`.s-control`) that shows focus, error and disabled; the label is a `<label>` that points at the input; the hint, or the error when there is one, is linked with `aria-describedby`, and an error sets `aria-invalid` and is announced. `mode` says what the field is for (a number, an email, a phone, a date, a password …) and sets the right `type`, keyboard on a phone and autofill; a password gets a show/hide toggle. `count` with `maxLength` gives a character count under the field, «12 of 200» in English, as in [Textarea](Textarea.en.md). `Field` is the same label/hint/error anatomy around a control you build yourself.
 
 ## When to use
 
@@ -43,7 +43,7 @@ A single-line text input with label, hint and error built in. The input is a nat
 ## Example
 
 ```jsx
-import { Input, Field } from 'sussi/components';
+import { Input, Field } from 'sassy/components';
 
 <Input label="Project name" placeholder="e.g. Garden log" />
 <Input icon="search" placeholder="Search" suffix="⌘K" aria-label="Search" />
@@ -52,6 +52,7 @@ import { Input, Field } from 'sussi/components';
 <Input label="Plants per row" mode="number" />
 <Input label="Sown" mode="date" />
 <Input label="Password" mode="password" autoComplete="new-password" hint="At least twelve characters." passwordToggleLabel="Show password" />
+<Input label="Name of the bed" maxLength={40} count countLang="en" />
 <Field label="Colour" htmlFor="colour" hint="Shown on the project card.">
   <input id="colour" type="color" aria-describedby="colour-hint" />
 </Field>
@@ -59,7 +60,7 @@ import { Input, Field } from 'sussi/components';
 
 ## Props
 
-The types are in `components/inputs/Input.d.ts`. The card with Input, Textarea and Select: `components/inputs/inputs.card.html`.
+The types are in `dist/inputs/Input.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/input/).
 
 <!-- props: InputProps -->
 | Prop | Type | Default | Description |
@@ -76,11 +77,13 @@ The types are in `components/inputs/Input.d.ts`. The card with Input, Textarea a
 | `mode` | `InputMode` | – | What the field is for: sets `type`, `inputMode` and `autoComplete` (see the table in the docs). `number` is whole numbers, `decimal` numbers with a comma or point, `phone`, `email`, `url`, `search`, `date`, `time`, `password`. Your own `type`, `inputMode` or `autoComplete` wins. Nothing is set without it. |
 | `passwordToggle` | `boolean` | `true` | With `mode="password"`: the show/hide toggle at the end of the field. Default true. |
 | `passwordToggleLabel` | `string` | `'Vis passord'` | The name of the password toggle, a toggle button with `aria-pressed`. Default "Vis passord"; English surfaces pass "Show password". |
+| `count` | `boolean` | `false` | With `maxLength`: a character count under the field, «12 av 200». From 90 % it says how many are left, past the limit how many too many, and the field is invalid; the native limit is left off, so people can type past it and shorten. A screen reader hears the count once typing pauses. Without `count`, `maxLength` is the browser's hard limit, as before. |
+| `countLang` | `'nb' \| 'en'` | `'nb'` | The language of the count: `nb` «12 av 200», «18 tegn igjen» (default) or `en` «12 of 200», «18 characters left». |
 
 Plus every attribute of `<input>` (`React.InputHTMLAttributes<HTMLInputElement>`), except `size`, `prefix`.
 <!-- /props -->
 
-`ref` reaches the native `<input>`, so an app can move focus to the first field with an error (`tests/refs.e2e.test.mjs`).
+`ref` reaches the native `<input>`, so an app can move focus to the first field with an error (tested).
 
 ### What `mode` sets
 
@@ -110,21 +113,23 @@ Your own `type`, `inputMode`, `autoComplete` or `enterKeyHint` wins over the tab
 | `optionalLabel` | `string` | `'Valgfritt'` | The text of the optional marker. |
 | `htmlFor` | `string` | – | The control's id, so the label points at it. |
 | `hintId` | `string` | – | The id the hint or error gets. Default `${htmlFor}-hint`; point the control's `aria-describedby` at it. |
+| `counter` | `React.ReactNode` | – | Something at the end of the hint row, such as the character count Input and Textarea put there with `count`. |
 | `children` | `React.ReactNode` | – | The control. |
 <!-- /props -->
 
 ## Accessibility
 
-The links are tested in `tests/forms.e2e.test.mjs`.
+The links are tested in a browser.
 
 - **Element and role.** A native `<input>` (the type comes from `mode`, or is yours: `text`, `email` …) with a `<label for>` pointing at it. The id is `id` or a generated one.
 - **Name.** `label`. `prefix`, `suffix` and the icon are visual and do not become part of the name. Without `label` you must pass `aria-label` (as the search field in the example does).
 - **Description.** `hint`, or `error` when there is one, gets the id `${id}-hint`, and the input's `aria-describedby` points at it. Your own `aria-describedby` is kept as well (tested).
 - **Error.** `error` sets `aria-invalid="true"`, turns the edge `--danger` and is announced when it appears (`role="alert"`); a `hint` has no role (tested, WCAG 4.1.3).
 - **Keyboard.** The browser's. Nothing of its own. `mode` picks the keyboard on a phone (`inputMode`); `number` and `decimal` are text fields with a numeric keyboard, so the mouse wheel does not change the value and a screen reader reads them as an ordinary field.
-- **Password.** `mode="password"` puts a button at the end of the field, an IconButton (24, 30 or 38 px by `size`, never under 24) with `aria-pressed` named "Vis passord" (`passwordToggleLabel`), which switches `type` to `text` and back; the value stays. The button has its own focus ring; while it holds the focus (mouse or keyboard) the frame draws no ring and keeps its resting border, or the `--danger` border when invalid. `passwordToggle={false}` removes it (tested, `tests/input-modes.e2e.test.mjs`).
+- **Password.** `mode="password"` puts a button at the end of the field, an IconButton (24, 30 or 38 px by `size`, never under 24) with `aria-pressed` named "Vis passord" (`passwordToggleLabel`), which switches `type` to `text` and back; the value stays. The button has its own focus ring; while it holds the focus (mouse or keyboard) the frame draws no ring and keeps its resting border, or the `--danger` border when invalid. `passwordToggle={false}` removes it (tested).
+- **Character count.** `count` with `maxLength` shows «12 av 200» («12 of 200» with `countLang="en"`) under the field, tied with `aria-describedby`, warns from 90 % and makes the field invalid past the limit without stopping the typing; screen readers hear the count left once typing has stopped for a second. The details are under [Textarea](Textarea.en.md#accessibility), which has the same count (tested on both in a browser).
 - **Focus.** The frame gets a `--border-focus` edge and a 2 px `outline` in `--focus-color` when the input has focus (`:focus-within`); with an error the outline is `--danger`. The input itself has no ring of its own.
-- **Contrast.** The edge is `--border-control`, at least 3:1 against the surfaces (`tests/focus.test.mjs`, `tests/contrast.test.mjs`). The text is `--fg-1`, placeholder and hint `--fg-3` (4.5:1 on `--bg`, `--surface-1` and `--surface-2`), the error `--danger-fg`.
+- **Contrast.** The edge is `--border-control`, at least 3:1 against the surfaces (tested). The text is `--fg-1`, placeholder and hint `--fg-3` (4.5:1 on `--bg`, `--surface-1` and `--surface-2`), the error `--danger-fg`.
 - **State.** `disabled` sets `disabled` on the input, 55% opacity, `--surface-2` and no pointer events.
 - **Target.** 30, 38 or 46 px tall by `size`.
 - **Motion.** Edge and shadow transition on `--dur-fast`, 0 under reduced motion.

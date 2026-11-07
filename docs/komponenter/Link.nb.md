@@ -3,8 +3,8 @@ navn: Link
 gruppe: navigation
 status: new
 sidenVersjon: 0.7.0
-kort: components/navigation/link.card.html
-typer: components/navigation/Link.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/link/
+typer: dist/navigation/Link.d.ts
 ---
 
 # Link
@@ -42,7 +42,7 @@ En lenke: aksentens tekstfarge (`--accent-text`) og understreken som base.css al
 ## Eksempel
 
 ```jsx
-import { Link } from 'sussi/components';
+import { Link } from 'sassy/components';
 import { Link as RouterLink } from 'react-router-dom';
 
 <p>Les om <Link href="/jord">jordtyper</Link> før du sår.</p>
@@ -54,7 +54,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 ## Props
 
-Typene står i `components/navigation/Link.d.ts`. Kortet: `components/navigation/link.card.html`.
+Typene står i `dist/navigation/Link.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/link/).
 
 <!-- props: LinkProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -73,12 +73,12 @@ Pluss alle attributtene til `<a>` (`React.AnchorHTMLAttributes<HTMLAnchorElement
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/link.e2e.test.mjs`, fargereglene i `tests/link.test.mjs`.
+Oppførselen er testet i nettleseren, fargereglene i enhetstester.
 
 - **Element og rolle.** En `<a href>`, rolle `link` fra elementet. Med `as` er det det komponenten rendrer; React Router sin Link rendrer en `<a>`. Ingen rolle legges til.
 - **Navn.** Lenketeksten, pluss «(åpner i ny fane)» som visuelt skjult tekst (`.s-sr-only`, 1 px og klippet, ikke `display:none`) når `target="_blank"` (testet). Ikonet er `aria-hidden`.
-- **Tastatur og fokus.** Tab og Enter som en vanlig lenke. Fokusringen er Sussis `:focus-visible` (2 px `--focus-color`, 2 px utenfor), med `--radius-xs` på hjørnene (testet). `ref` når `<a>`.
-- **Kontrast.** `--accent-text` holder 4,5:1 på `--bg`, `--surface-1` og `--surface-2` i begge temaer og alle seks aksenter, og det gjør `--accent-hover` (fargen ved hover) også (`tests/link.test.mjs` måler tokenene, `tests/link.e2e.test.mjs` den renderte fargen). Understreken skiller lenka fra teksten rundt uten farge (WCAG 1.4.1). Kjent grense: ikke på `--surface-3` og `--accent-soft`.
+- **Tastatur og fokus.** Tab og Enter som en vanlig lenke. Fokusringen er Sassys `:focus-visible` (2 px `--focus-color`, 2 px utenfor), med `--radius-xs` på hjørnene (testet). `ref` når `<a>`.
+- **Kontrast.** `--accent-text` holder 4,5:1 på `--bg`, `--surface-1` og `--surface-2` i begge temaer og alle seks aksenter, og det gjør `--accent-hover` (fargen ved hover) også (testet på tokenene og den renderte fargen). Understreken skiller lenka fra teksten rundt uten farge (WCAG 1.4.1). Kjent grense: ikke på `--surface-3` og `--accent-soft`.
 - **Treffflate.** `standalone` er vanlig tekst i linja med `padding-block` som gir en treffflate på minst 24 px (WCAG 2.5.8, testet); det eksterne ikonet henger på siste ord og havner aldri alene på en linje (testet). En `inline`-lenke følger linjehøyden i teksten (24 px i brødtekst) og er unntatt som en del av en setning.
 - **Ny fane.** `target="_blank"` gir alltid `rel="noopener noreferrer"`, også når `rel` er satt til noe annet (testet). Den skjulte teksten er teknikk G201: lenka sier fra før den åpner noe nytt.
 - **Bevegelse.** Ingen; fargen og understreken toner på `--dur-fast`.

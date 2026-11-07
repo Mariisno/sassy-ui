@@ -3,8 +3,8 @@ name: Tooltip
 group: overlays
 status: stable
 since: 0.2.0
-kort: components/overlays/overlays.card.html
-typer: components/overlays/Tooltip.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/tooltip/
+typer: dist/overlays/Tooltip.d.ts
 ---
 
 # Tooltip
@@ -41,7 +41,7 @@ A short label shown on hover and focus, after 300 ms, for icon buttons and short
 ## Example
 
 ```jsx
-import { Tooltip, IconButton } from 'sussi/components';
+import { Tooltip, IconButton } from 'sassy/components';
 
 <Tooltip content="Search" kbd="⌘K"><IconButton icon="search" label="Search" onClick={search} /></Tooltip>
 <Tooltip content="Saves automatically" side="bottom"><IconButton icon="cloud" label="Sync" /></Tooltip>
@@ -49,7 +49,7 @@ import { Tooltip, IconButton } from 'sussi/components';
 
 ## Props
 
-The types are in `components/overlays/Tooltip.d.ts`. The card, shared with Dialog: `components/overlays/overlays.card.html`.
+The types are in `dist/overlays/Tooltip.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/tooltip/).
 
 <!-- props: TooltipProps -->
 | Prop | Type | Default | Description |
@@ -67,7 +67,7 @@ Plus every attribute of `<span>` (`React.HTMLAttributes<HTMLSpanElement>`), exce
 
 ## Accessibility
 
-The behaviour is tested in `tests/tooltip.e2e.test.mjs`.
+The behaviour is tested in a browser.
 
 - **Element and role.** A `<span class="s-tip">` around the trigger and a `<span role="tooltip" id>` for the bubble. The trigger is cloned with `aria-describedby` pointing at the bubble (your own `aria-describedby` is kept in front, tested) and without `title` (tested; an IconButton outside a Tooltip keeps its own).
 - **Name and description.** The bubble is a description of the trigger, not a name. The trigger's name is its own (`label`).

@@ -3,13 +3,13 @@ name: Select
 group: inputs
 status: stable
 since: 0.2.0
-kort: components/inputs/inputs.card.html
-typer: components/inputs/Select.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/select/
+typer: dist/inputs/Select.d.ts
 ---
 
 # Select
 
-A native dropdown with the same label, hint, error and frame as [Input](Input.en.md). `options` are strings or `{ value, label }`, `placeholder` adds a first empty option, and the chevron on the right is drawn by Sussi while the list that opens is the browser's own. For five or more options; fewer is [Radio](Radio.en.md) or segmented [Tabs](Tabs.en.md).
+A native dropdown with the same label, hint, error and frame as [Input](Input.en.md). `options` are strings or `{ value, label }`, `placeholder` adds a first empty option, and the chevron on the right is drawn by Sassy while the list that opens is the browser's own. For five or more options; fewer is [Radio](Radio.en.md) or segmented [Tabs](Tabs.en.md).
 
 ## When to use
 
@@ -22,7 +22,7 @@ A native dropdown with the same label, hint, error and frame as [Input](Input.en
 - Two to four options: [Radio](Radio.en.md), so all are visible.
 - A choice that switches a view at once: [Tabs](Tabs.en.md) `variant="segmented"`.
 - Several choices at once: [Checkbox](Checkbox.en.md) or [Tag](Tag.en.md).
-- Free text with suggestions: that is a combobox, which Sussi does not have.
+- Free text with suggestions: that is a combobox, which Sassy does not have.
 
 ## Do
 
@@ -41,7 +41,7 @@ A native dropdown with the same label, hint, error and frame as [Input](Input.en
 ## Example
 
 ```jsx
-import { Select } from 'sussi/components';
+import { Select } from 'sassy/components';
 
 <Select label="Status" options={['Idea', 'Building', 'Live', 'Paused']} defaultValue="Building" />
 <Select label="Type" placeholder="Choose a type" options={[{ value: 'c', label: 'Clay' }, { value: 's', label: 'Sand' }]} error="Choose a type." />
@@ -50,7 +50,7 @@ import { Select } from 'sussi/components';
 
 ## Props
 
-The types are in `components/inputs/Select.d.ts`. The card: `components/inputs/inputs.card.html`.
+The types are in `dist/inputs/Select.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/select/).
 
 <!-- props: SelectProps -->
 | Prop | Type | Default | Description |
@@ -67,11 +67,11 @@ The types are in `components/inputs/Select.d.ts`. The card: `components/inputs/i
 Plus every attribute of `<select>` (`React.SelectHTMLAttributes<HTMLSelectElement>`), except `size`.
 <!-- /props -->
 
-`ref` reaches the native `<select>` (`tests/refs.e2e.test.mjs`).
+`ref` reaches the native `<select>` (tested).
 
 ## Accessibility
 
-The links are tested in `tests/forms.e2e.test.mjs`.
+The links are tested in a browser.
 
 - **Element and role.** A native `<select>` with `<option>`s, and a `<label for>` pointing at it. The chevron is an `Icon` without pointer events, decorative.
 - **Name.** `label`.
@@ -83,7 +83,7 @@ The links are tested in `tests/forms.e2e.test.mjs`.
 - **Target.** 30, 38 or 46 px tall by `size`.
 - **Motion.** As Input.
 - **Built-in text.** "Valgfritt" with `optional`; override with `optionalLabel`.
-- **Known limit.** The open list is the browser's and does not follow Sussi's theme. The placeholder option has the value `""` and can be chosen again.
+- **Known limit.** The open list is the browser's and does not follow Sassy's theme. The placeholder option has the value `""` and can be chosen again.
 
 ## Content
 

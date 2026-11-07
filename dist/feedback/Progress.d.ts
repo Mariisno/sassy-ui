@@ -18,7 +18,7 @@ export interface ProgressProps extends Omit<React.HTMLAttributes<HTMLSpanElement
   valueText?: string;
   /** Ring only: its diameter in px. Default 48. The stroke follows (size / 12, at least 3 px). */
   size?: number;
-  /** `accent` follows the app's data-accent. The status tones use Sussi's status colours. */
+  /** `accent` follows the app's data-accent. The status tones use Sassy's status colours. */
   tone?: 'accent' | 'success' | 'warning' | 'danger';
   /** Ring only: what sits in the middle, e.g. the number. Plain content, so say the value in `valueText` too. */
   children?: React.ReactNode;

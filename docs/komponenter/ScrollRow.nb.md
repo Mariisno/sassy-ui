@@ -3,8 +3,8 @@ navn: ScrollRow
 gruppe: display
 status: stable
 sidenVersjon: 0.4.0
-kort: components/display/swatch.card.html
-typer: components/display/ScrollRow.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/scrollrow/
+typer: dist/display/ScrollRow.d.ts
 ---
 
 # ScrollRow
@@ -41,7 +41,7 @@ En rad som ruller sidelengs uten rullefelt, og som tones ut i kanten der det er 
 ## Eksempel
 
 ```jsx
-import { ScrollRow, Tag, Swatch } from 'sussi/components';
+import { ScrollRow, Tag, Swatch } from 'sassy/components';
 
 <ScrollRow>
   {typer.map((t) => <Tag key={t} selected={t === valgt} onClick={() => velg(t)}>{t}</Tag>)}
@@ -54,7 +54,7 @@ import { ScrollRow, Tag, Swatch } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/display/ScrollRow.d.ts`. Kortet, delt med Swatch: `components/display/swatch.card.html`.
+Typene står i `dist/display/ScrollRow.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/scrollrow/).
 
 <!-- props: ScrollRowProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -69,7 +69,7 @@ Pluss alle attributtene til `<div>` (`React.HTMLAttributes<HTMLDivElement>`).
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/nye.e2e.test.mjs`.
+Oppførselen er testet i nettleseren.
 
 - **Element og rolle.** En `<div>` med `overflow-x:auto`. Med `label`: `role="region"`, `aria-label` og `tabIndex=0`. Uten `label`: ingen rolle, ikke fokuserbar.
 - **Navn.** `label`, når den er gitt.

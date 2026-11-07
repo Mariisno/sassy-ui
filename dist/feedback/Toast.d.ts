@@ -10,6 +10,8 @@ export interface ToastProps extends Omit<React.HTMLAttributes<HTMLDivElement>, '
   onClose?: () => void;
   /** Accessible name of the close button. Default "Lukk" (like Dialog); English surfaces pass "Dismiss". */
   closeLabel?: string;
+  /** Milliseconds until a plain status toast goes by itself: it calls `onClose` once, as the × does. Default none: the toast stays until the app removes it. Never under 5000. A toast with an action (`actionLabel`) ignores it and stays until it is handled or dismissed. The clock stops while the pointer is on the toast, while the focus is inside it and while the page is hidden. */
+  duration?: number;
   className?: string;
   style?: React.CSSProperties;
 }

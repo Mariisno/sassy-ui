@@ -3,8 +3,8 @@ name: Dato
 group: utils
 status: new
 since: 0.7.0
-kort: components/utils/dato.card.html
-typer: components/utils/dato.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/dato/
+typer: dist/utils/dato.d.ts
 ---
 
 # Dato
@@ -44,7 +44,7 @@ Dates the Norwegian way, and the English way for English surfaces: functions wit
 ## Example
 
 ```jsx
-import { formatDato, formatRelativ, formatTid, formatTidsrom, tilDato, tilIsoDato } from 'sussi/components';
+import { formatDato, formatRelativ, formatTid, formatTidsrom, tilDato, tilIsoDato } from 'sassy/components';
 
 formatDato('2026-10-30', { lang: 'en' });                  // "30 Oct 2026"
 formatDato('2026-10-30', { lang: 'en', stil: 'lang' });    // "30 October 2026"
@@ -63,9 +63,9 @@ function Row({ entry }) {
 
 ## Props
 
-The types are in `components/utils/dato.d.ts`. The card: `components/utils/dato.card.html`.
+The types are in `dist/utils/dato.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/dato/).
 
-Every function takes a `DatoVerdi`: a Date, a timestamp in ms, or a string. "YYYY-MM-DD" and "YYYY-MM-DDTHH:mm[:ss]" without a zone are local; anything else (ISO with a zone) goes to the Date constructor. `tilDato(verdi)` gives a Date or `null`; `tilIsoDato(verdi)` gives "YYYY-MM-DD" for the local day; `erSammeDag(a, b)` compares calendar days. `formatDato`, `formatDatoTid` and `formatRelativ` take the options below; `formatTid` only `lang`; `formatTidsrom(fra, til, valg)` also `dato`. A value that is not a date gives an empty string. Unit-tested in `tests/dato.test.mjs`, also under `TZ=Europe/Oslo` and `TZ=America/Los_Angeles`.
+Every function takes a `DatoVerdi`: a Date, a timestamp in ms, or a string. "YYYY-MM-DD" and "YYYY-MM-DDTHH:mm[:ss]" without a zone are local; anything else (ISO with a zone) goes to the Date constructor. `tilDato(verdi)` gives a Date or `null`; `tilIsoDato(verdi)` gives "YYYY-MM-DD" for the local day; `erSammeDag(a, b)` compares calendar days. `formatDato`, `formatDatoTid` and `formatRelativ` take the options below; `formatTid` only `lang`; `formatTidsrom(fra, til, valg)` also `dato`. A value that is not a date gives an empty string. Unit-tested, also under `TZ=Europe/Oslo` and `TZ=America/Los_Angeles`.
 
 <!-- props: DatoValg -->
 | Prop | Type | Default | Description |

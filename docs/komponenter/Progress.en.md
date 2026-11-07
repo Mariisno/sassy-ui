@@ -3,8 +3,8 @@ name: Progress
 group: feedback
 status: new
 since: 0.5.7
-kort: components/feedback/progress.card.html
-typer: components/feedback/Progress.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/progress/
+typer: dist/feedback/Progress.d.ts
 ---
 
 # Progress
@@ -42,7 +42,7 @@ How far something has come: a bar (plants watered, an upload) or a ring (a sessi
 ## Example
 
 ```jsx
-import { Progress } from 'sussi/components';
+import { Progress } from 'sassy/components';
 
 <Progress value={12} max={30} label="Plants watered" valueText="12 of 30 plants" />
 <Progress value={0.6} max={1} label="Upload" tone="success" />
@@ -54,7 +54,7 @@ import { Progress } from 'sussi/components';
 
 ## Props
 
-The types are in `components/feedback/Progress.d.ts`. The card: `components/feedback/progress.card.html`.
+The types are in `dist/feedback/Progress.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/progress/).
 
 <!-- props: ProgressProps -->
 | Prop | Type | Default | Description |
@@ -65,7 +65,7 @@ The types are in `components/feedback/Progress.d.ts`. The card: `components/feed
 | `label` | `string` | – | The accessible name, required unless `aria-labelledby` points at a visible heading. |
 | `valueText` | `string` | – | Read instead of the percentage, e.g. "12 av 30 planter" or "3 min igjen". |
 | `size` | `number` | `48` | Ring only: its diameter in px. Default 48. The stroke follows (size / 12, at least 3 px). |
-| `tone` | `'accent' \| 'success' \| 'warning' \| 'danger'` | `'accent'` | `accent` follows the app's data-accent. The status tones use Sussi's status colours. |
+| `tone` | `'accent' \| 'success' \| 'warning' \| 'danger'` | `'accent'` | `accent` follows the app's data-accent. The status tones use Sassy's status colours. |
 | `children` | `React.ReactNode` | – | Ring only: what sits in the middle, e.g. the number. Plain content, so say the value in `valueText` too. |
 
 Plus every attribute of `<span>` (`React.HTMLAttributes<HTMLSpanElement>`), except `children`.
@@ -73,7 +73,7 @@ Plus every attribute of `<span>` (`React.HTMLAttributes<HTMLSpanElement>`), exce
 
 ## Accessibility
 
-The behaviour is tested in `tests/progress.e2e.test.mjs`, the colour rules in `tests/progress.test.mjs`.
+The behaviour is tested in a browser, the colour rules in unit tests.
 
 - **Element and role.** A `<span>` with `role="progressbar"`, `aria-valuemin="0"`, `aria-valuemax={max}` and `aria-valuenow` (clamped to 0–max) when `value` is a number. Without `value`: no `aria-valuenow`, that is indeterminate. `aria-valuetext` from `valueText`.
 - **Name.** `label` as `aria-label`. When `aria-labelledby` is set, `aria-label` is dropped, so the name is not read twice (tested).

@@ -1,5 +1,5 @@
 name: Bug / Feil
-description: Something in Sussi looks or behaves wrong. / Noe i Sussi ser eller oppfører seg feil.
+description: Something in Sassy looks or behaves wrong. / Noe i Sassy ser eller oppfører seg feil.
 labels: [bug]
 body:
   - type: textarea
@@ -17,8 +17,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: Sussi version / Sussi-versjon
-      placeholder: v0.9.0
+      label: Sassy version / Sassy-versjon
+      placeholder: v0.11.0
     validations:
       required: true
   - type: dropdown

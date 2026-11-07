@@ -3,8 +3,8 @@ navn: Stack
 gruppe: layout
 status: new
 sidenVersjon: 0.7.0
-kort: components/layout/layout.card.html
-typer: components/layout/Stack.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/stack/
+typer: dist/layout/Stack.d.ts
 ---
 
 # Stack
@@ -41,7 +41,7 @@ Et oppsett-element: barna i en kolonne (standard) eller en rad, med en avstand f
 ## Eksempel
 
 ```jsx
-import { Stack, Input, Textarea, Tag, Button } from 'sussi/components';
+import { Stack, Input, Textarea, Tag, Button } from 'sassy/components';
 
 <Stack gap={3}>
   <Input label="Plante" />
@@ -62,7 +62,7 @@ import { Stack, Input, Textarea, Tag, Button } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/layout/Stack.d.ts`. Kortet: `components/layout/layout.card.html`.
+Typene står i `dist/layout/Stack.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/stack/).
 
 <!-- props: StackProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -80,7 +80,7 @@ Pluss alle attributtene til elementet den rendres som (`React.HTMLAttributes<HTM
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/layout.e2e.test.mjs`, reglene i `tests/stack.test.mjs`.
+Oppførselen er testet i nettleseren, reglene i enhetstester.
 
 - **Element og rolle.** Det `as` sier: `div` (standard), `section`, `nav`, `ul`, `ol`, `li`, `form`, `header` eller `footer`. Ingen rolle legges til, unntatt `role="list"` på `ul` og `ol`: de får `list-style:none`, som tar listesemantikken bort i Safari, så komponenten setter rollen selv; en egen `role` vinner (begge testet).
 - **Navn.** Ingen eget. En `section` eller `nav` får navn med `aria-labelledby` eller `aria-label` som ellers.

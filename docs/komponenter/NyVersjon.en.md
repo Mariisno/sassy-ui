@@ -3,13 +3,13 @@ name: NyVersjon
 group: feedback
 status: new
 since: 0.5.7
-kort: components/feedback/nyversjon.card.html
-typer: components/feedback/NyVersjon.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/nyversjon/
+typer: dist/feedback/NyVersjon.d.ts
 ---
 
 # NyVersjon
 
-"Ny versjon" (new version): the notice that a new version of the app is ready. A toast built from [Toast](Toast.en.md)'s parts, with "Oppdater" (update) and the quieter "Senere" (later), announced politely from a live region without moving focus. By default it renders its own `ToastStack` from the start, so the region exists before the toast arrives; open it with `open`. Detection is the app's, with the helper in `components/feedback/oppdatering.js`: `startOppdatering`, `vedNyVersjon`, `oppdater` and `erOpptatt`.
+"Ny versjon" (new version): the notice that a new version of the app is ready. A toast built from [Toast](Toast.en.md)'s parts, with "Oppdater" (update) and the quieter "Senere" (later), announced politely from a live region without moving focus. By default it renders its own `ToastStack` from the start, so the region exists before the toast arrives; open it with `open`. Detection is the app's, with the helper in `dist/feedback/oppdatering.js`: `startOppdatering`, `vedNyVersjon`, `oppdater` and `erOpptatt`.
 
 ## When to use
 
@@ -42,7 +42,7 @@ typer: components/feedback/NyVersjon.d.ts
 
 ```jsx
 import { useEffect, useState } from 'react';
-import { NyVersjon, startOppdatering, vedNyVersjon, oppdater } from 'sussi/components';
+import { NyVersjon, startOppdatering, vedNyVersjon, oppdater } from 'sassy/components';
 
 startOppdatering('/sw.js', { opptatt: () => sessionRunning() });
 
@@ -55,7 +55,7 @@ function UpdateNotice() {
 
 ## Props
 
-The types are in `components/feedback/NyVersjon.d.ts` and `components/feedback/oppdatering.d.ts`. The card: `components/feedback/nyversjon.card.html`.
+The types are in `dist/feedback/NyVersjon.d.ts` and `dist/feedback/oppdatering.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/nyversjon/).
 
 <!-- props: NyVersjonProps -->
 | Prop | Type | Default | Description |
@@ -76,9 +76,9 @@ The types are in `components/feedback/NyVersjon.d.ts` and `components/feedback/o
 Plus every attribute of `<div>` (`React.HTMLAttributes<HTMLDivElement>`), except `title`, `children`.
 <!-- /props -->
 
-The helper: `startOppdatering(swUrl, options)` registers the worker (`updateViaCache: 'none'`), asks for a new one when the app comes to the foreground and every 30 minutes, and reloads once on `controllerchange` unless you are busy; the first install never reloads. `vedNyVersjon(listener)` is called when a new version waits (at once if it already waits) and returns a function that stops listening. `oppdater()` reloads, once. `erOpptatt()` is true with focus or text in a field, or an open dialog (`dialog[open]`, `[aria-modal="true"]`). Unit-tested against a fake `navigator.serviceWorker` in `tests/oppdatering.test.mjs`.
+The helper: `startOppdatering(swUrl, options)` registers the worker (`updateViaCache: 'none'`), asks for a new one when the app comes to the foreground and every 30 minutes, and reloads once on `controllerchange` unless you are busy; the first install never reloads. `vedNyVersjon(listener)` is called when a new version waits (at once if it already waits) and returns a function that stops listening. `oppdater()` reloads, once. `erOpptatt()` is true with focus or text in a field, or an open dialog (`dialog[open]`, `[aria-modal="true"]`). Unit-tested against a fake `navigator.serviceWorker`.
 
-<!-- props: OppdateringOptions from components/feedback/oppdatering.d.ts -->
+<!-- props: OppdateringOptions from dist/feedback/oppdatering.d.ts -->
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `opptatt` | `() => boolean` | – | The app's own reasons to wait with the reload, e.g. a session in progress. |
@@ -87,7 +87,7 @@ The helper: `startOppdatering(swUrl, options)` registers the worker (`updateViaC
 
 ## Accessibility
 
-The behaviour is tested in `tests/nyversjon.e2e.test.mjs`, the rules in `tests/nyversjon.test.mjs`.
+The behaviour is tested in a browser, the rules in unit tests.
 
 - **Element and role.** With `stack` (default): a `ToastStack` (`role="status"`, `aria-live="polite"`) that is in the page from the start, empty; the toast inside has no role of its own. With `stack={false}` inside the app's stack: the same. Alone with `stack={false}`: the toast is `role="status"` itself.
 - **Name.** `title` ("Ny versjon"), `description` and the two buttons, read as one message when the toast arrives.

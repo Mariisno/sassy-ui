@@ -3,8 +3,8 @@ name: AppShell
 group: navigation
 status: stable
 since: 0.3.0
-kort: components/navigation/appshell.card.html
-typer: components/navigation/AppShell.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/appshell/
+typer: dist/navigation/AppShell.d.ts
 ---
 
 # AppShell
@@ -41,7 +41,7 @@ The frame around an app, with its main menu: a tab bar at the bottom below 900 p
 ## Example
 
 ```jsx
-import { AppShell } from 'sussi/components';
+import { AppShell } from 'sassy/components';
 
 <AppShell
   items={[
@@ -60,7 +60,7 @@ import { AppShell } from 'sussi/components';
 
 ## Props
 
-The types are in `components/navigation/AppShell.d.ts`. The card: `components/navigation/appshell.card.html`.
+The types are in `dist/navigation/AppShell.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/appshell/).
 
 <!-- props: AppShellProps -->
 | Prop | Type | Default | Description |
@@ -92,7 +92,7 @@ The types are in `components/navigation/AppShell.d.ts`. The card: `components/na
 
 ## Accessibility
 
-The behaviour is tested in `tests/appshell.e2e.test.mjs` and `tests/appshell-hover.e2e.test.mjs`, the rules in `tests/appshell.test.mjs`.
+The behaviour is tested in a browser, the rules in unit tests.
 
 - **Landmarks.** Both menus are `<nav aria-label={label}>` ("Hovedmeny"); only one is visible at a time. The page is `<main id tabIndex={-1}>`, rendered by AppShell. Do not add another `<main>` inside.
 - **Skip link.** The first thing Tab lands on is `<a class="s-shell__skip">` ("Hopp til innholdet"): invisible at rest, visible on focus as an accent pill, at least 44 px tall and 4.5:1. Enter moves focus to `<main>` with code and leaves the hash alone, so an app that routes on the hash keeps its route (tested, WCAG 2.4.1).

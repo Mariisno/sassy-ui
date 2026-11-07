@@ -3,26 +3,26 @@ name: Icon
 group: icon
 status: stable
 since: 0.2.0
-kort: components/icon/icon.card.html
-typer: components/icon/Icon.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/icon/
+typer: dist/icon/Icon.d.ts
 ---
 
 # Icon
 
-A Lucide icon drawn inline as SVG, so it inherits `currentColor` and Sussi's stroke width of 1.75 (softer than Lucide's 2). The set is 101 icons in `components/icon/iconData.js`: 100 from Lucide and one drawn for Sussi (`yarn`, a ball of yarn). Decorative by default (`aria-hidden`); with `title` it is a named image. A name that is not in the set renders nothing.
+A Lucide icon drawn inline as SVG, so it inherits `currentColor` and Sassy's stroke width of 1.75 (softer than Lucide's 2). The set is 102 icons in `dist/icon/iconData.js`: 101 from Lucide and one drawn for Sassy (`yarn`, a ball of yarn). Decorative by default (`aria-hidden`); with `title` it is a named image. A name that is not in the set renders nothing.
 
 ## When to use
 
-- Every glyph in a Sussi interface: in buttons, menus, rows, empty states.
+- Every glyph in a Sassy interface: in buttons, menus, rows, empty states.
 - An icon that carries meaning on its own (a status column without text): with `title`.
 - 16 px in dense rows and buttons, 18 px (default) next to 14 px text, 20–24 px standalone or in a card.
 
 ## When not to
 
-- Emoji: never in a Sussi interface. Use an icon from the set.
+- Emoji: never in a Sassy interface. Use an icon from the set.
 - An illustration or a picture: that is not an icon.
 - The mascot: [Sussi](Sussi.en.md).
-- An icon that is not in the set: fetch it from Lucide and add it to both `iconData.js` and `assets/icons/` first. An unknown name renders nothing, and `tests/icon-names.test.mjs` guards the cards and prompts.
+- An icon that is not in the set: fetch it from Lucide and add it to both `iconData.js` and `assets/icons/` first. An unknown name renders nothing, and a test guards the cards and prompts.
 
 ## Do
 
@@ -41,7 +41,7 @@ A Lucide icon drawn inline as SVG, so it inherits `currentColor` and Sussi's str
 ## Example
 
 ```jsx
-import { Icon } from 'sussi/components';
+import { Icon } from 'sassy/components';
 
 <Icon name="leaf" />
 <Icon name="check" size={16} style={{ color: 'var(--success)' }} />
@@ -51,14 +51,14 @@ import { Icon } from 'sussi/components';
 
 ## Props
 
-The types are in `components/icon/Icon.d.ts`. The card with the whole set: `components/icon/icon.card.html`.
+The types are in `dist/icon/Icon.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/icon/).
 
 <!-- props: IconProps -->
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `name` | `string` | *required* | Lucide icon name, e.g. "house", "check", "chevron-down", "leaf". See components/icon/iconData.js for the full shipped set. |
+| `name` | `string` | *required* | Lucide icon name, e.g. "house", "check", "chevron-down", "leaf". See dist/icon/iconData.js for the full shipped set. |
 | `size` | `number` | `18` | Pixel size. 16 in dense UI, 18 default, 20–24 for standalone. |
-| `strokeWidth` | `number` | `1.75` | Stroke width. Sussi default is 1.75 (softer than Lucide's 2). |
+| `strokeWidth` | `number` | `1.75` | Stroke width. Sassy default is 1.75 (softer than Lucide's 2). |
 | `title` | `string` | – | Accessible label. Omit for decorative icons. |
 
 Plus every attribute of `<svg>` (`React.SVGProps<SVGSVGElement>`), except `name`.
@@ -67,12 +67,12 @@ Plus every attribute of `<svg>` (`React.SVGProps<SVGSVGElement>`), except `name`
 ## Accessibility
 
 - **Element and role.** An `<svg>` with `viewBox="0 0 24 24"`, `fill="none"`, `stroke="currentColor"`. Without `title`: `aria-hidden="true"`, no role. With `title`: `role="img"` and a `<title>` element inside.
-- **Name.** `title`. The text goes into raw SVG markup, so it is escaped; a project name with `<` or `&` from a user becomes text, not markup (tested in `tests/icon.e2e.test.mjs`).
+- **Name.** `title`. The text goes into raw SVG markup, so it is escaped; a project name with `<` or `&` from a user becomes text, not markup (tested in a browser).
 - **Keyboard and focus.** None; the icon is not interactive. In a button, the button has the focus.
 - **Contrast.** The icon is `currentColor`. Next to text it follows the text's colour and contrast. On its own as information (a status icon) 3:1 for graphics applies; that is the app's choice of colour.
 - **Motion.** None.
 - **Built-in text.** None.
-- **Known limit.** A name that does not exist gives `null`, with no warning in the browser. `tests/icon-names.test.mjs` catches it in the cards and prompts, not in an app that uses Sussi.
+- **Known limit.** A name that does not exist gives `null`, with no warning in the browser. A test catches it in the cards and prompts, not in an app that uses Sassy.
 
 ## Content
 

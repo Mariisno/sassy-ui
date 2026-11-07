@@ -3,8 +3,8 @@ name: Tag
 group: display
 status: stable
 since: 0.2.0
-kort: components/display/display.card.html
-typer: components/display/Tag.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/tag/
+typer: dist/display/Tag.d.ts
 ---
 
 # Tag
@@ -41,7 +41,7 @@ A pill-shaped chip for filters, categories and removable selections. Without `on
 ## Example
 
 ```jsx
-import { Tag } from 'sussi/components';
+import { Tag } from 'sassy/components';
 
 <Tag icon="hash">research</Tag>
 <Tag selected={open} onClick={() => setOpen(!open)}>Open</Tag>
@@ -51,7 +51,7 @@ import { Tag } from 'sussi/components';
 
 ## Props
 
-The types are in `components/display/Tag.d.ts`. The card with Badge, Tag and Card: `components/display/display.card.html`.
+The types are in `dist/display/Tag.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/tag/).
 
 <!-- props: TagProps -->
 | Prop | Type | Default | Description |
@@ -68,15 +68,15 @@ Plus every attribute of the element it renders as (`React.HTMLAttributes<HTMLEle
 
 ## Accessibility
 
-The behaviour is tested in `tests/forms.e2e.test.mjs`.
+The behaviour is tested in a browser.
 
 - **Element and role.** Without `onClick` and `selected`: a `<span>`. With either: a `<button type="button">` with `aria-pressed`. With `onRemove`: a `<span>` that holds the text (or the toggle button) and a separate `<button>` for ×. A button is never inside another.
 - **Name.** The tag is named by its text. The remove button is named `removeLabel`, else "Fjern <text>" when the content is text or a number, else just "Fjern". The icon is decorative.
 - **Keyboard.** Tab reaches the toggle and the remove button separately. Enter and Space on × remove (tested); on the toggle they toggle. Removing does not toggle (`stopPropagation`).
-- **State.** `aria-pressed="true"` fills with `--accent-soft` and `--accent-soft-fg`, 4.5:1 in every accent (`tests/contrast.test.mjs`). Selected is both colour and attribute.
+- **State.** `aria-pressed="true"` fills with `--accent-soft` and `--accent-soft-fg`, 4.5:1 in every accent (tested). Selected is both colour and attribute.
 - **Focus.** The standard focus ring (2 px `--focus-color`) on the toggle and on ×.
 - **Contrast.** Unselected is `--fg-2` on `--surface-1` with a `--border-strong` edge; hover goes to `--fg-1`.
-- **Target.** The tag is at least 28 px tall, the remove button 24 × 24 px (the WCAG 2.5.8 minimum, tested). Known limit: both are under the 44 px Sussi wants on touch; give the rows room.
+- **Target.** The tag is at least 28 px tall, the remove button 24 × 24 px (the WCAG 2.5.8 minimum, tested). Known limit: both are under the 44 px Sassy wants on touch; give the rows room.
 - **Text.** Sizes itself to the content, never clipped (0.5.3).
 - **Motion.** Transitions on `--dur-fast`, 0 under reduced motion.
 - **Built-in text.** "Fjern" / "Fjern <text>" (Norwegian). Override with `removeLabel`.

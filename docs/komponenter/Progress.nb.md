@@ -3,8 +3,8 @@ navn: Progress
 gruppe: feedback
 status: new
 sidenVersjon: 0.5.7
-kort: components/feedback/progress.card.html
-typer: components/feedback/Progress.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/progress/
+typer: dist/feedback/Progress.d.ts
 ---
 
 # Progress
@@ -42,7 +42,7 @@ Hvor langt noe er kommet: en linje (planter vannet, en opplasting) eller en ring
 ## Eksempel
 
 ```jsx
-import { Progress } from 'sussi/components';
+import { Progress } from 'sassy/components';
 
 <Progress value={12} max={30} label="Planter vannet" valueText="12 av 30 planter" />
 <Progress value={0.6} max={1} label="Opplasting" tone="success" />
@@ -54,7 +54,7 @@ import { Progress } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/feedback/Progress.d.ts`. Kortet: `components/feedback/progress.card.html`.
+Typene står i `dist/feedback/Progress.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/progress/).
 
 <!-- props: ProgressProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -65,7 +65,7 @@ Typene står i `components/feedback/Progress.d.ts`. Kortet: `components/feedback
 | `label` | `string` | – | Det tilgjengelige navnet, påkrevd med mindre `aria-labelledby` peker på en synlig overskrift. |
 | `valueText` | `string` | – | Leses i stedet for prosenten, f.eks. «12 av 30 planter» eller «3 min igjen». |
 | `size` | `number` | `48` | Bare ringen: diameter i px. Streken følger med (size / 12, minst 3 px). |
-| `tone` | `'accent' \| 'success' \| 'warning' \| 'danger'` | `'accent'` | `accent` følger appens `data-accent`. Statustonene bruker Sussis statusfarger. |
+| `tone` | `'accent' \| 'success' \| 'warning' \| 'danger'` | `'accent'` | `accent` følger appens `data-accent`. Statustonene bruker Sassys statusfarger. |
 | `children` | `React.ReactNode` | – | Bare ringen: det som står i midten, f.eks. tallet. Rent innhold, så si verdien i `valueText` også. |
 
 Pluss alle attributtene til `<span>` (`React.HTMLAttributes<HTMLSpanElement>`), unntatt `children`.
@@ -73,7 +73,7 @@ Pluss alle attributtene til `<span>` (`React.HTMLAttributes<HTMLSpanElement>`), 
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/progress.e2e.test.mjs`, fargereglene i `tests/progress.test.mjs`.
+Oppførselen er testet i nettleseren, fargereglene i enhetstester.
 
 - **Element og rolle.** Et `<span>` med `role="progressbar"`, `aria-valuemin="0"`, `aria-valuemax={max}` og `aria-valuenow` (begrenset til 0–max) når `value` er et tall. Uten `value`: ingen `aria-valuenow`, altså ubestemt. `aria-valuetext` fra `valueText`.
 - **Navn.** `label` som `aria-label`. Er `aria-labelledby` satt, droppes `aria-label`, så navnet ikke leses dobbelt (testet).

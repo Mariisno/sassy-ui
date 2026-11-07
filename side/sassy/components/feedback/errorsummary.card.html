@@ -1,0 +1,42 @@
+<!-- @dsCard group="Components" viewport="700x560" name="ErrorSummary" subtitle="After a failed submit: a title and a link per field" -->
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ErrorSummary</title><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../dist/sassy.global.js"></script>
+<style>body{padding:20px 24px;background:var(--bg)}.col{display:grid;gap:16px;max-width:480px}.lbl{font:var(--type-meta);color:var(--fg-3)}form{display:grid;gap:16px}</style>
+</head><body><div id="root"></div>
+<script>
+// ?theme=dark. Plain React.createElement, so the card needs no Babel. The first box is the specimen and does
+// not take the focus at load; the form below mounts a live one on «Lagre», which does.
+const { ErrorSummary, Fieldset, Input, Radio, Button } = window.SassyDesignSystem_a2c9b8;
+const h = React.createElement;
+if (new URLSearchParams(location.search).get('theme')) document.documentElement.dataset.theme = 'dark';
+function Form() {
+  const [name, setName] = React.useState('');
+  const [sun, setSun] = React.useState('');
+  const [attempt, setAttempt] = React.useState(0);
+  const [errors, setErrors] = React.useState([]);
+  const submit = (e) => {
+    e.preventDefault();
+    const found = [];
+    if (!name.trim()) found.push({ id: 'navn', message: 'Skriv navnet på planten.' });
+    if (!sun) found.push({ id: 'sol', message: 'Velg hvor mye sol stedet får.' });
+    setErrors(found);
+    setAttempt(attempt + 1);
+  };
+  const err = (id) => errors.find((x) => x.id === id)?.message;
+  return h('form', { onSubmit: submit, noValidate: true },
+    errors.length ? h(ErrorSummary, { key: attempt, errors }, 'Rett feilene under, så kan du lagre.') : null,
+    h(Input, { id: 'navn', label: 'Navn på planten', value: name, onChange: (e) => setName(e.target.value), error: err('navn') }),
+    h(Fieldset, { id: 'sol', legend: 'Hvor mye sol får stedet?', error: err('sol') },
+      h(Radio, { name: 'sol', value: 'full', label: 'Full sol', checked: sun === 'full', onChange: () => setSun('full') }),
+      h(Radio, { name: 'sol', value: 'halv', label: 'Halvskygge', checked: sun === 'halv', onChange: () => setSun('halv') }),
+      h(Radio, { name: 'sol', value: 'skygge', label: 'Skygge', checked: sun === 'skygge', onChange: () => setSun('skygge') })),
+    h('div', null, h(Button, { type: 'submit' }, 'Lagre')));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'col' },
+  h('span', { className: 'lbl' }, 'boksen · tittel, én linje, en lenke per felt'),
+  h(ErrorSummary, { autoFocus: false, errors: [{ id: 'eksempel-navn', message: 'Skriv navnet på planten.' }, { id: 'eksempel-sol', message: 'Velg hvor mye sol stedet får.' }] }, 'Rett feilene under, så kan du lagre.'),
+  h('span', { className: 'lbl' }, 'levende · trykk Lagre med tomt skjema'),
+  h(Form)));
+</script></body></html>

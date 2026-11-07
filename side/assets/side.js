@@ -1,4 +1,4 @@
-// Sussi's documentation site: the theme toggle, the language choice, the menu, search, the light/dark switch on cards
+// Sassy's documentation site: the theme toggle, the language choice, the menu, search, the light/dark switch on cards
 // and examples, the copy buttons and the icon filter. No dependencies.
 (function () {
   var doc = document.documentElement;
@@ -12,7 +12,7 @@
   if (knapp) knapp.addEventListener('click', function () {
     var ny = doc.dataset.theme === 'dark' ? 'light' : 'dark';
     doc.dataset.theme = ny;
-    try { localStorage.setItem('sussi-side-tema', ny); } catch (e) {}
+    try { localStorage.setItem('sassy-side-tema', ny); } catch (e) {}
     visTema();
     // The embedded cards and examples follow the page; their own switch can still set them apart.
     brytere.forEach(function (b) { velg(b, ny); });
@@ -22,16 +22,38 @@
   if (ogsaa) ogsaa.hidden = (function norskForst(sprak) {var forste = String((sprak && sprak[0]) || '').toLowerCase();return /^(nb|nn|no)(-|_|$)/.test(forste);})(navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]);
   // The language: a link to the other language is a choice, remembered so a Norwegian page does not send you back.
   document.querySelectorAll('.side-spraak a[hreflang], a[data-spraak]').forEach(function (a) {
-    a.addEventListener('click', function () { try { localStorage.setItem('sussi-side-spraak', a.getAttribute('hreflang')); } catch (e) {} });
+    a.addEventListener('click', function () { try { localStorage.setItem('sassy-side-spraak', a.getAttribute('hreflang')); } catch (e) {} });
   });
-  // Menu below 900 px: opening it moves focus to the first link; Esc closes it and gives focus back to the button.
+  // Menu below 900 px: the open menu scrolls on its own (side.css) and brings the current page to its middle, as
+  // scrollIntoView with block: 'center' inside the menu would, but by hand on scrollTop so the page does not move.
+  // Opening it moves focus to the current page's link, which is then in view (or to the first link on a page that is
+  // not in the menu), so the focus is never scrolled out of sight; Esc closes it and gives focus back to the button.
   var meny = document.querySelector('.side-menyknapp'), nav = document.getElementById('side-nav');
+  function midtstill() {
+    var her = nav.querySelector('[aria-current="page"]');
+    if (!her || !her.getClientRects().length || nav.scrollHeight <= nav.clientHeight) return;
+    var nr = nav.getBoundingClientRect(), hr = her.getBoundingClientRect();
+    nav.scrollTop += (hr.top + hr.height / 2) - (nr.top + nav.clientTop + nav.clientHeight / 2);
+  }
   function settMeny(open, fokus) {
     if (open) nav.setAttribute('data-open', ''); else nav.removeAttribute('data-open');
     meny.setAttribute('aria-expanded', open ? 'true' : 'false');
-    if (open && fokus) { var forste = nav.querySelector('a'); if (forste) forste.focus(); }
+    if (open) midtstill();
+    if (open && fokus) {
+      var her = nav.querySelector('[aria-current="page"]'), maal = her && her.getClientRects().length ? her : nav.querySelector('a');
+      if (maal) {
+        maal.focus({ preventScroll: true });
+        // Opened from further down the page, the menu is above the screen: bring its top under the header.
+        var r = maal.getBoundingClientRect(), topp = meny.closest('header') ? meny.closest('header').getBoundingClientRect().bottom : 0;
+        if (r.top < topp || r.bottom > innerHeight) window.scrollBy(0, nav.getBoundingClientRect().top - topp);
+      }
+    }
     if (!open && fokus) meny.focus();
   }
+  // The component groups in the menu: each button opens and closes its own group (only below 900 px is it shown).
+  document.querySelectorAll('.side-nav__gruppeknapp').forEach(function (b) {
+    b.addEventListener('click', function () { b.setAttribute('aria-expanded', b.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); });
+  });
   if (meny && nav) {
     meny.hidden = false;
     meny.addEventListener('click', function () { settMeny(!nav.hasAttribute('data-open'), true); });
@@ -138,17 +160,19 @@
     var q = inn.value.trim().toLowerCase();
     if (!q) { lukk(); status.textContent = ''; return; }
     hent().then(function (j) {
-      // Titles and the page's own text first (so "kontrast" finds the foundations and "meny" the Menu), then headings, then the text under them.
-      // A synonym (varsel, dropdown, dark mode …) puts the pages it means first.
-      var sider = [], overskrifter = [], avsnitt = [], ord = [];
+      // A synonym (varsel, dropdown, dark mode …) puts the pages it means first. Then a match in a page title (the title that
+      // is the words, then one that starts with them, then one that has them), then the page's own text (so "kontrast" finds
+      // the foundations and "meny" the Menu), then headings, then the text under them.
+      var sider = [], titler = [], tekster = [], overskrifter = [], avsnitt = [], ord = [];
       var har = function (x) { return (x || '').toLowerCase().indexOf(q) >= 0; };
       (j.syn || []).forEach(function (s) { if (q.length >= 3 && (s.o.indexOf(q) === 0 || q.indexOf(s.o) === 0)) s.u.forEach(function (u) { if (ord.indexOf(u) < 0) ord.push(u); }); });
       ord.forEach(function (u) { j.sider.forEach(function (s) { if (s.u === u) sider.push({ t: s.t, u: s.u }); }); });
       j.sider.forEach(function (s) {
-        if ((har(s.t) || har(s.p)) && ord.indexOf(s.u) < 0) sider.push({ t: s.t, u: s.u });
+        if (ord.indexOf(s.u) < 0) { var tl = (s.t || '').toLowerCase(); if (har(s.t)) titler.push({ t: s.t, u: s.u, v: tl === q ? 0 : tl.indexOf(q) === 0 ? 1 : 2 }); else if (har(s.p)) tekster.push({ t: s.t, u: s.u }); }
         s.h.forEach(function (h) { var r = { t: h.t, u: s.u + '#' + h.i, side: s.t }; if (har(h.t)) overskrifter.push(r); else if (har(h.p)) avsnitt.push(r); });
       });
-      var treff = sider.concat(overskrifter, avsnitt).slice(0, 12);
+      titler.sort(function (a, b) { return a.v - b.v; });
+      var treff = sider.concat(titler, tekster, overskrifter, avsnitt).slice(0, 12);
       var h = (x) => String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
       ut.innerHTML = treff.length ? '<ul>' + treff.map(function (r) { return '<li><a href="' + h(r.u) + '">' + h(r.t) + (r.side ? ' <span class="side-meta">· ' + h(r.side) + '</span>' : '') + '</a></li>'; }).join('') + '</ul>' : '<p class="side-sok__tom side-hint">' + h(j.tekst.ingenTreff) + '</p>';
       ut.hidden = false;

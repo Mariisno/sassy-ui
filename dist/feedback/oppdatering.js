@@ -1,4 +1,4 @@
-// Sussi 0.9.0. Built from components/; edit the source, not this file.
+// Sassy 0.11.0. Compiled from the component sources, which are not in this package; do not edit.
 const HVER = 30 * 60 * 1e3;
 const lyttere = /* @__PURE__ */ new Set();
 let ventende = false;

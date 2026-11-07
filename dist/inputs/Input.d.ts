@@ -32,9 +32,13 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   passwordToggle?: boolean;
   /** The name of the password toggle, a toggle button with `aria-pressed`. Default "Vis passord"; English surfaces pass "Show password". */
   passwordToggleLabel?: string;
+  /** With `maxLength`: a character count under the field, «12 av 200». From 90 % it says how many are left, past the limit how many too many, and the field is invalid; the native limit is left off, so people can type past it and shorten. A screen reader hears the count once typing pauses. Without `count`, `maxLength` is the browser's hard limit, as before. */
+  count?: boolean;
+  /** The language of the count: `nb` «12 av 200», «18 tegn igjen» (default) or `en` «12 of 200», «18 characters left». */
+  countLang?: 'nb' | 'en';
 }
 /** The ref reaches the native <input>, so an app can focus it (e.g. the first field with an error). */
 export declare const Input: React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLInputElement>>;
 /** Label, hint and error around a control. The hint/error gets the id `hintId` (default `${htmlFor}-hint`); point the control's aria-describedby at it. */
-export interface FieldProps { label?: string; hint?: string; error?: string; optional?: boolean; optionalLabel?: string; htmlFor?: string; hintId?: string; children?: React.ReactNode; }
+export interface FieldProps { label?: string; hint?: string; error?: string; optional?: boolean; optionalLabel?: string; htmlFor?: string; hintId?: string; /** Something at the end of the hint row, such as the character count Input and Textarea put there with `count`. */ counter?: React.ReactNode; children?: React.ReactNode; }
 export declare function Field(props: FieldProps): React.JSX.Element;

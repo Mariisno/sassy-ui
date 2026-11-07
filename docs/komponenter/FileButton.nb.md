@@ -3,8 +3,8 @@ navn: FileButton
 gruppe: buttons
 status: new
 sidenVersjon: 0.5.7
-kort: components/buttons/filebutton.card.html
-typer: components/buttons/FileButton.d.ts
+side: https://mariisno.github.io/sassy-ui/komponenter/filebutton/
+typer: dist/buttons/FileButton.d.ts
 ---
 
 # FileButton
@@ -40,7 +40,7 @@ En knapp som åpner filvelgeren. Den ser ut som [Button](Button.nb.md) med de sa
 ## Eksempel
 
 ```jsx
-import { FileButton } from 'sussi/components';
+import { FileButton } from 'sassy/components';
 
 <FileButton iconLeft="image" accept="image/*" capture="environment" onFiles={([fil]) => taBilde(fil)}>Ta bilde</FileButton>
 <FileButton variant="secondary" iconLeft="image" accept="image/*" multiple onFiles={leggTil}>Velg bilder</FileButton>
@@ -49,7 +49,7 @@ import { FileButton } from 'sussi/components';
 
 ## Props
 
-Typene står i `components/buttons/FileButton.d.ts`. Kortet: `components/buttons/filebutton.card.html`.
+Typene står i `dist/buttons/FileButton.d.ts`. Et levende eksempel står på [sida på dokumentasjonssiden](https://mariisno.github.io/sassy-ui/komponenter/filebutton/).
 
 <!-- props: FileButtonProps -->
 | Prop | Type | Standard | Beskrivelse |
@@ -75,7 +75,7 @@ Pluss alle attributtene til `<input>` (`React.InputHTMLAttributes<HTMLInputEleme
 
 ## Tilgjengelighet
 
-Oppførselen er testet i `tests/filebutton.e2e.test.mjs`, reglene i `tests/filebutton.test.mjs`.
+Oppførselen er testet i nettleseren, reglene i enhetstester.
 
 - **Element og rolle.** En `<label>` med knappeklassene rundt et `<input type="file">`. Feltet er skjult med `clip`, ikke `display:none`, så det beholder tastaturfokus.
 - **Tastatur.** Tab lander på feltet. Enter åpner velgeren (testet; mellomrom er nettleserens vanlige oppførsel for et filfelt). Et slått av felt hoppes over av Tab.

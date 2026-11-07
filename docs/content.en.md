@@ -1,6 +1,6 @@
 # Content and microcopy
 
-Sussi sounds like a calm, competent colleague: someone who knows psychology, respects your attention and never makes you feel stupid. These are the rules for every piece of text in a Sussi interface, Norwegian first and English as the second language. Every component has its own "Content" section in `docs/komponenter/`; this is the ground they build on.
+Sassy sounds like a calm, competent colleague: someone who knows psychology, respects your attention and never makes you feel stupid. These are the rules for every piece of text in a Sassy interface, Norwegian first and English as the second language. Every component has its own "Content" section in `docs/komponenter/`; this is the ground they build on.
 
 ## The voice
 
@@ -57,7 +57,7 @@ Feedback after every action, quietly: "Saved", "Task archived", "Copied". Past t
 
 ## Word list
 
-The common words in an interface, as Sussi uses them. The same word for the same thing across the app.
+The common words in an interface, as Sassy uses them. The same word for the same thing across the app.
 
 | Norsk | English | Used for |
 | --- | --- | --- |

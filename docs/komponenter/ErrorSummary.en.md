@@ -3,8 +3,8 @@ name: ErrorSummary
 group: feedback
 status: new
 since: 0.7.0
-kort: components/feedback/errorsummary.card.html
-typer: components/feedback/ErrorSummary.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/errorsummary/
+typer: dist/feedback/ErrorSummary.d.ts
 ---
 
 # ErrorSummary
@@ -41,7 +41,7 @@ The box at the top of a form after a failed submit, as GOV.UK and Designsystemet
 ## Example
 
 ```jsx
-import { ErrorSummary, Input, Fieldset, Radio, Button } from 'sussi/components';
+import { ErrorSummary, Input, Fieldset, Radio, Button } from 'sassy/components';
 
 const [errors, setErrors] = useState([]);
 const [attempt, setAttempt] = useState(0);
@@ -68,7 +68,7 @@ const errorFor = (id) => errors.find((f) => f.id === id)?.message;
 
 ## Props
 
-The types are in `components/feedback/ErrorSummary.d.ts`. The card: `components/feedback/errorsummary.card.html`.
+The types are in `dist/feedback/ErrorSummary.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/errorsummary/).
 
 <!-- props: ErrorSummaryProps -->
 | Prop | Type | Default | Description |
@@ -93,13 +93,13 @@ Each entry in `errors`:
 
 ## Accessibility
 
-The behaviour is tested in `tests/errorsummary.e2e.test.mjs`, the colour rules in `tests/errorsummary.test.mjs`.
+The behaviour is tested in a browser, the colour rules in unit tests.
 
 - **Element and role.** A `<section tabIndex={-1}>` with `aria-labelledby` to the title (a named region). The content sits in a `<div role="alert">`, so it is read even where focus on a region reads only the name. This is GOV.UK's pattern.
 - **Name.** The title, `h2` by default (`level`), with a `circle-alert` icon before it that is `aria-hidden`.
 - **Focus.** The box takes the focus when it mounts (`autoFocus`, tested: the focus moves from the button to the box). The ring shows on `:focus`, not only `:focus-visible`, so it is seen after a mouse click on the button too. The links are plain `<a href="#id">`; on click the focus moves to the element with that id, or to the first control inside it when it is a Fieldset, and the group's legend is scrolled into view (both tested). When the element does not exist, the plain anchor jump happens.
 - **Keyboard.** Tab from the box goes to the first link, then on through the document. Enter on a link is the click.
-- **Contrast.** The border is `--danger`, ≥ 3:1 on `--bg` in both themes and every accent (1.4.11). The links and the icon are `--danger-fg` on `--surface-1`, ≥ 4.5:1 in both themes and every accent (`tests/errorsummary.test.mjs` measures the token pairs, `tests/errorsummary.e2e.test.mjs` the rendered colours). The links are underlined, so colour is not alone.
+- **Contrast.** The border is `--danger`, ≥ 3:1 on `--bg` in both themes and every accent (1.4.11). The links and the icon are `--danger-fg` on `--surface-1`, ≥ 4.5:1 in both themes and every accent (tested on the token pairs and the rendered colours). The links are underlined, so colour is not alone.
 - **Width.** A flex column with ordinary wrapping; nothing overflows at 320 px (tested).
 - **Motion.** None.
 - **Built-in text.** "Noe må rettes før du kan gå videre" as the title. Override with `title`.

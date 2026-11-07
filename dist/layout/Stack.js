@@ -1,4 +1,4 @@
-// Sussi 0.9.0. Built from components/; edit the source, not this file.
+// Sassy 0.11.0. Compiled from the component sources, which are not in this package; do not edit.
 import { jsx } from "react/jsx-runtime";
 import React from "react";
 const cx = (...a) => a.filter(Boolean).join(" ");

@@ -3,8 +3,8 @@ name: Badge
 group: display
 status: stable
 since: 0.2.0
-kort: components/display/display.card.html
-typer: components/display/Badge.d.ts
+side: https://mariisno.github.io/sassy-ui/en/components/badge/
+typer: dist/display/Badge.d.ts
 ---
 
 # Badge
@@ -41,7 +41,7 @@ A small pill that shows a status, a version or a count, and cannot be pressed. S
 ## Example
 
 ```jsx
-import { Badge } from 'sussi/components';
+import { Badge } from 'sassy/components';
 
 <Badge tone="success" dot>Done</Badge>
 <Badge tone="warning">Needs review</Badge>
@@ -51,7 +51,7 @@ import { Badge } from 'sussi/components';
 
 ## Props
 
-The types are in `components/display/Badge.d.ts`. The card with Badge, Tag and Card: `components/display/display.card.html`.
+The types are in `dist/display/Badge.d.ts`. A live example is on [its page on the documentation site](https://mariisno.github.io/sassy-ui/en/components/badge/).
 
 <!-- props: BadgeProps -->
 | Prop | Type | Default | Description |
@@ -70,7 +70,7 @@ Plus every attribute of `<span>` (`React.HTMLAttributes<HTMLSpanElement>`).
 - **Element and role.** A `<span>` without a role. It is text, and is read as the text it holds. `id`, `data-*` and `aria-*` reach the element.
 - **Keyboard and focus.** None; it cannot be pressed.
 - **Name and state.** The text. The dot (`dot`) is an empty `<span>` in `currentColor` and carries no meaning on its own: the word does.
-- **Contrast.** `accent` is `--accent-soft-fg` on `--accent-soft`, held at 4.5:1 in both themes and every accent (`tests/contrast.test.mjs`). `neutral` is `--fg-2` on `--surface-2`, 4.5:1 on the surfaces. The status tones are `--<tone>-fg` on `--<tone>-soft`; the theme engine holds each pair at 4.5:1 when you make your own theme (`tests/tema.test.mjs`). `outline` is `--fg-2` on transparent with a `--border-strong` edge.
+- **Contrast.** `accent` is `--accent-soft-fg` on `--accent-soft`, held at 4.5:1 in both themes and every accent (tested). `neutral` is `--fg-2` on `--surface-2`, 4.5:1 on the surfaces. The status tones are `--<tone>-fg` on `--<tone>-soft`; the theme engine holds each pair at 4.5:1 when you make your own theme (tested). `outline` is `--fg-2` on transparent with a `--border-strong` edge.
 - **Text.** 12 px medium, or DM Mono 400 with `mono`. The pill sizes itself to the text and never clips it (0.5.3, WCAG 1.4.4).
 - **Motion.** None.
 - **Built-in text.** None.

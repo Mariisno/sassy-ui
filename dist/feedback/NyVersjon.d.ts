@@ -3,7 +3,7 @@ import * as React from 'react';
  * «Ny versjon»: a new version of the app is ready. A toast with «Oppdater» and «Senere», announced politely
  * (role="status") without moving focus. By default it renders its own ToastStack, which is the live region and
  * is in the page from the start, so keep the component mounted and open it with `open`.
- * Detection is the app's: see `startOppdatering` and `vedNyVersjon` in `components/feedback/oppdatering.js`.
+ * Detection is the app's: see `startOppdatering` and `vedNyVersjon` in `dist/feedback/oppdatering.js`.
  * @startingPoint section="Feedback" subtitle="A new version is ready: Oppdater or Senere" viewport="700x220"
  */
 export interface NyVersjonProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'children'> {
