@@ -1,8 +1,12 @@
 // Sassy's documentation site: the theme toggle, the language choice, the menu, search, the light/dark switch on cards
 // and examples, the copy buttons and the icon filter. No dependencies.
 (function () {
+  // side-js is set by the head script, before the first paint, so the menu does not show unfolded and then fold. It is
+  // taken off again at load if this script never ran (sideKlar), so a failed script never leaves a folded menu with
+  // nothing to open it.
   var doc = document.documentElement;
   doc.classList.add('side-js');
+  window.sideKlar = true;
   var tekst = {};
   try { tekst = JSON.parse(document.getElementById('side-tekst').textContent); } catch (e) {}
   // Theme: data-theme on <html>, remembered in localStorage (which may be blocked).
@@ -24,7 +28,7 @@
   document.querySelectorAll('.side-spraak a[hreflang], a[data-spraak]').forEach(function (a) {
     a.addEventListener('click', function () { try { localStorage.setItem('sassy-side-spraak', a.getAttribute('hreflang')); } catch (e) {} });
   });
-  // Menu below 900 px: the open menu scrolls on its own (side.css) and brings the current page to its middle, as
+  // Menu below 768 px: the open menu scrolls on its own (side.css) and brings the current page to its middle, as
   // scrollIntoView with block: 'center' inside the menu would, but by hand on scrollTop so the page does not move.
   // Opening it moves focus to the current page's link, which is then in view (or to the first link on a page that is
   // not in the menu), so the focus is never scrolled out of sight; Esc closes it and gives focus back to the button.
@@ -50,7 +54,7 @@
     }
     if (!open && fokus) meny.focus();
   }
-  // The component groups in the menu: each button opens and closes its own group (only below 900 px is it shown).
+  // The component categories in the menu: each button opens and closes its own list, at every width.
   document.querySelectorAll('.side-nav__gruppeknapp').forEach(function (b) {
     b.addEventListener('click', function () { b.setAttribute('aria-expanded', b.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); });
   });
@@ -101,16 +105,15 @@
   // A card that moves focus into itself loads on request.
   var demo = document.getElementById('demo'), vis = document.getElementById('demo-vis');
   if (demo && vis) vis.addEventListener('click', function () { demo.src = demo.dataset.src; demo.hidden = false; vis.parentElement.hidden = true; });
-  // From 900 px the sidebar scrolls on its own: bring the current page into view in it (the nearest edge, as
-  // scrollIntoView with block: 'nearest'), without animation and without moving the page. Done by hand on scrollTop:
-  // Chromium's scrollIntoView also moves the Tab starting point to the link, so the first Tab skipped the skip link.
+  // From 768 px the sidebar scrolls on its own: a current page near or past its edges is brought to the middle of it
+  // (midtstill), without animation and without moving the page. Done by hand on scrollTop: Chromium's scrollIntoView
+  // also moves the Tab starting point to the link, so the first Tab skipped the skip link.
   if (nav) {
     var her = nav.querySelector('[aria-current="page"]'), oy = getComputedStyle(nav).overflowY;
     if (her && (oy === 'auto' || oy === 'scroll') && nav.scrollHeight > nav.clientHeight) {
-      var nr = nav.getBoundingClientRect(), hr = her.getBoundingClientRect(), luft = 12;
+      var nr = nav.getBoundingClientRect(), hr = her.getBoundingClientRect(), luft = 48;
       var topp = nr.top + nav.clientTop, bunn = topp + nav.clientHeight;
-      if (hr.bottom > bunn - luft) nav.scrollTop += hr.bottom - bunn + luft;
-      else if (hr.top < topp + luft) nav.scrollTop -= topp + luft - hr.top;
+      if (hr.bottom > bunn - luft || hr.top < topp + luft) midtstill();
     }
   }
   // A link to a section folded into <details> opens it.
